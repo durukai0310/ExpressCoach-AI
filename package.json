@@ -1,0 +1,19 @@
+{
+  "name": "expresscoach",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/index.js \"我想拒绝朋友借钱但不想伤感情\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "openclaw": "^2026.6.1",
+    "sqlite3": "^6.0.1"
+  }
+}
