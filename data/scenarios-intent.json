@@ -1,0 +1,152 @@
+[
+  {
+    "id": "S001",
+    "category": "拒绝",
+    "intent": "拒绝请求",
+    "scenario": "室友经常让你帮忙带饭，这次你不想带了"
+  },
+  {
+    "id": "S002",
+    "category": "拒绝",
+    "intent": "拒绝请求",
+    "scenario": "同事想让你帮他完成他的工作任务"
+  },
+  {
+    "id": "S003",
+    "category": "拒绝",
+    "intent": "拒绝请求",
+    "scenario": "亲戚想借你的笔记本电脑用几天"
+  },
+  {
+    "id": "S004",
+    "category": "拒绝",
+    "intent": "拒绝请求",
+    "scenario": "社团学长让你替他参加一个无聊的会议"
+  },
+  {
+    "id": "S005",
+    "category": "拒绝",
+    "intent": "拒绝请求",
+    "scenario": "朋友想让你周末陪他去买东西，但你想休息"
+  },
+  {
+    "id": "S006",
+    "category": "催促",
+    "intent": "催促对方",
+    "scenario": "小组作业队友迟迟不交自己负责的部分"
+  },
+  {
+    "id": "S007",
+    "category": "催促",
+    "intent": "催促对方",
+    "scenario": "客户答应付款但一周过去了还没到账"
+  },
+  {
+    "id": "S008",
+    "category": "催促",
+    "intent": "催促对方",
+    "scenario": "同学借了你的书半个月还没还"
+  },
+  {
+    "id": "S009",
+    "category": "催促",
+    "intent": "催促对方",
+    "scenario": "同事承诺帮你改报告但一直拖延"
+  },
+  {
+    "id": "S010",
+    "category": "催促",
+    "intent": "催促对方",
+    "scenario": "导师答应看你的论文但一周没回复"
+  },
+  {
+    "id": "S011",
+    "category": "反馈",
+    "intent": "提出反馈",
+    "scenario": "组长分配任务不合理，你想提出来"
+  },
+  {
+    "id": "S012",
+    "category": "反馈",
+    "intent": "提出反馈",
+    "scenario": "室友晚上打游戏声音太大影响你学习"
+  },
+  {
+    "id": "S013",
+    "category": "反馈",
+    "intent": "提出反馈",
+    "scenario": "老板开会总是超时，影响大家的工作安排"
+  },
+  {
+    "id": "S014",
+    "category": "反馈",
+    "intent": "提出反馈",
+    "scenario": "朋友总是迟到，你想提醒他注意时间"
+  },
+  {
+    "id": "S015",
+    "category": "反馈",
+    "intent": "提出反馈",
+    "scenario": "部门同事在群里发太多无关消息，影响工作"
+  },
+  {
+    "id": "S016",
+    "category": "设边界",
+    "intent": "设立边界",
+    "scenario": "同事总在周末给你发工作消息"
+  },
+  {
+    "id": "S017",
+    "category": "设边界",
+    "intent": "设立边界",
+    "scenario": "亲戚总爱打探你的工资收入"
+  },
+  {
+    "id": "S018",
+    "category": "设边界",
+    "intent": "设立边界",
+    "scenario": "室友随意翻你的东西"
+  },
+  {
+    "id": "S019",
+    "category": "设边界",
+    "intent": "设立边界",
+    "scenario": "领导经常在下班前布置紧急任务"
+  },
+  {
+    "id": "S020",
+    "category": "设边界",
+    "intent": "设立边界",
+    "scenario": "同学总爱借用你的学习资料却不分享"
+  },
+  {
+    "id": "S021",
+    "category": "求助",
+    "intent": "寻求帮助",
+    "scenario": "想向导师请假参加重要的面试"
+  },
+  {
+    "id": "S022",
+    "category": "求助",
+    "intent": "寻求帮助",
+    "scenario": "工作遇到技术难题，想请老同事指点"
+  },
+  {
+    "id": "S023",
+    "category": "求助",
+    "intent": "寻求帮助",
+    "scenario": "想向父母多要一些生活费"
+  },
+  {
+    "id": "S024",
+    "category": "求助",
+    "intent": "寻求帮助",
+    "scenario": "项目遇到困难，想向领导申请延期"
+  },
+  {
+    "id": "S025",
+    "category": "求助",
+    "intent": "寻求帮助",
+    "scenario": "想请同学帮忙复习功课"
+  }
+]
