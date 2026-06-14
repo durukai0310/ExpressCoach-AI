@@ -1,0 +1,400 @@
+/**
+ * M2 关系判断模块 — analyze.js (Day 9 增强)
+ *
+ * 职责:
+ *   1. ruleMatch(scenario) — 规则匹配层: 从用户输入提取关系关键词，
+ *      查 data/relation-dict.json 词典，输出基准值 (权重 0.3)
+ *   2. judgeRelationship(scenario, ruleHints) — LLM 精调层:
+ *      调用 DeepSeek 进行关系判断 (权重 0.7)
+ *   3. hybridAnalyze(scenario) — 混合编排: 规则 → 注入LLM prompt → LLM精调 → 合并输出
+ *
+ * 覆盖 32 种中文社交关系类型，三维度标注:
+ *   - 亲密度 (intimacy): 亲密 / 较近 / 一般 / 疏远
+ *   - 权力关系 (power): 对方上位 / 平等 / 己方上位 / 不明
+ *   - 利益关联 (interest): 强利益 / 弱利益 / 纯情感
+ */
+
+const fs = require("fs");
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
+
+// ============================================================
+// 终端颜色
+// ============================================================
+const C = {
+  reset: "\x1b[0m",
+  bold: "\x1b[1m",
+  dim: "\x1b[2m",
+  red: "\x1b[31m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  magenta: "\x1b[35m",
+  cyan: "\x1b[36m",
+  white: "\x1b[37m",
+};
+
+function color(colorCode, text) {
+  if (process.env.NO_COLOR || !process.stdout.isTTY) return text;
+  return colorCode + text + C.reset;
+}
+
+// ============================================================
+// 配置
+// ============================================================
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
+const RELATION_SOUL = path.resolve(__dirname, "..", "..", "soul", "relationship-judge.md");
+const RELATION_DICT_PATH = path.resolve(__dirname, "..", "..", "data", "relation-dict.json");
+
+// 混合权重
+const RULE_WEIGHT = 0.3;
+const LLM_WEIGHT = 0.7;
+
+// ============================================================
+// 工具函数
+// ============================================================
+
+function loadFile(filePath, label) {
+  if (!fs.existsSync(filePath)) {
+    console.error(color(C.red, `❌ ${label} 未找到: ${filePath}`));
+    return null;
+  }
+  return fs.readFileSync(filePath, "utf-8");
+}
+
+function loadRelationDict() {
+  if (!fs.existsSync(RELATION_DICT_PATH)) {
+    console.error(color(C.yellow, `  ⚠️ relation-dict.json 未找到: ${RELATION_DICT_PATH}`));
+    return null;
+  }
+  try {
+    return JSON.parse(fs.readFileSync(RELATION_DICT_PATH, "utf-8"));
+  } catch (e) {
+    console.error(color(C.yellow, `  ⚠️ relation-dict.json 解析失败: ${e.message}`));
+    return null;
+  }
+}
+
+function parseResponse(raw) {
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    const jsonMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if (jsonMatch) {
+      try { return JSON.parse(jsonMatch[1].trim()); } catch (e2) {}
+    }
+    const braceMatch = raw.match(/\{[\s\S]*\}/);
+    if (braceMatch) {
+      try { return JSON.parse(braceMatch[0]); } catch (e3) {}
+    }
+    return null;
+  }
+}
+
+// ============================================================
+// API 调用 (带重试)
+// ============================================================
+
+async function callDeepSeek(systemPrompt, userInput, opts = {}) {
+  const {
+    temperature = 0.1,
+    maxTokens = 500,
+    maxRetries = 2,
+  } = opts;
+
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      if (attempt > 0) {
+        await new Promise((r) => setTimeout(r, 1000 * attempt));
+      }
+
+      const response = await fetch("https://api.deepseek.com/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "deepseek-chat",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userInput },
+          ],
+          temperature,
+          max_tokens: maxTokens,
+        }),
+      });
+
+      if (!response.ok) {
+        const err = await response.text();
+        throw new Error(`DeepSeek API 错误 (${response.status}): ${err.substring(0, 200)}`);
+      }
+
+      const data = await response.json();
+      return {
+        content: data.choices[0].message.content,
+        tokens: data.usage?.total_tokens || 0,
+      };
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxRetries) {
+        console.error(color(C.yellow, `  ⚠️ 重试 ${attempt + 1}/${maxRetries}: ${error.message}`));
+      }
+    }
+  }
+
+  throw lastError;
+}
+
+// ============================================================
+// 步骤1: 规则匹配层 (Rule Match) — 权重 0.3
+// ============================================================
+
+/**
+ * 从用户输入中提取关系关键词，查词典返回最佳匹配
+ *
+ * @param {string} scenario - 用户输入的社交场景描述
+ * @returns {object} { matched, entry, score, allMatches }
+ *   - matched: 是否匹配到 (boolean)
+ *   - entry: 最佳匹配的关系词典条目
+ *   - score: 匹配分数 (关键词命中数)
+ *   - allMatches: 所有命中的关系条目（按分数排序）
+ */
+function ruleMatch(scenario) {
+  const dict = loadRelationDict();
+  const defaults = dict?.defaults || {
+    intimacy: "一般",
+    power: "不明",
+    interest: "纯情感",
+    sensitivity: "中敏感",
+    strategy: "保持礼貌和真诚",
+    caution: "避免伤害对方感情",
+  };
+
+  if (!dict || !dict.relationships) {
+    console.error(color(C.yellow, "  ⚠️ 关系词典不可用，返回默认值"));
+    return {
+      matched: false,
+      entry: { type: "未知", ...defaults },
+      score: 0,
+      allMatches: [],
+      source: "默认值",
+    };
+  }
+
+  // 对每条关系类型计算关键词匹配分数
+  const scoredMatches = [];
+  for (const rel of dict.relationships) {
+    let score = 0;
+    const matchedKeywords = [];
+
+    for (const kw of rel.keywords || []) {
+      if (scenario.includes(kw)) {
+        // 关键词越长越精准，给更高权重
+        score += kw.length >= 3 ? 2 : 1;
+        matchedKeywords.push(kw);
+      }
+    }
+
+    if (score > 0) {
+      scoredMatches.push({
+        type: rel.type,
+        entry: rel,
+        score,
+        matchedKeywords,
+      });
+    }
+  }
+
+  // 按分数降序排列
+  scoredMatches.sort((a, b) => b.score - a.score);
+
+  if (scoredMatches.length === 0) {
+    console.error(color(C.dim, "  📖 规则层: 未匹配到明确关系关键词，使用默认值"));
+    return {
+      matched: false,
+      entry: { type: "未知", ...defaults },
+      score: 0,
+      allMatches: [],
+      source: "默认值（无关键词命中）",
+    };
+  }
+
+  const best = scoredMatches[0];
+  console.error(color(C.dim, `  📖 规则层: 匹配到 "${best.type}" (命中 ${best.matchedKeywords.length} 个关键词: ${best.matchedKeywords.join(", ")}, 分数 ${best.score})`));
+
+  if (scoredMatches.length > 1) {
+    console.error(color(C.dim, `     其他候选: ${scoredMatches.slice(1, 4).map(m => `${m.type}(${m.score})`).join(", ")}`));
+  }
+
+  return {
+    matched: true,
+    entry: best.entry,
+    score: best.score,
+    allMatches: scoredMatches,
+    matchedKeywords: best.matchedKeywords,
+    source: `关键词匹配: ${best.type}`,
+  };
+}
+
+// ============================================================
+// 步骤2: LLM 精调层 — 权重 0.7 (注入规则结果)
+// ============================================================
+
+/**
+ * 调用 LLM 进行关系判断，prompt 中注入规则匹配结果作为参考
+ *
+ * @param {string} scenario - 用户输入的社交场景描述
+ * @param {object} ruleResult - 规则匹配层的结果
+ * @returns {object} { raw: string, parsed: object|null, tokens: number }
+ */
+async function judgeRelationship(scenario, ruleResult) {
+  const soulContent = loadFile(RELATION_SOUL, "SOUL.md (关系判断)");
+  if (!soulContent) throw new Error("关系判断 SOUL.md 加载失败");
+
+  // 构建注入规则结果的增强 prompt
+  let enhancedInput = scenario;
+
+  if (ruleResult && ruleResult.matched) {
+    const r = ruleResult.entry;
+    enhancedInput = `【用户场景】\n"${scenario}"\n\n`;
+    enhancedInput += `【规则词典预判结果 — 仅供参考，你可以根据语境调整】\n`;
+    enhancedInput += `- 词典匹配关系类型: ${r.type}\n`;
+    enhancedInput += `- 亲密度基准: ${r.intimacy}\n`;
+    enhancedInput += `- 权力关系基准: ${r.power}\n`;
+    enhancedInput += `- 利益关联基准: ${r.interest}\n`;
+    enhancedInput += `- 表达敏感度基准: ${r.sensitivity}\n`;
+    if (ruleResult.matchedKeywords) {
+      enhancedInput += `- 命中关键词: ${ruleResult.matchedKeywords.join(", ")}\n`;
+    }
+    enhancedInput += `\n请基于以上参考和你的分析，结合具体场景语境，输出最终的关系判断 JSON。`;
+    enhancedInput += `\n注意：词典预判仅作为参考，如果场景语境与词典有出入，请以实际语境为准进行调整。`;
+  }
+
+  const { content, tokens } = await callDeepSeek(soulContent, enhancedInput, {
+    temperature: 0.1,
+    maxTokens: 350,
+  });
+
+  const parsed = parseResponse(content);
+  return { raw: content, parsed, tokens };
+}
+
+// ============================================================
+// 步骤3: 混合编排 — 规则(0.3) + LLM(0.7) → 合并输出
+// ============================================================
+
+/**
+ * 混合分析: 规则词典(权重0.3) → 注入LLM prompt → LLM精调(权重0.7) → 合并输出
+ *
+ * 流程:
+ *   1. 规则层先用关键词匹配查词典，得到基准值
+ *   2. 将规则结果注入 LLM prompt 作为上下文提示
+ *   3. LLM 在规则参考的基础上进行精调判断
+ *   4. 如果 LLM 成功，以 LLM 结果为准（规则已融入 prompt）
+ *   5. 如果 LLM 失败，降级为纯规则结果
+ *
+ * @param {string} scenario - 用户输入的社交场景描述
+ * @returns {object} { raw, parsed, ruleResult, tokens, source, confidence }
+ */
+async function hybridAnalyze(scenario) {
+  console.error(color(C.cyan, "\n  🔀 M2 混合分析: 规则(0.3) + LLM(0.7)"));
+
+  // ---- 阶段 A: 规则匹配 (权重 0.3) ----
+  console.error(color(C.dim, "  ├─ 📖 [阶段A] 规则词典匹配..."));
+  const ruleResult = ruleMatch(scenario);
+
+  // ---- 阶段 B + C: LLM 精调 (权重 0.7) ----
+  console.error(color(C.dim, "  ├─ 🤖 [阶段B/C] LLM精调 (已注入规则参考)..."));
+  let llmResult = null;
+  let llmError = null;
+
+  try {
+    llmResult = await judgeRelationship(scenario, ruleResult);
+  } catch (error) {
+    llmError = error;
+    console.error(color(C.yellow, `  ⚠️ LLM 精调失败: ${error.message}`));
+  }
+
+  // ---- 阶段 D: 合并输出 ----
+  console.error(color(C.dim, "  └─ 🔀 [阶段D] 合并输出..."));
+
+  if (llmResult && llmResult.parsed) {
+    // LLM 成功: 以 LLM 结果为主 (规则已作为参考注入 prompt)
+    const merged = {
+      raw: llmResult.raw,
+      parsed: llmResult.parsed,
+      ruleResult: {
+        matched: ruleResult.matched,
+        type: ruleResult.entry.type,
+        intimacy: ruleResult.entry.intimacy,
+        power: ruleResult.entry.power,
+        interest: ruleResult.entry.interest,
+        source: ruleResult.source,
+        matchedKeywords: ruleResult.matchedKeywords || [],
+      },
+      tokens: llmResult.tokens,
+      source: "LLM精调(规则参考已注入)",
+      weights: { rule: RULE_WEIGHT, llm: LLM_WEIGHT },
+    };
+
+    // 打印合并对比
+    console.error(color(C.dim, `    📖 规则(0.3): ${ruleResult.entry.type} | ${ruleResult.entry.intimacy} | ${ruleResult.entry.power} | ${ruleResult.entry.interest}`));
+    console.error(color(C.dim, `    🤖 LLM(0.7): ${llmResult.parsed["关系类型"]} | ${llmResult.parsed["亲密度"]} | ${llmResult.parsed["权力关系"]} | ${llmResult.parsed["利益关联"]}`));
+
+    // 检查规则与 LLM 是否一致
+    const typeAgreement = ruleResult.matched &&
+      ruleResult.entry.type === llmResult.parsed["关系类型"];
+    if (!typeAgreement && ruleResult.matched) {
+      console.error(color(C.yellow, `    ⚠️ 规则与LLM判断不一致 → 以LLM为准（LLM权重0.7）`));
+    } else if (typeAgreement) {
+      console.error(color(C.green, `    ✅ 规则与LLM判断一致 → 高置信度`));
+    }
+
+    return merged;
+  }
+
+  // LLM 失败: 降级为纯规则结果
+  console.error(color(C.yellow, "  ⚠️ LLM 不可用，降级为纯规则匹配结果"));
+  const fallbackParsed = {
+    "关系类型": ruleResult.entry.type,
+    "亲密度": ruleResult.entry.intimacy,
+    "权力关系": ruleResult.entry.power,
+    "利益关联": ruleResult.entry.interest,
+    "表达敏感度": ruleResult.entry.sensitivity || "中敏感",
+    "建议策略": ruleResult.entry.strategy || "保持礼貌和真诚",
+    "注意事项": ruleResult.entry.caution || "避免伤害对方感情",
+  };
+
+  return {
+    raw: JSON.stringify(fallbackParsed),
+    parsed: fallbackParsed,
+    ruleResult: {
+      matched: ruleResult.matched,
+      type: ruleResult.entry.type,
+      intimacy: ruleResult.entry.intimacy,
+      power: ruleResult.entry.power,
+      interest: ruleResult.entry.interest,
+      source: ruleResult.source,
+      matchedKeywords: ruleResult.matchedKeywords || [],
+    },
+    tokens: 0,
+    source: "纯规则降级(LLM不可用)",
+    weights: { rule: 1.0, llm: 0.0 },
+    llmError: llmError ? llmError.message : null,
+  };
+}
+
+// ============================================================
+// 导出
+// ============================================================
+module.exports = {
+  ruleMatch,
+  judgeRelationship,
+  hybridAnalyze,
+  callDeepSeek,
+  parseResponse,
+  loadRelationDict,
+};
