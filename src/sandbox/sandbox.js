@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sandbox 沙盒主控 — 双Agent对话沙盒 (Day 16 增强)
+ * Sandbox 沙盒主控 — 双Agent对话沙盒 (Day 17 增强)
  *
  * 架构:
  *   Coach Agent (教练)  ←→  共享上下文  ←→  Simulator Agent (模拟对方)
@@ -12,6 +12,13 @@
  *   - 非交互自动模式: --autopilot 自动生成用户回复进行多轮测试
  *   - 15轮连续对话不崩溃验证
  *
+ * Day 17 新增:
+ *   - 三种练习模式 mode: free(自由) / guided(引导) / stress(压力)
+ *   - 每种模式有独立配置对象 {coachConfig, simulatorConfig}
+ *   - free: coach完全静默, simulator正常性格
+ *   - guided: coach每2轮主动给一次建议, simulator正常
+ *   - stress: simulator强制hostile性格, coach只在求助时介入
+ *
  * 功能:
  *   - 共享上下文数组 sharedContext: 每轮追加 {role, content, timestamp}
  *   - 10轮硬上限，超过自动触发LLM压缩前5轮为100字摘要，保留后5轮原文
@@ -19,9 +26,9 @@
  *   - Coach 旁听并在4种关键时刻介入
  *
  * 用法:
- *   node src/sandbox/sandbox.js "场景描述" friendly
- *   node src/sandbox/sandbox.js "场景描述" hostile --rounds 15 --autopilot
- *   node src/sandbox/sandbox.js "催同事交报告" friendly --rounds 15
+ *   node src/sandbox/sandbox.js "场景描述" free
+ *   node src/sandbox/sandbox.js "场景描述" guided --rounds 5
+ *   node src/sandbox/sandbox.js "场景描述" stress --rounds 5 --autopilot
  *
  * 使用 CommonJS 规范
  */
@@ -260,34 +267,211 @@ ${contextStr}
 }
 
 // ============================================================
-// startSandbox — 沙盒启动函数（Day 16 增强版）
+// 三种练习模式配置（Day 17 新增）
+// ============================================================
+
+const MODE_CONFIGS = {
+  /**
+   * free (自由模式): coach完全静默, simulator正常性格
+   * - 教练不介入任何情况
+   * - 模拟对方使用用户指定的性格
+   */
+  free: {
+    label: "自由模式 🆓",
+    description: "教练完全静默，自由练习社交表达",
+    coachConfig: {
+      enabled: false,        // 完全禁用教练
+      helpRequest: false,    // 求助也不介入
+      toneCheck: false,      // 语气检测关闭
+      deadlockCheck: false,  // 僵局检测关闭
+      cooldown: 999,         // 超大冷却期（永不介入）
+    },
+    simulatorConfig: {
+      forcePersonality: null, // 不强制性格，使用用户指定
+    },
+  },
+
+  /**
+   * guided (引导模式): coach每2轮主动给一次建议, simulator正常
+   * - 教练每2轮主动介入一次（无视其他条件）
+   * - 模拟对方使用用户指定的性格
+   */
+  guided: {
+    label: "引导模式 🎓",
+    description: "教练每2轮主动给建议，边练边学",
+    coachConfig: {
+      enabled: true,
+      helpRequest: true,     // 求助时立即响应
+      toneCheck: true,       // 语气检测开启
+      deadlockCheck: true,   // 僵局检测开启
+      proactiveInterval: 2,  // 每2轮主动给一次建议（核心）
+      cooldown: 0,           // 无冷却期（允许每轮介入）
+    },
+    simulatorConfig: {
+      forcePersonality: null, // 不强制性格，使用用户指定
+    },
+  },
+
+  /**
+   * stress (压力模式): simulator强制hostile性格, coach只在求助时介入
+   * - 模拟对方强制使用 hostile 性格（无视用户指定）
+   * - 教练只在用户明确求助时介入
+   */
+  stress: {
+    label: "压力模式 💪",
+    description: "强制刁难对方，教练仅在求助时介入",
+    coachConfig: {
+      enabled: true,
+      helpRequest: true,     // 求助时立即响应（核心）
+      toneCheck: false,      // 语气检测关闭（压力下不提醒语气）
+      deadlockCheck: false,  // 僵局检测关闭
+      proactiveInterval: 0,  // 不主动介入
+      cooldown: 3,           // 冷却期3轮（避免频繁介入）
+    },
+    simulatorConfig: {
+      forcePersonality: "hostile", // 强制 hostile（核心）
+    },
+  },
+};
+
+// ============================================================
+// _runCoachCheck — 根据模式配置执行教练介入检查（Day 17 新增）
+// ============================================================
+
+/**
+ * 根据当前模式的 coachConfig 决定教练行为
+ *
+ * @param {CoachAgent} coach - 教练实例
+ * @param {ContextManager} ctx - 上下文管理器
+ * @param {String} mode - 练习模式
+ * @param {Number} round - 当前轮次
+ * @param {Object} coachConfig - 模式对应的教练配置
+ * @returns {Object} {should, reason, suggestion}
+ */
+async function _runCoachCheck(coach, ctx, mode, round, coachConfig) {
+  // free 模式: 教练完全静默
+  if (!coachConfig.enabled) {
+    return { should: false, reason: "自由模式-教练静默", suggestion: "" };
+  }
+
+  // stress 模式: 教练只在求助时介入
+  if (mode === "stress") {
+    const context = ctx.getContext();
+    const lastUserMsg = [...context].reverse().find((e) => e.role === "user");
+    const userMessage = lastUserMsg ? lastUserMsg.content : "";
+    const helpKeywords = ["帮帮我", "怎么说", "救命", "不知道怎么说", "怎么办", "教我", "救救我", "help", "帮我", "怎么回", "不会说", "怎么表达"];
+    const hasHelpRequest = helpKeywords.some((kw) => userMessage.includes(kw));
+
+    if (hasHelpRequest) {
+      console.log(c(C.dim, `     🔍 [Coach/stress] 检测到求助信号 → 介入`));
+      return await coach.shouldIntervene(context);
+    }
+    // stress 模式非求助 → 静默
+    return { should: false, reason: "压力模式-非求助静默", suggestion: "" };
+  }
+
+  // guided 模式: 每 N 轮主动给一次建议
+  if (mode === "guided" && coachConfig.proactiveInterval > 0) {
+    // 检查是否到达主动介入轮次
+    if (round > 0 && round % coachConfig.proactiveInterval === 0) {
+      console.log(c(C.dim, `     🔍 [Coach/guided] 第${round}轮 → 主动介入`));
+      const context = ctx.getContext();
+      const result = await coach.shouldIntervene(context);
+      if (result.should) return result;
+
+      // 即使 shouldIntervene 返回 false，guided 模式也强制给建议
+      // 构建主动建议
+      const recentContext = context.slice(-6);
+      const contextStr = recentContext
+        .map((e) => `[${e.role === "user" ? "用户" : (e.role === "simulator" ? "对方" : e.role)}] ${e.content}`)
+        .join("\n");
+
+      try {
+        const { callDeepSeek } = require("../intent/recognize");
+        const prompt = `当前对话（第${round}轮）:
+${contextStr}
+
+你是教练，请每2轮给用户一个简短的策略建议（30-50字）。
+建议应该帮助用户优化表达策略，如调整语气、换一种切入方式、或提供可用的句式。
+只输出建议内容本身，不要加前缀。`;
+
+        const llmResult = await callDeepSeek(
+          "你是一位社交表达教练，请给用户简短实用的策略建议。",
+          prompt,
+          { temperature: 0.3, maxTokens: 150 }
+        );
+        return {
+          should: true,
+          reason: `主动引导（第${round}轮）`,
+          suggestion: llmResult.content.trim(),
+        };
+      } catch (e) {
+        return {
+          should: true,
+          reason: `主动引导（第${round}轮）`,
+          suggestion: "建议回顾一下对方的反应，调整你的表达角度。试着从对方的需求出发，寻找共同点。",
+        };
+      }
+    }
+  }
+
+  // 通用模式: 按正常规则检查（guided/stress 的非特殊轮次也走这里）
+  return await coach.shouldIntervene(ctx.getContext());
+}
+
+// ============================================================
+// startSandbox — 沙盒启动函数（Day 17 增强版）
 // ============================================================
 
 /**
  * @param {String} scenario - 用户场景描述（如"我想拒绝朋友借钱"）
+ * @param {String} mode - 练习模式: "free" | "guided" | "stress"
  * @param {String} personality - 模拟对方性格: "friendly" | "hostile" | "avoidant"
  * @param {Object} opts - 可选参数 {rounds: 最大轮次数, autopilot: 自动模式}
  */
-async function startSandbox(scenario, personality = "friendly", opts = {}) {
+async function startSandbox(scenario, mode = "free", personality = "friendly", opts = {}) {
   const maxRounds = opts.rounds || 10;
   const autopilot = opts.autopilot !== false && opts.autopilot !== undefined ? opts.autopilot : false;
 
+  // Day 17: 获取模式配置
+  const modeConfig = MODE_CONFIGS[mode] || MODE_CONFIGS.free;
+  const { coachConfig, simulatorConfig } = modeConfig;
+
+  // Day 17: stress 模式强制 hostile 性格
+  const effectivePersonality = simulatorConfig.forcePersonality || personality;
+
   console.log("");
   console.log(c(C.bold, "╔══════════════════════════════════════════════════════╗"));
-  console.log(c(C.bold, "║        🎭 ExpressCoach 双Agent对话沙盒 (Day 16)       ║"));
-  console.log(c(C.bold, "║        Coach (智能介入) + Simulator (模拟对方)         ║"));
+  console.log(c(C.bold, "║     🎭 ExpressCoach 双Agent对话沙盒 (Day 17)         ║"));
+  console.log(c(C.bold, "║     Coach (智能介入) + Simulator (模拟对方)          ║"));
   console.log(c(C.bold, "╚══════════════════════════════════════════════════════╝"));
   console.log("");
   console.log(c(C.dim, `  场景: ${scenario}`));
-  console.log(c(C.dim, `  对方性格: ${personality}`));
+  console.log(c(C.bold, `  练习模式: ${modeConfig.label}`));
+  console.log(c(C.dim, `     ${modeConfig.description}`));
+  console.log(c(C.dim, `  对方性格: ${effectivePersonality}${simulatorConfig.forcePersonality ? " (强制)" : ""}`));
   console.log(c(C.dim, `  最大轮次: ${maxRounds}`));
-  console.log(c(C.dim, `  模式: ${autopilot ? "自动测试 🤖" : "交互模式 👤"}`));
+  console.log(c(C.dim, `  运行模式: ${autopilot ? "自动测试 🤖" : "交互模式 👤"}`));
+  console.log("");
+
+  // Day 17: 打印模式配置摘要
+  console.log(c(C.dim, `  📋 模式配置:`));
+  console.log(c(C.dim, `     Coach: ${coachConfig.enabled ? "启用" : "完全静默"}`));
+  if (coachConfig.enabled) {
+    const rules = [];
+    if (coachConfig.helpRequest) rules.push("求助响应");
+    if (coachConfig.toneCheck) rules.push("语气检测");
+    if (coachConfig.deadlockCheck) rules.push("僵局检测");
+    if (coachConfig.proactiveInterval) rules.push(`每${coachConfig.proactiveInterval}轮主动建议`);
+    console.log(c(C.dim, `     介入规则: ${rules.join(" | ") || "无"}`));
+  }
+  console.log(c(C.dim, `     Simulator: ${simulatorConfig.forcePersonality ? `强制 ${simulatorConfig.forcePersonality}` : "跟随用户指定"} `));
   console.log("");
 
   // 初始化
   const ctx = new ContextManager(maxRounds);
   const coach = new CoachAgent();
-  const simulator = new SimulatorAgent(personality);
+  const simulator = new SimulatorAgent(effectivePersonality);
 
   // 初始化对话：将场景描述作为对话起点
   ctx.append("system", `用户场景: ${scenario}`);
@@ -304,8 +488,8 @@ async function startSandbox(scenario, personality = "friendly", opts = {}) {
   console.log(c(C.blue, `  🎭 对方: ${openingReply}`));
   console.log("");
 
-  // 教练检查是否需要介入（首轮通常不需要）
-  const initialCoach = await coach.shouldIntervene(ctx.getContext());
+  // Day 17: 教练检查是否需要介入（根据模式配置，首轮通常不需要）
+  const initialCoach = await _runCoachCheck(coach, ctx, mode, 0, coachConfig);
   if (initialCoach.should) {
     console.log(c(C.yellow, `  🧠 教练提示 [${initialCoach.reason}]: ${initialCoach.suggestion}`));
     console.log("");
@@ -330,8 +514,8 @@ async function startSandbox(scenario, personality = "friendly", opts = {}) {
       ctx.append("user", autoReply);
       console.log(c(C.cyan, `  💬 [轮次 ${round}/${maxRounds}] 用户: ${autoReply}`));
 
-      // 教练检查是否需要介入
-      const coachResult = await coach.shouldIntervene(ctx.getContext());
+      // Day 17: 教练介入（根据模式配置）
+      const coachResult = await _runCoachCheck(coach, ctx, mode, round, coachConfig);
       if (coachResult.should) {
         console.log("");
         console.log(c(C.yellow, `  🧠 教练介入 [${coachResult.reason}]:`));
@@ -403,8 +587,8 @@ async function startSandbox(scenario, personality = "friendly", opts = {}) {
       // 追加用户消息
       ctx.append("user", userInput);
 
-      // 教练检查是否需要介入
-      const coachResult = await coach.shouldIntervene(ctx.getContext());
+      // Day 17: 教练介入（根据模式配置）
+      const coachResult = await _runCoachCheck(coach, ctx, mode, round, coachConfig);
       if (coachResult.should) {
         console.log("");
         console.log(c(C.yellow, `  🧠 教练介入 [${coachResult.reason}]:`));
@@ -453,7 +637,7 @@ async function startSandbox(scenario, personality = "friendly", opts = {}) {
 }
 
 // ============================================================
-// CLI 入口（Day 16 增强版）
+// CLI 入口（Day 17 增强版）
 // ============================================================
 
 async function main() {
@@ -461,16 +645,29 @@ async function main() {
 
   // 解析参数
   let scenario = "";
+  let mode = "free";       // Day 17: 默认 free 模式
   let personality = "friendly";
   let maxRounds = 10;
   let autopilot = false;
+
+  const VALID_MODES = ["free", "guided", "stress"];
+  const VALID_PERSONALITIES = ["friendly", "hostile", "avoidant"];
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--rounds" || args[i] === "-r") {
       maxRounds = parseInt(args[++i]) || 10;
     } else if (args[i] === "--autopilot" || args[i] === "--auto" || args[i] === "-a") {
       autopilot = true;
-    } else if (["friendly", "hostile", "avoidant"].includes(args[i])) {
+    } else if (args[i] === "--mode" || args[i] === "-m") {
+      // 显式指定模式: --mode guided
+      const m = args[++i];
+      if (VALID_MODES.includes(m)) {
+        mode = m;
+      }
+    } else if (VALID_MODES.includes(args[i])) {
+      // Day 17: 第二个位置参数可能是 mode（如 free/guided/stress）
+      mode = args[i];
+    } else if (VALID_PERSONALITIES.includes(args[i])) {
       personality = args[i];
     } else {
       if (!scenario) scenario = args[i];
@@ -479,24 +676,30 @@ async function main() {
 
   if (!scenario) {
     // 无参数：显示帮助
-    console.log(c(C.bold, "\n📋 ExpressCoach 沙盒 — 双Agent对话系统 (Day 16)"));
+    console.log(c(C.bold, "\n📋 ExpressCoach 沙盒 — 双Agent对话系统 (Day 17)"));
     console.log(c(C.dim, "\n用法:"));
-    console.log(c(C.dim, "  node src/sandbox/sandbox.js \"场景描述\" <性格> [--rounds N] [--autopilot]"));
-    console.log(c(C.dim, "\n性格选项:"));
+    console.log(c(C.dim, '  node src/sandbox/sandbox.js "场景描述" <模式> <性格> [--rounds N] [--autopilot]'));
+    console.log(c(C.dim, "\n练习模式 (Day 17 新增):"));
+    console.log(c(C.green, "  free      — 自由模式（教练完全静默，自由练习）"));
+    console.log(c(C.yellow, "  guided    — 引导模式（教练每2轮主动给建议，边练边学）"));
+    console.log(c(C.red, "  stress    — 压力模式（强制刁难对方，教练仅求助时介入）"));
+    console.log(c(C.dim, "\n对方性格:"));
     console.log(c(C.dim, "  friendly  — 友善型（理解配合）"));
-    console.log(c(C.dim, "  hostile   — 刁难型（质疑施压）"));
+    console.log(c(C.dim, "  hostile   — 刁难型（质疑施压）【stress模式强制使用】"));
     console.log(c(C.dim, "  avoidant  — 回避型（转移拖延）"));
     console.log(c(C.dim, "\n选项:"));
-    console.log(c(C.dim, "  --rounds N   最大轮次数（默认10，测试用15）"));
+    console.log(c(C.dim, "  --rounds N   最大轮次数（默认10）"));
     console.log(c(C.dim, "  --autopilot  自动测试模式（非交互，自动生成用户回复）"));
+    console.log(c(C.dim, "  --mode MODE  显式指定练习模式"));
     console.log(c(C.dim, "\n示例:"));
-    console.log(c(C.dim, '  node src/sandbox/sandbox.js "我想拒绝朋友借钱" friendly'));
-    console.log(c(C.dim, '  node src/sandbox/sandbox.js "我想催同事交报告" hostile'));
-    console.log(c(C.dim, '  node src/sandbox/sandbox.js "催同事交报告" friendly --rounds 15 --autopilot'));
-    console.log(c(C.dim, "\nDay 16 完成标志:"));
-    console.log(c(C.dim, "  ☐ 教练在4种情况下正确介入/静默"));
-    console.log(c(C.dim, "  ☐ 上下文15轮不崩溃"));
-    console.log(c(C.dim, "  ☐ 第11轮触发压缩，日志显示\"上下文已压缩\""));
+    console.log(c(C.green, '  node src/sandbox/sandbox.js "催同事交报告" free --rounds 5 --autopilot'));
+    console.log(c(C.yellow, '  node src/sandbox/sandbox.js "催同事交报告" guided --rounds 5 --autopilot'));
+    console.log(c(C.red, '  node src/sandbox/sandbox.js "催同事交报告" stress --rounds 5 --autopilot'));
+    console.log(c(C.dim, '  node src/sandbox/sandbox.js "我想拒绝朋友借钱" guided friendly'));
+    console.log(c(C.dim, "\nDay 17 完成标志:"));
+    console.log(c(C.dim, "  ☐ 三种模式Simulator回复风格有明显差异"));
+    console.log(c(C.dim, "  ☐ guided模式coach每2轮出现一次"));
+    console.log(c(C.dim, "  ☐ stress模式simulator使用hostile性格"));
     console.log("");
     process.exit(0);
   }
@@ -508,7 +711,8 @@ async function main() {
   }
 
   try {
-    await startSandbox(scenario, personality, { rounds: maxRounds, autopilot });
+    // Day 17: startSandbox(scenario, mode, personality, opts)
+    await startSandbox(scenario, mode, personality, { rounds: maxRounds, autopilot });
   } catch (error) {
     console.error(c(C.red, `❌ 沙盒运行异常: ${error.message}`));
     console.error(error.stack);
