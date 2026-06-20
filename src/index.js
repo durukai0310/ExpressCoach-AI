@@ -68,6 +68,23 @@ try {
   console.error(`  ⚠️ SQLite DAO 加载失败: ${e.message}`);
 }
 
+// Day 20: 沙盒集成 — 懒加载沙盒模块
+let sandboxModule = null;
+function getSandboxModule() {
+  if (!sandboxModule) {
+    try {
+      sandboxModule = require("./sandbox/sandbox");
+      console.log("  🎭 沙盒模块已加载");
+    } catch (e) {
+      console.error(`  ⚠️ 沙盒模块加载失败: ${e.message}`);
+    }
+  }
+  return sandboxModule;
+}
+
+// Day 20: 黄金案例库路径
+const GOLDEN_CASES_PATH = path.resolve(__dirname, "..", "data", "golden-cases.json");
+
 // ============================================================
 // 终端颜色
 // ============================================================
@@ -406,6 +423,7 @@ async function runAnalysis(scenario) {
   console.log("");
 
   // ═══ Day 12: 端到端数据持久化 — 保存分析记录到 SQLite ═══
+  let savedCaseId = null;
   if (dbDao) {
     try {
       // 计算总 tokens
@@ -432,7 +450,7 @@ async function runAnalysis(scenario) {
       const jaccardMildEq = sims["mild-eq"]?.similarity ?? null;
       const jaccardFirmEq = sims["firm-eq"]?.similarity ?? null;
 
-      const caseId = await dbDao.saveCase({
+      savedCaseId = await dbDao.saveCase({
         scenario,
         intentType: intentResult.parsed?.["意图"] || null,
         intentConfidence: intentResult.parsed?.["置信度"] || null,
@@ -454,11 +472,97 @@ async function runAnalysis(scenario) {
 
       // 验证检索
       const recent = await dbDao.getRecentCases(1);
-      if (recent && recent.length > 0 && recent[0].id === caseId) {
-        console.log(color(C.green, `  ✅ 端到端数据流验证: SQLite 存储+检索正常 (案例 #${caseId})`));
+      if (recent && recent.length > 0 && recent[0].id === savedCaseId) {
+        console.log(color(C.green, `  ✅ 端到端数据流验证: SQLite 存储+检索正常 (案例 #${savedCaseId})`));
       }
     } catch (error) {
       console.error(color(C.yellow, `  ⚠️ SQLite 存储失败 (非致命): ${error.message}`));
+    }
+  }
+
+  // Day 20: 返回分析结果（含 caseId 用于反馈闭环）
+  return { versions, savedCaseId, intentResult, relationResult };
+}
+
+// ============================================================
+// Day 20: 反馈闭环 — 用户选择最佳版本 + 评分 + 黄金案例库
+// ============================================================
+
+/**
+ * 收集用户反馈：选择最佳版本 + 评分
+ * 评分 >= 4 → 追加到 data/golden-cases.json
+ */
+async function collectFeedback(rl, ask, versions, savedCaseId, scenario) {
+  console.log("");
+  printDivider("─");
+  console.log(color(C.bold, "⭐ 反馈闭环 (Day 20): 请为三版本评分"));
+
+  // 选择最佳版本
+  const choice = await ask(color(C.cyan, "  请选择最佳版本 (1=温和版 / 2=坚定版 / 3=高情商版): "));
+  const choiceNum = parseInt(choice.trim());
+  const versionMap = { 1: "mild", 2: "firm", 3: "eq" };
+  const versionType = versionMap[choiceNum];
+
+  if (!versionType) {
+    console.log(color(C.yellow, "  ⚠️ 无效选择，跳过反馈"));
+    return;
+  }
+
+  // 评分
+  const ratingStr = await ask(color(C.cyan, "  请评分 (1-5星): "));
+  const rating = parseInt(ratingStr.trim());
+  if (isNaN(rating) || rating < 1 || rating > 5) {
+    console.log(color(C.yellow, "  ⚠️ 无效评分，跳过反馈"));
+    return;
+  }
+
+  // 可选评语
+  const comment = await ask(color(C.cyan, "  评语 (可选，直接回车跳过): "));
+
+  // 保存到 SQLite feedback 表
+  if (dbDao && savedCaseId) {
+    try {
+      await dbDao.saveFeedback(savedCaseId, versionType, rating, comment.trim() || null);
+      console.log(color(C.green, `  ⭐ 反馈已保存: ${versionType}版 → ${"★".repeat(rating)}${"☆".repeat(5 - rating)} (${rating}/5)`));
+    } catch (e) {
+      console.error(color(C.yellow, `  ⚠️ 反馈保存失败: ${e.message}`));
+    }
+  }
+
+  // Day 20: 评分 >= 4星 → 追加到黄金案例库
+  if (rating >= 4) {
+    try {
+      const goldenCase = {
+        scenario,
+        selectedVersion: versionType,
+        rating,
+        comment: comment.trim() || null,
+        timestamp: new Date().toISOString(),
+        intentType: null,
+        relationType: null,
+      };
+
+      // 尝试从版本中获取内容
+      const selectedVersion = versions.find(v => v.meta?.key === versionType);
+      if (selectedVersion?.parsed?.content) {
+        goldenCase.replyContent = selectedVersion.parsed.content;
+      }
+
+      // 读取现有黄金案例
+      let goldenCases = [];
+      if (fs.existsSync(GOLDEN_CASES_PATH)) {
+        try {
+          goldenCases = JSON.parse(fs.readFileSync(GOLDEN_CASES_PATH, "utf-8"));
+        } catch (e) {
+          goldenCases = [];
+        }
+      }
+
+      goldenCases.push(goldenCase);
+      fs.writeFileSync(GOLDEN_CASES_PATH, JSON.stringify(goldenCases, null, 2), "utf-8");
+      console.log(color(C.green, `  🏆 已追加到黄金案例库 (${goldenCases.length} 条)`));
+    } catch (e) {
+      console.error(color(C.yellow, `  ⚠️ 黄金案例库更新失败: ${e.message}`));
     }
   }
 }
@@ -478,12 +582,12 @@ async function interactiveMode() {
 
   console.log("");
   console.log(color(C.bold, "╔══════════════════════════════════════════════════════╗"));
-  console.log(color(C.bold, "║     🎯 ExpressCoach AI — 社交表达教练 (MVP Day 14)     ║"));
-  console.log(color(C.bold, "║  完整链路: 意图识别 → 关系判断(规则+LLM) → 三版本 → 反应预测 ║"));
+  console.log(color(C.bold, "║     🎯 ExpressCoach AI — 社交表达教练 (MVP Day 20)     ║"));
+  console.log(color(C.bold, "║  全链路+沙盒+自动评分+反馈闭环+竞品对比                        ║"));
   console.log(color(C.bold, "╚══════════════════════════════════════════════════════╝"));
   console.log("");
   console.log(color(C.dim, "  📝 在下方输入你的社交场景，AI 会帮你分析意图、判断关系并生成三版本回复"));
-  console.log(color(C.dim, "  输入 /help 查看示例  |  /stats 查看统计  |  /search 搜索案例  |  /quit 退出"));
+  console.log(color(C.dim, "  输入 /help 查看示例  |  /stats 查看统计  |  /search 搜索案例  |  /sandbox 沙盒练习  |  /quit 退出"));
   console.log("");
 
   let turn = 0;
@@ -515,8 +619,70 @@ async function interactiveMode() {
       console.log('    ⏰ 催促: 客户一直不付款该怎么催');
       console.log('    \u{1f4ac} 反馈: 朋友总是迟到我想提醒他');
       console.log("");
-      console.log(color(C.dim, "  命令: /help 帮助 | /stats 统计 | /search 搜索案例 | /quit 退出"));
+      console.log(color(C.dim, "  命令: /help 帮助 | /stats 统计 | /search 搜索案例 | /sandbox 沙盒练习 | /quit 退出"));
       console.log("");
+      continue;
+    }
+
+    // Day 20: /sandbox 沙盒命令
+    if (input.trim() === "/sandbox" || input.trim().startsWith("/sandbox ")) {
+      const sandbox = getSandboxModule();
+      if (!sandbox) {
+        console.log(color(C.yellow, "  ⚠️ 沙盒模块未加载，请检查 src/sandbox/sandbox.js"));
+        continue;
+      }
+
+      // 解析参数: /sandbox [场景] [模式]
+      let sandboxScenario = "";
+      let sandboxMode = "guided";
+      let sandboxPersonality = "friendly";
+
+      const parts = input.trim().split(/\s+/);
+      if (parts.length >= 2) sandboxScenario = parts.slice(1).join(" ");
+
+      // 如果没提供场景，询问
+      if (!sandboxScenario) {
+        sandboxScenario = await ask(color(C.cyan, "  🎭 沙盒场景> "));
+      }
+      if (!sandboxScenario.trim()) {
+        console.log(color(C.yellow, "  ⚠️ 需要输入场景"));
+        continue;
+      }
+
+      // 选择模式
+      console.log("");
+      console.log(color(C.bold, "  选择练习模式:"));
+      console.log(color(C.green, "    1. free   — 自由模式（教练完全静默，自由练习）"));
+      console.log(color(C.yellow, "    2. guided — 引导模式（教练每2轮主动给建议）"));
+      console.log(color(C.red, "    3. stress — 压力模式（强制刁难对方，教练仅求助时介入）"));
+      const modeChoice = await ask(color(C.cyan, "  请选择模式 (1/2/3, 默认2=guided): "));
+      const modeMap = { "1": "free", "2": "guided", "3": "stress" };
+      sandboxMode = modeMap[modeChoice.trim()] || "guided";
+
+      // 选择性格 (非stress模式)
+      if (sandboxMode !== "stress") {
+        console.log("");
+        console.log(color(C.dim, "  选择对方性格 (默认 friendly):"));
+        console.log(color(C.dim, "    1. friendly — 友善型 | 2. hostile — 刁难型 | 3. avoidant — 回避型"));
+        const persChoice = await ask(color(C.cyan, "  请选择性格 (1/2/3, 默认1): "));
+        const persMap = { "1": "friendly", "2": "hostile", "3": "avoidant" };
+        sandboxPersonality = persMap[persChoice.trim()] || "friendly";
+      } else {
+        sandboxPersonality = "hostile"; // stress 强制 hostile
+      }
+
+      // 选择轮次
+      const roundsStr = await ask(color(C.cyan, "  轮次数 (默认5): "));
+      const sandboxRounds = parseInt(roundsStr.trim()) || 5;
+
+      try {
+        await sandbox.startSandbox(sandboxScenario.trim(), sandboxMode, sandboxPersonality, {
+          rounds: Math.min(sandboxRounds, 10),
+          autopilot: false,
+        });
+      } catch (error) {
+        console.error(color(C.red, `  ❌ 沙盒运行异常: ${error.message}`));
+      }
       continue;
     }
 
@@ -560,7 +726,16 @@ async function interactiveMode() {
     }
 
     try {
-      await runAnalysis(input);
+      const analysisResult = await runAnalysis(input);
+      // Day 20: 反馈闭环 — 用户评分
+      if (analysisResult && analysisResult.versions) {
+        await collectFeedback(
+          rl, ask,
+          analysisResult.versions,
+          analysisResult.savedCaseId,
+          input
+        );
+      }
     } catch (error) {
       console.error(color(C.red, `❌ 错误: ${error.message}`));
       console.log(color(C.yellow, "  请重试或输入 /quit 退出"));
@@ -606,7 +781,7 @@ async function main() {
     // 命令行参数模式: 单次运行
     console.log("");
     console.log(color(C.bold, "╔══════════════════════════════════════════════════════╗"));
-    console.log(color(C.bold, "║     🎯 ExpressCoach AI — MVP 完整链路演示 (Day 14)    ║"));
+    console.log(color(C.bold, "║     🎯 ExpressCoach AI — MVP 完整链路演示 (Day 20)    ║"));
     console.log(color(C.bold, "╚══════════════════════════════════════════════════════╝"));
     try {
       await runAnalysis(scenario);

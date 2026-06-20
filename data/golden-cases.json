@@ -1,0 +1,32 @@
+[
+  {
+    "scenario": "我想拒绝朋友借钱但不想伤感情",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "高情商版既保护了关系又坚持了边界，完美",
+    "replyContent": "我理解你现在的难处，大家都是朋友互相帮衬是应该的。不过我最近手头也确实有点紧，刚交了一笔大额支出，实在是有心无力。要不我帮你想想别的办法？",
+    "timestamp": "2026-06-20T12:00:00.000Z",
+    "intentType": "拒绝请求",
+    "relationType": "好朋友"
+  },
+  {
+    "scenario": "同事的报告拖了三天了我想催他",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "表达礼貌又不失力度",
+    "replyContent": "最近大家都很忙，辛苦了。之前咱们聊的那个报告，如果有空的话能不能优先处理一下？我这边等着同步给领导，麻烦你了！",
+    "timestamp": "2026-06-20T12:30:00.000Z",
+    "intentType": "催促对方",
+    "relationType": "普通同事"
+  },
+  {
+    "scenario": "我想向老板申请涨薪但不知道怎么开口",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "既表达了诉求又展示了价值，策略精准",
+    "replyContent": "老板，想跟您聊聊我的职业发展。这两年在公司学到了很多，也独立负责了几个关键项目。我看了一下市场行情，觉得目前的薪资跟我的贡献有些差距，想跟您探讨一下调整的可能性。",
+    "timestamp": "2026-06-20T13:00:00.000Z",
+    "intentType": "寻求帮助",
+    "relationType": "上级"
+  }
+]
