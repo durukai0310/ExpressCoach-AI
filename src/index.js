@@ -44,7 +44,7 @@ const { generateVersion, generateThreeVersions, VERSION_META, GENERATOR_SOULS } 
 // 当 B 完成 predict/reactions.js 后，取消注释 require 即可接入
 let predictReactions = null;
 try {
-  predictReactions = require("./predict/reactions");
+  predictReactions = require("./predict/reactions").predictReactions;
   console.log("  🔮 M5 反应预测模块已加载");
 } catch (e) {
   // M5 模块尚未实现 — 这是预期行为

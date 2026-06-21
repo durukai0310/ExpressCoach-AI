@@ -355,6 +355,55 @@ cp: cannot create regular file '...src/generate/three-versions.js': No such file
 
 ---
 
+---
+
+## <a id="day21-bugs"></a>Day 21 Bug Bash 发现 (6/21)
+
+### D21-B1 (P1): M5 `predictReactions is not a function`
+
+| 项目 | 内容 |
+|------|------|
+| **Day** | Day 21 集成联调 |
+| **现象** | 全链路测试中 M5 反应预测报 `predictReactions is not a function`，预测步骤跳过 |
+| **影响** | 全链路输出中缺少反应预测结果 |
+| **根因** | `index.js:47` 中 `predictReactions = require("./predict/reactions")` 加载了整个模块对象 `{predictReactions, fallbackPredict}`，而非函数本身。调用时 `predictReactions(...)` 尝试把对象当函数调用 |
+| **解决办法** | 改为 `require("./predict/reactions").predictReactions` 解构取函数 |
+| **状态** | ✅ 已修复 (Day 21 14:00前) |
+
+### D21-B2 (P3): 沙盒教练介入计数器不准确
+
+| 项目 | 内容 |
+|------|------|
+| **Day** | Day 21 集成联调 |
+| **现象** | guided 模式10轮对话中教练实际介入5次（每2轮），但总结显示"教练介入: 0 次" |
+| **影响** | 统计数据显示错误，不影响功能 |
+| **根因** | `_runCoachCheck()` 在 guided 模式主动介入时，若 `coach.shouldIntervene()` 返回 false（4种触发条件未满足），则自行构建介入建议但未递增 `coach.interventionCount` |
+| **解决办法** | 在 guided 主动介入分支中手动递增 `coach.interventionCount++` 并调用 `_recordIntervention()` |
+| **状态** | ✅ 已修复 (Day 21) |
+
+### D21-B3 (已知局限): DeepSeek API 余额不足
+
+| 项目 | 内容 |
+|------|------|
+| **Day** | Day 21 集成联调 |
+| **现象** | 批量评分25场景中前4个成功，后21个降级为启发式规则评分。API 返回 `402 Insufficient Balance` |
+| **影响** | LLM评分不可用，降级机制正常工作 |
+| **根因** | DeepSeek API 账户余额耗尽 |
+| **解决办法** | 充值 DeepSeek 账户或等待免费额度刷新。系统降级机制已验证正常工作 |
+| **状态** | 🔲 待充值 (非代码问题) |
+
+### Day 21 联调验证结果汇总
+
+| 联调项 | 命令 | 结果 |
+|--------|------|------|
+| 联调1: 完整4步链路 | `node src/index.js "我想拒绝朋友借钱但不想伤感情"` | ✅ 通过（意图→关系→三版本→SQLite） |
+| 联调2: 沙盒10轮 | `node src/sandbox/sandbox.js "催同事交报告" guided --rounds 10 --autopilot` | ✅ 通过（10轮+教练每2轮介入+0压缩） |
+| 联调3: 自动评分25场景 | `node src/evaluate/judge.js --batch data/scenarios-intent.json` | ✅ 通过（4成功+21优雅降级） |
+
+**Day 21 Bug Bash 结论**: P0清零 ✅ | P1清零 ✅ (D21-B1已修复) | P3 2个 (1已修复+1外部因素)
+
+---
+
 ## 经验教训
 
 1. **API 先验证** — Day 1-6 的大量时间花在"假设 API 可用"上，Day 7 连通后才真正进入开发

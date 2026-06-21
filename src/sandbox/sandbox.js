@@ -380,6 +380,9 @@ async function _runCoachCheck(coach, ctx, mode, round, coachConfig) {
       if (result.should) return result;
 
       // 即使 shouldIntervene 返回 false，guided 模式也强制给建议
+      // Day 21 fix: 手动递增教练介入计数
+      coach.interventionCount++;
+      coach._recordIntervention(round, `主动引导（第${round}轮）`, { suggestion: "" });
       // 构建主动建议
       const recentContext = context.slice(-6);
       const contextStr = recentContext
