@@ -1,0 +1,396 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-22T14:19:03.491Z",
+    "totalScenarios": 5,
+    "models": [
+      "ExpressCoach",
+      "DeepSeek",
+      "通义千问(Qwen)",
+      "Kimi(月之暗面)"
+    ],
+    "scoringMethod": "5维度启发式评分 (25分制)",
+    "note": "使用国内大模型进行真实对比测试。ExpressCoach全链路 vs 各模型裸调用。"
+  },
+  "summary": {
+    "ExpressCoach": {
+      "avgScore": 20.6,
+      "totalTokens": 24824,
+      "avgTokens": 4965,
+      "totalDuration": 30.7,
+      "avgDuration": 6.13,
+      "errors": 0,
+      "successRate": 100
+    },
+    "DeepSeek": {
+      "avgScore": 21.2,
+      "totalTokens": 448,
+      "avgTokens": 90,
+      "totalDuration": 0.6,
+      "avgDuration": 0.12,
+      "errors": 0,
+      "successRate": 100
+    }
+  },
+  "scenarios": [
+    {
+      "scenario": {
+        "id": "S001",
+        "name": "室友经常让你帮忙带饭，这次你不想带了",
+        "category": "拒绝",
+        "intent": "拒绝请求"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "哎呀今天不行了，我刚在路上已经买了吃的，手都占满了哈哈。不过我发现附近新开了家轻食店，沙拉特别好吃，你要不要试试点个外卖？我上次试过感觉比食堂健康多了。改天咱一起去吃！",
+          "allVersions": {},
+          "tokens": 4931,
+          "duration": 6.14,
+          "error": null,
+          "extra": {
+            "intent": "拒绝",
+            "intentConfidence": 0.95,
+            "relation": "室友",
+            "intimacy": "较近",
+            "power": "平等",
+            "interest": "弱利益",
+            "sensitivity": "中敏感",
+            "strategy": "用轻松、带理由的方式拒绝，比如说自己今天时间紧或已经吃过了，避免直接说‘不想带’",
+            "jaccard": {
+              "mild-firm": 0.198,
+              "mild-eq": 0.2,
+              "firm-eq": 0.13
+            },
+            "perf": {
+              "intent": 1.66,
+              "relation": 1.8,
+              "versions": 2.67
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 22
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "当然，以下是得体的回复示例：\n\n“真不好意思，我今天手头有点事要忙，可能不太方便帮你带饭了。要不你看看其他室友有没有空，或者我下次再帮你带？”",
+          "tokens": 89,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 22
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S002",
+        "name": "同事想让你帮他完成他的工作任务",
+        "category": "拒绝",
+        "intent": "拒绝请求"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "兄弟，你这个忙我特别想帮，不过最近我手头也有好几个deadline压着，实在分身乏术。我有个思路——要不我花半小时帮你理一下思路和框架？这样你上手会快很多，我也算尽了一份力。咱各自把本职工作做好，回头一起喝咖啡聊聊天多好。",
+          "allVersions": {},
+          "tokens": 4925,
+          "duration": 5.74,
+          "error": null,
+          "extra": {
+            "intent": "拒绝",
+            "intentConfidence": 0.95,
+            "relation": "同事",
+            "intimacy": "一般",
+            "power": "平等",
+            "interest": "弱利益",
+            "sensitivity": "中敏感",
+            "strategy": "用委婉但坚定的方式表达自己的边界，同时提供替代方案或部分协助以维护同事关系",
+            "jaccard": {
+              "mild-firm": 0.253,
+              "mild-eq": 0.232,
+              "firm-eq": 0.182
+            },
+            "perf": {
+              "intent": 1.33,
+              "relation": 1.47,
+              "versions": 2.94
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "当然，你可以这样说：“我理解你现在任务比较紧张，不过我自己手头也有几个截止日期很紧的任务。要不我帮你看看哪些部分可以给你一些建议或指导，但全程接手可能不太方便。你觉得这样行吗？”",
+          "tokens": 92,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 22
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S003",
+        "name": "亲戚想借你的笔记本电脑用几天",
+        "category": "拒绝",
+        "intent": "拒绝请求"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "哎呀，真不巧，我这两天正好有个项目要用它跑数据，一时半会儿腾不出来。不过我理解你的需求——要不我帮你看看有没有别的办法？我有个朋友做电脑租赁的，短租几天挺划算，或者你要是急用，我帮你问问身边谁有闲置的？反正咱们都是自己人，你的忙我肯定想法子帮到，只是换种方式。",
+          "allVersions": {},
+          "tokens": 4972,
+          "duration": 6.39,
+          "error": null,
+          "extra": {
+            "intent": "拒绝",
+            "intentConfidence": 0.95,
+            "relation": "亲戚",
+            "intimacy": "一般",
+            "power": "平等",
+            "interest": "弱利益",
+            "sensitivity": "中敏感",
+            "strategy": "以维护亲情为前提，用委婉理由说明不便，同时提供替代方案或时间限制",
+            "jaccard": {
+              "mild-firm": 0.306,
+              "mild-eq": 0.313,
+              "firm-eq": 0.25
+            },
+            "perf": {
+              "intent": 1.14,
+              "relation": 1.76,
+              "versions": 3.49
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "当然，以下是一个得体、自然的回复示例：\n\n“哎呀，真不好意思，我最近刚好要用这台电脑处理一些工作上的事情，时间排得比较满，实在没办法借出去。不过如果你需要急用的话，我可以帮你看看有没有其他办法，比如推荐附近的网吧或者共享电脑服务？”",
+          "tokens": 105,
+          "duration": 0.1,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 21
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S004",
+        "name": "社团学长让你替他参加一个无聊的会议",
+        "category": "拒绝",
+        "intent": "拒绝请求"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "学长，你找我是看得起我！我特别想帮忙，但说实话这个时间段我刚好有个必修课要交作业，走不开。不过我有个主意——我认识大一的学弟小张，他对这类活动特别感兴趣，而且办事靠谱。要不我把他推荐给你？或者我可以帮你整理一份会议要点清单，让去的人照着说就行。你看哪个方案更省心？",
+          "allVersions": {},
+          "tokens": 4998,
+          "duration": 6.13,
+          "error": null,
+          "extra": {
+            "intent": "拒绝",
+            "intentConfidence": 0.95,
+            "relation": "同学",
+            "intimacy": "较近",
+            "power": "对方上位",
+            "interest": "弱利益",
+            "sensitivity": "中敏感",
+            "strategy": "用尊重但不过分卑微的语气表达自己的不便，同时给出替代方案或明确拒绝",
+            "jaccard": {
+              "mild-firm": 0.223,
+              "mild-eq": 0.217,
+              "firm-eq": 0.197
+            },
+            "perf": {
+              "intent": 1.07,
+              "relation": 1.55,
+              "versions": 3.52
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 3,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "学长，谢谢您的信任。不过这个会议时间和我之前安排好的课程冲突了，实在抱歉没办法替您参加。要不我帮您问问其他有空的同学？",
+          "tokens": 80,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 4,
+            "naturalness": 4,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 21
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S005",
+        "name": "朋友想让你周末陪他去买东西，但你想休息",
+        "category": "拒绝",
+        "intent": "拒绝请求"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "兄弟，你选周末约我我特开心，说明在你心里我这眼光还行。不过我这周状态有点‘待机’了，需要充充电。要不咱们换个玩法？你周五晚上或者下周挑个时间，我满血复活后陪你去挑，保证比我自己买东西还上心。咱俩的‘逛街局’改个时间，质量翻倍。",
+          "allVersions": {},
+          "tokens": 4998,
+          "duration": 6.26,
+          "error": null,
+          "extra": {
+            "intent": "拒绝",
+            "intentConfidence": 0.95,
+            "relation": "好朋友",
+            "intimacy": "较近",
+            "power": "平等",
+            "interest": "纯情感",
+            "sensitivity": "中敏感",
+            "strategy": "用温和的语气表达自己的需求，同时肯定对方的邀请，比如说明自己需要休息，但可以提议改天再约。",
+            "jaccard": {
+              "mild-firm": 0.389,
+              "mild-eq": 0.267,
+              "firm-eq": 0.232
+            },
+            "perf": {
+              "intent": 1.36,
+              "relation": 1.71,
+              "versions": 3.18
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 3,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "哈哈，这周末我打算好好躺平充电，不然下周就要变“废柴”了。要不改天再约？我请你喝杯咖啡赔罪！",
+          "tokens": 82,
+          "duration": 0.16,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 3,
+            "naturalness": 5,
+            "strategyFit": 3,
+            "usability": 4,
+            "totalScore": 20
+          }
+        }
+      ]
+    }
+  ]
+}
