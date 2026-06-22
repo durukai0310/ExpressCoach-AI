@@ -186,6 +186,9 @@ function printIntentResult(result) {
     console.log(`  意图     : ${color(C.cyan, r["意图"] || "未知")}`);
     console.log(`  置信度   : ${color(C.green, ((r["置信度"] || 0) * 100).toFixed(1) + "%")}`);
     if (r["分析"]) console.log(`  分析     : ${r["分析"]}`);
+    if (r["辅助意图"] && r["辅助意图"].length > 0) {
+      console.log(`  🏷️ 辅助意图: ${color(C.yellow, r["辅助意图"].join(" / "))}`);
+    }
     if (r["关键词匹配"]?.length) console.log(`  关键词   : ${r["关键词匹配"].join(", ")}`);
   } else {
     console.log(color(C.yellow, "  ⚠️ 解析失败，原始响应:"));
@@ -215,6 +218,9 @@ function printRelationshipResult(result) {
     }
     if (result.ruleResult && result.ruleResult.matched) {
       console.log(color(C.dim, `  📖 规则匹配: ${result.ruleResult.type} | 命中词: ${(result.ruleResult.matchedKeywords || []).join(", ")}`));
+    }
+    if (result.dualRelation && result.dualRelation.isDual) {
+      console.log(`  🔀 双重关系 : ${color(C.magenta, result.dualRelation.primaryRelation)}(${result.dualRelation.primaryWeight}) + ${result.dualRelation.secondaryRelation}(${result.dualRelation.secondaryWeight})`);
     }
     if (result.weights) {
       console.log(color(C.dim, `  ⚖️  权重    : 规则${result.weights.rule} / LLM${result.weights.llm}`));

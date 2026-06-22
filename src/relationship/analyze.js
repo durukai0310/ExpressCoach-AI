@@ -240,6 +240,76 @@ function ruleMatch(scenario) {
 }
 
 // ============================================================
+// W4 Day 25: 双重关系检测
+// ============================================================
+
+/**
+ * detectDualRelationship: 检测场景中是否包含双重关系
+ *
+ * 格式: "同事兼好友" / "闺蜜也是下属" / "同学+下属"
+ * 逻辑: 如果 ruleMatch 返回的 scoredMatches 中有多个高分候选
+ *   (> topScore * 0.7)，且它们的关系类型不同，则判定为双重关系
+ *
+ * @param {object} ruleMatchResult - ruleMatch 的返回结果
+ * @param {string} scenario - 原始场景描述
+ * @returns {object} { isDual, primaryRelation, secondaryRelation, dualWeight }
+ */
+function detectDualRelationship(ruleMatchResult, scenario) {
+  if (!ruleMatchResult || !ruleMatchResult.matched) {
+    return { isDual: false };
+  }
+
+  const allMatches = ruleMatchResult.allMatches || [];
+  // 需要至少2个候选，且第二名的分数足够高（> 0.7x 第一名）
+  if (allMatches.length < 2) return { isDual: false };
+
+  const top = allMatches[0];
+  const second = allMatches[1];
+
+  // 第二名分数 > 第一名的70% → 可能双重关系
+  if (second.score >= top.score * 0.65) {
+    // 额外检测: 场景描述中是否有双重关系标记词
+    const dualKeywords = /兼|也是|同时是|又是|还是.*也是|既.*又|双重|混合/;
+    const hasDualSignal = dualKeywords.test(scenario);
+
+    // 分数接近 + 关键词信号 → 确认双重关系
+    if (hasDualSignal || second.score >= top.score * 0.8) {
+      // 判断权重：谁的利益关联更强？
+      const primaryRelation = top.entry;    // 默认：高分的是主关系
+      const secondaryRelation = second.entry;
+
+      // 工作场景(利益>情感) → 工作关系权重更高
+      // 家庭场景(情感>利益) → 情感关系权重更高
+      const workSignals = /工作|报告|任务|项目|汇报|绩效|考核|工资|加班/;
+      const familySignals = /家|亲戚|爸爸|妈妈|父母|公婆|妯娌|过年|结婚/;
+
+      let dualWeight = { primary: 0.55, secondary: 0.45 }; // 默认接近
+
+      if (workSignals.test(scenario)) {
+        dualWeight = { primary: 0.65, secondary: 0.35 };
+      } else if (familySignals.test(scenario)) {
+        dualWeight = { primary: 0.6, secondary: 0.4 };
+      }
+
+      console.error(`\n  🔀 [W4] 双重关系检测:`);
+      console.error(`     主关系: ${primaryRelation.type} (权重${dualWeight.primary})`);
+      console.error(`     副关系: ${secondaryRelation.type} (权重${dualWeight.secondary})`);
+      console.error(`     触发: 分数${second.score.toFixed(1)}≈${top.score.toFixed(1)} + 双重信号`);
+
+      return {
+        isDual: true,
+        primaryRelation: primaryRelation.type,
+        secondaryRelation: secondaryRelation.type,
+        primaryWeight: dualWeight.primary,
+        secondaryWeight: dualWeight.secondary,
+      };
+    }
+  }
+
+  return { isDual: false };
+}
+
+// ============================================================
 // 步骤2: LLM 精调层 — 权重 0.7 (注入规则结果)
 // ============================================================
 
@@ -306,6 +376,9 @@ async function hybridAnalyze(scenario) {
   console.error(color(C.dim, "  ├─ 📖 [阶段A] 规则词典匹配..."));
   const ruleResult = ruleMatch(scenario);
 
+  // W4 Day 25: 双重关系检测
+  const dualRelation = detectDualRelationship(ruleResult, scenario);
+
   // ---- 阶段 B + C: LLM 精调 (权重 0.7) ----
   console.error(color(C.dim, "  ├─ 🤖 [阶段B/C] LLM精调 (已注入规则参考)..."));
   let llmResult = null;
@@ -326,6 +399,7 @@ async function hybridAnalyze(scenario) {
     const merged = {
       raw: llmResult.raw,
       parsed: llmResult.parsed,
+      dualRelation, // W4: 双重关系信息
       ruleResult: {
         matched: ruleResult.matched,
         type: ruleResult.entry.type,
@@ -371,6 +445,7 @@ async function hybridAnalyze(scenario) {
   return {
     raw: JSON.stringify(fallbackParsed),
     parsed: fallbackParsed,
+    dualRelation, // W4: 双重关系信息
     ruleResult: {
       matched: ruleResult.matched,
       type: ruleResult.entry.type,
@@ -392,6 +467,9 @@ async function hybridAnalyze(scenario) {
 // ============================================================
 module.exports = {
   ruleMatch,
+  judgeRelationship,
+  hybridAnalyze,
+  detectDualRelationship, // W4: 双重关系检测
   judgeRelationship,
   hybridAnalyze,
   callDeepSeek,

@@ -88,6 +88,7 @@ class ContextManager {
     this.sessionMaxRounds = maxRounds; // 会话总轮次（可配置，默认10）
     this.context = []; // [{role, content, timestamp}]
     this.compressionCount = 0; // Day 16: 压缩次数统计
+    this.emotionHistory = []; // W4 Day 24: 情绪追踪 [{round, emotion, intensity, trend}]
   }
 
   /**
@@ -214,12 +215,57 @@ class ContextManager {
   }
 
   /**
+   * trackEmotion: W4 Day 24 — 追踪对话中的情绪状态
+   * 使用关键词+启发式规则快速推断情绪（不调用LLM以节省token）
+   */
+  trackEmotion(userMessage) {
+    const text = userMessage || "";
+    const round = this.getRoundCount();
+
+    // 情绪检测规则
+    let emotion = "平静";
+    let intensity = 3;
+
+    const anxietyWords = /担心|怕|不敢|紧张|纠结|忐忑|焦虑|万一|要是.*怎么办/;
+    const angerWords = /气死|过分|受不了|无语|凭什么|竟然|太.*了|烦|讨厌/;
+    const frustrationWords = /算了|随便|不知道|没办法|爱怎样|无所谓|不想说|放弃/;
+    const confidenceWords = /我觉得|我认为|我的想法|可以的|没问题|放心/;
+
+    if (anxietyWords.test(text)) { emotion = "焦虑"; intensity = Math.min(10, 5 + (text.match(anxietyWords)?.length || 0)); }
+    if (angerWords.test(text)) { emotion = "愤怒"; intensity = Math.min(10, 5 + (text.match(angerWords)?.length || 0)); }
+    if (frustrationWords.test(text)) { emotion = "沮丧"; intensity = Math.min(10, 4 + (text.match(frustrationWords)?.length || 0)); }
+    if (confidenceWords.test(text)) { emotion = "自信"; intensity = Math.min(10, 4 + (text.match(confidenceWords)?.length || 0)); }
+
+    // 判断趋势
+    const prev = this.emotionHistory[this.emotionHistory.length - 1];
+    let trend = "稳定";
+    if (prev) {
+      if (intensity > prev.intensity + 2) trend = "恶化";
+      else if (intensity < prev.intensity - 2) trend = "改善";
+    }
+
+    const entry = { round, emotion, intensity, trend };
+    this.emotionHistory.push(entry);
+    return entry;
+  }
+
+  /**
+   * getEmotionDeteriorated: 检查情绪是否连续恶化 (用于教练介入触发)
+   */
+  getEmotionDeteriorated() {
+    if (this.emotionHistory.length < 3) return false;
+    const last3 = this.emotionHistory.slice(-3);
+    return last3.every(e => e.trend === "恶化");
+  }
+
+  /**
    * reset: 重置上下文
    */
   reset() {
     this.context = [];
     this.compressionCount = 0;
     this._needsCompression = false;
+    this.emotionHistory = [];
   }
 }
 
@@ -372,6 +418,20 @@ async function _runCoachCheck(coach, ctx, mode, round, coachConfig) {
 
   // guided 模式: 每 N 轮主动给一次建议
   if (mode === "guided" && coachConfig.proactiveInterval > 0) {
+    // W4 Day 24: 情绪恶化检测（第5种触发条件 — 任何模式都生效）
+    if (ctx.getEmotionDeteriorated && ctx.getEmotionDeteriorated()) {
+      console.log(c(C.red, `     🚨 [Coach] 情绪连续恶化！紧急介入`));
+      const context = ctx.getContext();
+      coach.interventionCount++;
+      coach._recordIntervention(round, "情绪恶化", { suggestion: "" });
+      return {
+        should: true,
+        reason: "情绪恶化",
+        suggestion: "我注意到你现在的情绪状态不太好。建议你暂停一下，深呼吸，或者换个角度思考：对方可能不是有意让你不舒服的。要不要试试先肯定对方的感受，再表达自己的需求？",
+        example: "我理解你现在可能有压力，同时我想说的是...",
+      };
+    }
+
     // 检查是否到达主动介入轮次
     if (round > 0 && round % coachConfig.proactiveInterval === 0) {
       console.log(c(C.dim, `     🔍 [Coach/guided] 第${round}轮 → 主动介入`));
@@ -515,6 +575,7 @@ async function startSandbox(scenario, mode = "free", personality = "friendly", o
       // 自动生成用户回复
       const autoReply = await generateAutoUserReply(scenario, ctx.getContext());
       ctx.append("user", autoReply);
+      ctx.trackEmotion(autoReply); // W4: 情绪追踪
       console.log(c(C.cyan, `  💬 [轮次 ${round}/${maxRounds}] 用户: ${autoReply}`));
 
       // Day 17: 教练介入（根据模式配置）
@@ -589,6 +650,7 @@ async function startSandbox(scenario, mode = "free", personality = "friendly", o
 
       // 追加用户消息
       ctx.append("user", userInput);
+      ctx.trackEmotion(userInput); // W4: 情绪追踪
 
       // Day 17: 教练介入（根据模式配置）
       const coachResult = await _runCoachCheck(coach, ctx, mode, round, coachConfig);
@@ -626,6 +688,17 @@ async function startSandbox(scenario, mode = "free", personality = "friendly", o
   if (Object.keys(coachStats.breakdown).length > 0) {
     for (const [reason, count] of Object.entries(coachStats.breakdown)) {
       console.log(c(C.dim, `       - ${reason}: ${count} 次`));
+    }
+  }
+
+  // W4 Day 24: 情绪曲线
+  if (ctx.emotionHistory.length > 0) {
+    console.log("");
+    console.log(c(C.bold, "  📈 情绪曲线:"));
+    for (const e of ctx.emotionHistory) {
+      const bar = "█".repeat(Math.max(1, e.intensity)) + "░".repeat(Math.max(1, 10 - e.intensity));
+      const trendIcon = e.trend === "恶化" ? "🔴" : e.trend === "改善" ? "🟢" : "➡️";
+      console.log(c(C.dim, `     Round ${e.round}: [${bar}] ${e.emotion}(${e.intensity}/10) ${trendIcon}${e.trend}`));
     }
   }
   console.log("");
