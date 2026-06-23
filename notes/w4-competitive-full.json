@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-06-22T14:42:45.466Z",
+    "generatedAt": "2026-06-23T08:18:49.570Z",
     "totalScenarios": 25,
     "models": [
       "ExpressCoach",
@@ -13,40 +13,40 @@
   },
   "summary": {
     "ExpressCoach": {
-      "avgScore": 20.2,
-      "totalTokens": 123667,
-      "avgTokens": 4947,
-      "totalDuration": 172.2,
-      "avgDuration": 6.89,
+      "avgScore": 19.7,
+      "totalTokens": 123970,
+      "avgTokens": 4959,
+      "totalDuration": 152.1,
+      "avgDuration": 6.08,
       "errors": 0,
       "successRate": 100
     },
     "DeepSeek": {
-      "avgScore": 20.4,
-      "totalTokens": 2391,
-      "avgTokens": 96,
-      "totalDuration": 3,
-      "avgDuration": 0.12,
+      "avgScore": 20.1,
+      "totalTokens": 2725,
+      "avgTokens": 109,
+      "totalDuration": 4.1,
+      "avgDuration": 0.16,
       "errors": 0,
       "successRate": 100
     },
     "通义千问(Qwen)": {
-      "avgScore": 19.2,
-      "totalTokens": 6085,
-      "avgTokens": 243,
-      "totalDuration": 92.7,
-      "avgDuration": 3.71,
+      "avgScore": 19.3,
+      "totalTokens": 6368,
+      "avgTokens": 255,
+      "totalDuration": 124.3,
+      "avgDuration": 4.97,
       "errors": 0,
       "successRate": 100
     },
     "Kimi(月之暗面)": {
-      "avgScore": 19.4,
-      "totalTokens": 5979,
-      "avgTokens": 239,
-      "totalDuration": 100,
-      "avgDuration": 4,
-      "errors": 0,
-      "successRate": 100
+      "avgScore": 18,
+      "totalTokens": 4662,
+      "avgTokens": 186,
+      "totalDuration": 173.4,
+      "avgDuration": 6.94,
+      "errors": 6,
+      "successRate": 76
     }
   },
   "scenarios": [
@@ -60,10 +60,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "兄弟，今天真不行了——我刚从外面回来，腿都快废了，感觉下一秒就要原地躺平。要不这次你自己去？顺便帮我个忙，看看楼下那家新开的店好不好吃，回头我也去试试。你带我也带了这么多次了，换你当一次侦察兵呗！",
+          "reply": "哎呀今天真不巧，我路上得绕去拿个快递，怕耽误你吃饭。不过我发现楼下那家新开的快餐店分量挺大还能送到门口，你要不要试试？地址我发你，说不定以后懒得下楼时多个选择。咱俩都省事。",
           "allVersions": {},
-          "tokens": 4957,
-          "duration": 6.87,
+          "tokens": 4997,
+          "duration": 6.24,
           "error": null,
           "extra": {
             "intent": "拒绝",
@@ -73,16 +73,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "用轻松、带理由的方式拒绝，比如‘今天太累了，你自己去一下呗’，既表达立场又不伤和气",
+            "strategy": "用轻松的语气说明理由，比如自己今天不方便或时间紧张，同时表达理解，避免让对方觉得被拒绝是针对他。",
             "jaccard": {
-              "mild-firm": 0.258,
-              "mild-eq": 0.282,
-              "firm-eq": 0.244
+              "mild-firm": 0.268,
+              "mild-eq": 0.145,
+              "firm-eq": 0.103
             },
             "perf": {
               "intent": 1.77,
-              "relation": 1.85,
-              "versions": 3.25
+              "relation": 1.66,
+              "versions": 2.81
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -93,17 +93,17 @@
             "intentScore": 5,
             "relationScore": 3,
             "naturalness": 5,
-            "strategyFit": 3,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 20
+            "totalScore": 21
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "“真不好意思，今天我自己也忙得不行，实在没时间绕路去食堂，要不你点个外卖或者看看别的同学方便不？”",
-          "tokens": 78,
-          "duration": 0.11,
+          "reply": "当然可以。你可以这样说：“不好意思啊，今天我自己也有点忙，可能不太方便帮你带饭了。要不你点个外卖或者看看食堂还有没有别的选择？”这样既表达了拒绝，又提供了替代建议，显得比较体贴。",
+          "tokens": 97,
+          "duration": 0.13,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -123,9 +123,9 @@
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "当然可以，这里有一个礼貌、真诚又不伤和气的回复建议：\n\n“最近我吃饭时间有点不太固定，怕耽误你吃饭，这次可能没法帮你带啦～不过你可以试试用外卖小程序点，我之前发现XX餐厅配送挺快的，需要我帮你看看菜单或分享链接吗？😊”\n\n这样的表达：\n✅ 委婉说明原因（不强调拒绝，而是聚焦客观情况）  \n✅ 传递关心（主动提供替代方案）  \n✅ 保持友好温度（表情和语气轻松自然）  \n✅ 避免让对方觉得被敷衍或嫌弃  \n\n如果你们关系比较熟，还可以加一句：“等我这阵子节奏稳下来，再一起拼单哈～” 给未来留个柔软的接口。需要我帮你定制更轻松/更正式/或带点幽默感的版本，也可以告诉我哦 😊",
-          "tokens": 246,
-          "duration": 3.47,
+          "reply": "当然可以，这里有一个既友善又坚定的得体回复，供你参考：\n\n“哎呀，最近我吃饭时间有点不固定，怕耽误你吃饭，这次可能不太方便帮你带啦～不过你可以试试用外卖小程序，我之前发现XX平台满减挺划算的，需要我帮你看看怎么下单也行 😄”\n\n✨ 这样回复的优点：  \n✅ 用轻松语气表达拒绝，不伤和气；  \n✅ 给出合理、中立的理由（时间不固定），避免显得针对或敷衍；  \n✅ 主动提供替代方案（点外卖建议/协助），体现关心与善意；  \n✅ 保持积极收尾，维持友好关系。\n\n如果你和室友关系更随意，也可以稍作简化或加点小幽默～需要我帮你调整成更温柔/更干脆/带点小俏皮的版本，随时告诉我哦！ 😊",
+          "tokens": 249,
+          "duration": 4.62,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -145,9 +145,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，拒绝帮助室友带饭时可以礼貌而坚定。这里有一个可能的回复：\n\n“嘿，我注意到我最近经常帮你带饭，虽然我很乐意帮忙，但我觉得我们可能需要找到一种更平衡的方式来解决这个问题。今天我真的有点累了，可能不太方便帮你带饭。也许你可以考虑提前准备或者在外面吃？我们可以一起讨论一下，看看未来怎样能更公平地分配这些小任务。”",
-          "tokens": 145,
-          "duration": 2.13,
+          "reply": "当然，面对室友的请求，我们可以婉转地表达自己的想法。以下是一个可能的回复：\n\n“嘿，我注意到最近我经常帮你带饭，这让我有点分心。我想我们都应该有机会参与到这个小任务中来，这样也能让我们的日常生活更加平衡。今天我想专注于自己的事，不过我很乐意帮你找一些附近的外卖选项或者一起计划我们的晚餐。你觉得怎么样呢？” \n\n这样的回复既表达了你的立场，又提出了解决问题的方案，同时也保持了友好和尊重。",
+          "tokens": 161,
+          "duration": 10.84,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -176,29 +176,29 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "哎呀，我太理解你了，最近任务确实压得人喘不过气。不过说实话，我这边手头也有几个deadline在追着跑，实在分身乏术。要不这样，我把我之前做类似任务时总结的一些高效方法分享给你？有些小技巧能省不少时间，你试完了要是还有卡点，咱们再一起想办法。",
+          "reply": "我特别理解你最近忙不过来的感觉，之前我也有过这种时候。不过说实话，我手头这个任务也挺赶的，怕分心反而两个都做不好。你看这样行不行：我帮你梳理一下关键难点，或者给你推荐个之前我用的模板，你自己上手会快很多。这样既帮到你，又不耽误咱俩各自的节奏。",
           "allVersions": {},
-          "tokens": 4961,
-          "duration": 6.61,
+          "tokens": 4931,
+          "duration": 6.31,
           "error": null,
           "extra": {
             "intent": "拒绝",
-            "intentConfidence": 0.95,
+            "intentConfidence": 0.85,
             "relation": "同事",
             "intimacy": "一般",
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以委婉拒绝为主，说明自身工作繁忙，同时表达理解，避免直接否定伤及同事关系。",
+            "strategy": "用委婉但坚定的方式表达自己的边界，同时提供替代方案或部分协助以维护同事关系",
             "jaccard": {
-              "mild-firm": 0.248,
-              "mild-eq": 0.276,
-              "firm-eq": 0.174
+              "mild-firm": 0.24,
+              "mild-eq": 0.308,
+              "firm-eq": 0.198
             },
             "perf": {
-              "intent": 1.48,
-              "relation": 1.79,
-              "versions": 3.34
+              "intent": 1.35,
+              "relation": 1.64,
+              "versions": 3.32
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -208,18 +208,18 @@
           "scores": {
             "intentScore": 4,
             "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 5,
+            "naturalness": 3,
+            "strategyFit": 3,
             "usability": 3,
-            "totalScore": 22
+            "totalScore": 18
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "当然可以。你可以这样回复：\n“我明白你现在任务比较紧，但我手头也有自己的工作在赶进度，实在抽不出时间帮你完成整项任务。不过，如果你有哪里卡住了，我可以抽空给你一些建议或指导，你看这样行吗？”",
-          "tokens": 99,
-          "duration": 0.09,
+          "reply": "当然，我会帮你准备一个既得体又坚定的回复。你可以这样说：\n\n“很感谢你信任我，但我自己手头的工作也比较紧，怕没法保证质量地帮你完成。或许你可以试试找主管协调一下优先级，或者看看有没有其他同事有空？如果需要我提供一些建议或思路，我很乐意帮忙。”",
+          "tokens": 109,
+          "duration": 0.32,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -228,20 +228,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
+            "intentScore": 4,
+            "relationScore": 5,
             "naturalness": 3,
             "strategyFit": 4,
-            "usability": 4,
+            "usability": 3,
             "totalScore": 20
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "当然可以，不过我得先了解一下具体是什么任务、涉及哪些内容，以及时间上是否和我手头的工作有冲突。如果我能帮上忙，很乐意协助；如果任务比较复杂或需要较多时间，我们也可以一起商量下分工或优先级，确保不影响整体进度。😊",
-          "tokens": 119,
-          "duration": 1.58,
+          "reply": "当然可以帮您看看！不过我手头目前也有几项任务在推进中，想先了解下您这边的需求具体是什么、截止时间是哪天，以及哪些部分最需要支持？这样我可以评估一下优先级，看看怎么配合最有效——比如是协助梳理思路、分担一部分执行，还是提供模板/建议。咱们一起把事情高效搞定 😊",
+          "tokens": 136,
+          "duration": 3.23,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -254,17 +254,17 @@
             "relationScore": 4,
             "naturalness": 3,
             "strategyFit": 4,
-            "usability": 4,
+            "usability": 3,
             "totalScore": 19
           }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，我会尽力帮助你。不过，我需要了解一些细节以便更好地协助你。你能告诉我这项任务是关于什么的吗？还有，具体需要我做些什么？如果这项工作不在我的职责范围内，我可能需要你先和我们的领导或者项目负责人沟通一下。但如果是在我能力范围内，我很乐意帮忙。我们可以一起讨论一个可行的计划，确保任务能够按时完成。",
-          "tokens": 133,
-          "duration": 2.02,
-          "error": null,
+          "reply": "[调用失败: Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}]",
+          "tokens": 0,
+          "duration": 0,
+          "error": "Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}",
           "extra": {
             "hasRelationAwareness": false,
             "hasMultipleStrategies": false,
@@ -272,12 +272,12 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 4,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
+            "intentScore": 1,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 3,
             "usability": 3,
-            "totalScore": 21
+            "totalScore": 13
           }
         }
       ]
@@ -292,29 +292,29 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "哎呀真巧，我这台电脑最近在闹脾气，系统老蓝屏，我自己用着都提心吊胆的，怕耽误你正事。不过我有个闲置的平板电脑，看看视频、处理文档都挺顺手，要不你先拿去用？要是不够用，我帮你问问朋友谁有更合适的笔记本。",
+          "reply": "哎呀真不巧，我这电脑最近有点'闹脾气'，系统不太稳定，我正打算抽空拿去修呢。怕耽误你用，到时候闹心。要不这样，我帮你在网上看看有没有性价比高的二手本？或者你要是不急用，等我修好了再借你，保证妥妥的！",
           "allVersions": {},
-          "tokens": 4994,
-          "duration": 6.72,
+          "tokens": 4964,
+          "duration": 6.14,
           "error": null,
           "extra": {
             "intent": "拒绝",
-            "intentConfidence": 0.95,
+            "intentConfidence": 0.85,
             "relation": "亲戚",
             "intimacy": "一般",
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以关心对方使用需求为切入点，委婉说明电脑有重要资料或使用限制，同时提供替代方案或时间限制。",
+            "strategy": "以情为先，说明自身使用需求或设备贵重性，用商量语气表达不便或条件",
             "jaccard": {
-              "mild-firm": 0.344,
-              "mild-eq": 0.184,
-              "firm-eq": 0.134
+              "mild-firm": 0.28,
+              "mild-eq": 0.206,
+              "firm-eq": 0.155
             },
             "perf": {
-              "intent": 1.56,
-              "relation": 2.16,
-              "versions": 2.99
+              "intent": 1.5,
+              "relation": 1.59,
+              "versions": 3.05
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -323,19 +323,19 @@
           },
           "scores": {
             "intentScore": 5,
-            "relationScore": 4,
+            "relationScore": 3,
             "naturalness": 5,
             "strategyFit": 3,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 20
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "当然可以。以下是一个得体、自然的回复：\n\n“真不好意思，最近我这台电脑里存了一些工作文件，还连着一些重要的账号，不太方便外借。要不你看看需要做什么，我帮你想想其他办法？”",
-          "tokens": 89,
-          "duration": 0.09,
+          "reply": "当然可以，这里给您一个得体的回复建议：\n\n“哎呀，真不好意思，我这台电脑最近工作上经常要用，里面也存了不少重要的文件和数据，实在不太方便外借。要不您看看具体需要做什么，我看看能不能帮您想想别的办法？”",
+          "tokens": 98,
+          "duration": 0.2,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -346,18 +346,18 @@
           "scores": {
             "intentScore": 5,
             "relationScore": 4,
-            "naturalness": 5,
+            "naturalness": 4,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 22
+            "totalScore": 21
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "您好，感谢您信任我、愿意借用我的笔记本电脑！不过这台电脑里存有一些工作资料和个人文件，暂时不太方便外借。如果您有急用，我很乐意帮您一起处理——比如陪您操作、远程协助，或者帮您找找其他更合适的设备（比如家里闲置的平板/旧电脑，我可以帮您简单设置好）。需要的话，我随时都在～ 😊  \n\n这样既表达了尊重与体谅，也守住边界，还提供了替代方案，显得真诚又周到。",
-          "tokens": 166,
-          "duration": 2.89,
+          "reply": "您好，感谢您信任我、愿意借我的笔记本电脑用。不过这台电脑里存有一些工作资料和个人文件，而且最近我还在用它处理一些紧急事务，实在不太方便外借——怕耽误您的事，也怕自己这边出状况。\n\n如果您需要临时办公或上网，我很乐意帮您看看有没有其他更稳妥的解决方式，比如推荐几款好用的免费在线工具，或者帮您联系附近能短期租用设备的地方？咱们一起想想办法，保证不耽误您正事 😊\n\n祝您一切顺利！",
+          "tokens": 173,
+          "duration": 4,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -368,8 +368,8 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 5,
-            "naturalness": 4,
-            "strategyFit": 4,
+            "naturalness": 3,
+            "strategyFit": 5,
             "usability": 4,
             "totalScore": 20
           }
@@ -377,10 +377,10 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然可以，很高兴我的笔记本电脑能帮到你。不过，我可能需要确认一些事情，以确保我们都能愉快地完成这次借用。\n\n亲爱的亲戚，我这里有一个小请求，我的笔记本电脑里有我个人的一些敏感信息和工作文件，所以我想确保在我借给你的时候，你能承诺不会查看或使用那些私人文件。另外，我可能需要你提前告知我归还的时间，这样我也好安排自己的工作和学习。你能答应我这些吗？如果一切都OK的话，我就可以放心地把它借给你了。",
-          "tokens": 157,
-          "duration": 2.39,
-          "error": null,
+          "reply": "[调用失败: Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}]",
+          "tokens": 0,
+          "duration": 0,
+          "error": "Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}",
           "extra": {
             "hasRelationAwareness": false,
             "hasMultipleStrategies": false,
@@ -388,12 +388,12 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 3,
+            "intentScore": 1,
             "relationScore": 3,
-            "naturalness": 5,
-            "strategyFit": 4,
+            "naturalness": 3,
+            "strategyFit": 3,
             "usability": 3,
-            "totalScore": 18
+            "totalScore": 13
           }
         }
       ]
@@ -408,10 +408,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "学长，我特别理解你忙不过来的时候想找人帮忙的心情。不过巧了，我今晚刚好有个小组讨论要参加，时间上确实走不开。要不这样，我帮你问问社团里其他今晚没安排的小伙伴？或者我把我上次参会做的笔记发你参考，你找人代去的时候也能快速上手。咱总不能让那会议白白无聊对吧哈哈。",
+          "reply": "学长，我特别理解你可能有更重要的安排。不过说实话，我对会议内容不太了解，怕去了反而帮不上忙。要不这样——我帮你整理个会议要点清单，你找个更了解情况的人去，效率更高。或者如果你实在找不到人，我尽量去，但可能需要你提前给我简单讲讲重点。",
           "allVersions": {},
-          "tokens": 4981,
-          "duration": 6.93,
+          "tokens": 4948,
+          "duration": 5.62,
           "error": null,
           "extra": {
             "intent": "拒绝",
@@ -421,16 +421,16 @@
             "power": "对方上位",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "用尊重但委婉的方式表达自己的不便，同时给学长台阶下，比如说明自己已有安排或时间冲突",
+            "strategy": "用尊重但委婉的方式表达自己的不便，同时给出替代方案或明确拒绝的合理理由",
             "jaccard": {
-              "mild-firm": 0.2,
-              "mild-eq": 0.32,
-              "firm-eq": 0.138
+              "mild-firm": 0.333,
+              "mild-eq": 0.358,
+              "firm-eq": 0.274
             },
             "perf": {
-              "intent": 1.45,
-              "relation": 1.89,
-              "versions": 3.59
+              "intent": 1.25,
+              "relation": 1.76,
+              "versions": 2.61
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -439,19 +439,19 @@
           },
           "scores": {
             "intentScore": 4,
-            "relationScore": 5,
+            "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 3,
-            "usability": 3,
-            "totalScore": 21
+            "usability": 4,
+            "totalScore": 20
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "学长，谢谢你给我这个机会。不过我最近手头有几个社团的重要任务在忙，可能没办法专心参加会议。要不我帮你问问其他有空的同学？",
-          "tokens": 76,
-          "duration": 0.23,
+          "reply": "学长，非常理解您有事情需要帮忙。不过这个会议我这边确实也有安排，实在分身乏术。建议您看看其他社员是否有空，或者我帮您问问有没有人愿意替您参加？",
+          "tokens": 89,
+          "duration": 0.11,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -461,19 +461,19 @@
           },
           "scores": {
             "intentScore": 5,
-            "relationScore": 3,
-            "naturalness": 5,
+            "relationScore": 4,
+            "naturalness": 3,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 20
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "好的，作为社交表达助手，这里提供一个既得体、又自然、还留有余地的回复建议（可根据你和学长的熟悉程度微调）：\n\n**推荐回复：**  \n“学长好！感谢您信任我，把这件事交给我～不过想跟您确认下会议的具体时间、地点和需要我重点关注或反馈的内容？我好提前了解下，尽量帮您把事情落实到位。如果时间上刚好能协调开，我很乐意帮忙；要是和课程/其他安排有点冲突，我也提前跟您说一声，咱们一起看看有没有更合适的安排？”\n\n✅ **为什么这个回复得体且有效：**  \n- **先致谢+肯定信任**：体现尊重和积极态度，不显得推脱；  \n- **主动询问细节**：展现责任心和认真态度，不是“随便应付”；  \n- **用“确认”代替“答应”或“拒绝”**：留出合理判断空间，避免盲目承诺后难履约；  \n- **把“是否参加”转化为“如何更好支持”**：把焦点放在解决问题上，而非单纯应承或拒绝；  \n- **语气礼貌温和，带点温度**（如“～”“咱们”），符合学弟/学妹身份，也保持分寸感。\n\n💡 小贴士：如果后续发现确实无法参加，可以再补一句：“学长，刚看了下时间，和XX课/XX事务撞上了，可能没法全程参与。需要我帮您整理会议要点模板，或者会后帮您同步关键信息吗？”——依然传递支持意愿，关系更显真诚。\n\n需要我帮你润色成更正式/更轻松/或带点幽默感的版本，也可以告诉我 😊",
-          "tokens": 429,
-          "duration": 6.13,
+          "reply": "好的，作为社交表达助手，这里提供几个得体、自然又不失分寸的回复选项，你可以根据你和学长的关系亲疏、会议性质以及你的真实意愿来选择或微调：\n\n**核心原则：** 礼貌感谢 + 委婉表达困难/顾虑 + 提供替代方案（可选）+ 保持积极态度。\n\n---\n\n### ✅ 推荐回复（平衡得体与真诚）：\n> “谢谢学长信任，愿意把这么重要的事交给我！不过我看了下会议安排，时间上可能有点小冲突（或者：我对这个议题还不太熟悉），怕临时去效果不太好，反而耽误了正事。要不我帮您整理下会议要点，或者会后帮您同步关键信息？您看这样行吗？”\n\n* **为什么好：**  \n  * 开头真诚感谢，认可学长的信任（满足对方心理需求）；  \n  * 用“小冲突”“不太熟悉”等中性词委婉表达难处，不直接说“无聊”，避免否定会议价值；  \n  * 主动提出建设性替代方案（整理要点/同步信息），展现责任心和合作意愿；  \n  * 结尾用问句，把决定权留给学长，显得尊重且灵活。\n\n---\n\n### 🌟 如果关系较熟，想更轻松一点：\n> “哈哈，学长这‘光荣任务’我先收下了！不过悄悄说，我对这个会的内容还不太摸底，怕去了光点头跟不上节奏… 要不我提前跟您对对重点？或者会后咱一起复盘？保证不掉链子！”\n\n* **亮点：** 语气亲切，用“光荣任务”“悄悄说”降低严肃感，“光点头”幽默化解尴尬，强调“复盘”体现主动性。\n\n---\n\n### ⚠️ 如果实在无法推脱（需谨慎使用）：\n> “明白啦学长！既然您信任我，那我就认真准备一下，争取把会开扎实。稍后能麻烦您发我下议程和背景资料吗？我提前做点功课，尽量不辜负您的托付～”\n\n* **适用场景：** 学长确实很需要人顶替，且你评估后觉得勉强可行。  \n* **关键点：** 不抱怨，转为积极姿态；用“认真准备",
+          "tokens": 560,
+          "duration": 12.9,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -486,17 +486,17 @@
             "relationScore": 5,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 3,
+            "usability": 4,
             "totalScore": 21
           }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，我可以帮你构思一个得体的回复。这里有一个可能的回答：\n\n---\n\n学长，非常感谢您考虑让我代表您参加这次社团会议。我理解您可能有很多其他的责任和任务需要处理。不过，您可能还记得，我最近也在准备一个重要的项目报告，时间上可能会有些冲突。我担心自己可能无法在会议中全神贯注地关注讨论，这可能会影响到社团的利益。\n\n我想建议，或许我们可以考虑其他社团成员或者我可以帮助您准备一些会议所需的资料，这样您可以在会后快速地了解会议内容。如果会议内容真的非常重要，我也非常愿意尽力调整我的日程来支持您。\n\n您觉得这样可以吗？或者您有其他的安排建议？\n\n---\n\n这个回复既表达了对学长的尊重和理解，同时也说明了自己的困难和可能的解决方案，保持了礼貌和专业性。",
-          "tokens": 227,
-          "duration": 3.66,
-          "error": null,
+          "reply": "[调用失败: Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}]",
+          "tokens": 0,
+          "duration": 0,
+          "error": "Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}",
           "extra": {
             "hasRelationAwareness": false,
             "hasMultipleStrategies": false,
@@ -504,12 +504,12 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 5,
+            "intentScore": 1,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 3,
             "usability": 3,
-            "totalScore": 20
+            "totalScore": 13
           }
         }
       ]
@@ -524,10 +524,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "嘿兄弟，说实话我这周末真的很需要躺平充电，最近感觉身体被掏空了哈哈。不过陪你买东西这事我记着呢，要不我们改到下周末？我精力满格的时候还能帮你当个更称职的参谋，挑东西眼光也准。咱俩的周末质量，一个都不能少！",
+          "reply": "兄弟，说实话我这周真的累趴了，周末就想躺平回回血。不过陪你买东西这事我记着呢！要不咱们下周末？我知道你眼光好，到时候我帮你参谋，顺便还能蹭顿好吃的。你也趁这周想想买啥，咱效率更高。",
           "allVersions": {},
-          "tokens": 4940,
-          "duration": 7.39,
+          "tokens": 4911,
+          "duration": 5.68,
           "error": null,
           "extra": {
             "intent": "拒绝",
@@ -539,14 +539,14 @@
             "sensitivity": "中敏感",
             "strategy": "用温和的拒绝加替代方案，比如表达自己需要休息但可以改天再约",
             "jaccard": {
-              "mild-firm": 0.227,
-              "mild-eq": 0.297,
-              "firm-eq": 0.21
+              "mild-firm": 0.358,
+              "mild-eq": 0.208,
+              "firm-eq": 0.186
             },
             "perf": {
-              "intent": 2.26,
-              "relation": 1.8,
-              "versions": 3.33
+              "intent": 1.31,
+              "relation": 1.48,
+              "versions": 2.89
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -554,20 +554,20 @@
             "hasExplainability": true
           },
           "scores": {
-            "intentScore": 4,
-            "relationScore": 3,
+            "intentScore": 5,
+            "relationScore": 4,
             "naturalness": 5,
-            "strategyFit": 3,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 19
+            "totalScore": 22
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "最近有点累，周末想好好休息一下。要不改天再陪你？或者你先去看看，有喜欢的发给我，我帮你参考参考。",
-          "tokens": 77,
-          "duration": 0.09,
+          "reply": "周末啊，我这几天确实有点累，想在家好好休息一下。要不改天再陪你？或者你先去看看，有什么好的推荐给我也行。",
+          "tokens": 78,
+          "duration": 0.12,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -587,9 +587,9 @@
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "哎呀，谢谢你想到我～这周末我刚好想好好歇一歇，补补觉、整理下房间，给自己充个电 😅  \n不过下周我时间比较宽松，要是你还想一起逛，我很乐意陪你！或者需要我帮你提前看看攻略、比比价，也随时在线～ 🌟  \n祝你买到心仪的好物，逛得开心！",
-          "tokens": 140,
-          "duration": 1.98,
+          "reply": "哎呀，真感谢你想到我～不过这周末我打算好好宅家充个电，睡个懒觉、看看书，缓一缓最近的节奏 😅  \n要不咱们约下周？或者你买东西时随时微信喊我，线上帮你参谋款式/比价/出主意，随叫随到！✨  \n祝你逛得开心，买到心仪好物～ 🛍️💛",
+          "tokens": 147,
+          "duration": 3.14,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -599,20 +599,20 @@
           },
           "scores": {
             "intentScore": 4,
-            "relationScore": 4,
+            "relationScore": 3,
             "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 20
           }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，这里有几种得体的回复方式，你可以根据你和朋友的关系亲密程度以及你想表达的语气来选择：\n\n1. **体贴且真诚**：\n   “嘿，我真的很感谢你邀请我一起去购物。但这个周末我打算好好休息一下，因为最近工作有点累。不过我们可以计划下周找个时间一起出去，你觉得怎么样？”\n\n2. **幽默且轻松**：\n   “哎呀，我这个周末打算和我的床来个深度约会。但我们可以计划下周一起去购物，我保证那时候我会有更多活力！”\n\n3. **直接且礼貌**：\n   “谢谢你的邀请，我也很想去，但这个周末我需要休息一下。我们可以下次再一起去吗？”\n\n4. **简洁且友好**：\n   “谢谢你想到我，但这周末我需要休息。我们下周找个时间怎么样？”\n\n选择一种你觉得最能表达你感受的方式，同时也尊重了你朋友的邀请。",
-          "tokens": 245,
-          "duration": 3.51,
-          "error": null,
+          "reply": "[调用失败: Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}]",
+          "tokens": 0,
+          "duration": 0,
+          "error": "Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}",
           "extra": {
             "hasRelationAwareness": false,
             "hasMultipleStrategies": false,
@@ -620,12 +620,12 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 20
+            "intentScore": 1,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 3,
+            "usability": 3,
+            "totalScore": 13
           }
         }
       ]
@@ -640,10 +640,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "最近咱们的进度我大致捋了一下，发现其他部分都差不多了，就差你那一块了。我知道你可能比较忙，或者遇到什么卡壳的地方——要不咱们找时间对一下？我这边有些之前做类似项目时的经验，说不定能帮你省点时间。咱们一起把这事收个漂亮的尾，大家都轻松。",
+          "reply": "嘿，我刚把咱们的整体框架又顺了一遍，发现你负责的那部分是个关键节点——要是咱们能把它先搞定，后面就一马平川了。我这边有些资料和思路，要不要一起过一下？也许半小时就能帮你把最难的部分打通。咱俩合体，战斗力翻倍，早点收工还能约个奶茶庆祝。",
           "allVersions": {},
-          "tokens": 4809,
-          "duration": 6.84,
+          "tokens": 4817,
+          "duration": 6.12,
           "error": null,
           "extra": {
             "intent": "催促",
@@ -653,16 +653,16 @@
             "power": "平等",
             "interest": "强利益",
             "sensitivity": "中敏感",
-            "strategy": "以团队目标为共同出发点，用温和提醒的方式表达关切，避免指责语气",
+            "strategy": "以团队目标为切入点，用提醒而非指责的语气沟通，强调共同利益",
             "jaccard": {
-              "mild-firm": 0.241,
-              "mild-eq": 0.25,
-              "firm-eq": 0.219
+              "mild-firm": 0.269,
+              "mild-eq": 0.198,
+              "firm-eq": 0.198
             },
             "perf": {
-              "intent": 1.6,
-              "relation": 1.95,
-              "versions": 3.28
+              "intent": 1.49,
+              "relation": 1.57,
+              "versions": 3.06
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -681,9 +681,9 @@
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "当然，以下是一个得体且自然的回复建议：\n\n“嘿，[队友名字]，想问问你负责的部分进展如何？我们小组的进度有点紧张，如果你需要帮忙或者遇到什么困难，随时告诉我，我们一起解决。尽量在[具体时间]前完成，可以吗？谢谢啦！”\n\n这样既表达了关心，也明确了时间要求，不会让对方感到被冒犯。",
-          "tokens": 123,
-          "duration": 0.26,
+          "reply": "当然，以下是几个得体、自然的回复建议，供你根据具体关系选择：\n\n1. **温和提醒版**  \n“嗨，XX，咱们小组的作业进度我这边整理了一下，发现你负责的部分好像还没提交。是不是最近比较忙？如果有需要帮忙的地方，可以跟我说，咱们一起尽快完成，别耽误了整体提交时间哈。”\n\n2. **协作推进版**  \n“XX，咱们作业的截止时间快到了，我这边其他部分都差不多了，就差你负责的那块。你看大概什么时候能发给我？如果需要调整分工或者时间，咱们可以商量一下。”\n\n3. **委婉催促版**  \n“XX，作业整体框架我搭好了，就差你那一部分整合了。你那边有遇到什么问题吗？咱们一起解决，争取按时交上去，别让小组扣分哦。”\n\n4. **轻松幽默版（适合关系较熟的队友）**  \n“XX，我的‘催更’小闹钟响了哈～你负责的部分进展如何啦？需要我帮忙打个辅助不？咱们争取早点收工，一起愉快摸鱼～”\n\n**选择建议**：根据你们的关系亲疏、对方的性格以及任务紧急程度来选。如果对方平时靠谱但偶尔拖延，选温和提醒；如果关系较近，幽默版效果更好；如果时间紧迫，用协作推进版更直接。",
+          "tokens": 325,
+          "duration": 0.27,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -692,42 +692,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 4,
+            "intentScore": 3,
             "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 21
+            "usability": 3,
+            "totalScore": 19
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "当然可以，以下是一条既礼貌得体、又清晰传达关切的回复，适合发在小组群或私聊中：\n\n> “Hi [队友名字]，想跟您确认下咱们负责的部分进度～目前整体时间比较紧凑，如果方便的话，能否告知预计完成时间？如果有遇到什么困难或需要协助的地方，也欢迎随时告诉我，我们可以一起协调解决 😊”\n\n✨ 这样表达的优点：  \n✅ 语气友善、无指责感，避免引发抵触情绪  \n✅ 强调共同目标（“咱们”“整体时间”），体现团队意识  \n✅ 主动提供支持（“需要协助随时说”），展现合作态度  \n✅ 温和设问（“能否告知预计时间”），留出空间而非施压  \n\n如需后续跟进（比如截止前1天仍未提交），我也可以帮您拟一条更坚定但依然专业的提醒话术。需要的话随时告诉我～",
-          "tokens": 254,
-          "duration": 4.75,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 4,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 18
-          }
-        },
-        {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "面对这种情况，一个得体的回复可以是既礼貌又清晰的，旨在提醒队友注意截止日期，并表达出对团队合作的重视。以下是一个可能的回复示例：\n\n---\n\n你好，\n\n希望一切都好。我注意到我们小组作业的截止日期即将到来，目前还缺少你负责的部分。我相信你的工作会为我们的报告增色不少，而且我知道你一定已经做了很多努力。\n\n为了确保我们能够按时提交作业，并保持我们团队的协作精神，我想和你确认一下你的进展。如果你在完成你的部分时遇到了任何困难或者需要帮助，请随时告诉我，我们可以一起讨论解决方案。如果我们能够早点整合各自的工作，还可以留出时间来审阅和完善整个报告。\n\n请告诉我你预计何时能完成你的部分，这样我们就可以更好地规划接下来的工作。非常感谢你的努力和合作！\n\n祝好，\n\n[你的名字]\n\n---\n\n这样的回复既表达了对队友工作的期待，也提供了帮助的意愿，并强调了团队合作的重要性。同时，它也为队友提供了一个回复的机会，以便于进一步的沟通和协调。",
-          "tokens": 270,
-          "duration": 5.39,
+          "reply": "当然可以，以下是一个既礼貌得体、又清晰传达诉求的回复示例，适用于微信/邮件等常见沟通场景：\n\n---\n\nHi [队友名字]，你好～  \n想和你确认一下咱们小组作业中你负责的部分（比如：PPT制作/某章节报告/数据整理等），目前进度如何啦？我们这边计划在[具体日期，如：周五前]汇总初稿，以便留出时间一起打磨和调整。如果你遇到什么卡点或需要协助的地方，也欢迎随时告诉我，我们可以一起想办法～ 😊  \n辛苦啦，感谢你的付出！\n\n---\n\n💡 小贴士：  \n- 用“我们”代替“你没交”，弱化指责感，强调协作；  \n- 明确时间节点+说明原因（为后续留出修改时间），增强合理性；  \n- 主动提供支持，展现同理心与团队意识；  \n- 语气友善但有边界，不模糊责任归属。\n\n如需我帮你根据具体学科、截止日期或对方性格（比如对方比较内向/拖延惯了）进一步优化措辞，我很乐意继续协助！",
+          "tokens": 294,
+          "duration": 6.41,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -739,9 +717,31 @@
             "intentScore": 3,
             "relationScore": 4,
             "naturalness": 5,
-            "strategyFit": 4,
+            "strategyFit": 5,
             "usability": 4,
-            "totalScore": 20
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "[调用失败: Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}]",
+          "tokens": 0,
+          "duration": 0,
+          "error": "Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}",
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 1,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 3,
+            "usability": 3,
+            "totalScore": 13
           }
         }
       ]
@@ -756,10 +756,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "王总，上次的款项我这边在核对到账情况，想跟您确认一下财务流程是否顺利？有些银行处理可能会有延迟，我提前帮您盯一下，免得到时候影响咱们后续合作。您方便告诉我具体哪天走的流程吗？",
+          "reply": "王总，上次咱们聊的方案我这边已经按计划推进了。想跟您确认一下付款流程是否顺利？有时候银行到账会有延迟，或者您那边需要我提供什么辅助材料？您随时说，我全力配合。不急，咱们先把事办好。",
           "allVersions": {},
-          "tokens": 4928,
-          "duration": 6.44,
+          "tokens": 4971,
+          "duration": 6.04,
           "error": null,
           "extra": {
             "intent": "催促",
@@ -769,16 +769,16 @@
             "power": "对方上位",
             "interest": "强利益",
             "sensitivity": "高敏感",
-            "strategy": "以服务态度为前提，用确认到账流程的方式委婉提醒，避免直接催款",
+            "strategy": "以服务态度委婉提醒，先确认对方是否遇到困难，再协商具体到账时间",
             "jaccard": {
-              "mild-firm": 0.261,
-              "mild-eq": 0.319,
-              "firm-eq": 0.302
+              "mild-firm": 0.241,
+              "mild-eq": 0.364,
+              "firm-eq": 0.245
             },
             "perf": {
-              "intent": 1.64,
-              "relation": 1.62,
-              "versions": 3.18
+              "intent": 1.47,
+              "relation": 1.56,
+              "versions": 3.01
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -788,18 +788,18 @@
           "scores": {
             "intentScore": 5,
             "relationScore": 3,
-            "naturalness": 4,
+            "naturalness": 3,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 20
+            "totalScore": 19
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "“王总您好，打扰了。想跟您确认一下上周提到的款项是否已经安排支付？如果流程上遇到什么困难，可以随时跟我说，我们一起想办法解决，谢谢您！”",
-          "tokens": 84,
-          "duration": 0.13,
+          "reply": "当然。以下是一个得体、自然的回复建议：\n\n“您好，[客户姓名/称呼]，打扰了。之前您提到会安排付款，我们这边暂时还没收到到账通知，想跟您确认一下是否已操作，或者有没有遇到什么需要帮忙的地方？麻烦您方便时回复一下，谢谢！”",
+          "tokens": 109,
+          "duration": 0.26,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -808,20 +808,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
+            "intentScore": 4,
+            "relationScore": 3,
             "naturalness": 3,
-            "strategyFit": 5,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 18
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "您好，感谢您此前对合作的支持与信任！想友善地跟您确认一下，关于[具体事项/订单号/服务名称]的款项，我们系统尚未收到入账（截至今日已约一周）。不知是否在付款流程中需要我们协助提供任何补充材料或信息？非常乐意随时配合，确保结算顺利推进。\n\n如您已有安排，也欢迎告知预计时间，我们好同步内部跟进。再次感谢您的理解与支持！😊",
-          "tokens": 154,
-          "duration": 2.6,
+          "reply": "您好，感谢您之前对付款事宜的确认！想温馨提醒一下，截至今天已过去一周，我们这边尚未收到相关款项。不知是否在流程中遇到什么需要协助的地方？如需提供发票、付款链接或补充任何材料，我们随时为您准备。\n\n期待您的反馈，也感谢您的理解与支持！😊",
+          "tokens": 126,
+          "duration": 2.56,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -830,8 +830,8 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 3,
-            "relationScore": 5,
+            "intentScore": 4,
+            "relationScore": 4,
             "naturalness": 3,
             "strategyFit": 3,
             "usability": 4,
@@ -841,9 +841,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，处理这种情况时，我们需要保持专业和礼貌，同时也要确保信息传达得清晰。以下是一个可能的回复：\n\n---\n\n尊敬的 [客户姓名]，\n\n您好！\n\n希望这封邮件能够找到您一切顺利。\n\n我注意到我们之前商定的付款期限已经过了一周，但似乎我们的账户还未收到相应的款项。我想这可能只是一个小的疏忽，或者可能是付款过程中出现了延迟。\n\n为了确保我们的合作能够顺利进行，并且不影响我们为您服务的质量，我非常乐意协助您跟进这个问题。如果您有任何疑问，或者需要我提供任何帮助，请随时告知。\n\n请您在方便的时候，告知我们付款的最新状态，或者如果有任何特殊情况需要我们了解，我们都会尽力配合。\n\n非常感谢您的理解与合作，期待您的回复。\n\n祝好，\n\n[您的名字]\n[您的职位]\n[您的公司名称]\n[联系电话]\n[电子邮箱]\n\n---\n\n这样的回复既体现了对客户的尊重，又明确了您对付款的期待，同时也表现出您愿意提供帮助解决问题的意愿。",
-          "tokens": 259,
-          "duration": 3.91,
+          "reply": "当然，处理这种情况需要既礼貌又专业。以下是一个可能的回复：\n\n---\n\n尊敬的 [客户姓名]，\n\n您好！\n\n首先，我想感谢您对我们合作的支持和承诺。我注意到我们之前商定的付款日期已经过去了一周，但似乎款项尚未到账。我理解在财务处理上可能会有延误，所以我想确认一下，是否有什么我可以协助的地方，或者是不是存在一些误解或意外情况。\n\n请您在方便的时候告知款项的进展情况，或者如果有任何需要我方配合的事宜，请随时与我联系。我们非常重视与您的合作关系，并希望能够确保所有事项都能够顺利进行。\n\n期待您的回复，并再次感谢您的理解与合作。\n\n祝好，\n\n[您的名字]\n[您的职位]\n[您的联系信息]\n\n---\n\n这样的回复既表达了对客户的理解，又礼貌地提醒了付款事宜，同时也提供了进一步沟通的渠道。",
+          "tokens": 232,
+          "duration": 15.14,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -872,10 +872,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "嘿，突然想起我那本书——它在你那儿住得还习惯不？哈哈，我最近想重温一下，不知道它是不是已经陪你度过够久的时光了？不着急，就是问问。你要觉得还没看完，我也可以再等等，或者我先把电子版发你？",
+          "reply": "嘿，突然想起来我那本书是不是在你那儿住得挺舒服了？哈哈，不开玩笑，那本书确实挺好看的，我最近想重温一下，顺便再给你推荐几本新入的，咱可以交换着看，这样你也不亏。",
           "allVersions": {},
-          "tokens": 4871,
-          "duration": 6.45,
+          "tokens": 4932,
+          "duration": 6.37,
           "error": null,
           "extra": {
             "intent": "催促",
@@ -885,43 +885,21 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "用轻松幽默的语气提醒，避免让对方感到被指责",
+            "strategy": "用轻松幽默的方式提醒，如开玩笑说书快成古董了，既表达诉求又不伤和气",
             "jaccard": {
-              "mild-firm": 0.262,
-              "mild-eq": 0.342,
-              "firm-eq": 0.26
+              "mild-firm": 0.203,
+              "mild-eq": 0.247,
+              "firm-eq": 0.271
             },
             "perf": {
-              "intent": 1.5,
-              "relation": 1.69,
-              "versions": 3.26
+              "intent": 1.71,
+              "relation": 1.74,
+              "versions": 2.91
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
             "hasCulturalAdaptation": true,
             "hasExplainability": true
-          },
-          "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 22
-          }
-        },
-        {
-          "model": "DeepSeek",
-          "modelKey": "deepseek",
-          "reply": "同学，上次借你的那本书你看完了吗？如果看完了方便还我吗？我最近想再翻翻里面的一些内容。不急，你慢慢看哈。",
-          "tokens": 79,
-          "duration": 0.09,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
           },
           "scores": {
             "intentScore": 5,
@@ -933,11 +911,11 @@
           }
         },
         {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "可以这样礼貌又自然地提醒：\n\n“嘿，最近还好吗？😊 想起来之前借给你的那本书《XXX》，你还在看吗？如果已经看完啦，方便的时候麻烦还我一下哈～（要是还在读，完全没问题，不用着急！）”\n\n这样的表达：  \n✅ 语气轻松友好，不带指责；  \n✅ 先关心对方，建立善意氛围；  \n✅ 明确物品和事由，避免误会；  \n✅ 给对方留足余地，体现理解和尊重。\n\n需要我帮你定制书名、语气（更俏皮/更含蓄/适合微信/当面说）的话，随时告诉我～ 📚",
-          "tokens": 201,
-          "duration": 2.99,
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "同学，上次借给你的那本书，我最近想再翻翻看，不知道你读得怎么样了？如果不着急的话，方便这周还我吗？",
+          "tokens": 76,
+          "duration": 0.16,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -946,20 +924,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 3,
+            "intentScore": 5,
             "relationScore": 4,
             "naturalness": 5,
-            "strategyFit": 5,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 22
           }
         },
         {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "当然，处理这种情况需要既体现出你的关心，也要保持礼貌和友好。以下是一个得体的回复示例：\n\n“嘿，老朋友，我注意到你借我的那本书已经过去半个月了。我最近可能会用到它，所以想问问你什么时候方便还给我呢？如果你还需要一些时间，那也完全没问题，我们可以商量一个更合适的归还日期。” \n\n这样的回复既表达了你的需求，也给了对方足够的空间来解释或安排归还时间，避免了可能的尴尬或误会。",
-          "tokens": 157,
-          "duration": 2.53,
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "可以这样温和又得体地提醒：\n\n“嗨～最近在整理书架，突然想起之前借给你的那本《XXX》，不知道你还在看吗？如果已经看完，方便时还我就好～要是还在读，也完全没问题，不用着急！😊”\n\n这样的表达：  \n✅ 语气轻松友好，不带指责；  \n✅ 给对方留足余地（暗示“没看完也没关系”）；  \n✅ 暗示自己有需求（整理书架），而非单纯催促；  \n✅ 用书名体现具体性，避免模糊不清。  \n\n需要我帮你定制带书名/人名的版本，或者改成微信/当面说的不同风格，也可以告诉我哦～ 📚",
+          "tokens": 212,
+          "duration": 4.29,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -975,6 +953,28 @@
             "usability": 3,
             "totalScore": 19
           }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "当然，这里有一个礼貌而友好的方式来提醒你的同学归还借给你的书：\n\n---\n\n嘿，[同学的名字]，\n\n希望最近一切顺利！我想起来了，你大概半个月前借走了我的那本[书名]。我最近可能需要用到它，所以如果你已经看完了或者不再需要了，不知道能不能麻烦你尽快还给我呢？如果还没看完也没关系，我们可以再约个时间交换。\n\n谢谢你的理解和配合！\n\n最好的祝福，\n[你的名字]\n\n---\n\n这样的信息既表达了你需要书的需求，又给了对方足够的空间来安排归还，同时也保持了友好的语气。",
+          "tokens": 176,
+          "duration": 12.76,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
         }
       ]
     },
@@ -988,10 +988,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "兄弟，最近看你一直挺忙的，我这边也想先把报告这事收尾了，咱们别让它悬着。要不这样，你跟我说说哪块卡住了？我这边有些经验可以分享，说不定能帮你省点时间。咱俩分工配合，一起把这个活漂亮搞定，对大家都好。",
+          "reply": "嘿，上次你答应帮我改报告，我一直记着这事儿呢。我猜你最近可能忙得有点晕了——正常，谁都有节奏乱的时候。我这边的截止日期是后天，你看咱们今天或者明天上午碰一下成吗？我先把我的部分整理得更清楚，你到时候直接给意见就行，省你时间。一起把它漂亮收尾，咱都轻松。",
           "allVersions": {},
-          "tokens": 4935,
-          "duration": 6.9,
+          "tokens": 4931,
+          "duration": 6.18,
           "error": null,
           "extra": {
             "intent": "催促",
@@ -1001,16 +1001,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以合作共赢的角度提醒对方，用‘我们’代替‘你’，强调共同目标而非指责",
+            "strategy": "用温和提醒加具体时间节点的方式，既表达需求又给对方留面子",
             "jaccard": {
-              "mild-firm": 0.253,
-              "mild-eq": 0.356,
+              "mild-firm": 0.238,
+              "mild-eq": 0.244,
               "firm-eq": 0.204
             },
             "perf": {
-              "intent": 1.7,
-              "relation": 1.96,
-              "versions": 3.23
+              "intent": 1.54,
+              "relation": 1.6,
+              "versions": 3.04
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1018,42 +1018,20 @@
             "hasExplainability": true
           },
           "scores": {
-            "intentScore": 5,
+            "intentScore": 4,
             "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 22
+            "usability": 3,
+            "totalScore": 21
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "“小张，上次麻烦你帮忙改的报告，不知道你这边进度如何了？如果时间紧张的话，我可以先看看初稿，或者咱们一起过一遍，这样也能帮你分担一些。方便的话，能告诉我大概什么时候方便吗？”",
-          "tokens": 95,
+          "reply": "当然，以下是一个得体、自然的回复建议：\n\n“嗨，[同事名字]，上次麻烦你帮忙改报告的事，不知道你最近有没有时间看看？如果方便的话，能告诉我大概什么时候能完成吗？我这边也好安排后续的工作。如果太忙的话，也请直接告诉我，我再想想其他办法。谢谢啦！”\n\n这个回复既表达了你的需求，也给了对方一定的空间，不会让对方感到压力或被指责。",
+          "tokens": 133,
           "duration": 0.11,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 5,
-            "usability": 4,
-            "totalScore": 23
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "您好，可以这样得体又温和地跟进：\n\n“Hi [同事名字]，打扰一下～想友善地确认下报告修改的事，如果您最近比较忙，完全理解！如果方便的话，麻烦您大概告知一个合适的时间节点，我好同步调整后续安排。非常感谢您的支持和帮助！😊”\n\n这样的表达：  \n✅ 语气友好、不带指责  \n✅ 体现共情（理解对方可能忙碌）  \n✅ 明确诉求（只需一个大致时间）  \n✅ 展现主动性（愿意配合调整）  \n✅ 保持专业与尊重  \n\n需要我帮您润色成更正式/更轻松/或加点幽默感的版本，也可以随时告诉我～",
-          "tokens": 204,
-          "duration": 2.79,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1064,18 +1042,40 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 5,
+            "usability": 4,
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "您好，可以这样礼貌又得体地跟进：\n\n“Hi [同事名字]，打扰啦～想跟您确认下报告修改这边是否方便近期推进？我这边需要在[具体日期/时间节点，如：周三前]提交终稿，如果有任何需要我配合调整或补充的地方，随时告诉我，非常感谢您的支持！😊”\n\n这样的表达：\n✅ 语气友善、不带指责  \n✅ 明确时间节点（体现专业性）  \n✅ 主动提供协助（展现合作态度）  \n✅ 给对方留出余地，避免尴尬  \n\n如果需要，我也可以帮您拟一个更委婉（比如初次提醒）或稍正式（如书面邮件）的版本。",
+          "tokens": 204,
+          "duration": 4.44,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 3,
             "naturalness": 4,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 19
+            "totalScore": 18
           }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "在这种情况下，你可以采取一种礼貌但直接的方式来提醒你的同事。以下是一个可能的回复：\n\n---\n\n嗨 [同事的名字]，\n\n希望一切都好。我记得之前我们讨论过你可能会帮我看一下我的报告，并给出一些修改意见。我非常感激你愿意帮忙，也知道你最近可能很忙。\n\n我在准备报告的最后阶段了，如果你能抽空看一下，对我来说会非常有帮助。你之前提出的观点对报告的改进至关重要，我期待着你的反馈。\n\n如果你能告诉我一个方便的时间，我会非常感激。或者，如果你现在手头有文件，我也可以过去找你，这样我们可以一起过一遍。\n\n谢谢你的理解，我期待着你的回复。\n\n最好的祝愿，\n[你的名字]\n\n---\n\n这样的回复既表达了你对同事帮助的感激，也明确了你需要他们帮助的紧迫性，同时也给对方留出了提供帮助的空间。",
-          "tokens": 224,
-          "duration": 3.04,
+          "reply": "当然，处理这种情况时，既要礼貌又要确保报告能够得到及时修改。以下是你可以使用的回复示例：\n\n---\n\n亲爱的[同事的名字]，\n\n我注意到你最近特别忙，而我真的很感激你愿意帮助我修改报告。我知道我们的时间都很宝贵，所以我想确认一下，是否方便你在这周内找个时间来处理这份报告？如果有任何困难或者你需要更多信息，请随时告诉我，我们可以一起找到一个解决方案。\n\n谢谢你的理解与支持！\n\n最好的祝愿，\n[你的名字]\n\n---\n\n这样的回复既表达了对同事的感谢，也明确了你对报告进展的关切，同时留出了空间让同事解释可能的延误，并提供了协作解决问题的意愿。",
+          "tokens": 188,
+          "duration": 5.48,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1104,10 +1104,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "老师，打扰一下。上周您答应看我论文，我知道您肯定忙——我这也不急，就是想确认一下是不是被邮件淹没了。有个思路：要不我把核心段落摘出来，您有空时扫一眼就行，不用全看。这样您省时间，我也能先往前推进。您看这样行吗？",
+          "reply": "老师，最近忙吗？我知道您肯定在审阅很多材料，我不急。只是有个想法——如果您方便的话，我可以先口头汇报一下论文的核心思路，您听一听给个方向性的反馈，这样等我拿到书面意见时也能更快消化。您看这样会不会效率更高一些？",
           "allVersions": {},
-          "tokens": 4967,
-          "duration": 6.83,
+          "tokens": 4938,
+          "duration": 5.79,
           "error": null,
           "extra": {
             "intent": "催促",
@@ -1117,16 +1117,16 @@
             "power": "对方上位",
             "interest": "弱利益",
             "sensitivity": "高敏感",
-            "strategy": "以尊重和体谅为前提，用请教和确认的语气温和提醒，避免催促感",
+            "strategy": "以请教和关心的口吻温和提醒，先表达理解再提出请求",
             "jaccard": {
-              "mild-firm": 0.265,
-              "mild-eq": 0.33,
-              "firm-eq": 0.319
+              "mild-firm": 0.275,
+              "mild-eq": 0.296,
+              "firm-eq": 0.235
             },
             "perf": {
-              "intent": 1.72,
-              "relation": 1.65,
-              "versions": 3.47
+              "intent": 1.65,
+              "relation": 1.57,
+              "versions": 2.57
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1137,17 +1137,17 @@
             "intentScore": 4,
             "relationScore": 4,
             "naturalness": 4,
-            "strategyFit": 3,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 19
+            "totalScore": 20
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "导师您好，打扰了。关于之前请您审阅的论文，不知您是否已经看过？如果有需要修改的地方，请随时告诉我，我会尽快调整。如果暂时没时间，也没关系，我理解您工作繁忙，期待您的反馈。谢谢您！",
-          "tokens": 99,
-          "duration": 0.11,
+          "reply": "当然。以下是一个得体、自然的回复建议：\n\n---\n\n**尊敬的[导师姓名]老师：**\n\n您好！打扰您了。上次向您请教论文的事情，承蒙您答应抽空审阅。想请问一下，不知您是否已有初步的意见或建议？如果方便的话，希望能得到您的指导，我好根据反馈进一步修改。当然，您工作繁忙，我理解并耐心等待。再次感谢您的支持！\n\n祝您工作顺利！\n\n学生：[你的名字]\n\n---\n\n这个回复既表达了关心和催促，又体现了对导师的尊重和理解，语气温和得体。",
+          "tokens": 163,
+          "duration": 0.1,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1156,20 +1156,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 5,
+            "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 3,
+            "naturalness": 5,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 19
+            "totalScore": 20
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "您好，可以这样礼貌、得体地跟进，既体现尊重与体谅，又保持专业和分寸：\n\n---\n\n老师您好！  \n打扰您了，想跟您确认一下我之前提交的论文初稿是否方便查阅？知道您近期工作繁忙，非常感谢您愿意拨冗指导。若您时间尚紧，我也完全理解，随时等您方便时再反馈即可。  \n祝工作顺利，身体健康！\n\n—— 学生 [您的名字]\n\n---\n\n💡 小贴士：  \n- 避免催促语气（如“请问看了吗？”“不知是否收到？”），转为表达理解+主动降低对方压力；  \n- 附上具体信息（如“论文初稿”）便于导师快速定位；  \n- 结尾温暖简洁，维持师生关系的温度与专业感。  \n需要我帮您润色具体版本（比如已知导师风格偏严谨/亲切），我很乐意优化～",
-          "tokens": 254,
-          "duration": 3.55,
+          "reply": "您好，可以这样礼貌、得体又不失温度地跟进：\n\n> 老师好！打扰您了～想温和地跟您确认一下，之前请您帮忙审阅的论文初稿（标题：《XXX》），不知您近期是否方便抽空指导？完全理解您工作繁忙，若您时间紧张，我也非常乐意根据您的节奏调整提交或修改安排。感谢您一直以来的悉心指导！\n\n✨ 小贴士：  \n- 用“温和确认”替代“催促”，体现尊重与体谅；  \n- 主动提供弹性空间（如“按您节奏调整”），减轻对方压力；  \n- 再次点明论文标题，方便导师快速定位；  \n- 结尾致谢，保持谦逊真诚的师生语境。\n\n需要我帮您润色具体论文标题/内容，或拟写后续不同情境（如仍无回复后第二次跟进）的版本，也欢迎随时告诉我 😊",
+          "tokens": 258,
+          "duration": 5.78,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1189,9 +1189,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，这里有一个得体且礼貌的回复模板，你可以根据自己的情况稍作调整：\n\n---\n\n尊敬的[导师的名字]，\n\n希望您一切安好。我写信是想跟进一下关于我的论文[论文标题]的情况。我记得您之前提到会在一周内给我回复，我想您可能因为繁忙的工作而忘记了。我完全理解，因为我也经历过繁重的工作压力。\n\n我想确认一下，您是否已经有机会审阅我的论文，或者您是否需要我提供更多的材料来帮助您评估。如果您需要更多的时间来阅读和提供反馈，我完全理解，并且愿意根据您的时间表来安排。\n\n请您告知我下一步应该做什么，以及您是否有任何特定的建议或指导。我非常重视您的专业意见，并期待您的反馈来帮助我改进我的工作。\n\n感谢您的时间和支持。\n\n祝好，\n\n[你的名字]\n\n---\n\n这个回复既表达了你的尊重和理解，也明确传达了你的请求，并且为进一步的沟通留下了空间。",
-          "tokens": 251,
-          "duration": 4.16,
+          "reply": "当然，这里有一个得体而友好的回复模板，你可以根据自己的具体情况稍作调整：\n\n---\n\n尊敬的[导师的名字]，\n\n您好！\n\n希望这封邮件找到您一切安好。我写信是想跟进一下我之前提交给您的论文草稿。我非常感激您愿意抽出宝贵的时间来审阅我的工作，并且我一直在期待您的反馈。\n\n我知道您一定非常忙碌，所以我不想给您增加压力。如果您在审阅我的论文时有任何需要我协助的地方，或者需要我提供更多的信息，请随时告知。我也会尽我所能提供帮助。\n\n如果您有任何初步的想法或评论，我也非常期待能够听到，这样我可以及时开始修改和完善我的论文。如果方便的话，不知道您是否可以告诉我一个大致的回复时间，这样我可以更好地安排我的工作进度。\n\n再次感谢您的支持和指导，我期待着您的宝贵意见。\n\n祝好，\n\n[你的名字]\n\n---\n\n这样的回复既表达了你的尊重和理解，也明确传达了你对反馈的期待，同时也给了导师一个提醒，既礼貌又有效。",
+          "tokens": 266,
+          "duration": 11.93,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1204,8 +1204,8 @@
             "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 19
+            "usability": 4,
+            "totalScore": 20
           }
         }
       ]
@@ -1220,10 +1220,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "组长，我先整体梳理了一下您安排的任务，思路很清晰，我学到了不少。不过我有个小困惑想请教一下——我负责的这部分和另一个模块有重叠，我担心效率上可能有优化空间。您看要不要咱们快速对齐一下分工？我这边有些想法，也许能帮大家省点力气，把整体节奏拉得更顺。",
+          "reply": "组长，我刚仔细看了整体的任务分配，感觉您这次在平衡团队资源上很用心。有个小想法想跟您请教一下——我负责的这部分有一个模块，如果换一个人来做可能效率更高，因为我上周刚接触过类似的业务，经验上可能有点重复。要不咱们看看能不能微调一下？这样整体节奏可能会更顺。当然这只是我一个不成熟的想法，最终还是听您安排。",
           "allVersions": {},
-          "tokens": 4886,
-          "duration": 7.1,
+          "tokens": 4890,
+          "duration": 6.55,
           "error": null,
           "extra": {
             "intent": "反馈",
@@ -1235,14 +1235,14 @@
             "sensitivity": "高敏感",
             "strategy": "以请教和协商的方式提出，先肯定整体安排，再委婉表达个人困难或建议调整",
             "jaccard": {
-              "mild-firm": 0.269,
-              "mild-eq": 0.285,
-              "firm-eq": 0.246
+              "mild-firm": 0.267,
+              "mild-eq": 0.312,
+              "firm-eq": 0.226
             },
             "perf": {
-              "intent": 1.47,
-              "relation": 2.16,
-              "versions": 3.46
+              "intent": 1.29,
+              "relation": 1.5,
+              "versions": 3.75
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1250,20 +1250,20 @@
             "hasExplainability": true
           },
           "scores": {
-            "intentScore": 4,
+            "intentScore": 3,
             "relationScore": 3,
             "naturalness": 4,
             "strategyFit": 4,
             "usability": 3,
-            "totalScore": 18
+            "totalScore": 17
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "组长，感谢您的信任和任务安排。我仔细看了这个任务，发现有些环节和我的专长不太匹配，可能效率会受影响。比如[具体部分]，我觉得换成[你的建议]会更顺畅。如果您方便，我们可以一起调整一下，确保团队整体效率最大化。",
-          "tokens": 102,
-          "duration": 0.09,
+          "reply": "组长，关于您刚才分配的任务，我想请教一下。我对其中某部分工作的优先级和资源分配有些想法，想和您简单沟通一下，看看是否有调整的空间，以便更高效地完成目标。",
+          "tokens": 87,
+          "duration": 0.45,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1272,20 +1272,42 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 4,
-            "relationScore": 5,
-            "naturalness": 5,
-            "strategyFit": 5,
+            "intentScore": 5,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 23
+            "totalScore": 19
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "当然可以，以下是一个既尊重组长、又清晰表达关切的得体回复，语气谦和、建设性强，适合在团队沟通中使用：\n\n“谢谢组长把这项任务交给我，我也很愿意承担。不过想跟您简单确认一下：目前我手头正在推进XX项目（或列出1–2项具体任务），预计完成时间是X月X日；同时还有XX日常支持工作需要同步跟进。如果这次新任务有明确的优先级或时间节点，是否方便我们一起梳理下轻重缓急？这样我可以更合理地协调资源和时间，确保每项工作都保质保量落地。”\n\n✨ 这样表达的好处：\n✅ 以感谢开场，体现配合态度  \n✅ 用事实说话（列出现有任务+时间节点），避免主观抱怨  \n✅ 聚焦“如何更好完成工作”，而非否定分配本身  \n✅ 把问题转化为协同决策，展现责任感与主动性  \n\n如需，我也可以帮您润色成微信/邮件/会议发言等不同场景的版本 😊",
-          "tokens": 277,
-          "duration": 3.91,
+          "reply": "您好，感谢您信任并把这项任务交给我。我认真梳理了一下当前的工作安排和时间节点，想跟您沟通一下：目前手头正在推进的A项目（预计本周五结项）和B需求（客户要求下周初交付），时间上比较紧凑。如果新增这项任务，可能会影响整体交付质量或进度。\n\n不知是否可以一起看看：  \n✅ 是否有优先级调整的空间？  \n✅ 或者是否需要协调其他同事协同支持？  \n✅ 又或者，我们可以分阶段推进，先聚焦关键模块？\n\n非常愿意全力配合团队目标，也希望能更高效、更稳妥地把事情做好。期待您的建议！ 😊\n\n（语气尊重、聚焦事实、提供解决方案，既表达关切，又体现担当）",
+          "tokens": 215,
+          "duration": 5.72,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 5,
+            "naturalness": 4,
+            "strategyFit": 5,
+            "usability": 4,
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "在这种情况下，提出问题时既要表达自己的关切，也要保持尊重和建设性。以下是一个得体的回复示例：\n\n---\n\n尊敬的组长，\n\n您好。我想就最近分配的任务和您进行一次简短的交流。首先，我想感谢您一直以来的领导和支持。我非常珍视团队合作的机会，并致力于完成分配给我的任何任务。\n\n关于最近的任务分配，我有几点想法希望能与您分享。我认为有些任务的分配可能没有充分考虑到团队成员的专长和当前的工作量。我注意到有些同事似乎承担了较重的工作负担，而其他人可能有更多的空间来承担额外的任务。\n\n我提出这一点并不是想要逃避责任，而是希望我们能够更高效地利用团队的资源，确保每个人都能在他们最擅长的领域发光发热。我相信通过优化任务分配，我们能够提高整体的工作效率，并且让每个成员都感到公平和被尊重。\n\n我愿意就如何改进任务分配提出一些具体的建议，如果这对您有帮助的话。我相信我们团队的目标是一致的，那就是确保项目的顺利进行和团队成员的福祉。\n\n请您抽出宝贵的时间，我们是否可以找个时间详细讨论一下这个问题？我期待着您的回复。\n\n谢谢您的理解和支持。\n\n此致\n[您的名字]\n\n---\n\n这样的回复既表达了你的关切，又表现出对组长的尊重，同时也提出了解决问题的意愿，有助于开展进一步的对话。",
+          "tokens": 330,
+          "duration": 6.24,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1296,32 +1318,10 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 18
-          }
-        },
-        {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "在这种情况下，提出问题时既要保持专业和尊重，也要确保自己的意见被听到。以下是一个得体的回复示例：\n\n---\n\n尊敬的组长，\n\n您好，我想就最近分配的任务与您沟通一下。我非常珍视团队的合作和效率，也一直致力于完成分配给我的任务。不过，我注意到最近的任务分配可能存在一些需要优化的地方，我认为这可能会影响团队的整体表现和个别成员的工作负担。\n\n我想提出，当前的任务分配是否能够更加均衡一些？我注意到有些团队成员可能承担了更多的工作量，而其他人则相对较轻。我认为，如果任务能够更加平均地分配，不仅能提高团队的工作效率，也能确保每位成员都能得到发展和锻炼的机会。\n\n我愿意与您进一步讨论这个问题，并提出可能的解决方案。我相信通过我们共同的努力，我们可以找到一个更加合理的任务分配方式，以确保团队的高效运作和成员的满意度。\n\n期待您的回复，并希望我们能就此进行进一步的沟通。\n\n谢谢！\n\n[您的名字]\n\n---\n\n这样的回复既表明了你对团队工作的关注，也提出了对当前状况的观察和合理的建议，同时保持了对组长的尊重和对团队合作的重视。",
-          "tokens": 290,
-          "duration": 5.16,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 3,
             "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 19
+            "totalScore": 20
           }
         }
       ]
@@ -1336,10 +1336,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "兄弟，有个小事想跟你商量一下——最近我在准备个考试，晚上需要静下心来啃书。我看你打游戏打得正high，我也不好意思打断你。要不这样，咱们约个'安静时间'？比如十点后你戴上耳机，我配合你早点收工？这样你尽兴玩，我也能安心学，双赢！",
+          "reply": "嘿兄弟，我发现咱们宿舍有个隐藏福利——你打游戏时的解说真挺专业的，我都有点被安利了哈哈。不过说真的，我最近在赶论文，耳朵会自动捕捉键盘声。要不咱们定个'黄金学习时段'？比如晚上8-10点你戴耳机，10点后我收工，咱还能一起嗨两把。这样你玩得尽兴，我也能安心，双赢！",
           "allVersions": {},
-          "tokens": 4989,
-          "duration": 7.46,
+          "tokens": 5048,
+          "duration": 6.47,
           "error": null,
           "extra": {
             "intent": "设边界",
@@ -1351,14 +1351,14 @@
             "sensitivity": "中敏感",
             "strategy": "用轻松、非指责的语气表达自己的困扰，同时提出具体可行的解决方案（如约定安静时间或使用耳机）",
             "jaccard": {
-              "mild-firm": 0.189,
-              "mild-eq": 0.225,
-              "firm-eq": 0.302
+              "mild-firm": 0.313,
+              "mild-eq": 0.268,
+              "firm-eq": 0.33
             },
             "perf": {
-              "intent": 1.83,
-              "relation": 2.04,
-              "versions": 3.58
+              "intent": 1.54,
+              "relation": 1.9,
+              "versions": 3.03
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1370,16 +1370,16 @@
             "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 4,
+            "usability": 3,
             "totalScore": 21
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "“嗨，哥们儿/姐们儿，我这边正在赶个作业，有点需要安静的环境。你看能不能把耳机戴上，或者声音稍微调小一点？谢啦！”",
-          "tokens": 83,
-          "duration": 0.11,
+          "reply": "室友，不好意思打扰一下，我这边正在学习，能不能麻烦你稍微把声音调小一点？或者戴上耳机？谢谢啦！",
+          "tokens": 73,
+          "duration": 0.21,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1389,19 +1389,19 @@
           },
           "scores": {
             "intentScore": 5,
-            "relationScore": 3,
+            "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 22
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "你好呀～想跟你商量个小事儿 😅  \n最近我在晚上集中学习的时间比较多（比如8-11点），刚好碰上你打游戏那会儿，音效和语音偶尔有点穿透力～我戴耳机也还是能隐约听到（尤其是爆炸声和队友喊话哈哈）。  \n不知道方不方便把音量稍微调低一点，或者用耳机？如果需要，我也可以帮你找一款好用的降噪耳机推荐～  \n非常感谢你的理解！咱们一起把小窝维护得更舒服✨  \n\n（语气友好、共情+具体时间+提供解决方案+表达感谢，既清晰传达需求，又照顾对方感受）",
-          "tokens": 196,
-          "duration": 3.34,
+          "reply": "你好呀～想跟你商量个小事儿 😅  \n我最近在准备考试/写作业，晚上需要比较安静的环境集中一下注意力。看你打游戏正high，特别有活力！✨  \n不知道方不方便把音量稍微调低一点，或者戴个耳机？如果需要的话，我也可以帮你找些降噪小技巧～  \n非常感谢你的理解和支持！咱们一起把小窝经营得更舒服～ 🌟  \n\n（语气友好、共情先行、提出具体建议、留出协商空间，既维护关系又清晰表达需求）",
+          "tokens": 176,
+          "duration": 3.95,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1421,9 +1421,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，处理与室友的关系时，沟通的方式和语气非常重要。以下是一个得体且自然的回复示例：\n\n---\n\n嘿室友，\n\n我注意到你最近晚上在玩电子游戏，我知道你一定很享受其中的乐趣。不过，我正在准备一些重要的学习材料，晚上的时候我需要一个相对安静的环境来集中注意力。不知道我们是否可以商量一下，比如你戴上耳机或者把声音调低一些，这样我们都能有一个愉快的晚上。\n\n我也不想打扰到你的娱乐时间，所以如果你有其他偏好或者建议，我很乐意听听。我们可以一起找到一个平衡点，让大家都满意。\n\n谢谢你的理解与合作！\n\n---\n\n这样的回复既表达了你的需求，也考虑到了室友的感受，同时也提出了一个合作解决问题的态度。",
-          "tokens": 201,
-          "duration": 3.36,
+          "reply": "当然，面对这种情况，你可以礼貌而直接地向你的室友表达你的感受和需求。以下是一个得体的回复示例：\n\n“嘿，室友，我注意到你最近晚上在打游戏时声音挺大的。我理解你享受游戏的乐趣，但我想你可能不知道，这声音有点影响到我晚上的学习了。我最近需要准备一些重要的考试，所以晚上的安静对我来说特别重要。不知道我们能否商量一下，比如设定一个晚上的‘安静时间’，或者你可以使用耳机来玩游戏？这样我们都能更好地享受自己的时间，同时也能互相尊重对方的需要。你觉得这样如何？”\n\n这样的回复既表达了你的个人需求，也考虑到了对方的感受，并提出了解决问题的建议，有助于达成共识并保持良好的室友关系。",
+          "tokens": 203,
+          "duration": 5.28,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1434,9 +1434,9 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 5,
-            "usability": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 3,
             "totalScore": 19
           }
         }
@@ -1452,10 +1452,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "老板，我特别理解您想把事情讲到透，这种负责的态度我们其实很感动。不过我有个小建议——咱能不能试试把会议控制在45分钟内？这样大家既不会走神，后面的事也能准时推进。我帮大家记个重点纪要，保证不遗漏任何关键信息。效率上去了，您的决策也能更快落地。",
+          "reply": "老板，我观察到一个有意思的现象——咱们开会时讨论得特别深入，大家都很有收获，不过有时时间拉长后，后半段的效率会打折扣。我有个小建议：要不咱们试试在议程里给每个环节设个时间框，或者把重要的议题提前？这样既能保证核心内容充分讨论，大家后续的工作安排也更从容。您觉得这个思路怎么样？",
           "allVersions": {},
-          "tokens": 4990,
-          "duration": 7.22,
+          "tokens": 5019,
+          "duration": 5.85,
           "error": null,
           "extra": {
             "intent": "反馈",
@@ -1465,16 +1465,16 @@
             "power": "对方上位",
             "interest": "强利益",
             "sensitivity": "高敏感",
-            "strategy": "采用集体利益包装个人诉求，以团队效率为切入点委婉提出建议",
+            "strategy": "采用间接、建设性的方式，如通过匿名反馈或私下以团队效率为由委婉提醒",
             "jaccard": {
-              "mild-firm": 0.238,
-              "mild-eq": 0.313,
-              "firm-eq": 0.194
+              "mild-firm": 0.336,
+              "mild-eq": 0.423,
+              "firm-eq": 0.351
             },
             "perf": {
-              "intent": 1.99,
-              "relation": 1.86,
-              "versions": 3.37
+              "intent": 1.38,
+              "relation": 1.5,
+              "versions": 2.97
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1483,19 +1483,19 @@
           },
           "scores": {
             "intentScore": 4,
-            "relationScore": 4,
+            "relationScore": 3,
             "naturalness": 4,
             "strategyFit": 4,
             "usability": 3,
-            "totalScore": 20
+            "totalScore": 18
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "老板，我注意到今天的会议内容非常充实，不过考虑到大家后续还有既定任务，您看我们是否可以总结一下核心要点，后续有需要再单独沟通？这样既能保证会议质量，也不耽误大家的工作安排。",
-          "tokens": 92,
-          "duration": 0.1,
+          "reply": "老板，我注意到您每次开会都非常投入，想把事情讲透，这点我们都很佩服。不过，最近几次会议超时后，大家后续的工作安排有点赶。您看下次开会前，我们是不是可以先定一个时间框架，比如45分钟，中间留5分钟缓冲？这样既能保证重点讨论，也不影响大家的工作节奏。",
+          "tokens": 118,
+          "duration": 0.18,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1504,20 +1504,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 5,
+            "intentScore": 4,
             "relationScore": 3,
             "naturalness": 3,
             "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 19
+            "usability": 3,
+            "totalScore": 17
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "当然可以，以下是一个既尊重老板、又委婉表达诉求的得体回应，适用于会后私下沟通或在会议临近尾声时礼貌提醒：\n\n“X总，今天的讨论特别有启发，几个关键点我都记下来了，后续会尽快落实。另外想跟您小声确认下：我们原定10:30开始的跨部门协作会，时间比较紧凑，如果方便的话，咱们是否可以预留5分钟做个小结？这样大家也能更高效地衔接到下一环节。”\n\n✨ 这样表达的优点：  \n✅ 肯定会议价值（体现尊重与配合）  \n✅ 用“确认”“小结”“衔接”等中性词替代批评，聚焦共同目标（效率与协同）  \n✅ 给出具体建议（预留5分钟），而非单纯抱怨超时  \n✅ 暗示影响的是工作流，而非个人感受，更显专业  \n\n如需用于不同场景（如邮件提醒、团队匿名反馈、或HR介入建议），我也可以帮您定制版本。",
-          "tokens": 282,
-          "duration": 5.35,
+          "reply": "可以这样委婉而专业地表达：\n\n“X总，感谢您每次会议中深入的分享和指导，让我们收获很多。为了更好地保障后续工作节奏和任务落地，想跟您商量一个小建议：是否可以在会前明确核心议题和时间分配？或者我们提前准备一个简要议程，由您把控重点，确保高效聚焦、准时结束。这样既不耽误您的重要决策，也能让大家更充分地执行后续动作。”\n\n这样的表达：  \n✅ 尊重领导权威，先肯定价值；  \n✅ 聚焦共同目标（执行效率、任务落地）；  \n✅ 提供具体、可操作的协作方案（议程+时间协同），而非单纯提问题；  \n✅ 语气积极、建设性强，体现责任感与团队意识。\n\n需要我帮您拟一封邮件版或会后跟进话术，也可以随时告诉我 😊",
+          "tokens": 244,
+          "duration": 5.05,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1527,19 +1527,19 @@
           },
           "scores": {
             "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 4,
+            "relationScore": 3,
+            "naturalness": 3,
             "strategyFit": 5,
             "usability": 3,
-            "totalScore": 19
+            "totalScore": 17
           }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "在这种情况下，可以采取一种礼貌而直接的方式来向老板表达你的关切。以下是一个可能的回复示例：\n\n---\n\n尊敬的[老板的名字]，\n\n我想和您谈谈关于我们最近的会议安排。首先，我想说的是，我很欣赏您在会议中分享的深刻见解和对项目的热情。然而，我注意到会议有时会超出预定的时间，这在一定程度上影响了我们团队成员的日常工作效率和个人时间安排。\n\n我理解会议有时可能会因为讨论的复杂性而延长，但我想提出一个小建议，看是否可以在会议开始前设定一个明确的议程和时间限制，这样可以帮助我们保持会议的高效性，并且确保每个参与者都能按时完成他们的任务。\n\n我相信通过优化会议流程，我们不仅能提高工作效率，还能更好地平衡工作与生活。如果您愿意，我们可以一起讨论如何改进会议管理，以确保它们更加高效和有成效。\n\n感谢您的理解和支持。\n\n此致\n[您的名字]\n\n---\n\n这样的回复既表达了对老板的尊重，也提出了具体的问题和解决方案，有助于促进积极的对话和改进。",
-          "tokens": 268,
-          "duration": 4.26,
+          "reply": "在这种情况下，可以采取一种委婉而专业的沟通方式来向老板表达你的关切。以下是一个得体的回复示例：\n\n---\n\n尊敬的[老板的名字],\n\n首先，我想感谢您在会议中分享的宝贵见解和指导。您的领导和洞察力对我们团队的成功至关重要。\n\n我注意到，最近的会议有时会超出预定的时间，我理解这可能是由于讨论的复杂性和重要性。然而，我也想提出，会议超时可能会对我们的日常工作安排产生一些影响，特别是在需要紧密协调的项目上。\n\n为了确保我们团队的效率和生产力，我想建议是否可以在会议开始前预先设定一个明确的时间框架，或者在会议进行中适时提醒时间进度。这样可以帮助我们更好地管理时间和期望，确保每个人的工作都能按时完成，同时也能保持会议的高效和专注。\n\n我非常愿意在会议规划和时间管理方面提供协助，以确保我们能够充分利用每一次会议，同时维护团队成员的工作-生活平衡。\n\n请您考虑这个建议，并告诉我您的想法。非常感谢您的理解和支持。\n\n敬上，\n[你的名字]\n\n---\n\n这个回复既表达了对老板领导能力的认可，也提出了具体的解决方案，同时表现出了愿意协助改善团队效率的积极态度。",
+          "tokens": 296,
+          "duration": 7.12,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1568,10 +1568,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "我发现你有个超能力——每次都能精准地错过约定时间，这技能我学不来哈哈。不过说真的，我最近试了个新方法：提前设个闹钟，写'再不走就对不起朋友了'，效果奇好。要不你也试试？这样咱们都能多聊半小时，两全其美。",
+          "reply": "我发现我最近每次约你都会自动多预留15分钟——不是我不着急，是我太了解你的'时间弹性'了哈哈。不过说真的，我挺珍惜咱们见面的时间，每次等你的时候都在想：要是能把这些时间拿来多聊会儿该多好。要不咱们下次约的时候，我提前跟你说一声'出发了'，你也给我个准信儿？这样两边都不耽误。",
           "allVersions": {},
-          "tokens": 4907,
-          "duration": 6.14,
+          "tokens": 4933,
+          "duration": 6.03,
           "error": null,
           "extra": {
             "intent": "反馈",
@@ -1581,16 +1581,16 @@
             "power": "平等",
             "interest": "纯情感",
             "sensitivity": "中敏感",
-            "strategy": "用轻松幽默的方式提醒，避免让对方感到被指责",
+            "strategy": "用轻松幽默的方式表达感受，避免指责，强调对关系的重视",
             "jaccard": {
-              "mild-firm": 0.277,
-              "mild-eq": 0.277,
-              "firm-eq": 0.242
+              "mild-firm": 0.318,
+              "mild-eq": 0.39,
+              "firm-eq": 0.283
             },
             "perf": {
-              "intent": 1.45,
-              "relation": 1.41,
-              "versions": 3.27
+              "intent": 1.4,
+              "relation": 1.68,
+              "versions": 2.95
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1599,19 +1599,19 @@
           },
           "scores": {
             "intentScore": 4,
-            "relationScore": 4,
+            "relationScore": 3,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 21
+            "usability": 3,
+            "totalScore": 19
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "当然，一个得体又自然的回复可以是这样的：\n\n“嘿，下次咱们约的时候，我尽量提前提醒你一下时间，咱们一起准时到，这样大家都能玩得更尽兴！”",
-          "tokens": 84,
-          "duration": 0.09,
+          "reply": "当然，我们可以用轻松、友善又不失分寸的方式提醒朋友。比如：\n“嘿，下次咱们约时间，我尽量准时到，你也别让我等太久哦，哈哈。一起守时，咱们就能多聊会儿啦！”",
+          "tokens": 94,
+          "duration": 0.11,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1622,18 +1622,18 @@
           "scores": {
             "intentScore": 5,
             "relationScore": 4,
-            "naturalness": 3,
+            "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 20
+            "totalScore": 22
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "可以这样说，既温和又清晰，还带着朋友间的体谅：\n\n“嘿，最近几次约时间，你好像都卡在‘迟到边缘’哈哈～我知道你肯定不是故意的，但咱俩的时间都很宝贵，要是能稍微提前5分钟出发，我俩都能更轻松、更尽兴！需要我到时候提醒你一下吗？😄”\n\n这样表达：\n✅ 用轻松语气化解尴尬  \n✅ 肯定对方的善意（“不是故意的”）  \n✅ 强调共同利益（“咱俩的时间”“更轻松、更尽兴”）  \n✅ 提供支持性方案（主动提醒），而非单方面要求  \n✅ 保持尊重与温度，维护关系亲密度  \n\n需要我帮你定制不同风格（比如更简洁/更幽默/更适合微信文字or当面说），也可以告诉我～ 😊",
-          "tokens": 236,
-          "duration": 3.46,
+          "reply": "当然可以，这里有一个既友善又得体的表达方式，既传达了你的感受，又维护了朋友关系：\n\n“嘿，最近几次约时间，发现你好像总有点小迟到～我完全理解有时候事情赶不上，不过如果能稍微提前一点出发或预留点缓冲时间，咱们的见面就能更轻松、更尽兴啦！😄（下次我可以提前5分钟发个温馨小提醒～）”\n\n✨ 这样说的好处：  \n✅ 用轻松语气开场，避免指责感  \n✅ 先共情（“完全理解”），降低防御心理  \n✅ 聚焦共同目标（“更轻松、更尽兴”），而非单方面要求  \n✅ 主动提供支持（“提前提醒”），体现善意与包容  \n\n需要我帮你定制不同风格（比如更幽默版、更简洁版，或适合微信/当面说的版本），也欢迎告诉我～ 😊",
+          "tokens": 251,
+          "duration": 4.67,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1653,9 +1653,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，提醒朋友注意时间时可以既礼貌又直接。以下是一些可能的回复方式：\n\n1. **轻松幽默的方式**：\n   “嘿，下次我们可以考虑提前10分钟出发，这样你就不会错过开场白啦！我知道你总是很忙，但有时候时间就像捉迷藏的小孩，需要我们多留意。”\n\n2. **直接而友好的方式**：\n   “我注意到最近几次见面你总是在约定时间之后到达，我想你可能很忙。不过如果我们能尽量准时，可能会让整个聚会更顺畅。你觉得呢？”\n\n3. **关心的方式**：\n   “我注意到你最近几次都来得有点晚，我担心你是不是遇到了什么事？如果时间上有什么困难，我们可以一起想办法调整。”\n\n4. **建设性建议的方式**：\n   “我理解有时候计划赶不上变化，但我们可以尝试一些新的时间管理技巧，比如提前准备或者设置提醒。这样我们就能更好地掌控时间，享受我们的聚会。”\n\n选择哪种方式取决于你和你朋友的关系以及你认为最适合你朋友的沟通风格。重要的是要保持友好和支持性，这样你的提醒才能更容易被接受。",
-          "tokens": 279,
-          "duration": 5.32,
+          "reply": "当然，提醒朋友注意时间可以既友好又有效。这里有一个得体的回复示例：\n\n---\n\n嘿，[朋友的名字]，\n\n我知道我们都很忙，时间总是不够用。但我注意到我们最近的几次聚会你似乎都稍微迟到了一些。我不想让这影响到我们的计划，所以想提前提醒你，我们下次的见面时间是[具体时间]。我真的很期待和你一起度过愉快的时光，希望我们都能准时开始。\n\n如果你有任何变动或者需要调整时间，请提前告诉我，我们可以再商量。谢谢理解！\n\n期待我们的相聚！\n\n最好的祝福，\n[你的名字]\n\n---\n\n这样的回复既表达了你的关切，也给了对方足够的空间来调整。同时，它也传达了你对友谊的重视和对时间管理的认真态度。",
+          "tokens": 206,
+          "duration": 9.29,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1666,10 +1666,10 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 5,
-            "usability": 3,
-            "totalScore": 20
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 18
           }
         }
       ]
@@ -1684,10 +1684,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "我有个小建议不知道合不合适——咱们这个群消息多了，有时候重要通知容易被刷掉。要不咱们把闲聊挪到另一个群，工作群就专注发消息和文件？这样大家找信息方便，聊天也聊得尽兴，两不耽误。",
+          "reply": "我发现咱们群里最近挺热闹的，各种消息刷得飞起哈哈。不过说实话，有时候重要通知容易被淹没，找起来有点费劲。我有个小建议：要不咱们在群公告或置顶里设个'正经事专区'，闲聊的偶尔移步到另一个群？这样既不影响大家插科打诨，又不耽误正事。你们觉得呢？",
           "allVersions": {},
-          "tokens": 4913,
-          "duration": 6.62,
+          "tokens": 4964,
+          "duration": 5.95,
           "error": null,
           "extra": {
             "intent": "设边界",
@@ -1697,16 +1697,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以团队效率为由，私下委婉提醒或建议群主规范群聊用途",
+            "strategy": "以团队效率为由，私下温和提醒或建议群主规范群聊用途",
             "jaccard": {
-              "mild-firm": 0.253,
-              "mild-eq": 0.398,
-              "firm-eq": 0.329
+              "mild-firm": 0.255,
+              "mild-eq": 0.342,
+              "firm-eq": 0.229
             },
             "perf": {
-              "intent": 1.73,
-              "relation": 1.62,
-              "versions": 3.27
+              "intent": 1.57,
+              "relation": 1.33,
+              "versions": 3.04
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1714,20 +1714,42 @@
             "hasExplainability": true
           },
           "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
-            "naturalness": 4,
+            "intentScore": 4,
+            "relationScore": 3,
+            "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 20
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "理解您的困扰。在群里委婉表达建议，可以参考这样的回复：\n\n“各位同事，大家讨论很热烈，氛围很好！不过有些消息可能和工作关联不大，为了方便大家快速找到重要信息，建议工作相关的内容可以继续在群里讨论，其他话题我们可以另开闲聊群，大家觉得怎么样？”\n\n这样既肯定了大家的积极性，又温和地提出了建议，不会让人感到被指责。",
-          "tokens": 128,
-          "duration": 0.1,
+          "reply": "理解你的困扰。在群里回应时，建议既表达感受，又不失礼貌和团队氛围。可以这样回复：\n\n“大家聊得挺热闹的哈，不过咱们是不是稍微注意一下，有些消息和工作不太相关，可能会打扰到正在集中处理事情的小伙伴？要不咱们把闲聊挪到专门的群或者下班后再聊？谢谢大家配合啦！”\n\n这样既提出了建议，又用了轻松的语气，不会让人觉得被指责。",
+          "tokens": 136,
+          "duration": 0.12,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 5,
+            "naturalness": 4,
+            "strategyFit": 5,
+            "usability": 4,
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "可以这样温和而专业地表达，既维护团队氛围，又明确边界：\n\n“感谢大家积极交流～为了更高效地推进工作，咱们是否可以稍微约定一下：工作相关事项优先在群内同步，非紧急的闲聊或生活分享可以私聊或移步到‘茶水间’小群？这样既能保持信息清爽，也方便大家及时捕捉重点。谢谢理解与支持！😊”\n\n💡 小贴士：如果群内有负责人或群主，也可私下友好提醒：“X哥/X姐，最近群消息比较密集，要不要一起优化下沟通节奏？比如重要通知@全体，日常讨论分流——我来协助整理规则。”  \n\n需要我帮你拟一条面向群主的私聊话术，或设计一个轻量版《群沟通小公约》，也可以随时告诉我～",
+          "tokens": 235,
+          "duration": 4.32,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1738,40 +1760,18 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 4,
-            "strategyFit": 5,
-            "usability": 3,
-            "totalScore": 19
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "可以这样温和而专业地表达，既维护团队氛围，又明确工作优先级：\n\n“感谢大家日常的活跃交流～为了更高效地推进手头的项目（比如XX需求/本周重点），咱们可以稍微约定一下：工作相关消息尽量集中在工作时段同步，非紧急的闲聊或分享欢迎移步茶水间或午休时畅聊 😄  \n如果有需要协调或支持的地方，我也随时在线～”\n\n✨ 小贴士：  \n- 用感谢开场，先肯定善意；  \n- 聚焦“共同目标”（如项目进度），而非指责个人；  \n- 提供替代方案（如线下交流），体现包容性；  \n- 语气轻松但有边界感，避免使用“禁止”“不要”等否定词。\n\n需要我帮你拟一条更正式（如发给全员公告）或更轻松（适合私聊提醒某位同事）的版本，也可以告诉我～",
-          "tokens": 259,
-          "duration": 3.86,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 3,
-            "naturalness": 3,
+            "naturalness": 5,
             "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 16
+            "usability": 4,
+            "totalScore": 20
           }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，处理这种情况需要既保持专业又礼貌。以下是一个可能的回复示例：\n\n```\n大家好，\n\n我注意到我们群里有时候会有一些非工作相关的讨论。虽然我理解团队交流的重要性，但过多的非工作消息可能会分散我们的注意力，影响工作效率。为了保持我们的沟通既高效又专注，我建议我们可以：\n\n1. **创建一个专门的非工作讨论渠道**：这样我们可以在不影响工作的前提下进行轻松的交流。\n2. **设立工作时间沟通规则**：比如工作时间尽量只讨论工作相关的内容，非工作时间则可以更自由地交流。\n3. **指定一个“水群”**：如果大家喜欢在群里聊天，我们可以设置一个专门的“水群”，这样大家就可以在那里畅聊，而不会影响到主工作群。\n\n我相信通过这样的方式，我们既能保持团队的凝聚力，又能确保工作效率。大家对此有什么建议或想法吗？我们可以一起讨论出一个适合我们团队的解决方案。\n\n谢谢你们的理解和合作！\n```\n\n这样的回复既表达了对当前状况的关切，又提出了具体的解决方案，同时也鼓励团队成员参与讨论，共同找到最佳解决方案。",
-          "tokens": 281,
-          "duration": 4.11,
+          "reply": "在这种情况下，你可以选择一个委婉而又不失礼貌的方式来提醒同事们。以下是一个可能的回复示例：\n\n```\n大家好，\n\n我注意到我们的工作群最近信息量挺大的，有时候也会混入一些非工作相关的聊天。这可能会让我们在查找重要工作通知时变得有些困难。为了保持工作效率，我建议我们可以将这个群专门用于工作沟通，如果有非工作相关的讨论或分享，我们可以创建一个专门的群或者论坛。\n\n这样我们就能保持工作群的清晰和专注，同时也不影响大家交流的兴趣话题。不知道大家对这个建议怎么看？\n\n谢谢大家的理解与配合！\n```\n\n这样的回复既表达了对当前情况的关切，也提出了一个具体的解决方案，同时还征求了大家的意见，这样可以避免直接指责某个人，减少可能产生的冲突。",
+          "tokens": 212,
+          "duration": 10.46,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1800,10 +1800,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "哈哈，看来咱都是'周末灵感型选手'！不过我发现个小秘密——周末彻底放空后，周一的效率能翻倍。要不咱试着培养个默契：紧急事直接打电话，非紧急的攒到周一一起火力全开？这样你周末不用惦记，我也不会错过重要消息。你觉得这招怎么样？",
+          "reply": "哈哈，咱俩这工作热情真是不分昼夜啊！不过我发现周末不回消息反而思路更清晰，工作日效率翻倍。要不咱立个‘周末静音’的规矩？紧急情况电话找我，普通事周一优先处理，保证不耽误事，还能让脑子真正歇口气。",
           "allVersions": {},
-          "tokens": 4923,
-          "duration": 6.41,
+          "tokens": 4910,
+          "duration": 5.54,
           "error": null,
           "extra": {
             "intent": "设边界",
@@ -1813,132 +1813,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以温和但明确的方式表达边界，强调休息时间的重要性，同时保持工作关系和谐。",
+            "strategy": "以温和但明确的方式表达边界，强调工作与休息的平衡，避免直接冲突",
             "jaccard": {
-              "mild-firm": 0.228,
-              "mild-eq": 0.206,
-              "firm-eq": 0.133
+              "mild-firm": 0.296,
+              "mild-eq": 0.252,
+              "firm-eq": 0.202
             },
             "perf": {
-              "intent": 1.64,
-              "relation": 1.57,
-              "versions": 3.2
-            },
-            "hasRelationAwareness": true,
-            "hasMultipleStrategies": true,
-            "hasCulturalAdaptation": true,
-            "hasExplainability": true
-          },
-          "scores": {
-            "intentScore": 4,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 21
-          }
-        },
-        {
-          "model": "DeepSeek",
-          "modelKey": "deepseek",
-          "reply": "“周末收到工作消息确实容易让人分心。或许我们可以工作日再详细讨论这个问题？如果事情紧急，也请提前说明，我会尽量配合。”",
-          "tokens": 76,
-          "duration": 0.1,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 5,
-            "relationScore": 3,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 19
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "您好，可以这样礼貌而坚定地表达边界，既维护关系又明确原则：\n\n“谢谢您随时想到我，也特别理解项目推进的 urgency 😊  \n不过为了更好地保持工作状态和持续输出，我一般会在工作日集中处理工作事务。如果有紧急事项，欢迎周一上午第一时间告诉我，我会优先跟进；如果确实需要周末协同，也欢迎您提前和我约个简短沟通时间，我来协调安排～  \n祝您周末轻松愉快！🌿”\n\n✨ 小贴士：  \n- 用感谢开场，体现尊重与共情；  \n- 不否定对方动机（如“你太急了”），而是聚焦自身节奏；  \n- 提供替代方案（如“周一优先处理”“可预约沟通”），减少对方顾虑；  \n- 结尾温暖收束，强化友好基调。\n\n需要我帮您定制更简洁版、幽默版或针对特定领导/平级同事的版本，也可以告诉我哦～",
-          "tokens": 258,
-          "duration": 3.61,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 20
-          }
-        },
-        {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "当然，你可以用以下这种礼貌而坚定的方式来回复你的同事：\n\n---\n\n亲爱的[同事的名字]，\n\n感谢你在周末还想着工作相关的事情。我非常欣赏你对工作的热情和投入。不过，为了保持工作与生活的平衡，我通常在周末会尽量不处理工作事务。这样可以帮助我在下周以更充沛的精力和清晰的头脑回到工作中。\n\n如果你有紧急的事情需要协助，请随时告诉我，我会尽快回复你。如果不是紧急事项，我们可以在下周工作日再讨论。希望我们都能享受一个放松的周末。\n\n祝周末愉快！\n\n[你的名字]",
-          "tokens": 172,
-          "duration": 2.71,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 3,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 16
-          }
-        }
-      ]
-    },
-    {
-      "scenario": {
-        "id": "S017",
-        "name": "亲戚总爱打探你的工资收入",
-        "category": "设边界",
-        "intent": "设立边界"
-      },
-      "results": [
-        {
-          "model": "ExpressCoach",
-          "reply": "哎呀，这事说来惭愧——我们这行吧，工资跟过山车似的，旺季多淡季少，我自己都算不清楚。倒是您最近那个旅行照片真好看，是去哪儿玩了？我正想找个地方带家人放松放松，您给我推荐推荐呗？",
-          "allVersions": {},
-          "tokens": 4879,
-          "duration": 6.64,
-          "error": null,
-          "extra": {
-            "intent": "设边界",
-            "intentConfidence": 0.95,
-            "relation": "亲戚",
-            "intimacy": "一般",
-            "power": "对方上位",
-            "interest": "弱利益",
-            "sensitivity": "高敏感",
-            "strategy": "用模糊回应或转移话题来保护隐私，同时保持礼貌和尊重",
-            "jaccard": {
-              "mild-firm": 0.115,
-              "mild-eq": 0.148,
-              "firm-eq": 0.159
-            },
-            "perf": {
-              "intent": 1.76,
-              "relation": 1.72,
-              "versions": 3.16
+              "intent": 1.57,
+              "relation": 1.35,
+              "versions": 2.63
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -1957,8 +1841,124 @@
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "可以微笑着用轻松的语气说：“哎呀，够花的，就是存不下多少。您最近身体怎么样？”这样既避开了具体数字，又把话题自然地转向关心对方。",
-          "tokens": 80,
+          "reply": "当然，以下是一个得体且自然的回复示例：\n\n“周末收到你的消息了，我这边现在有点忙，等工作日我们再详细沟通，可以吗？祝你周末愉快！”\n\n这样既表达了收到消息，又委婉地划清了工作与休息的界限，同时保持了友好态度。",
+          "tokens": 102,
+          "duration": 0.1,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 18
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "当然可以，以下是一个既礼貌得体、又边界清晰的回复建议，适合发给经常周末发工作消息的同事：\n\n> “Hi [同事名字]，感谢你随时想到我！不过为了更好地保持工作状态和休息质量，我一般会在工作日集中处理工作事务。如果有比较紧急或需要周末跟进的事，欢迎随时标注‘紧急’，我会尽快查看并协调； otherwise，我会在周一第一时间跟进～也欢迎随时在工作日白天找我沟通，效率更高哦 😊”\n\n✨ 小贴士：  \n- 语气友善但立场明确，传递“重视协作”+“尊重个人时间”的双重信息；  \n- 提供替代方案（如标注紧急、工作日优先响应），减少对方顾虑；  \n- 避免指责性语言（如“别再周末打扰我”），用“我”表达（I-message）更易被接受。\n\n如需根据具体关系（如对方是上级/平级/下属）或公司文化（比如弹性文化较强）进一步优化措辞，我可以帮你定制版本～",
+          "tokens": 283,
+          "duration": 5.06,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "在这种情况下，你可以礼貌而坚定地表达你对于工作与个人时间界限的尊重。以下是一个可能的回复示例：\n\n---\n\n您好，\n\n感谢您在周末也不忘工作，我非常欣赏您的敬业精神。不过，我尽量在周末保留一些时间来休息和充电，以便在工作日能够以更好的状态投入到工作中。\n\n如果您有紧急或重要的事情需要处理，我很乐意在周一回复您。如果您不介意，我们可以将讨论推迟到工作日进行，这样我们都能有更多的时间和精力来专注于工作。\n\n希望您能理解，也祝您周末愉快！\n\n---\n\n这样的回复既表达了对同事工作的尊重，同时也清楚地设定了个人时间的界限，有助于维护工作与生活的平衡。",
+          "tokens": 196,
+          "duration": 10.93,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S017",
+        "name": "亲戚总爱打探你的工资收入",
+        "category": "设边界",
+        "intent": "设立边界"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "哎呀，说出来您别笑话我——我这工资就跟过山车似的，有时候多有时候少，我自己都算不清哈哈。不过最近我倒是在琢磨一个事儿，想请教您：您觉得到了咱们这岁数，是求稳定更重要，还是趁年轻多折腾折腾更有前途？您经验比我丰富，给指点指点？",
+          "allVersions": {},
+          "tokens": 4909,
+          "duration": 5.81,
+          "error": null,
+          "extra": {
+            "intent": "设边界",
+            "intentConfidence": 0.95,
+            "relation": "亲戚",
+            "intimacy": "一般",
+            "power": "对方上位",
+            "interest": "弱利益",
+            "sensitivity": "高敏感",
+            "strategy": "用模糊回应或转移话题来保护隐私，同时维护亲戚面子",
+            "jaccard": {
+              "mild-firm": 0.173,
+              "mild-eq": 0.154,
+              "firm-eq": 0.163
+            },
+            "perf": {
+              "intent": 1.43,
+              "relation": 1.35,
+              "versions": 3.04
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 3,
+            "naturalness": 4,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "谢谢关心。工资嘛，够自己花，有时候还能攒点。不过现在工作压力也挺大的，还是您这过来人有经验，平时有什么好的理财建议吗？（微笑）",
+          "tokens": 82,
           "duration": 0.12,
           "error": null,
           "extra": {
@@ -1979,9 +1979,9 @@
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "可以温和而坚定地回应，既保持礼貌，又守住边界。比如：\n\n“谢谢关心！收入这事我习惯不太对外细说，主要是觉得它和生活状态、个人规划更相关，而不是一个简单的数字能代表的～最近倒是挺享受工作带来的成长和稳定感，这也让我很安心 😊”\n\n这样的回应：\n✅ 表达感谢与尊重，不伤亲情  \n✅ 温和设定边界，不直接对抗  \n✅ 转移焦点到积极感受（成长、稳定、安心），自然淡化“钱”的敏感性  \n✅ 语气轻松友善，留有余地，避免尴尬  \n\n如果对方继续追问，也可以带点幽默化解：“哎呀，再聊下去我怕要被您‘职业薪酬顾问’认证上岗啦～改天请您吃饭，咱们聊点更开心的！”  \n\n需要我帮您根据不同亲戚（比如爱操心的姑妈、爱攀比的表叔）定制风格，也欢迎告诉我～ 😊",
-          "tokens": 263,
-          "duration": 3.92,
+          "reply": "可以温和而坚定地回应，既保持礼貌，又守住边界。比如：\n\n“谢谢关心！收入这事我习惯自己规划和管理，不太方便具体聊～不过最近工作挺充实的，也在努力提升自己，争取更稳更长远的发展 😊”\n\n这样的回应：\n✅ 表达感谢，不伤亲情  \n✅ 用“习惯自己规划”自然划出边界，不显得防备或对抗  \n✅ 转向积极话题（成长、发展），传递正向信号  \n✅ 语气轻松友善，留有余地，避免尴尬  \n\n如果对方继续追问，可以笑着轻带一句：“哎呀，再问下去我得‘交保护费’啦～咱们还是聊聊您家孩子/最近做的菜/旅行计划吧！” —— 用幽默转移焦点，既化解压力，又主动把话题引向更温暖的方向。\n\n需要我帮你定制不同风格（比如更幽默、更简洁、或针对长辈/平辈的版本），随时告诉我～ 😊",
+          "tokens": 267,
+          "duration": 4.88,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -1991,8 +1991,8 @@
           },
           "scores": {
             "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 4,
+            "relationScore": 3,
+            "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
             "totalScore": 19
@@ -2001,9 +2001,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "在这种情况下，你可以礼貌而委婉地转移话题或给出一个不具体的回答。以下是几个可能的回复方式：\n\n1. **保持幽默**：\n   - “哈哈，这个数字嘛，就像我的幸运数字一样，保密哦！”\n\n2. **转移话题**：\n   - “哎呀，说起来收入，我最近在学习/投资/兴趣爱好上有点进展，您有兴趣听听吗？”\n\n3. **保持礼貌的拒绝**：\n   - “谢谢您的关心，不过我觉得这个话题还是私下讨论比较好。”\n\n4. **给出一个模糊的范围**：\n   - “嗯，收入嘛，时好时坏，不过够我开销就是了。”\n\n5. **强调隐私**：\n   - “您知道，现在个人信息安全很重要，我不太习惯在公开场合讨论这些。”\n\n6. **用比较来化解**：\n   - “跟您家的孩子/亲戚比起来，我这点收入不值一提呢。”\n\n7. **正面回应但不具体**：\n   - “我现在的收入还算不错，能让我维持一个舒适的生活水平。”\n\n选择哪种回复方式可以根据你与这位亲戚的关系以及你个人的舒适度来决定。重要的是保持礼貌和尊重，同时也保护你的个人隐私。",
-          "tokens": 298,
-          "duration": 5.27,
+          "reply": "当亲戚打探你的工资收入时，你可以用以下几种得体的回复方式：\n\n1. **保持礼貌且模糊回答：**\n   “我的工资呢，不算高，但是足够我的生活开支。我觉得过得挺满足的。”\n\n2. **转移话题：**\n   “工资嘛，还行，不过我更关注的是工作带来的成就感和个人成长。对了，您最近有什么新鲜事吗？”\n\n3. **谦虚回答：**\n   “哎，比起您，我这点收入真是微不足道。我还得努力啊。”\n\n4. **以隐私为由：**\n   “收入这个事，我更愿意把它看作是私人信息。我们可以聊聊其他的话题，比如最近的电影或者旅行经历。”\n\n5. **幽默回应：**\n   “我的工资嘛，保密等级太高了，连我自己都不太清楚呢。咱们换个话题聊聊吧。”\n\n6. **正面回应但保持低调：**\n   “我的工资还过得去，可以维持生活，不过比起那些顶尖人才还差得远呢。我还是会继续努力的。”\n\n通过这些回复，你可以礼貌地避免透露具体的收入信息，同时保持和亲戚的良好关系。",
+          "tokens": 289,
+          "duration": 14.08,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2016,8 +2016,8 @@
             "relationScore": 4,
             "naturalness": 5,
             "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 20
+            "usability": 3,
+            "totalScore": 19
           }
         }
       ]
@@ -2032,10 +2032,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "嘿，我发现你好像翻过我的东西了？没事哈，我猜你可能在找啥急用的。不过说实话，我这边有些私人东西放着，下次直接问我就行，我超乐意帮忙的。咱俩住一起，信任最重要，我不想因为这点小事让彼此不自在。你觉得呢？",
+          "reply": "嘿，我发现我最近有点强迫症——东西放哪就得在哪，不然心里痒痒的哈哈。你也是那种随手就放的类型吧？要不咱俩定个小规矩：我的桌子和柜子你随便用，但用之前跟我说一声，让我心里有个数；你的地盘我也一样。这样咱们都自在，又不伤和气。",
           "allVersions": {},
-          "tokens": 4934,
-          "duration": 6.83,
+          "tokens": 4958,
+          "duration": 6.09,
           "error": null,
           "extra": {
             "intent": "设边界",
@@ -2045,16 +2045,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以平和但坚定的语气直接表达边界，强调尊重隐私的重要性，避免指责性语言。",
+            "strategy": "用“我”开头的陈述句表达感受，避免指责，强调边界而非攻击对方人格",
             "jaccard": {
-              "mild-firm": 0.247,
-              "mild-eq": 0.358,
-              "firm-eq": 0.258
+              "mild-firm": 0.245,
+              "mild-eq": 0.267,
+              "firm-eq": 0.215
             },
             "perf": {
-              "intent": 1.5,
-              "relation": 1.58,
-              "versions": 3.75
+              "intent": 1.59,
+              "relation": 1.62,
+              "versions": 2.88
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -2062,20 +2062,20 @@
             "hasExplainability": true
           },
           "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
+            "intentScore": 4,
+            "relationScore": 3,
             "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 22
+            "totalScore": 20
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "“哎，哥们/姐妹，下次需要什么东西直接跟我说一声就行，我帮你找，别自己翻哈，有些东西我自己都找不到放哪儿了。”",
-          "tokens": 74,
-          "duration": 0.1,
+          "reply": "你可以语气平和但坚定地说：“我比较在意个人物品的边界，下次需要什么可以先和我说一声吗？这样我们都能更自在。”",
+          "tokens": 71,
+          "duration": 0.14,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2086,18 +2086,18 @@
           "scores": {
             "intentScore": 5,
             "relationScore": 3,
-            "naturalness": 5,
-            "strategyFit": 3,
+            "naturalness": 3,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 20
+            "totalScore": 19
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "可以温和而坚定地说：  \n“嘿，我注意到你最近有翻我的东西，可能是没意识到——但我比较在意个人物品的边界感。以后如果需要借用什么，或者想看看某样东西，提前跟我说一声就好，我很乐意配合～谢谢你的理解和尊重！”  \n\n这样的表达：  \n✅ 用“我”开头，避免指责（如不说“你不该翻”），减少对方防御心理；  \n✅ 点明事实+说明自己的需求（边界感），而非评判对方动机；  \n✅ 提供清晰、友善的替代方案（提前沟通），把合作感带进来；  \n✅ 结尾致谢，传递信任与尊重，维护关系温度。  \n\n如果对方是无心之举，通常会立刻道歉并调整；若反复发生，后续可再温和但明确地重申界限。需要我帮你拟一段更轻松/更正式/或针对特定室友性格（比如大大咧咧/习惯性帮忙整理）的版本，也可以告诉我 😊",
-          "tokens": 261,
-          "duration": 3.91,
+          "reply": "可以温和但清晰地表达边界，比如：\n\n“嘿，我注意到你最近翻了我的抽屉/书桌，可能你是想找什么？下次如果需要帮忙或借用东西，随时跟我说一声～我也更习惯自己的物品保持固定位置，这样找起来方便些。谢谢理解！”  \n\n这样的表达：  \n✅ 用中性语气开场，不指责、不攻击；  \n✅ 先给予善意解读（“可能你在找什么？”），留出台阶；  \n✅ 明确传递个人边界（“我更习惯……”），而非抱怨对方；  \n✅ 提出建设性替代方案（“随时跟我说”），强化合作感；  \n✅ 以感谢收尾，维持关系温度。  \n\n如需根据具体情境（比如对方是无心之举还是屡次发生）调整语气或策略，我可以帮你细化～",
+          "tokens": 229,
+          "duration": 4.14,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2117,9 +2117,103 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "在这种情况下，一个得体而自然的回复可以是：\n\n\"嘿，我注意到你刚才在看我的东西。我理解我们共享一个生活空间，但每个人都有自己的私人物品。我希望你能尊重我的隐私，不要随意翻看我的东西。如果你需要借什么或者有其他问题，可以直接问我。我们可以一起制定一些规则，确保大家都能在尊重彼此的基础上愉快地生活。你觉得怎么样？\"\n\n这样的回复既表达了你的不满，又给出了解决方案，同时也给了对方一个解释和改正的机会。语气平和而坚定，有助于维护和谐的室友关系。",
-          "tokens": 164,
-          "duration": 3.67,
+          "reply": "在这种情况下，一个得体而直接的回复可以是：\n\n\"嘿，我注意到你刚才在翻我的东西。我理解我们住在一起，但我觉得我们每个人的私人物品还是应该保持一定的界限。如果你需要借什么东西或者找个地方放东西，可以提前告诉我，我们可以一起找个解决办法。这样可以保持我们之间的尊重和友好，你觉得呢？\" \n\n这样的回复既表明了你的界限，又给了室友一个解释和改正的机会，同时也避免了不必要的冲突。",
+          "tokens": 148,
+          "duration": 5.36,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 5,
+            "usability": 3,
+            "totalScore": 20
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S019",
+        "name": "领导经常在下班前布置紧急任务",
+        "category": "设边界",
+        "intent": "设立边界"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "领导，您每次在下班前布置任务，说明您信任我能在关键时刻顶上，我特别感激这份信任。不过有个小建议：如果任务不是特别紧急，能不能提前到下午四点前发给我？这样我能更从容地规划时间，质量也会更高。当然，真急的随时说，我随时待命。",
+          "allVersions": {},
+          "tokens": 5011,
+          "duration": 6.03,
+          "error": null,
+          "extra": {
+            "intent": "设边界",
+            "intentConfidence": 0.85,
+            "relation": "上下级",
+            "intimacy": "一般",
+            "power": "对方上位",
+            "interest": "强利益",
+            "sensitivity": "高敏感",
+            "strategy": "采用委婉、建设性的方式表达，先肯定领导安排，再提出时间上的困难，并主动提供替代方案",
+            "jaccard": {
+              "mild-firm": 0.34,
+              "mild-eq": 0.258,
+              "firm-eq": 0.26
+            },
+            "perf": {
+              "intent": 1.66,
+              "relation": 1.68,
+              "versions": 2.68
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 4,
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "领导，收到任务。我会先梳理一下工作重点，今晚尽量完成核心部分。如果需要调整时间，我会及时跟您沟通。",
+          "tokens": 72,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "当然可以，以下是一个既专业得体、又体现责任感与边界的回复示例，适用于微信或当面沟通场景：\n\n“好的，收到！我马上梳理一下优先级，今晚加班把这部分先推进到位。另外，为避免后续类似情况影响整体节奏，不知是否方便我们约个10分钟时间，下周一起快速对齐下任务提报和排期机制？这样也能更好地支持您的紧急需求。”\n\n✨ 这样回复的亮点：  \n✅ 积极响应，展现担当（“马上梳理”“今晚加班”）  \n✅ 暗示边界但不推脱（用“推进到位”替代“全部做完”，留出合理预期）  \n✅ 主动提出建设性建议（聚焦流程优化，而非抱怨）  \n✅ 语气尊重、协作感强（“支持您的需求”体现站位）\n\n如需适配不同风格（更简洁/更委婉/带具体时间承诺），我也可以为您定制几个版本。",
+          "tokens": 265,
+          "duration": 3.78,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2135,107 +2229,13 @@
             "usability": 3,
             "totalScore": 17
           }
-        }
-      ]
-    },
-    {
-      "scenario": {
-        "id": "S019",
-        "name": "领导经常在下班前布置紧急任务",
-        "category": "设边界",
-        "intent": "设立边界"
-      },
-      "results": [
-        {
-          "model": "ExpressCoach",
-          "reply": "领导，我看您最近任务安排得挺紧凑的，真是辛苦了。我有个小建议——要不咱们每天早上花5分钟排个优先级？这样我白天能先把重要的夯实在，万一晚上有突发，也有余力冲刺。您看这样会不会更顺手？我也好提前调配精力，确保每件事都能高质量交付。",
-          "allVersions": {},
-          "tokens": 5015,
-          "duration": 7.26,
-          "error": null,
-          "extra": {
-            "intent": "设边界",
-            "intentConfidence": 0.85,
-            "relation": "上下级",
-            "intimacy": "一般",
-            "power": "对方上位",
-            "interest": "强利益",
-            "sensitivity": "高敏感",
-            "strategy": "采用委婉、建设性的方式表达，先共情领导的工作压力，再提出优化工作流程的建议",
-            "jaccard": {
-              "mild-firm": 0.281,
-              "mild-eq": 0.284,
-              "firm-eq": 0.25
-            },
-            "perf": {
-              "intent": 1.64,
-              "relation": 2,
-              "versions": 3.62
-            },
-            "hasRelationAwareness": true,
-            "hasMultipleStrategies": true,
-            "hasCulturalAdaptation": true,
-            "hasExplainability": true
-          },
-          "scores": {
-            "intentScore": 4,
-            "relationScore": 3,
-            "naturalness": 4,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 19
-          }
-        },
-        {
-          "model": "DeepSeek",
-          "modelKey": "deepseek",
-          "reply": "这种情况确实很常见。一个得体的回复既要表现出责任心，也要适度表达困难，避免长期被随意占用个人时间。可以参考以下方式：\n\n“收到，领导。这个任务比较急，我会先梳理一下重点，尽快处理。不过今晚我可能得加一会儿班，如果明早之前完成，我第一时间发您审阅，您看这样可以吗？”\n\n这样既表明你愿意承担任务，也委婉提醒了时间紧张，同时把交付时间拉回到合理范围内，避免被要求“今晚必须完成”。如果领导经常这样，后续也可以在适当时机，比如任务完成后，私下沟通：“领导，以后如果紧急任务能早点通知，我效率会更高一些。”",
-          "tokens": 186,
-          "duration": 0.11,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 3,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 18
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "当然可以，以下是一个既专业得体、又体现责任感与边界的回复范例，适用于微信/邮件或当面沟通场景：\n\n“好的，收到！我马上梳理一下任务要点，确认下优先级和关键节点。如果今晚能完成，我会及时同步进展；若涉及跨部门协作或需要更多背景信息，也请您方便时简单提示一下——我来协调推进，确保不影响明天整体节奏。”\n\n✨ 这样回复的好处：  \n✅ 积极承接，展现担当；  \n✅ 暗示时间意识（“马上梳理”“今晚能完成”），不被动接受“紧急=立刻做完”；  \n✅ 主动管理预期（区分“可闭环”与“需支持”的情况）；  \n✅ 用“确保不影响明天整体节奏”把个人效率与团队目标绑定，提升说服力。\n\n如您希望更委婉（比如想争取缓冲时间）、更简洁（适合即时消息），或带点温度（加一句感谢信任），我也可以为您定制不同风格版本 😊",
-          "tokens": 276,
-          "duration": 5.27,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 5,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 19
-          }
         },
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "在这种情况下，一个得体的回复可以表达出你对于任务的重视和愿意配合的态度，同时也可以适当地表达出对工作与生活平衡的期望。以下是一个可能的回复示例：\n\n“尊敬的[领导的名字]，\n\n非常感谢您在百忙之中布置这项紧急任务。我理解这项工作的重要性，并且愿意尽我所能尽快完成它。我会立即开始处理，并确保在明天早上之前给您一个初步的进展报告。\n\n同时，我想借此机会与您沟通，以便更好地平衡工作和个人时间。我会尽最大努力在工作时间内提高效率，以减少加班的需要。如果可能的话，我希望能与您讨论一下如何优化工作流程，以确保任务可以在正常工作时间内完成，这样我们团队也能有更好的工作与生活平衡。\n\n请您指示这项任务的优先级和具体要求，我会全力以赴确保高质量的完成。\n\n谢谢您的信任和支持。\n\n此致，\n[你的名字]”",
-          "tokens": 243,
-          "duration": 3.69,
+          "reply": "在这种情况下，您可以用以下方式得体地回复领导：\n\n1. **确认任务重要性并表示愿意配合**：\n   ```\n   张总，收到您的紧急任务安排。我理解这个任务的重要性，我会尽快处理，以确保我们的目标不受影响。\n   ```\n\n2. **询问具体细节以确保准确执行**：\n   ```\n   李经理，我注意到您在下班前布置了这个紧急任务。关于这个任务，我可以了解一下具体的截止时间和预期成果吗？这样我可以更准确地规划我的工作。\n   ```\n\n3. **提出可能的解决方案**：\n   ```\n   王总，我已经看到您布置的紧急任务。考虑到时间紧迫，我会立即着手处理。如果需要加班完成，我会提前和您沟通，以确保任务按时完成。\n   ```\n\n4. **表达对团队影响的关心**：\n   ```\n   赵总，关于您刚刚布置的任务，我会尽我所能尽快完成。同时，我也想了解一下这是否会影响团队其他成员的工作，我们需要协调一下资源和时间吗？\n   ```\n\n5. **保持积极态度，同时考虑个人工作生活平衡**：\n   ```\n   刘主任，我已经注意到您的紧急任务指示。我会尽最大努力在工作时间内完成。如果需要加班，我会提前告知您，并尝试调整我的个人日程以确保任务按时完成。\n   ```\n\n6. **请求反馈，以提高未来工作效率**：\n   ```\n   孙经理，我会立即开始处理您布置的紧急任务。同时，我想请求您的反馈，以便我在未来更好地预测和规划时间，减少紧急任务对团队的影响。\n   ```\n\n记住，沟通时要尊重、专业，同时也要保护自己的权益。如果这种情况经常发生，可能需要和领导进一步讨论时间管理和工作分配的问题。",
+          "tokens": 416,
+          "duration": 9.84,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2246,10 +2246,10 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 5,
+            "naturalness": 4,
             "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 20
+            "usability": 3,
+            "totalScore": 18
           }
         }
       ]
@@ -2264,10 +2264,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "兄弟，我发现咱俩挺互补的——你每次借我笔记，我都有一种‘共享知识’的快乐哈哈。不过说实话，我最近也在找一些好用的资料，你那边有没有什么私藏的宝贝？咱要不搞个‘学习资料交换计划’？你帮我我帮你，双倍效率，岂不美滋滋。",
+          "reply": "最近发现咱们的笔记资源可以搞个‘互助联盟’——你那边肯定也有我没见过的独家资料吧？要不咱们定个规矩：借我的资料时顺便分享点你的‘宝藏’，这样咱们都能白嫖对方的精华，双赢啊！当然，你拿走的资料如果发现了什么补充，也欢迎标注上去，咱们一起把这份‘学习地图’升级成‘通关秘籍’。",
           "allVersions": {},
-          "tokens": 4905,
-          "duration": 6.57,
+          "tokens": 4934,
+          "duration": 6.29,
           "error": null,
           "extra": {
             "intent": "设边界",
@@ -2277,16 +2277,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "用轻松幽默的方式表达自己的感受，同时提出对等分享的期望",
+            "strategy": "用轻松幽默的方式表达自己的感受，同时提出对等分享的建议",
             "jaccard": {
-              "mild-firm": 0.267,
-              "mild-eq": 0.284,
-              "firm-eq": 0.204
+              "mild-firm": 0.253,
+              "mild-eq": 0.237,
+              "firm-eq": 0.246
             },
             "perf": {
-              "intent": 1.81,
-              "relation": 1.76,
-              "versions": 3
+              "intent": 1.34,
+              "relation": 1.39,
+              "versions": 3.57
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -2295,19 +2295,19 @@
           },
           "scores": {
             "intentScore": 4,
-            "relationScore": 3,
+            "relationScore": 4,
             "naturalness": 5,
-            "strategyFit": 3,
-            "usability": 4,
-            "totalScore": 19
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 21
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "“我理解你经常需要借资料，但我也希望我们能互相分享，这样对大家都有帮助。下次如果你有好的资料，也欢迎分享给我，我们可以一起进步。”",
-          "tokens": 82,
-          "duration": 0.19,
+          "reply": "你可以这样回复：“我最近也在整理资料，可能不太方便外借。要不咱们可以一起互相分享，这样大家都能更高效地学习，你觉得呢？”",
+          "tokens": 79,
+          "duration": 0.11,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2318,18 +2318,18 @@
           "scores": {
             "intentScore": 5,
             "relationScore": 4,
-            "naturalness": 3,
+            "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
-            "totalScore": 20
+            "totalScore": 22
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "可以这样温和而坚定地表达，既维护边界，又不伤和气：\n\n“谢谢你看重我的资料！不过最近我在整理和复习，用得比较频繁，可能不太方便外借啦～如果你需要某部分内容，我很乐意一起讨论，或者帮你找找公开的资源/推荐类似的学习材料，咱们互相支持、共同进步 😊”\n\n✨ 这样回复的优点：  \n✅ 表达感谢与尊重，不显得指责；  \n✅ 用“自己在用”作为中立理由，避免对方觉得被针对；  \n✅ 主动提供替代支持（讨论、推荐资源），体现善意与合作态度；  \n✅ 结尾正向收束，强化同学间的积极关系。\n\n如需，我也可以帮你拟一条更简洁版或更幽默版的表达～",
-          "tokens": 226,
-          "duration": 3.11,
+          "reply": "可以这样温和而坚定地表达，既维护边界，又不伤和气：\n\n“谢谢信任，愿意借资料给我！不过最近我在整理和标注这些资料，用得比较频繁，暂时不方便外借啦～如果你需要某一部分内容，我很乐意帮你一起梳理，或者分享电子版的笔记（比如某章节的思维导图/重点总结），这样咱们都能高效学习，也避免资料弄丢或混淆 😊”\n\n✨ 这样说的好处：  \n✅ 肯定对方的信任（情感联结）  \n✅ 用“正在使用中”替代“不想借”，更客观合理  \n✅ 主动提供替代支持（体现善意与合作意愿）  \n✅ 暗示“共享≠单向索取”，潜移默化引导平等互助  \n\n如果后续仍有类似情况，也可以轻松补充一句：“对了，你有整理好的资料也欢迎随时分享呀，互相补漏超棒的！” —— 把边界变成共建学习关系的契机 🌟",
+          "tokens": 269,
+          "duration": 5.27,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2349,9 +2349,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "在这种情况下，你可以礼貌但坚定地表达你的感受和期望。以下是一个可能的回复：\n\n嘿，我注意到你最近经常借用我的学习资料，我很高兴它们对你有所帮助。不过，我一直也在努力学习，而且我发现当我需要复习时，能够共享一些你的资料会非常有帮助。我们能不能达成一个互相帮助的协议？这样我们都能从对方的资料中受益，同时也能更好地准备考试。你觉得怎么样？\n\n这样的回复既表达了你愿意帮助他人的愿望，同时也明确提出了你的期望，希望能够得到互惠互利的结果。",
-          "tokens": 165,
-          "duration": 3.6,
+          "reply": "在这种情况下，你可以尝试用一种友好但坚定的方式来表达你的感受和期望。以下是一个可能的回复：\n\n\"嘿，我注意到你经常借用我的学习资料，我很高兴它们对你有帮助。但是，我也希望我们能互相支持。我注意到你也有一些很有用的资料，不知道我们是否可以互相分享，这样我们都能从中受益。我相信这对我们两个的学习和合作都会很有帮助。你觉得呢？\"\n\n这样的回复既表达了你愿意帮助对方，也提出了你希望得到回报的期望，同时也给了对方一个机会来改正他们的行为。",
+          "tokens": 168,
+          "duration": 8.22,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2380,10 +2380,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "老师，有件事想跟您商量一下。我收到一个很重要的面试机会，时间跟咱们原定的安排有点冲突。我知道您这边事情也多，所以提前跟您说一声，您看能不能调整一下？我保证后续的工作不会落下，面试完了立马补上。您放心，我不会让这事儿影响咱们的进度。",
+          "reply": "老师，有个事想跟您商量一下。我最近收到了一个很关键的面试机会，对我未来的发展方向挺重要的。我知道现在正是学业要紧的时候，所以想提前跟您报备，看能不能请个假。我保证面试回来后会把落下的功课补上，不会让进度掉链子。您放心，学业这边我肯定不会放松。",
           "allVersions": {},
-          "tokens": 4976,
-          "duration": 6.83,
+          "tokens": 5001,
+          "duration": 5.98,
           "error": null,
           "extra": {
             "intent": "求助",
@@ -2393,16 +2393,16 @@
             "power": "对方上位",
             "interest": "弱利益",
             "sensitivity": "高敏感",
-            "strategy": "以尊重和诚恳的态度提前沟通，说明请假原因和面试的重要性，并主动提出补上工作安排。",
+            "strategy": "以尊重和诚恳的态度，提前说明请假原因和重要性，并主动提出补课或补交任务的方案",
             "jaccard": {
-              "mild-firm": 0.375,
-              "mild-eq": 0.48,
-              "firm-eq": 0.265
+              "mild-firm": 0.312,
+              "mild-eq": 0.352,
+              "firm-eq": 0.375
             },
             "perf": {
-              "intent": 1.69,
-              "relation": 1.97,
-              "versions": 3.17
+              "intent": 1.49,
+              "relation": 1.55,
+              "versions": 2.95
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -2414,16 +2414,16 @@
             "relationScore": 4,
             "naturalness": 3,
             "strategyFit": 4,
-            "usability": 4,
+            "usability": 3,
             "totalScore": 19
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "导师您好，我最近收到了一家公司的面试通知，面试时间安排在（具体时间），因此想向您请半天假去参加这次面试。这是我非常看重的一次机会，我会提前安排好手头的任务，并确保不影响学习进度。感谢您的理解和支持！",
-          "tokens": 97,
-          "duration": 0.12,
+          "reply": "导师您好，我最近收到了一家公司的面试通知，面试时间安排在（具体日期和时间）。这是一次对我未来发展非常重要的机会，因此想向您请假（天数）天。我会在请假前安排好手头的研究任务，确保不影响工作进度。感谢您的理解和支持！",
+          "tokens": 99,
+          "duration": 0.2,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2432,20 +2432,20 @@
             "hasExplainability": false
           },
           "scores": {
-            "intentScore": 5,
+            "intentScore": 4,
             "relationScore": 4,
             "naturalness": 3,
             "strategyFit": 3,
             "usability": 4,
-            "totalScore": 19
+            "totalScore": 18
           }
         },
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "当然可以，以下是一则礼貌、简洁又体现尊重与诚意的请假信息范例，适用于微信或邮件发送给导师：\n\n---\n\n老师您好！  \n冒昧打扰您。我近期收到一家单位的面试邀约（岗位方向与我的研究/职业规划高度契合），面试时间安排在[具体日期+时间段]，恰与您的[课程名称/组会/指导安排]时间冲突。  \n非常希望能向您申请当天请假一次，并已提前梳理好相关学习内容/任务进度，后续也会及时补上 missed 的环节。如您方便，我也很乐意提前与您沟通调整安排，或线上同步参与部分环节。  \n深知您的时间宝贵，也特别感谢您一直以来的指导与包容！期待您的理解与支持 🙏  \n\n祝工作顺利，身体健康！  \n学生：[您的姓名]  \n\n---\n\n如需，我也可以帮您根据具体情境（如：是本科生课程请假？研究生组会？还是毕业论文指导时段？）进一步优化措辞，让表达更贴切。",
-          "tokens": 273,
-          "duration": 4.34,
+          "reply": "当然可以，以下是一条得体、尊重且简洁的请假信息范例，适用于微信或邮件等正式沟通场景：\n\n尊敬的[导师姓氏]老师：  \n您好！冒昧打扰。我近期收到[公司名称/岗位名称]的面试邀约，时间定于[具体日期和时间段]，与您主讲的[课程名称/相关安排]有所重叠。此次面试对我职业发展意义重大，因此恳请您批准我于当日短暂请假。  \n我会提前协调好学习任务，及时补上课程内容，并确保不影响后续进度与作业提交。如需提供面试邀请函或调整其他安排，我也非常乐意配合。  \n感谢您的理解与支持！祝您工作顺利，身体健康！  \n学生：[您的姓名]  \n[日期]\n\n💡 小贴士：  \n- 若是当面沟通，可先简要说明+表达歉意，再递上书面信息更显诚意；  \n- 提前至少2–3天沟通，体现对导师时间的尊重；  \n- 面试后也可简要向导师反馈进展（如“感谢您的支持，已顺利完成面试”），保持良好师生互动。\n\n需要我帮您根据具体时间、课程或导师风格进一步个性化润色吗？😊",
+          "tokens": 322,
+          "duration": 5.39,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2465,9 +2465,9 @@
         {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，以下是一封得体的请假邮件模板，你可以根据自己的具体情况进行调整：\n\n---\n\n主题：[您的名字] - [日期] 请假申请\n\n尊敬的[导师的姓名]教授/博士，\n\n您好！\n\n我希望这封邮件能在您百忙之中得到您的阅读。首先，我想对您一直以来对我的指导和支持表示衷心的感谢。\n\n我写信是为了请求您的理解与批准，因为我需要在[具体日期]请假一天，以便参加一个非常重要的工作面试。这个机会对我来说非常珍贵，因为它涉及到我未来的职业发展，并且与我的学术研究领域高度相关。\n\n我已经尽力安排了我的工作和学习计划，以确保这次请假不会对我的研究进度造成太大影响。我会在面试前后加班加点，以确保完成所有预定的任务和研究工作。\n\n我理解这次请假可能会给您的工作带来不便，因此我已经与[同事/同学的名字]协商，他/她将在我请假期间协助处理一些紧急事务。我也会在请假前与您讨论并安排好所有需要交接的工作。\n\n请您考虑一下我的请求，并告知我您的决定。如果需要，我非常愿意在您方便的时候进一步讨论这个问题。\n\n再次感谢您的理解和支持。\n\n此致\n敬礼，\n\n[您的名字]\n[您的联系信息]\n\n---\n\n记得在发送前检查所有的细节，包括日期、时间和人的姓名等，确保一切准确无误。同时，保持邮件的语气礼貌和专业，这样可以增加你的请求被批准的可能性。",
-          "tokens": 347,
-          "duration": 5.12,
+          "reply": "当然，以下是一份得体的请假信模板，你可以根据自己的具体情况进行调整：\n\n---\n\n尊敬的[导师姓名]教授/老师，\n\n您好！\n\n我写这封信是为了请求您能够批准我在[具体日期]的请假申请。在那天，我有一个非常重要的面试，这是关于[面试的公司或机构名称]的一个职位，这个机会对我来说非常宝贵，对我的职业发展至关重要。\n\n我非常重视在您指导下的学习机会，也深知课程的重要性。因此，我已经尽力安排了面试时间，以尽可能减少对课程的影响。同时，我会在请假前完成所有必要的课前准备工作，并在面试后尽快补上当天的课程内容。如果可能的话，我也非常愿意在课余时间与您或其他同学讨论课程内容，以确保我不会落后。\n\n我已经将请假申请提交给了教务处，并附上了面试通知的复印件作为证明。我会在请假期间保持通讯畅通，以便您在需要时能够随时联系到我。\n\n感谢您对我的理解和支持。请您考虑我的请假请求，并期待您的批准。\n\n祝好，\n\n[您的姓名]\n[您的联系信息]\n\n---\n\n请确保在发送请假信之前，你已经按照学校的规定和程序提交了请假申请，并且确保所有的信息都是准确的。同时，保持礼貌和尊重，表达出你对学习的重视和对导师的尊敬。",
+          "tokens": 323,
+          "duration": 6.38,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2479,9 +2479,9 @@
             "intentScore": 3,
             "relationScore": 4,
             "naturalness": 5,
-            "strategyFit": 5,
+            "strategyFit": 4,
             "usability": 4,
-            "totalScore": 21
+            "totalScore": 20
           }
         }
       ]
@@ -2496,10 +2496,10 @@
       "results": [
         {
           "model": "ExpressCoach",
-          "reply": "老哥，好久不见！最近又遇到你当年带我时那种‘卡住’的感觉了哈哈。有个技术问题，我翻了不少文档还是没找到最优雅的解法，突然想起你之前处理类似问题的思路特别巧妙。不知道你最近忙不忙？想跟你请教个十分钟，顺便也跟你分享下我这边的新发现，说不定对你也有用。",
+          "reply": "老哥，好久没聊，最近怎么样？我还时不时想起以前跟你一起搞项目时你处理那个XX问题的思路，真是经典。现在我这边碰上个技术难题，翻来覆去想了好几天，突然觉得可能你之前踩过类似的坑，想请教一下你的经验。当然不让你白帮忙，回头请你喝一杯，或者我最近研究了个新工具，说不定对你也用得上——咱交换着来。",
           "allVersions": {},
-          "tokens": 5011,
-          "duration": 7.18,
+          "tokens": 4980,
+          "duration": 5.76,
           "error": null,
           "extra": {
             "intent": "求助",
@@ -2509,16 +2509,16 @@
             "power": "平等",
             "interest": "弱利益",
             "sensitivity": "中敏感",
-            "strategy": "以请教和感谢的姿态开场，先寒暄再切入正题，明确表达尊重对方时间",
+            "strategy": "以请教和感谢的姿态，先寒暄再切入正题，强调对方经验的价值",
             "jaccard": {
-              "mild-firm": 0.297,
-              "mild-eq": 0.317,
-              "firm-eq": 0.248
+              "mild-firm": 0.316,
+              "mild-eq": 0.322,
+              "firm-eq": 0.238
             },
             "perf": {
-              "intent": 1.58,
-              "relation": 1.73,
-              "versions": 3.86
+              "intent": 1.45,
+              "relation": 1.46,
+              "versions": 2.85
             },
             "hasRelationAwareness": true,
             "hasMultipleStrategies": true,
@@ -2529,17 +2529,365 @@
             "intentScore": 4,
             "relationScore": 4,
             "naturalness": 5,
-            "strategyFit": 3,
+            "strategyFit": 4,
             "usability": 3,
-            "totalScore": 20
+            "totalScore": 21
           }
         },
         {
           "model": "DeepSeek",
           "modelKey": "deepseek",
-          "reply": "当然，以下是一个得体、自然的回复建议：\n\n“老同事，好久不见！最近在工作上遇到一个技术难题，想请教一下你的经验。不知道你方便的时候，能不能指点我一二？先谢谢啦！”",
-          "tokens": 91,
-          "duration": 0.1,
+          "reply": "当然可以。以下是一个得体、自然的回复示例：\n\n“张工，您好！最近我在工作中遇到一个技术难题，是关于[具体问题，例如‘数据处理流程优化’]的。记得您之前在这方面经验很丰富，想请教一下您的看法，方便的话能否指点一二？非常感谢！”\n\n如果需要更随意一些，可以改为：“老张，最近碰到个技术问题，有点棘手，想请你帮忙看看，方便的时候指点一下？先谢啦！”",
+          "tokens": 141,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 3,
+            "naturalness": 5,
+            "strategyFit": 5,
+            "usability": 4,
+            "totalScore": 20
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "您好，可以这样礼貌、得体又不失分寸地向老同事请教：\n\n“XX哥/姐，最近在做[简要说明项目或模块，如‘新系统的接口对接’]，遇到了一个技术点卡住了——[用1句话清晰描述问题，如‘调用第三方API时偶发超时，重试逻辑好像没生效’]。知道您之前处理过类似场景，特别想向您讨教一下思路或经验～如果不忙的话，不知方便抽5–10分钟指点一二？我也可以先把相关日志和代码片段整理好，节省您时间。非常感谢！😊”\n\n✨ 小贴士：  \n- 称呼亲切但尊重（根据实际关系选“哥/姐/老师”等）；  \n- 问题具体、背景简洁，体现你已做过初步思考；  \n- 主动提供准备动作（如整理日志），展现诚意与职业素养；  \n- 给对方充分的拒绝空间（“如果不忙”“不知方便否”），不制造压力。\n\n需要我帮您润色具体问题描述，或拟一封邮件/钉钉消息版本，也欢迎随时告诉我～",
+          "tokens": 307,
+          "duration": 5.44,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "当然，这里有一个得体且自然的回复示例，你可以根据自己的具体情况稍作调整：\n\n---\n\n尊敬的 [老同事的名字]，\n\n您好！\n\n最近我在处理[具体项目名称]时遇到了一些技术难题，我认为您在这方面的经验和专业知识可能会给我很大的帮助。如果您方便的话，我想请教您几个问题，看看是否能指点一二。以下是我遇到的一些具体问题：\n\n1. [问题1的描述]\n2. [问题2的描述]\n3. [问题3的描述]\n\n我非常尊重您的时间和专业，所以我会尽量简洁地描述我的问题，并准备好相关资料，以便我们能够高效地交流。当然，如果您能推荐一些资料或者工具，我也会非常感激。\n\n不知道您本周是否有空，我们可以找个时间坐下来讨论，或者通过电话/视频会议交流一下？我完全根据您的时间安排。\n\n期待您的回复，并再次感谢您愿意考虑帮助我。\n\n祝好，\n\n[你的名字]  \n[你的职位]  \n[你的联系信息]\n\n---\n\n这样的邮件或信息既表现出对老同事的尊重，也清晰地表达了你的请求和对时间的考虑。",
+          "tokens": 277,
+          "duration": 5.1,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S023",
+        "name": "想向父母多要一些生活费",
+        "category": "求助",
+        "intent": "寻求帮助"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "爸、妈，最近在学校发现了一些特别好的学习资源和机会，我想多投入一些。我知道你们一直很支持我，所以想跟你们商量一下——能不能稍微调整一下生活费？我列了个简单的预算表，保证每一分都用在刀刃上。如果最近家里紧，我可以先自己想办法，或者咱们一起看看有没有更省的方式。你们放心，我不会乱花的。",
+          "allVersions": {},
+          "tokens": 5027,
+          "duration": 5.87,
+          "error": null,
+          "extra": {
+            "intent": "求助",
+            "intentConfidence": 0.85,
+            "relation": "家人",
+            "intimacy": "亲密",
+            "power": "对方上位",
+            "interest": "强利益",
+            "sensitivity": "中敏感",
+            "strategy": "以感恩和体谅为前提，用商量而非索取的语气表达需求，同时说明用途和必要性",
+            "jaccard": {
+              "mild-firm": 0.327,
+              "mild-eq": 0.38,
+              "firm-eq": 0.254
+            },
+            "perf": {
+              "intent": 1.27,
+              "relation": 1.64,
+              "versions": 2.96
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 4,
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "爸妈，最近学校的生活成本稍微涨了一些，加上有一些学习资料和活动需要额外支出，手头有点紧张。能不能稍微多给一点生活费？我会注意节省，不乱花钱的。",
+          "tokens": 83,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 5,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 19
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "当然可以，以下是一段既尊重父母、又真诚坦率、还体现责任感的表达建议，适合当面沟通或发微信时使用：\n\n“爸妈，最近在认真规划自己的开支，也想跟你们聊聊我的生活费安排。这学期课程变多/实习交通和资料成本增加（可选具体原因），我试着精打细算，但发现现有预算在吃饭、学习资料和必要通勤上有点紧张。我知道你们一直很支持我，也很辛苦，所以我也在课余时间找了份兼职（或：正在积极寻找合适兼职），希望能分担一点。如果方便的话，不知是否可以适当调整一下每月的生活费？比如增加200–300元？我会记好每一笔支出，月底主动跟你们分享明细，也继续把学习和健康放在第一位。谢谢爸妈的理解和爱❤️”\n\n✨ 小贴士：\n- ✅ 先共情（认可父母付出）→ 再说明合理需求 → 展现主动性（如兼职、记账）→ 提出具体、适度的请求 → 表达感恩  \n- ❌ 避免比较（“别人家孩子都有……”）、抱怨（“根本不够花”）或模糊诉求（“再多给点吧”）  \n- 🌟 如果父母有顾虑，可主动提议：签个小约定（如成绩保持/每月汇报收支），让信任更踏实  \n\n需要我帮你润色成微信文字版、语音口吻版，或模拟父母可能的回应及应对话术，也可以告诉我哦～ 😊",
+          "tokens": 389,
+          "duration": 6.54,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "当然，向父母提出增加生活费的要求需要以尊重和理解为基础。以下是一个得体的回复示例：\n\n---\n\n亲爱的爸爸妈妈，\n\n您们好！首先，我想表达我对您们一直以来的支持和照顾的感激之情。我知道您们总是尽力给我最好的，我对此深表感激。\n\n最近，我在生活和学习上遇到了一些额外的开销，我仔细考虑过后，感觉有必要和您们讨论一下我的生活费问题。我理解家庭的预算和支出都需要精心规划，我也不想给您们带来额外的压力。所以，在提出这个请求之前，我已经尽可能地节省和规划我的开支。\n\n以下是我遇到的一些情况：\n1. 教材和学习资料的费用有所增加。\n2. 为了提高专业技能，我报名了一些线上课程，这需要一些额外的费用。\n3. 生活成本随着物价上涨有所增加。\n\n我非常希望我们能一起坐下来，讨论一下我的预算和生活费的问题。我愿意提供具体的开销清单，以便您们能更好地了解我的需求。同时，我也会提出一些节省开支的建议，看看是否有可能在不增加太多负担的情况下，适当地调整我的生活费。\n\n我希望我们能一起找到一个对双方都合适的解决方案。您们的意见对我来说非常重要，我期待着您们的回复。\n\n谢谢您们的理解与支持。\n\n爱您们的孩子，\n[你的名字]\n\n---\n\n这样的回复展现了对父母的尊重，同时也表明了你已经考虑过他们的感受和家庭的经济状况。通过提供具体的情况和愿意讨论解决方案，你展现了成熟和负责任的态度。",
+          "tokens": 357,
+          "duration": 7.6,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 20
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S024",
+        "name": "项目遇到困难，想向领导申请延期",
+        "category": "求助",
+        "intent": "寻求帮助"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "领导，向您汇报一下项目进展——目前我们按计划完成了70%，但在关键模块遇到了一个技术难点，如果硬赶可能会影响质量。我这边梳理了两种应对方案：一是申请一周延期，把这块打磨透；二是调整交付范围，先交核心功能。我个人倾向第一种，因为咱们的目标是拿一个漂亮的结果，而不是赶一个凑合的版本。想听听您的建议，您看怎么安排更合适？",
+          "allVersions": {},
+          "tokens": 5038,
+          "duration": 6.74,
+          "error": null,
+          "extra": {
+            "intent": "求助",
+            "intentConfidence": 0.85,
+            "relation": "上下级",
+            "intimacy": "一般",
+            "power": "对方上位",
+            "interest": "强利益",
+            "sensitivity": "高敏感",
+            "strategy": "以事实和数据说明困难，同时提出解决方案和延期后的保障，体现责任感和主动性",
+            "jaccard": {
+              "mild-firm": 0.323,
+              "mild-eq": 0.301,
+              "firm-eq": 0.234
+            },
+            "perf": {
+              "intent": 1.52,
+              "relation": 1.76,
+              "versions": 3.46
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 3,
+            "naturalness": 4,
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 17
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "领导您好，关于目前项目遇到的困难，我想向您简要汇报一下情况。由于[具体困难原因，如技术难点/资源不足等]，项目进度受到了一定影响。我建议将原定截止日期延期至[具体日期]，这样我们可以确保交付质量。如果您方便的话，我想和您约个时间详细讨论调整方案，看看如何更好地推进后续工作。",
+          "tokens": 123,
+          "duration": 0.11,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 3,
+            "naturalness": 4,
+            "strategyFit": 5,
+            "usability": 4,
+            "totalScore": 20
+          }
+        },
+        {
+          "model": "通义千问(Qwen)",
+          "modelKey": "qwen",
+          "reply": "您好，以下是一段得体、专业且富有同理心的申请延期表达，供您参考（可根据实际情况微调）：\n\n---\n\n**领导您好，打扰您一下。**  \n关于[项目名称]，我们团队近期全力推进，但在执行过程中遇到了一些预期外的挑战，例如[简要、客观说明1–2个关键难点，如：核心接口对接延迟/第三方数据交付晚于计划/关键技术方案需优化验证等]。为确保交付质量与后续稳定性，我们审慎评估后认为，原定[原截止日期]节点存在较大风险。\n\n现诚恳申请将项目交付时间延至[建议新日期]，同时我们已同步制定了补救措施：① 已增加每日站会聚焦阻塞点；② 协调了[某资源/支持方]介入协助；③ 关键路径已重新排期并加强风险监控。\n\n非常感谢您的理解与支持！我也很乐意随时向您当面汇报详细情况或调整优化方案。\n\n祝工作顺利！  \n[您的姓名]\n\n---\n\n✅ 特点说明：  \n- **先肯定努力 + 客观归因**（不推责，重事实）  \n- **强调质量优先**（体现责任心，而非单纯求宽限）  \n- **给出具体替代方案**（展现主动性和闭环思维）  \n- **保持尊重与开放沟通姿态**（留出协商空间）\n\n需要我帮您根据具体项目背景（如行业、难点细节、领导风格）定制一版更贴切的表述，也欢迎随时告诉我 😊",
+          "tokens": 391,
+          "duration": 5.66,
+          "error": null,
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 3,
+            "relationScore": 4,
+            "naturalness": 3,
+            "strategyFit": 4,
+            "usability": 4,
+            "totalScore": 18
+          }
+        },
+        {
+          "model": "Kimi(月之暗面)",
+          "modelKey": "kimi",
+          "reply": "[调用失败: Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}]",
+          "tokens": 0,
+          "duration": 0,
+          "error": "Kimi/月之暗面 HTTP 429: {\"error\":{\"message\":\"The engine is currently overloaded, please try again later\",\"type\":\"engine_overloaded_error\"}}",
+          "extra": {
+            "hasRelationAwareness": false,
+            "hasMultipleStrategies": false,
+            "hasCulturalAdaptation": false,
+            "hasExplainability": false
+          },
+          "scores": {
+            "intentScore": 1,
+            "relationScore": 3,
+            "naturalness": 3,
+            "strategyFit": 3,
+            "usability": 3,
+            "totalScore": 13
+          }
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "id": "S025",
+        "name": "想请同学帮忙复习功课",
+        "category": "求助",
+        "intent": "寻求帮助"
+      },
+      "results": [
+        {
+          "model": "ExpressCoach",
+          "reply": "嘿，最近复习有点卡壳，想到你这门课特别强，就想厚着脸皮请教一下哈哈。不过我知道你时间也紧，要不咱们找个你方便的时间，我请你喝杯奶茶当'学费'？或者你复习时带上我，我当个安静的小跟班，顺便帮你整理笔记也行。总之不白嫖，你帮我我也帮你分担点活儿～",
+          "allVersions": {},
+          "tokens": 5008,
+          "duration": 6.6,
+          "error": null,
+          "extra": {
+            "intent": "求助",
+            "intentConfidence": 0.95,
+            "relation": "同学",
+            "intimacy": "较近",
+            "power": "平等",
+            "interest": "弱利益",
+            "sensitivity": "中敏感",
+            "strategy": "以友好、感谢的态度提出请求，并主动说明会回报或请客，避免让对方觉得是单方面付出。",
+            "jaccard": {
+              "mild-firm": 0.337,
+              "mild-eq": 0.293,
+              "firm-eq": 0.248
+            },
+            "perf": {
+              "intent": 1.48,
+              "relation": 1.96,
+              "versions": 3.16
+            },
+            "hasRelationAwareness": true,
+            "hasMultipleStrategies": true,
+            "hasCulturalAdaptation": true,
+            "hasExplainability": true
+          },
+          "scores": {
+            "intentScore": 4,
+            "relationScore": 4,
+            "naturalness": 5,
+            "strategyFit": 4,
+            "usability": 3,
+            "totalScore": 21
+          }
+        },
+        {
+          "model": "DeepSeek",
+          "modelKey": "deepseek",
+          "reply": "当然可以。你可以这样说：“XX，最近复习有点吃力，想请你帮个忙，能不能抽空陪我一起复习一下功课？如果你方便的话，我们可以约个时间，不会占用你太多时间。谢谢你啦！”",
+          "tokens": 88,
+          "duration": 0.15,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2559,9 +2907,9 @@
         {
           "model": "通义千问(Qwen)",
           "modelKey": "qwen",
-          "reply": "您好，想向您请教一个技术问题，不知您最近是否方便？我在做[简要说明项目/模块，如“XX系统的接口对接”]时遇到了一点卡点——[用1句话清晰描述具体问题，例如：“调用第三方API时 consistently 返回401，但鉴权参数已按文档配置”]。知道您之前处理过类似场景，特别希望能听听您的建议或思路。完全理解您时间宝贵，哪怕抽空指点一两个方向，我也非常感激！😊  \n\n（附：如需我提前整理日志、截图或复现步骤，随时可以准备好）  \n\n这样的表达既尊重对方时间与经验，又体现自己的思考和准备，专业而不卑微，礼貌且高效。需要我帮您根据具体问题润色定制版本，也欢迎告诉我细节～",
-          "tokens": 232,
-          "duration": 3.36,
+          "reply": "你好～最近在复习[具体科目，比如：高等数学/英语语法]，感觉有些知识点还不太扎实，刚好记得你之前学得特别好，思路也很清晰 😊  \n不知道你这周有没有空？如果方便的话，想请你帮忙一起梳理一下重点，或者抽个30分钟左右听听你的学习方法～当然，我也很乐意帮你复习其他科目，或者请你喝杯咖啡作为感谢！☕  \n完全理解你时间宝贵，所以不用有压力，按你的时间来就好～期待你的回复！",
+          "tokens": 166,
+          "duration": 3.05,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,
@@ -2572,310 +2920,6 @@
           "scores": {
             "intentScore": 3,
             "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 18
-          }
-        },
-        {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "当然，这里有一个得体且自然的回复范例，你可以根据实际情况稍作调整：\n\n---\n\n亲爱的 [老同事的名字]，\n\n您好！希望这封邮件找到您一切安好。\n\n我目前在处理一个项目时遇到了一些技术难题，这对我来说是个不小的挑战。我记得之前您在这个领域有过丰富的经验，而且您总是能提供宝贵的见解和解决方案。\n\n如果您现在不太忙，不知道是否方便在您方便的时候，花几分钟和我讨论一下这个问题？我相信您的建议能够帮我找到解决问题的关键。\n\n以下是我目前遇到的一些具体问题和我已经尝试过的解决方案：\n\n[在这里简单描述你的技术难题和尝试过的解决方案]\n\n我非常期待能听到您的看法，哪怕是一点点启发，对我都会非常有帮助。\n\n感谢您的时间和帮助，期待您的回复。\n\n祝好，\n[你的名字]",
-          "tokens": 217,
-          "duration": 3.98,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 5,
-            "usability": 4,
-            "totalScore": 19
-          }
-        }
-      ]
-    },
-    {
-      "scenario": {
-        "id": "S023",
-        "name": "想向父母多要一些生活费",
-        "category": "求助",
-        "intent": "寻求帮助"
-      },
-      "results": [
-        {
-          "model": "ExpressCoach",
-          "reply": "爸妈，你们给我的生活费我都有好好规划，每次都记着你们的辛苦。最近我发现有个学习资料/社团活动对我挺有帮助的，预算上有点吃紧。我想跟你们商量一下，能不能适当调整一点？我可以定期跟你们汇报开销，保证每一分都花在刀刃上。你们放心，我不会乱花，就是想让自己成长得更快些。",
-          "allVersions": {},
-          "tokens": 5025,
-          "duration": 7.03,
-          "error": null,
-          "extra": {
-            "intent": "求助",
-            "intentConfidence": 0.85,
-            "relation": "家人",
-            "intimacy": "亲密",
-            "power": "对方上位",
-            "interest": "强利益",
-            "sensitivity": "中敏感",
-            "strategy": "以感恩和体谅为前提，说明具体用途和合理理由，避免让父母觉得你挥霍无度。",
-            "jaccard": {
-              "mild-firm": 0.237,
-              "mild-eq": 0.424,
-              "firm-eq": 0.248
-            },
-            "perf": {
-              "intent": 1.6,
-              "relation": 2,
-              "versions": 3.44
-            },
-            "hasRelationAwareness": true,
-            "hasMultipleStrategies": true,
-            "hasCulturalAdaptation": true,
-            "hasExplainability": true
-          },
-          "scores": {
-            "intentScore": 4,
-            "relationScore": 3,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 19
-          }
-        },
-        {
-          "model": "DeepSeek",
-          "modelKey": "deepseek",
-          "reply": "爸爸妈妈，最近学校这边生活开支稍微有点紧张，我想和你们商量一下生活费的事情。如果方便的话，能不能稍微增加一些？我会好好规划使用，不会乱花钱的。谢谢你们一直以来的支持。",
-          "tokens": 87,
-          "duration": 0.1,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 5,
-            "relationScore": 3,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 21
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "当然可以，以下是一段既尊重父母、又真诚坦率、还体现责任感的表达建议，适合当面沟通或发微信时使用：\n\n“爸妈，最近想和你们聊聊我的生活费安排。最近在认真规划日常开销（比如伙食、学习资料、交通等），也尝试记账和节省，但发现目前的额度稍微有点紧张，尤其在XX方面（如：实习通勤增加/买了必要的专业书籍/天气转凉添置了保暖衣物）。我特别感谢你们一直以来的支持，也很珍惜每一分钱。如果方便的话，想请你们考虑适当调整一下生活费——当然，我也会继续做好预算管理，定期向你们分享我的支出情况，让你们放心。无论结果如何，我都特别理解并尊重你们的决定。”\n\n✨ 小贴士：\n- ✅ 提前准备具体、合理的理由（避免模糊说“不够花”）  \n- ✅ 强调自己的努力与反思（展现成熟度）  \n- ✅ 表达感恩 + 主动承诺（如记账、反馈），降低父母顾虑  \n- ❌ 避免比较（如“同学都比我多”）、情绪化或索取语气  \n\n需要我帮你根据你的具体年级、城市、实际开销（比如每月饭费、交通费）定制一段更个性化的版本，也可以告诉我～ 😊",
-          "tokens": 343,
-          "duration": 4.96,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 19
-          }
-        },
-        {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "当然，向父母提出增加生活费的请求需要委婉而真诚。以下是一些建议的表达方式：\n\n1. **表达感激**：\n   \"亲爱的爸爸妈妈，首先，我想感谢你们一直以来对我的支持和照顾。我非常感激你们为我所做一切。\"\n\n2. **说明情况**：\n   \"最近，我注意到生活费用有所增加，可能是由于教材、交通或者日常必需品的价格上升。我一直在努力节约和合理规划我的开支，但是我发现预算有些吃紧。\"\n\n3. **提出请求**：\n   \"我想和你们讨论一下是否可以适度增加我的生活费，以帮助我更好地应对这些变化。我承诺会继续精打细算，确保每一分钱都花在刀刃上。\"\n\n4. **提供解决方案**：\n   \"如果可能的话，我愿意通过兼职工作或其他方式来补充我的生活费，这样也能减轻你们的负担。\"\n\n5. **表达理解与开放性**：\n   \"我理解这可能对家庭预算造成压力，所以如果现在不是合适的时机，我们也可以一起探讨其他的解决方案。我对此持开放态度，并愿意听取你们的建议。\"\n\n6. **结束语**：\n   \"再次感谢你们对我的支持。我希望我们能一起找到最好的解决办法。\"\n\n这样的表达方式既展现了你对父母的感激之情，也表明了你对家庭经济状况的理解和尊重，同时提出了一个合理的请求。记得在谈话中保持诚恳和尊重，这样更有可能得到积极的回应。",
-          "tokens": 353,
-          "duration": 5.72,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 5,
-            "usability": 3,
-            "totalScore": 20
-          }
-        }
-      ]
-    },
-    {
-      "scenario": {
-        "id": "S024",
-        "name": "项目遇到困难，想向领导申请延期",
-        "category": "求助",
-        "intent": "寻求帮助"
-      },
-      "results": [
-        {
-          "model": "ExpressCoach",
-          "reply": "领导，关于目前这个项目，我复盘了下进展，发现有个环节比预想中要复杂，坦白说，硬赶可能影响质量，反而得不偿失。我的想法是：申请延期3天，这期间我会每天跟您同步进度，确保风险可控。同时我会把延期后的交付标准再提高一个台阶——算是给咱们多争取的这段时间加个码，您看这样行吗？",
-          "allVersions": {},
-          "tokens": 5010,
-          "duration": 7.92,
-          "error": null,
-          "extra": {
-            "intent": "求助",
-            "intentConfidence": 0.85,
-            "relation": "上下级",
-            "intimacy": "一般",
-            "power": "对方上位",
-            "interest": "强利益",
-            "sensitivity": "高敏感",
-            "strategy": "以事实和数据说明困难，同时提出解决方案和延期后的保障，体现责任感和主动性",
-            "jaccard": {
-              "mild-firm": 0.311,
-              "mild-eq": 0.369,
-              "firm-eq": 0.211
-            },
-            "perf": {
-              "intent": 1.99,
-              "relation": 1.91,
-              "versions": 4.02
-            },
-            "hasRelationAwareness": true,
-            "hasMultipleStrategies": true,
-            "hasCulturalAdaptation": true,
-            "hasExplainability": true
-          },
-          "scores": {
-            "intentScore": 4,
-            "relationScore": 3,
-            "naturalness": 4,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 18
-          }
-        },
-        {
-          "model": "DeepSeek",
-          "modelKey": "deepseek",
-          "reply": "领导您好，关于目前项目遇到的困难，想跟您汇报一下情况。由于[具体困难原因，如技术难点/资源不足/外部因素等]，项目进度受到了一定影响。为了确保交付质量，希望能将原定截止日期延后[具体天数/日期]。我已经制定了调整后的计划，会在[新日期]前完成核心目标，并尽可能压缩延期时间。请问您方便的时候，我详细向您说明情况？",
-          "tokens": 137,
-          "duration": 0.11,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 3,
-            "naturalness": 4,
-            "strategyFit": 5,
-            "usability": 4,
-            "totalScore": 19
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "您好，以下是一段得体、专业且富有同理心的申请延期表达，供您参考（可根据实际情况微调）：\n\n---\n\n**领导您好，打扰您一下。**  \n关于[项目名称]，我们团队一直在全力推进，目前已完成[简要说明已完成的关键进展，如：核心模块开发/用户调研与方案确认等]。但在执行过程中遇到了[简要、客观说明困难，如：第三方接口延迟交付/关键需求出现技术验证瓶颈/客户临时提出合规性补充要求等]，虽已通过[说明已采取的应对措施，如：加班攻坚、协调外部资源、优化实施路径等]积极应对，但为确保交付质量与后续稳定性，经团队审慎评估，预计需适当延长[具体天数/周数]时间，将原定截止日调整至[新日期]。  \n我们非常重视项目承诺，也深知时间对整体节奏的影响。如您方便，我很乐意当面或线上向您同步详细情况与优化后的计划，听取您的指导。感谢您的理解与支持！\n\n---\n\n✅ 特点说明：  \n- **先肯定进展** → 体现责任心与执行力  \n- **问题归因客观中立** → 不推诿，重事实  \n- **强调已努力** → 展现主动性与担当  \n- **聚焦质量与结果** → 将延期与“保障交付价值”挂钩  \n- **主动提供沟通意愿** → 体现尊重与协作意识  \n\n需要我帮您根据具体项目背景（如行业、延期原因、时长等）定制一版更贴切的表述，欢迎随时告诉我 😊",
-          "tokens": 402,
-          "duration": 5.68,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 18
-          }
-        },
-        {
-          "model": "Kimi(月之暗面)",
-          "modelKey": "kimi",
-          "reply": "当然，向领导申请项目延期时，重要的是要展现出你的专业性和对项目的承诺，同时清晰地说明遇到的问题以及延期的必要性。以下是一个得体的回复示例：\n\n---\n\n尊敬的[领导的职位或姓名]，\n\n我写这封邮件是关于我们目前正在进行的项目[项目名称]的进展情况。在过去的几周里，我和我的团队一直在努力推进项目，但我们遇到了一些意料之外的挑战，这些挑战对我们的进度产生了影响。\n\n[在这里详细说明遇到的困难，例如技术难题、资源不足、关键人员变动等，并解释为什么这些困难会导致项目延期]\n\n鉴于这些情况，我们团队经过深思熟虑后认为，为了保证项目的质量并满足我们对客户的承诺，我们需要额外的时间来克服这些挑战。因此，我在此正式向您提出申请，希望将项目[具体延期的时间]延期至[新的预期完成日期]。\n\n[在这里可以简要说明延期后的工作计划和如何利用这段时间来解决问题，以及对项目最终成果的积极影响]\n\n我理解任何延期都可能对公司的整体计划产生影响，因此我已经尽力最小化延期时间，并制定了详细的后续工作计划，以确保一旦这些挑战被解决，我们可以迅速恢复项目进度。\n\n我希望能在[约定的时间]与您会面，详细讨论我们的计划，并回答您可能提出的任何问题。感谢您的理解和支持，我承诺将尽最大努力确保项目的成功和按时交付。\n\n敬请考虑我们的请求，并期待您的回复。\n\n此致\n敬礼，\n\n[你的名字]\n[你的职位]\n[你的联系信息]\n\n---\n\n这样的回复既表现出对问题的严肃态度，也展示了你对解决问题和项目成功的决心。记得在实际发送之前，根据具体情况调整细节。",
-          "tokens": 402,
-          "duration": 7.52,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 3,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 3,
-            "totalScore": 19
-          }
-        }
-      ]
-    },
-    {
-      "scenario": {
-        "id": "S025",
-        "name": "想请同学帮忙复习功课",
-        "category": "求助",
-        "intent": "寻求帮助"
-      },
-      "results": [
-        {
-          "model": "ExpressCoach",
-          "reply": "老兄，你那个学科是不是特别擅长？我看你上次解题思路贼清晰，我这块真的有点抓瞎。你要是方便的话，能不能带我捋一捋？当然不能白嫖你时间——我请你喝奶茶或者请你吃顿饭，你挑！主要是有你带着学，我感觉效率能翻倍。",
-          "allVersions": {},
-          "tokens": 4961,
-          "duration": 6.97,
-          "error": null,
-          "extra": {
-            "intent": "求助",
-            "intentConfidence": 0.95,
-            "relation": "同学",
-            "intimacy": "较近",
-            "power": "平等",
-            "interest": "纯情感",
-            "sensitivity": "中敏感",
-            "strategy": "以友好、感谢的语气提出请求，并主动表示愿意回报或请对方吃饭，以平衡人情",
-            "jaccard": {
-              "mild-firm": 0.236,
-              "mild-eq": 0.2,
-              "firm-eq": 0.149
-            },
-            "perf": {
-              "intent": 1.62,
-              "relation": 2.07,
-              "versions": 3.28
-            },
-            "hasRelationAwareness": true,
-            "hasMultipleStrategies": true,
-            "hasCulturalAdaptation": true,
-            "hasExplainability": true
-          },
-          "scores": {
-            "intentScore": 4,
-            "relationScore": 3,
             "naturalness": 5,
             "strategyFit": 4,
             "usability": 4,
@@ -2883,55 +2927,11 @@
           }
         },
         {
-          "model": "DeepSeek",
-          "modelKey": "deepseek",
-          "reply": "当然可以。你可以这样说：“同学你好，最近我在复习XX课时遇到一些困难，想请教一下你。不知道你最近方不方便抽空帮我辅导一下？当然，如果你时间紧张也没关系，我们可以根据你的安排来调整。非常感谢！”",
-          "tokens": 93,
-          "duration": 0.12,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 5,
-            "relationScore": 4,
-            "naturalness": 3,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 20
-          }
-        },
-        {
-          "model": "通义千问(Qwen)",
-          "modelKey": "qwen",
-          "reply": "你好～最近在整理这门课的重点，感觉有些地方还不太扎实，特别想和你一起复习一下！听说你学得很扎实，如果方便的话，不知道这周有没有时间一起自习？我可以带资料、整理好问题，咱们互相答疑，效率应该会高很多～当然完全尊重你的时间安排，不着急，你有空时告诉我就好 😊",
-          "tokens": 134,
-          "duration": 1.89,
-          "error": null,
-          "extra": {
-            "hasRelationAwareness": false,
-            "hasMultipleStrategies": false,
-            "hasCulturalAdaptation": false,
-            "hasExplainability": false
-          },
-          "scores": {
-            "intentScore": 4,
-            "relationScore": 4,
-            "naturalness": 5,
-            "strategyFit": 4,
-            "usability": 4,
-            "totalScore": 21
-          }
-        },
-        {
           "model": "Kimi(月之暗面)",
           "modelKey": "kimi",
-          "reply": "当然，这里有一个得体且自然的回复例子，你可以用它来请你的同学帮忙复习功课：\n\n---\n\n嘿 [同学的名字]，\n\n希望最近一切都好！我在准备即将到来的 [科目名称] 考试，感觉有点吃力。我记得你在这方面特别厉害，所以我想冒昧地问问，不知道你是否愿意抽空帮我复习一下重点内容？如果你有时间的话，我们可以一起过一遍那些我不太确定的概念。\n\n我知道大家都很忙，所以如果你现在不方便，我完全理解。但如果你愿意帮忙，我真的会非常感激。我们可以找个时间，比如 [具体时间或时间段]，在学校图书馆或者你喜欢的任何地方。\n\n期待你的回复，非常感谢！\n\n最好的祝福，\n[你的名字]\n\n---\n\n这个回复不仅礼貌地表达了你的请求，而且还给了对方足够的空间来考虑是否能够帮忙。记得根据实际情况调整具体的细节，比如科目名称、时间安排等。",
-          "tokens": 231,
-          "duration": 3.72,
+          "reply": "当然可以，这里有一个得体且友好的回复示例：\n\n---\n\n嗨 [同学的名字]，\n\n希望一切都好！我最近在准备即将到来的考试，感觉自己在某些科目上还有点生疏，特别需要加强一下理解。我在想，如果你有时间的话，不知道是否可以请你帮我复习一下功课？我觉得你在这门课上特别擅长，而且讲解东西总是那么清晰易懂。\n\n我们可以找个大家都方便的时间和地点，比如图书馆或者找个安静的咖啡馆，一起过一遍重点和难点。如果你需要的话，我也很乐意帮你复习其他科目作为回报。\n\n请告诉我你的想法，期待你的回复。非常感谢！\n\n祝好，\n[你的名字]\n\n---\n\n这样的信息表达了你的请求，同时也表明了对对方时间和帮助的尊重。记得根据你和同学的关系以及他们的姓名来调整信息的内容。",
+          "tokens": 218,
+          "duration": 11.35,
           "error": null,
           "extra": {
             "hasRelationAwareness": false,

@@ -178,17 +178,19 @@ function printDivider(char = "─", length = 64) {
 function printIntentResult(result) {
   console.log("");
   printDivider();
-  console.log(color(C.bold, "📊 步骤1: 意图识别结果"));
+  console.log(color(C.bold, "📊 步骤1: 意图识别结果 (Day 23 多标签)"));
   printDivider();
 
   if (result.parsed) {
     const r = result.parsed;
-    console.log(`  意图     : ${color(C.cyan, r["意图"] || "未知")}`);
-    console.log(`  置信度   : ${color(C.green, ((r["置信度"] || 0) * 100).toFixed(1) + "%")}`);
-    if (r["分析"]) console.log(`  分析     : ${r["分析"]}`);
+    // Day 23: 显示主意图 + 辅助意图
+    const primaryIntent = r["主意图"] || r["意图"] || "未知";
+    console.log(`  主意图   : ${color(C.cyan, primaryIntent)}`);
     if (r["辅助意图"] && r["辅助意图"].length > 0) {
       console.log(`  🏷️ 辅助意图: ${color(C.yellow, r["辅助意图"].join(" / "))}`);
     }
+    console.log(`  置信度   : ${color(C.green, ((r["置信度"] || 0) * 100).toFixed(1) + "%")}`);
+    if (r["分析"]) console.log(`  分析     : ${r["分析"]}`);
     if (r["关键词匹配"]?.length) console.log(`  关键词   : ${r["关键词匹配"].join(", ")}`);
   } else {
     console.log(color(C.yellow, "  ⚠️ 解析失败，原始响应:"));
