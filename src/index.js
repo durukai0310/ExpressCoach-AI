@@ -82,6 +82,21 @@ function getSandboxModule() {
   return sandboxModule;
 }
 
+// W4 Day 24: 用户画像系统 — 懒加载
+let userProfileModule = null;
+let currentProfileId = null;
+function getUserProfileModule() {
+  if (!userProfileModule) {
+    try {
+      userProfileModule = require("./memory/user-profile");
+      console.log("  🧠 用户画像模块已加载");
+    } catch (e) {
+      console.error(`  ⚠️ 用户画像模块加载失败: ${e.message}`);
+    }
+  }
+  return userProfileModule;
+}
+
 // Day 20: 黄金案例库路径
 const GOLDEN_CASES_PATH = path.resolve(__dirname, "..", "data", "golden-cases.json");
 
@@ -223,6 +238,7 @@ function printRelationshipResult(result) {
     }
     if (result.dualRelation && result.dualRelation.isDual) {
       console.log(`  🔀 双重关系 : ${color(C.magenta, result.dualRelation.primaryRelation)}(${result.dualRelation.primaryWeight}) + ${result.dualRelation.secondaryRelation}(${result.dualRelation.secondaryWeight})`);
+      console.log(`  📐 敏感度修正 : ${color(C.yellow, `+${result.dualRelation.sensitivityModifier || 0.2}`)} (双重关系自动加成)`);
     }
     if (result.weights) {
       console.log(color(C.dim, `  ⚖️  权重    : 规则${result.weights.rule} / LLM${result.weights.llm}`));
@@ -513,7 +529,7 @@ async function collectFeedback(rl, ask, versions, savedCaseId, scenario) {
 
   if (!versionType) {
     console.log(color(C.yellow, "  ⚠️ 无效选择，跳过反馈"));
-    return;
+    return { versionType: null, rating: null };
   }
 
   // 评分
@@ -521,7 +537,7 @@ async function collectFeedback(rl, ask, versions, savedCaseId, scenario) {
   const rating = parseInt(ratingStr.trim());
   if (isNaN(rating) || rating < 1 || rating > 5) {
     console.log(color(C.yellow, "  ⚠️ 无效评分，跳过反馈"));
-    return;
+    return { versionType: null, rating: null };
   }
 
   // 可选评语
@@ -573,6 +589,9 @@ async function collectFeedback(rl, ask, versions, savedCaseId, scenario) {
       console.error(color(C.yellow, `  ⚠️ 黄金案例库更新失败: ${e.message}`));
     }
   }
+
+  // W4 Day 24: 返回选择的版本和评分，用于用户画像记录
+  return { versionType, rating };
 }
 
 // ============================================================
@@ -590,13 +609,65 @@ async function interactiveMode() {
 
   console.log("");
   console.log(color(C.bold, "╔══════════════════════════════════════════════════════╗"));
-  console.log(color(C.bold, "║     🎯 ExpressCoach AI — 社交表达教练 (MVP Day 20)     ║"));
-  console.log(color(C.bold, "║  全链路+沙盒+自动评分+反馈闭环+竞品对比                        ║"));
+  console.log(color(C.bold, "║     🎯 ExpressCoach AI — 社交表达教练 (MVP Day 24)     ║"));
+  console.log(color(C.bold, "║  全链路+沙盒+自动评分+反馈闭环+竞品对比+用户画像            ║"));
   console.log(color(C.bold, "╚══════════════════════════════════════════════════════╝"));
   console.log("");
   console.log(color(C.dim, "  📝 在下方输入你的社交场景，AI 会帮你分析意图、判断关系并生成三版本回复"));
   console.log(color(C.dim, "  输入 /help 查看示例  |  /stats 查看统计  |  /search 搜索案例  |  /sandbox 沙盒练习  |  /quit 退出"));
   console.log("");
+
+  // ═══ W4 Day 24: 用户画像加载 ═══
+  const upModule = getUserProfileModule();
+  if (upModule && dbDao) {
+    try {
+      await upModule.initProfileTables();
+      console.log("  🧠 用户画像表已就绪");
+    } catch (e) {
+      console.error(color(C.yellow, `  ⚠️ 画像表初始化失败: ${e.message}`));
+    }
+
+    // 列出已有画像
+    try {
+      const profiles = await upModule.listProfiles();
+      if (profiles.length > 0) {
+        console.log("");
+        console.log(color(C.bold, "  👤 已有用户画像:"));
+        for (const p of profiles) {
+          console.log(color(C.dim, `     ID#${p.id}: ${p.name} | 风格: ${p.preferred_style} | 会话: ${p.total_sessions}次`));
+        }
+      }
+      console.log("");
+      const profileChoice = await ask(color(C.cyan, "🧠 是否加载已有用户画像？输入ID、新用户名，或直接回车跳过: "));
+      const trimmed = profileChoice.trim();
+
+      if (trimmed) {
+        const idNum = parseInt(trimmed);
+        if (!isNaN(idNum) && profiles.find(p => p.id === idNum)) {
+          // 按ID加载
+          const profile = await upModule.getProfile(idNum);
+          if (profile) {
+            currentProfileId = profile.id;
+            console.log(color(C.green, `  ✅ 已加载用户画像: ${profile.name} (ID#${profile.id})`));
+            console.log(color(C.dim, `     偏好风格: ${profile.preferred_style} | 常用意图: ${JSON.parse(profile.common_intents || '[]').join(', ') || '暂无'}`));
+          }
+        } else {
+          // 按名称创建新画像
+          try {
+            const newProfile = await upModule.createProfile(trimmed);
+            currentProfileId = newProfile.id;
+            console.log(color(C.green, `  ✅ 已创建新用户画像: ${trimmed} (ID#${newProfile.id})`));
+          } catch (e) {
+            console.log(color(C.yellow, `  ⚠️ 创建画像失败: ${e.message}`));
+          }
+        }
+      } else {
+        console.log(color(C.dim, "  ℹ️ 跳过用户画像，分析将不会被记录到个人历史"));
+      }
+    } catch (e) {
+      console.log(color(C.yellow, `  ⚠️ 画像查询失败: ${e.message}`));
+    }
+  }
 
   let turn = 0;
   let totalTokens = 0;
@@ -627,7 +698,7 @@ async function interactiveMode() {
       console.log('    ⏰ 催促: 客户一直不付款该怎么催');
       console.log('    \u{1f4ac} 反馈: 朋友总是迟到我想提醒他');
       console.log("");
-      console.log(color(C.dim, "  命令: /help 帮助 | /stats 统计 | /search 搜索案例 | /sandbox 沙盒练习 | /quit 退出"));
+      console.log(color(C.dim, "  命令: /help 帮助 | /stats 统计 | /search 搜索案例 | /sandbox 沙盒练习 | /profile 画像 | /quit 退出"));
       console.log("");
       continue;
     }
@@ -694,6 +765,42 @@ async function interactiveMode() {
       continue;
     }
 
+    // W4 Day 24: /profile 用户画像命令
+    if (input.trim() === "/profile" || input.trim().startsWith("/profile")) {
+      const upMod = getUserProfileModule();
+      if (!upMod || !dbDao) {
+        console.log(color(C.yellow, "  ⚠️ 用户画像模块或数据库未就绪"));
+        continue;
+      }
+
+      if (!currentProfileId) {
+        console.log(color(C.yellow, "  ⚠️ 尚未加载用户画像，请重新启动并在启动时选择画像"));
+        continue;
+      }
+
+      try {
+        const profile = await upMod.getProfile(currentProfileId);
+        const inferred = await upMod.inferPreferences(currentProfileId);
+        console.log("");
+        console.log(color(C.bold, "╔══════════════════════════════════════════════════════╗"));
+        console.log(color(C.bold, `║  👤 用户画像: ${(profile?.name || "未知").padEnd(42)}║`));
+        console.log(color(C.bold, "╠══════════════════════════════════════════════════════╣"));
+        console.log(color(C.bold, `║  ID: ${String(currentProfileId).padEnd(48)}║`));
+        console.log(color(C.bold, `║  偏好风格: ${(profile?.preferred_style || "eq").padEnd(43)}║`));
+        console.log(color(C.bold, `║  总分析次数: ${String(profile?.total_sessions || 0).padEnd(42)}║`));
+        if (inferred) {
+          console.log(color(C.bold, `║  最常意图: ${(inferred.topIntents?.join(', ') || '暂无').padEnd(46)}║`));
+          console.log(color(C.bold, `║  最爱版本: ${(inferred.preferredStyle || 'eq').padEnd(46)}║`));
+          console.log(color(C.bold, `║  上次活跃: ${(inferred.lastActive || '未知').padEnd(46)}║`));
+        }
+        console.log(color(C.bold, "╚══════════════════════════════════════════════════════╝"));
+        console.log("");
+      } catch (e) {
+        console.log(color(C.yellow, `  ⚠️ 画像查询失败: ${e.message}`));
+      }
+      continue;
+    }
+
     if (input.trim() === "/stats") {
       console.log("");
       console.log(color(C.bold, "╔══════════════════════════════════════════════════════╗"));
@@ -707,6 +814,25 @@ async function interactiveMode() {
       console.log(color(C.bold, "╠══════════════════════════════════════════════════════╣"));
       console.log(color(C.bold, "║  效果量化综合评分:       81.9/100                      ║"));
       console.log(color(C.bold, "╚══════════════════════════════════════════════════════╝"));
+
+      // W4 Day 24: 个人统计
+      if (currentProfileId && upModule) {
+        try {
+          const inferred = await upModule.inferPreferences(currentProfileId);
+          if (inferred) {
+            console.log("");
+            console.log(color(C.bold, "  👤 你的个人统计:"));
+            console.log(color(C.dim, `     总分析次数: ${inferred.totalAnalyses}`));
+            console.log(color(C.dim, `     最常意图: ${inferred.topIntents?.join(', ') || '暂无'}`));
+            console.log(color(C.dim, `     最爱版本: ${inferred.preferredStyle || 'eq'}`));
+            if (inferred.avgRatings && Object.keys(inferred.avgRatings).length > 0) {
+              for (const [v, r] of Object.entries(inferred.avgRatings)) {
+                console.log(color(C.dim, `     ${v}版平均评分: ${r}/5`));
+              }
+            }
+          }
+        } catch (e) { /* silent */ }
+      }
       console.log("");
       continue;
     }
@@ -736,13 +862,32 @@ async function interactiveMode() {
     try {
       const analysisResult = await runAnalysis(input);
       // Day 20: 反馈闭环 — 用户评分
+      let feedbackInfo = { versionType: null, rating: null };
       if (analysisResult && analysisResult.versions) {
-        await collectFeedback(
+        feedbackInfo = await collectFeedback(
           rl, ask,
           analysisResult.versions,
           analysisResult.savedCaseId,
           input
         );
+      }
+
+      // W4 Day 24: 自动记录分析到用户画像历史（含版本选择和评分）
+      if (currentProfileId && upModule && analysisResult) {
+        try {
+          const intentType = analysisResult.intentResult?.parsed?.["主意图"]
+            || analysisResult.intentResult?.parsed?.["意图"]
+            || null;
+          const relationType = analysisResult.relationResult?.parsed?.["关系类型"] || null;
+
+          await upModule.postAnalysisUpdate(currentProfileId, {
+            scenario: input,
+            intentType,
+            relationType,
+            chosenVersion: feedbackInfo.versionType,
+            rating: feedbackInfo.rating,
+          });
+        } catch (e) { /* silent — don't interrupt the flow */ }
       }
     } catch (error) {
       console.error(color(C.red, `❌ 错误: ${error.message}`));

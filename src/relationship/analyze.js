@@ -244,29 +244,37 @@ function ruleMatch(scenario) {
 // ============================================================
 
 /**
- * detectDualRelationship: 检测场景中是否包含双重关系
+ * W4 Day 25: detectDualRelationship — 双重关系检测 + 策略融合
  *
- * 格式: "同事兼好友" / "闺蜜也是下属" / "同学+下属"
- * 逻辑: 如果 ruleMatch 返回的 scoredMatches 中有多个高分候选
- *   (> topScore * 0.7)，且它们的关系类型不同，则判定为双重关系
+ * 检测场景中是否包含双重关系（如"同事兼好友"、"闺蜜也是下属"）
+ *
+ * 逻辑:
+ *   1. 遍历 relation-dict.json 的所有关系类型
+ *   2. 如果场景中匹配到2种关系 → 标记为双重关系
+ *   3. 输出: { isDual, primaryRelation, secondaryRelation, strategyWeights, sensitivityModifier }
+ *
+ * 策略融合 (不二选一，而是加权平均):
+ *   - 工作场景(利益>情感) → 同事策略权重0.6 + 好友策略权重0.4
+ *   - 情感场景(情感>利益) → 同事策略权重0.4 + 好友策略权重0.6
+ *   - 四维公式调整: sensitivityModifier += 0.2 (双重关系自动+0.2)
  *
  * @param {object} ruleMatchResult - ruleMatch 的返回结果
  * @param {string} scenario - 原始场景描述
- * @returns {object} { isDual, primaryRelation, secondaryRelation, dualWeight }
+ * @returns {object} { isDual, primaryRelation, secondaryRelation, primaryWeight, secondaryWeight, sensitivityModifier }
  */
 function detectDualRelationship(ruleMatchResult, scenario) {
   if (!ruleMatchResult || !ruleMatchResult.matched) {
-    return { isDual: false };
+    return { isDual: false, sensitivityModifier: 0 };
   }
 
   const allMatches = ruleMatchResult.allMatches || [];
-  // 需要至少2个候选，且第二名的分数足够高（> 0.7x 第一名）
-  if (allMatches.length < 2) return { isDual: false };
+  // 需要至少2个候选，且第二名的分数足够高（> 0.65x 第一名）
+  if (allMatches.length < 2) return { isDual: false, sensitivityModifier: 0 };
 
   const top = allMatches[0];
   const second = allMatches[1];
 
-  // 第二名分数 > 第一名的70% → 可能双重关系
+  // 第二名分数 > 第一名的65% → 可能双重关系
   if (second.score >= top.score * 0.65) {
     // 额外检测: 场景描述中是否有双重关系标记词
     const dualKeywords = /兼|也是|同时是|又是|还是.*也是|既.*又|双重|混合/;
@@ -274,39 +282,66 @@ function detectDualRelationship(ruleMatchResult, scenario) {
 
     // 分数接近 + 关键词信号 → 确认双重关系
     if (hasDualSignal || second.score >= top.score * 0.8) {
-      // 判断权重：谁的利益关联更强？
-      const primaryRelation = top.entry;    // 默认：高分的是主关系
+      const primaryRelation = top.entry;
       const secondaryRelation = second.entry;
 
-      // 工作场景(利益>情感) → 工作关系权重更高
-      // 家庭场景(情感>利益) → 情感关系权重更高
-      const workSignals = /工作|报告|任务|项目|汇报|绩效|考核|工资|加班/;
-      const familySignals = /家|亲戚|爸爸|妈妈|父母|公婆|妯娌|过年|结婚/;
+      // === W4 Day 25: 策略融合权重 ===
+      // 判断场景的利益/情感主导类型
+      const workSignals = /工作|报告|任务|项目|汇报|绩效|考核|工资|加班|同事|下属|领导|老板/;
+      const emotionSignals = /家|亲戚|爸爸|妈妈|父母|公婆|妯娌|过年|结婚|闺蜜|好友|朋友|借钱|感情/;
 
-      let dualWeight = { primary: 0.55, secondary: 0.45 }; // 默认接近
+      let workWeight, emotionWeight;
+      // 确定哪个关系是"工作/利益型"，哪个是"情感型"
+      const topIsWork = workSignals.test(top.entry.type) ||
+        (top.entry.interest === "强利益" || top.entry.interest === "弱利益");
+      const secondIsWork = workSignals.test(second.entry.type) ||
+        (second.entry.interest === "强利益" || second.entry.interest === "弱利益");
 
+      // Day 25 策略融合规则:
+      // 工作场景(利益>情感) → 工作/同事策略权重0.6 + 好友/情感策略权重0.4
+      // 情感场景(情感>利益) → 工作/同事策略权重0.4 + 好友/情感策略权重0.6
       if (workSignals.test(scenario)) {
-        dualWeight = { primary: 0.65, secondary: 0.35 };
-      } else if (familySignals.test(scenario)) {
-        dualWeight = { primary: 0.6, secondary: 0.4 };
+        // 工作场景: 利益 > 情感
+        workWeight = 0.6;
+        emotionWeight = 0.4;
+      } else if (emotionSignals.test(scenario)) {
+        // 情感场景: 情感 > 利益
+        workWeight = 0.4;
+        emotionWeight = 0.6;
+      } else {
+        // 默认: 均衡
+        workWeight = 0.5;
+        emotionWeight = 0.5;
       }
 
-      console.error(`\n  🔀 [W4] 双重关系检测:`);
-      console.error(`     主关系: ${primaryRelation.type} (权重${dualWeight.primary})`);
-      console.error(`     副关系: ${secondaryRelation.type} (权重${dualWeight.secondary})`);
+      // 分配权重到具体关系
+      const primaryWeight = topIsWork ? workWeight : emotionWeight;
+      const secondaryWeight = secondIsWork ? workWeight : emotionWeight;
+
+      // W4 Day 25: 四维公式调整 — 双重关系自动+0.2敏感度
+      const sensitivityModifier = 0.2;
+
+      console.error(`\n  🔀 [W4 Day 25] 双重关系检测:`);
+      console.error(`     主关系: ${primaryRelation.type} (权重${primaryWeight.toFixed(1)})`);
+      console.error(`     副关系: ${secondaryRelation.type} (权重${secondaryWeight.toFixed(1)})`);
+      console.error(`     场景类型: ${workSignals.test(scenario) ? '工作主导(利益>情感)' : emotionSignals.test(scenario) ? '情感主导(情感>利益)' : '均衡'}`);
+      console.error(`     敏感度修正: +${sensitivityModifier} (双重关系自动加成)`);
       console.error(`     触发: 分数${second.score.toFixed(1)}≈${top.score.toFixed(1)} + 双重信号`);
 
       return {
         isDual: true,
         primaryRelation: primaryRelation.type,
         secondaryRelation: secondaryRelation.type,
-        primaryWeight: dualWeight.primary,
-        secondaryWeight: dualWeight.secondary,
+        primaryWeight,
+        secondaryWeight,
+        sensitivityModifier,
+        primaryIsWork: topIsWork,
+        secondaryIsWork,
       };
     }
   }
 
-  return { isDual: false };
+  return { isDual: false, sensitivityModifier: 0 };
 }
 
 // ============================================================
