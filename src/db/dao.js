@@ -246,5 +246,6 @@ module.exports = {
   saveFeedback,
   closeDB,
   getDb,
+  getConnection: getDb,  // W4 Day 24: 别名，供 user-profile.js 使用
   DB_PATH,
 };

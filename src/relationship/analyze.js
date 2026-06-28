@@ -229,14 +229,60 @@ function ruleMatch(scenario) {
     console.error(color(C.dim, `     其他候选: ${scoredMatches.slice(1, 4).map(m => `${m.type}(${m.score})`).join(", ")}`));
   }
 
+  // Day 28 Bug Bash: 场景上下文覆盖 (修复 money/power 误判)
+  const overriddenEntry = applyContextualOverrides(best.entry, scenario);
+  if (overriddenEntry.interest !== best.entry.interest || overriddenEntry.power !== best.entry.power) {
+    console.error(color(C.dim, `  📝 上下文覆盖: ${overriddenEntry.interest !== best.entry.interest ? `利益 ${best.entry.interest}→${overriddenEntry.interest}` : ''}${overriddenEntry.power !== best.entry.power ? ` 权力 ${best.entry.power}→${overriddenEntry.power}` : ''}`));
+  }
+
   return {
     matched: true,
-    entry: best.entry,
+    entry: overriddenEntry,
     score: best.score,
     allMatches: scoredMatches,
     matchedKeywords: best.matchedKeywords,
     source: `关键词匹配: ${best.type}`,
   };
+}
+
+// ============================================================
+// Day 28 Bug Bash: 场景上下文覆盖 — 修复利益关联/权力关系误判
+// ============================================================
+
+/**
+ * 根据场景中的上下文关键词，动态修正关系词典的基础维度
+ * 解决: 借钱→利益关联误判 / 服务提供者→权力关系误判
+ */
+function applyContextualOverrides(entry, scenario) {
+  const overrides = { ...entry }; // shallow copy
+
+  // P0: 金钱相关 → 临时升级为强利益
+  const moneyKeywords = /\b(借钱|还钱|付款|欠款|货款|工资|结账|赔偿|索赔|补偿|涨薪|加薪|报销|转账|汇款|收费|扣款|押金)\b/;
+  if (moneyKeywords.test(scenario) && overrides.interest !== "强利益") {
+    overrides.interest = "强利益";
+  }
+
+  // P1: 服务提供者 + 投诉场景 → 权力=己方上位
+  const serviceKeywords = /(快递|外卖|包裹|送餐|送货|配送|网约车|出租车|滴滴)/;
+  const complaintKeywords = /(错了|延迟|迟到|丢了|坏了|不满|投诉|赔偿|退款|差评|态度差|不达|问题)/;
+  if (serviceKeywords.test(scenario) && complaintKeywords.test(scenario) && overrides.power === "平等") {
+    overrides.power = "己方上位";
+  }
+
+  // P1: 供应商场景 + 质量问题 → 权力=己方上位
+  const supplierKeywords = /(供应商|乙方|外包)/;
+  const qualityKeywords = /(质量|延期|延迟|不达标|违约|赔偿|问题)/;
+  if (supplierKeywords.test(scenario) && qualityKeywords.test(scenario)) {
+    if (overrides.power === "平等") overrides.power = "己方上位";
+    overrides.interest = "强利益";
+  }
+
+  // P2: 亲密+上级+弱利益组合 → 敏感度下调 (避免过度敏感)
+  if (overrides.intimacy === "亲密" && overrides.power === "对方上位" && overrides.interest === "弱利益") {
+    overrides.sensitivity = "中敏感";
+  }
+
+  return overrides;
 }
 
 // ============================================================
@@ -336,7 +382,7 @@ function detectDualRelationship(ruleMatchResult, scenario) {
         secondaryWeight,
         sensitivityModifier,
         primaryIsWork: topIsWork,
-        secondaryIsWork,
+        secondaryIsWork: secondIsWork,
       };
     }
   }
@@ -504,9 +550,7 @@ module.exports = {
   ruleMatch,
   judgeRelationship,
   hybridAnalyze,
-  detectDualRelationship, // W4: 双重关系检测
-  judgeRelationship,
-  hybridAnalyze,
+  detectDualRelationship, // W4 Day 25: 双重关系检测
   callDeepSeek,
   parseResponse,
   loadRelationDict,

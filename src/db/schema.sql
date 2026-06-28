@@ -76,3 +76,40 @@ INSERT OR IGNORE INTO preferences (key, value) VALUES
     ('default_style', 'eq'),
     ('max_history', '50'),
     ('auto_save', 'true');
+
+-- ============================================================
+-- 表4: user_profiles — 用户画像 (W4 Day 24)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS user_profiles (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    name            TEXT,
+    preferred_style TEXT DEFAULT 'eq',              -- mild/firm/eq
+    common_intents  TEXT DEFAULT '[]',              -- JSON: ['拒绝','催促']
+    tone_preferences TEXT DEFAULT '{}',             -- JSON: {formality:0.7, directness:0.5}
+    total_sessions  INTEGER DEFAULT 0,
+    created_at      TEXT,
+    updated_at      TEXT
+);
+
+-- 索引: 按名称查找画像
+CREATE INDEX IF NOT EXISTS idx_user_profiles_name ON user_profiles(name);
+
+-- ============================================================
+-- 表5: analysis_history — 用户分析历史 (W4 Day 24)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS analysis_history (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    profile_id      INTEGER,
+    scenario        TEXT,
+    intent_type     TEXT,
+    relation_type   TEXT,
+    chosen_version  TEXT,                           -- mild/firm/eq
+    rating          INTEGER,
+    tokens          INTEGER DEFAULT 0,
+    duration_ms     INTEGER DEFAULT 0,
+    created_at      TEXT,
+    FOREIGN KEY(profile_id) REFERENCES user_profiles(id)
+);
+
+-- 索引: 按画像ID检索历史
+CREATE INDEX IF NOT EXISTS idx_analysis_history_profile ON analysis_history(profile_id);

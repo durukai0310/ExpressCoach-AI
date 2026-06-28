@@ -117,7 +117,6 @@ async function updatePreferences(id, data) {
   if (fields.length === 0) return;
 
   fields.push("updated_at = datetime('now')");
-  values.push(id);
 
   return new Promise((resolve, reject) => {
     dbConn.run(`UPDATE user_profiles SET ${fields.join(", ")} WHERE id = ?`, [...values, id], (err) => {

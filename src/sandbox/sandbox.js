@@ -436,7 +436,7 @@ async function _runCoachCheck(coach, ctx, mode, round, coachConfig) {
     if (round > 0 && round % coachConfig.proactiveInterval === 0) {
       console.log(c(C.dim, `     🔍 [Coach/guided] 第${round}轮 → 主动介入`));
       const context = ctx.getContext();
-      const result = await coach.shouldIntervene(context);
+      const result = await coach.shouldIntervene(context, { emotionDeteriorated: ctx.getEmotionDeteriorated ? ctx.getEmotionDeteriorated() : false });
       if (result.should) return result;
 
       // 即使 shouldIntervene 返回 false，guided 模式也强制给建议
@@ -479,7 +479,8 @@ ${contextStr}
   }
 
   // 通用模式: 按正常规则检查（guided/stress 的非特殊轮次也走这里）
-  return await coach.shouldIntervene(ctx.getContext());
+  const emotionDeteriorated = ctx.getEmotionDeteriorated ? ctx.getEmotionDeteriorated() : false;
+  return await coach.shouldIntervene(ctx.getContext(), { emotionDeteriorated });
 }
 
 // ============================================================
@@ -494,7 +495,7 @@ ${contextStr}
  */
 async function startSandbox(scenario, mode = "free", personality = "friendly", opts = {}) {
   const maxRounds = opts.rounds || 10;
-  const autopilot = opts.autopilot !== false && opts.autopilot !== undefined ? opts.autopilot : false;
+  const autopilot = opts.autopilot === true;
 
   // Day 17: 获取模式配置
   const modeConfig = MODE_CONFIGS[mode] || MODE_CONFIGS.free;

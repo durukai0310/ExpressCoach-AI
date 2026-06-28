@@ -243,17 +243,36 @@ class CoachAgent {
   }
 
   /**
-   * shouldIntervene: 判断是否应该介入（Day 16 增强版）
+   * shouldIntervene: 判断是否应该介入（Day 16 增强版 + W4 Day 24 情绪触发）
    *
    * 流程: 关键词快速检测 → LLM 二次确认 → 返回介入建议
    *
    * @param {Array} context - 共享上下文数组 [{role, content, timestamp}]
+   * @param {Object} opts - W4 Day 24: 可选参数 {emotionDeteriorated: bool}
    * @returns {Object} {should, reason, suggestion, triggerType}
    */
-  async shouldIntervene(context) {
+  async shouldIntervene(context, opts = {}) {
     const currentRound = context.filter((e) => e.role === "user").length;
     const lastUserMsg = [...context].reverse().find((e) => e.role === "user");
     const userMessage = lastUserMsg ? lastUserMsg.content : "";
+
+    // ═══════════════════════════════════════════════════════════
+    // W4 Day 24: 触发5 — 情绪连续恶化检测
+    // 情绪连续2轮恶化 → 触发紧急介入
+    // ═══════════════════════════════════════════════════════════
+    if (opts.emotionDeteriorated) {
+      console.log(color(C.red, `     🚨 [Coach] 触发5: 情绪连续恶化！紧急介入`));
+      this.lastInterventionRound = currentRound;
+      this.interventionCount++;
+      const result = {
+        should: true,
+        reason: "情绪恶化",
+        suggestion: "我注意到你现在可能有点焦虑，要不要暂停一下？深呼吸，换个角度思考——对方可能不是有意让你不舒服的。试着先肯定对方的感受，再表达自己的需求。",
+        example: "我理解你现在可能有压力，同时我想说的是...",
+      };
+      this._recordIntervention(currentRound, "情绪恶化", result);
+      return result;
+    }
 
     // ═══════════════════════════════════════════════════════════
     // 第一层: 关键词快速检测（Day 16: 先跑，快速判断）
