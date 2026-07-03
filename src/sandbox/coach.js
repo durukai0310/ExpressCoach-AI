@@ -24,31 +24,14 @@ const path = require("path");
 // ============================================================
 // 导入共用 API 工具（复用项目已有的 callDeepSeek）
 // ============================================================
-const { callDeepSeek } = require("../intent/recognize");
+const { callDeepSeek } = require("../lib/api");
 
 // ============================================================
 // 配置
 // ============================================================
 const COACH_SOUL_PATH = path.resolve(__dirname, "..", "..", "soul", "coach.md");
 
-// ============================================================
-// 终端颜色（Day 16 新增：用于日志输出）
-// ============================================================
-const C = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
-};
-function color(code, text) {
-  if (process.env.NO_COLOR || !process.stdout.isTTY) return text;
-  return code + text + C.reset;
-}
+const { C, color } = require("../lib/color");
 
 // ============================================================
 // 硬编码 System Prompt（兜底：soul/coach.md 不存在时使用）
@@ -119,7 +102,7 @@ function loadCoachSoul() {
     try {
       return fs.readFileSync(COACH_SOUL_PATH, "utf-8");
     } catch (e) {
-      console.error(color(C.yellow, `  ⚠️ [Coach] soul/coach.md 读取失败，使用硬编码 System Prompt`));
+      console.log(color(C.yellow, `  ⚠️ [Coach] soul/coach.md 读取失败，使用硬编码 System Prompt`));
     }
   }
   return HARDCODED_COACH_SYSTEM_PROMPT;
@@ -369,7 +352,7 @@ ${contextStr}
 
       return this._parseResponse(result.content);
     } catch (e) {
-      console.error(color(C.yellow, `     ⚠️ [Coach] LLM语气分析调用失败: ${e.message}`));
+      console.log(color(C.yellow, `     ⚠️ [Coach] LLM语气分析调用失败: ${e.message}`));
       return null;
     }
   }
@@ -405,7 +388,7 @@ ${contextStr}
         return parsed;
       }
     } catch (e) {
-      console.error(color(C.yellow, `     ⚠️ [Coach] LLM 调用失败: ${e.message}，使用规则兜底`));
+      console.log(color(C.yellow, `     ⚠️ [Coach] LLM 调用失败: ${e.message}，使用规则兜底`));
     }
 
     // LLM 失败时使用规则兜底

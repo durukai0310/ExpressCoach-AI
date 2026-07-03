@@ -20,41 +20,15 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
-const { callDeepSeek } = require("../intent/recognize");
+const { callDeepSeek } = require("../lib/api");
+const { parseResponse } = require("../lib/parse");
+const { loadFile } = require("../lib/fs-utils");
 
 // ============================================================
 // 配置
 // ============================================================
 const PREDICTOR_SOUL = path.resolve(__dirname, "..", "..", "soul", "predictor.md");
 const PATTERNS_PATH = path.resolve(__dirname, "..", "..", "data", "reaction-patterns.json");
-
-// ============================================================
-// 工具函数
-// ============================================================
-
-function loadFile(filePath, label) {
-  if (!fs.existsSync(filePath)) {
-    console.error(`❌ ${label} 未找到: ${filePath}`);
-    return null;
-  }
-  return fs.readFileSync(filePath, "utf-8");
-}
-
-function parseResponse(raw) {
-  try {
-    return JSON.parse(raw);
-  } catch (e) {
-    const jsonMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (jsonMatch) {
-      try { return JSON.parse(jsonMatch[1].trim()); } catch (e2) {}
-    }
-    const braceMatch = raw.match(/\{[\s\S]*\}/);
-    if (braceMatch) {
-      try { return JSON.parse(braceMatch[0]); } catch (e3) {}
-    }
-    return null;
-  }
-}
 
 // ============================================================
 // 规则兜底: 基于关键词的简易反应预测

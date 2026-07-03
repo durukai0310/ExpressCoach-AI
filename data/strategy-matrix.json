@@ -1,0 +1,631 @@
+{
+  "version": "2.0",
+  "description": "关系类型×意图类型的策略推荐矩阵，包含30种详细策略模板",
+  "relationTypes": ["上下级关系", "同事关系", "朋友关系", "家庭关系", "师生关系", "商业关系", "服务关系", "同学关系", "陌生人关系"],
+  "intentTypes": ["拒绝请求", "催促对方", "提出反馈", "设立边界", "寻求帮助"],
+  "strategyStyles": ["直接坦诚", "委婉含蓄", "幽默轻松", "严肃正式", "亲切关怀"],
+  "strategies": [
+    {
+      "id": "S01",
+      "name": "委婉拒绝",
+      "description": "温和表达无法满足请求",
+      "applicableScenarios": ["拒绝请求"],
+      "applicableRelations": ["上级", "长辈", "客户"],
+      "coreFramework": "感谢+理解+理由+替代",
+      "style": "委婉含蓄",
+      "example": "非常感谢你的信任，我理解这个需求很重要。不过我这边确实有困难，无法满足。我可以帮你推荐其他人。"
+    },
+    {
+      "id": "S02",
+      "name": "坚定拒绝",
+      "description": "明确表达立场，不妥协",
+      "applicableScenarios": ["拒绝请求", "设立边界"],
+      "applicableRelations": ["平级", "下级"],
+      "coreFramework": "立场+理由+后果",
+      "style": "直接坦诚",
+      "example": "很抱歉，这个要求我无法满足。这涉及我的原则问题，希望你能理解。"
+    },
+    {
+      "id": "S03",
+      "name": "条件拒绝",
+      "description": "在特定条件下可以考虑",
+      "applicableScenarios": ["拒绝请求"],
+      "applicableRelations": ["平级", "朋友"],
+      "coreFramework": "理解+条件+替代",
+      "style": "委婉含蓄",
+      "example": "我理解你的需求，不过目前我手头有其他任务。如果你能等到下周五，我可以帮你处理。"
+    },
+    {
+      "id": "S04",
+      "name": "拖延拒绝",
+      "description": "用拖延方式间接拒绝",
+      "applicableScenarios": ["拒绝请求"],
+      "applicableRelations": ["一般关系", "疏远关系"],
+      "coreFramework": "同意考虑+拖延+回避",
+      "style": "委婉含蓄",
+      "example": "我先了解一下情况，回头再给你答复。"
+    },
+    {
+      "id": "S05",
+      "name": "幽默拒绝",
+      "description": "用幽默方式化解尴尬",
+      "applicableScenarios": ["拒绝请求"],
+      "applicableRelations": ["朋友", "同学", "亲密同事"],
+      "coreFramework": "幽默+拒绝+转移",
+      "style": "幽默轻松",
+      "example": "借钱？我自己还等着别人借钱给我呢！要不我们一起去买彩票？"
+    },
+    {
+      "id": "S06",
+      "name": "直接催促",
+      "description": "明确表达时间要求",
+      "applicableScenarios": ["催促对方"],
+      "applicableRelations": ["下级", "平级"],
+      "coreFramework": "提醒+时间+后果",
+      "style": "直接坦诚",
+      "example": "这个任务需要在今天下班前完成，请抓紧时间。"
+    },
+    {
+      "id": "S07",
+      "name": "委婉催促",
+      "description": "温和提醒对方进度",
+      "applicableScenarios": ["催促对方"],
+      "applicableRelations": ["上级", "客户", "长辈"],
+      "coreFramework": "理解+询问+表达关心",
+      "style": "委婉含蓄",
+      "example": "我知道你很忙，想了解一下这个项目的进度，看看是否需要我帮忙。"
+    },
+    {
+      "id": "S08",
+      "name": "正式催促",
+      "description": "用正式渠道表达诉求",
+      "applicableScenarios": ["催促对方"],
+      "applicableRelations": ["客户", "供应商", "合作方"],
+      "coreFramework": "事实+要求+后果",
+      "style": "严肃正式",
+      "example": "根据合同约定，货物应于3月15日前交付。请立即安排发货，否则我们将采取法律手段。"
+    },
+    {
+      "id": "S09",
+      "name": "间接催促",
+      "description": "通过第三方或间接方式提醒",
+      "applicableScenarios": ["催促对方"],
+      "applicableRelations": ["上级", "长辈"],
+      "coreFramework": "询问+关心+暗示",
+      "style": "委婉含蓄",
+      "example": "上次你提到的那个方案，进展怎么样了？大家都很期待。"
+    },
+    {
+      "id": "S10",
+      "name": "幽默催促",
+      "description": "用轻松方式提醒",
+      "applicableScenarios": ["催促对方"],
+      "applicableRelations": ["朋友", "同学", "亲密同事"],
+      "coreFramework": "幽默+提醒+鼓励",
+      "style": "幽默轻松",
+      "example": "大神，你的代码什么时候能写完？我们都等着膜拜呢！"
+    },
+    {
+      "id": "S11",
+      "name": "直接反馈",
+      "description": "客观直接表达意见",
+      "applicableScenarios": ["提出反馈"],
+      "applicableRelations": ["平级", "下级"],
+      "coreFramework": "事实+观点+建议",
+      "style": "直接坦诚",
+      "example": "这个方案有几个问题需要改进，我建议这样修改..."
+    },
+    {
+      "id": "S12",
+      "name": "委婉反馈",
+      "description": "先肯定再提出建议",
+      "applicableScenarios": ["提出反馈"],
+      "applicableRelations": ["上级", "客户", "长辈"],
+      "coreFramework": "肯定+建议+期望",
+      "style": "委婉含蓄",
+      "example": "整体方案非常好，有几个小地方如果能改进一下会更完美..."
+    },
+    {
+      "id": "S13",
+      "name": "私下反馈",
+      "description": "在私下场合表达意见",
+      "applicableScenarios": ["提出反馈"],
+      "applicableRelations": ["上级", "同事"],
+      "coreFramework": "选择时机+单独沟通+维护面子",
+      "style": "委婉含蓄",
+      "example": "有空的话想和你单独聊一下这个项目的一些想法..."
+    },
+    {
+      "id": "S14",
+      "name": "书面反馈",
+      "description": "用书面形式正式表达",
+      "applicableScenarios": ["提出反馈"],
+      "applicableRelations": ["客户", "合作方", "上级"],
+      "coreFramework": "事实+证据+建议",
+      "style": "严肃正式",
+      "example": "关于项目进展情况，我整理了一份详细报告，请查阅附件..."
+    },
+    {
+      "id": "S15",
+      "name": "积极反馈",
+      "description": "以积极方式表达建议",
+      "applicableScenarios": ["提出反馈"],
+      "applicableRelations": ["朋友", "家人", "同事"],
+      "coreFramework": "关心+建议+支持",
+      "style": "亲切关怀",
+      "example": "我觉得你最近工作压力太大了，要不要一起聊聊，我可以帮你分担一些。"
+    },
+    {
+      "id": "S16",
+      "name": "明确边界",
+      "description": "清晰表达个人界限",
+      "applicableScenarios": ["设立边界"],
+      "applicableRelations": ["所有人"],
+      "coreFramework": "立场+理由+期望",
+      "style": "直接坦诚",
+      "example": "我需要个人空间，请不要随意进入我的房间。"
+    },
+    {
+      "id": "S17",
+      "name": "委婉设界",
+      "description": "温和表达边界需求",
+      "applicableScenarios": ["设立边界"],
+      "applicableRelations": ["上级", "长辈", "客户"],
+      "coreFramework": "理解+需求+请求",
+      "style": "委婉含蓄",
+      "example": "感谢你的关心，不过我希望在工作时间之外能有自己的时间处理个人事务。"
+    },
+    {
+      "id": "S18",
+      "name": "渐进设界",
+      "description": "逐步建立边界",
+      "applicableScenarios": ["设立边界"],
+      "applicableRelations": ["家人", "亲密朋友"],
+      "coreFramework": "小步+反馈+调整",
+      "style": "亲切关怀",
+      "example": "最近我想试着在周末专注于家庭，可能无法随时回复工作消息。"
+    },
+    {
+      "id": "S19",
+      "name": "坚定设界",
+      "description": "坚决维护个人边界",
+      "applicableScenarios": ["设立边界"],
+      "applicableRelations": ["侵犯者", "反复越界者"],
+      "coreFramework": "警告+后果+行动",
+      "style": "严肃正式",
+      "example": "如果你再这样做，我将不得不采取必要措施保护自己。"
+    },
+    {
+      "id": "S20",
+      "name": "协商设界",
+      "description": "通过协商确定边界",
+      "applicableScenarios": ["设立边界"],
+      "applicableRelations": ["同事", "朋友", "家人"],
+      "coreFramework": "表达+倾听+共识",
+      "style": "委婉含蓄",
+      "example": "我觉得我们需要讨论一下彼此的期望，找到一个双方都能接受的方案。"
+    },
+    {
+      "id": "S21",
+      "name": "双重关系拒绝",
+      "description": "处理同事+好友等双重关系的拒绝",
+      "applicableScenarios": ["拒绝请求"],
+      "applicableRelations": ["同事+好友", "同学+同事", "朋友+合作伙伴"],
+      "coreFramework": "分层策略→先朋友后同事",
+      "style": "委婉含蓄",
+      "example": "作为朋友，我很想帮你；但作为同事，这个请求确实不符合公司规定。我们可以一起想想其他办法。"
+    },
+    {
+      "id": "S22",
+      "name": "学术权力协商",
+      "description": "处理导师延期毕业等学术权力场景",
+      "applicableScenarios": ["拒绝请求", "提出反馈"],
+      "applicableRelations": ["导师", "教授", "学术上级"],
+      "coreFramework": "感恩+约束+替代+尊重",
+      "style": "严肃正式",
+      "example": "感谢老师的关心和指导。根据学校规定，我已经完成了所有毕业要求。我有一个方案，既能保证论文质量，又能按时毕业，想和老师讨论一下。"
+    },
+    {
+      "id": "S23",
+      "name": "商务坏消息",
+      "description": "向客户传达项目延期等坏消息",
+      "applicableScenarios": ["提出反馈", "寻求帮助"],
+      "applicableRelations": ["客户", "甲方", "合作方"],
+      "coreFramework": "提前+原因+补救+补偿",
+      "style": "严肃正式",
+      "example": "非常抱歉地通知你，项目可能需要延期一周。主要原因是关键部件供应延迟。我们已经启动应急方案，并将提供相应的补偿。"
+    },
+    {
+      "id": "S24",
+      "name": "HR敏感沟通",
+      "description": "处理解雇、降职等敏感人事沟通",
+      "applicableScenarios": ["提出反馈", "拒绝请求"],
+      "applicableRelations": ["员工", "下级", "同事"],
+      "coreFramework": "诚实+尊重+支持+法律",
+      "style": "严肃正式",
+      "example": "由于公司业务调整，你的岗位将被取消。我们会提供N+1的补偿，并协助你寻找新的工作机会。相关法律文件已经准备好，请查看。"
+    },
+    {
+      "id": "S25",
+      "name": "代际沟通",
+      "description": "处理与父母、公婆等长辈的沟通",
+      "applicableScenarios": ["提出反馈", "设立边界"],
+      "applicableRelations": ["父母", "公婆", "长辈"],
+      "coreFramework": "孝道+独立+感谢+商量",
+      "style": "亲切关怀",
+      "example": "爸妈，感谢你们一直以来的关心。我已经长大了，有自己的想法和安排。关于这件事，我想和你们好好商量一下。"
+    },
+    {
+      "id": "S26",
+      "name": "社交媒体冲突",
+      "description": "处理微信群聊、朋友圈等社交媒体冲突",
+      "applicableScenarios": ["提出反馈", "设立边界"],
+      "applicableRelations": ["群友", "朋友圈好友", "网友"],
+      "coreFramework": "公开→私聊/先冷后温",
+      "style": "委婉含蓄",
+      "example": "这个话题可能涉及个人隐私，我们私聊吧。"
+    },
+    {
+      "id": "S27",
+      "name": "面试谈判",
+      "description": "处理薪资、待遇等面试谈判",
+      "applicableScenarios": ["寻求帮助", "提出反馈"],
+      "applicableRelations": ["面试官", "HR", "雇主"],
+      "coreFramework": "价值+市场+合作+灵活",
+      "style": "严肃正式",
+      "example": "基于我的经验和市场行情，我期望的薪资范围是XX-XX。我相信我们可以找到一个双方都满意的方案。"
+    },
+    {
+      "id": "S28",
+      "name": "情感边界",
+      "description": "处理告白拒绝、分手等情感场景",
+      "applicableScenarios": ["拒绝请求", "设立边界"],
+      "applicableRelations": ["追求者", "恋人", "前恋人"],
+      "coreFramework": "感谢+诚实+肯定+空间",
+      "style": "亲切关怀",
+      "example": "谢谢你的喜欢，我很感动。但我目前无法回应你的感情。你是一个很好的人，希望我们都能找到合适的人。"
+    },
+    {
+      "id": "S29",
+      "name": "第三方调解",
+      "description": "帮朋友传话、调解矛盾",
+      "applicableScenarios": ["寻求帮助", "提出反馈"],
+      "applicableRelations": ["朋友", "家人", "同事"],
+      "coreFramework": "中立+传递+不添油+促成",
+      "style": "亲切关怀",
+      "example": "我和XX聊过了，他其实很在意你们的关系。他希望能和你好好沟通解决问题。"
+    },
+    {
+      "id": "S30",
+      "name": "公开汇报",
+      "description": "向上级公开汇报坏消息",
+      "applicableScenarios": ["提出反馈", "寻求帮助"],
+      "applicableRelations": ["上级", "领导", "董事会"],
+      "coreFramework": "事实+影响+方案+信心",
+      "style": "严肃正式",
+      "example": "根据最新数据，项目进度落后10%。主要影响是交付时间可能延迟。我们已经制定了三个补救方案，相信能够按时完成目标。"
+    }
+  ],
+  "matrix": {
+    "上下级关系": {
+      "拒绝请求": {
+        "primary": "委婉含蓄",
+        "secondary": ["严肃正式", "亲切关怀"],
+        "strategies": ["S01", "S02", "S03"],
+        "description": "对上级拒绝需委婉表达理由，提供替代方案，维护尊重"
+      },
+      "催促对方": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S07", "S08", "S09"],
+        "description": "对上级催促需正式说明情况，避免冒犯，强调紧迫性"
+      },
+      "提出反馈": {
+        "primary": "委婉含蓄",
+        "secondary": ["亲切关怀"],
+        "strategies": ["S12", "S13", "S14"],
+        "description": "对上级提反馈需私下沟通，先肯定再建议，维护领导权威"
+      },
+      "设立边界": {
+        "primary": "委婉含蓄",
+        "secondary": ["严肃正式"],
+        "strategies": ["S17", "S18", "S25"],
+        "description": "对上级设边界需委婉表达需求，说明工作负荷，寻求平衡"
+      },
+      "寻求帮助": {
+        "primary": "亲切关怀",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S29"],
+        "description": "向上级求助需诚恳表达困难，展示主动性，接受指导"
+      }
+    },
+    "同事关系": {
+      "拒绝请求": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S02", "S03", "S21"],
+        "description": "对同事拒绝需坦诚说明原因，保持专业态度"
+      },
+      "催促对方": {
+        "primary": "直接坦诚",
+        "secondary": ["幽默轻松"],
+        "strategies": ["S06", "S10"],
+        "description": "对同事催促需直接沟通，友好提醒，了解困难"
+      },
+      "提出反馈": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S11", "S12"],
+        "description": "对同事提反馈需客观具体，对事不对人"
+      },
+      "设立边界": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S16", "S20"],
+        "description": "对同事设边界需明确表达需求，约定规则"
+      },
+      "寻求帮助": {
+        "primary": "亲切关怀",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S29"],
+        "description": "向同事求助需礼貌表达，说明背景，表达感谢"
+      }
+    },
+    "朋友关系": {
+      "拒绝请求": {
+        "primary": "直接坦诚",
+        "secondary": ["幽默轻松"],
+        "strategies": ["S02", "S05", "S21"],
+        "description": "对朋友拒绝需真诚表达，可带幽默缓解尴尬"
+      },
+      "催促对方": {
+        "primary": "幽默轻松",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S10", "S06"],
+        "description": "对朋友催促可用轻松方式提醒，避免生硬"
+      },
+      "提出反馈": {
+        "primary": "直接坦诚",
+        "secondary": ["亲切关怀"],
+        "strategies": ["S11", "S15"],
+        "description": "对朋友提反馈需真诚直接，表达关心"
+      },
+      "设立边界": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S16", "S18", "S28"],
+        "description": "对朋友设边界需明确表达，但保持友好"
+      },
+      "寻求帮助": {
+        "primary": "亲切关怀",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S29"],
+        "description": "向朋友求助需真诚表达，相信对方支持"
+      }
+    },
+    "家庭关系": {
+      "拒绝请求": {
+        "primary": "委婉含蓄",
+        "secondary": ["亲切关怀"],
+        "strategies": ["S01", "S03"],
+        "description": "对家人拒绝需委婉表达，强调理解和关心"
+      },
+      "催促对方": {
+        "primary": "亲切关怀",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S07"],
+        "description": "对家人催促需关心态度，了解原因"
+      },
+      "提出反馈": {
+        "primary": "亲切关怀",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S15", "S25"],
+        "description": "对家人提反馈需充满爱意，尊重长辈"
+      },
+      "设立边界": {
+        "primary": "委婉含蓄",
+        "secondary": ["亲切关怀"],
+        "strategies": ["S17", "S18", "S25"],
+        "description": "对家人设边界需尊重传统，温和表达"
+      },
+      "寻求帮助": {
+        "primary": "亲切关怀",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S29"],
+        "description": "向家人求助需真诚表达，相信亲情支持"
+      }
+    },
+    "师生关系": {
+      "拒绝请求": {
+        "primary": "委婉含蓄",
+        "secondary": ["严肃正式"],
+        "strategies": ["S01", "S03", "S22"],
+        "description": "对导师拒绝需委婉表达学术理由，尊重学术权威"
+      },
+      "催促对方": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S08", "S09"],
+        "description": "对导师催促需正式沟通，表达尊重"
+      },
+      "提出反馈": {
+        "primary": "委婉含蓄",
+        "secondary": ["严肃正式"],
+        "strategies": ["S12", "S14", "S22"],
+        "description": "对老师提反馈需学术态度，尊重师长"
+      },
+      "设立边界": {
+        "primary": "委婉含蓄",
+        "secondary": ["严肃正式"],
+        "strategies": ["S17", "S22"],
+        "description": "对导师设边界需委婉表达学术需求"
+      },
+      "寻求帮助": {
+        "primary": "严肃正式",
+        "secondary": ["亲切关怀"],
+        "strategies": ["S29"],
+        "description": "向导师求助需学术态度，认真诚恳"
+      }
+    },
+    "商业关系": {
+      "拒绝请求": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S02", "S01"],
+        "description": "对客户拒绝需正式说明原因，提供替代方案"
+      },
+      "催促对方": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S08"],
+        "description": "对商业伙伴催促需正式沟通，强调合同义务"
+      },
+      "提出反馈": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S14", "S23"],
+        "description": "对商业伙伴提反馈需专业态度，客观具体"
+      },
+      "设立边界": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S19", "S20"],
+        "description": "对商业伙伴设边界需明确合同条款"
+      },
+      "寻求帮助": {
+        "primary": "严肃正式",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S29"],
+        "description": "向商业伙伴求助需专业表达，互惠互利"
+      }
+    },
+    "服务关系": {
+      "拒绝请求": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S02", "S01"],
+        "description": "对服务人员拒绝需直接表达，可礼貌说明"
+      },
+      "催促对方": {
+        "primary": "直接坦诚",
+        "secondary": ["严肃正式"],
+        "strategies": ["S06", "S08"],
+        "description": "对服务人员催促需直接表达需求"
+      },
+      "提出反馈": {
+        "primary": "直接坦诚",
+        "secondary": ["严肃正式"],
+        "strategies": ["S11", "S14"],
+        "description": "对服务人员提反馈需具体明确"
+      },
+      "设立边界": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S16", "S19"],
+        "description": "对服务人员设边界需明确表达"
+      },
+      "寻求帮助": {
+        "primary": "直接坦诚",
+        "secondary": ["亲切关怀"],
+        "strategies": ["S29"],
+        "description": "向服务人员求助需礼貌直接"
+      }
+    },
+    "同学关系": {
+      "拒绝请求": {
+        "primary": "直接坦诚",
+        "secondary": ["幽默轻松"],
+        "strategies": ["S02", "S05"],
+        "description": "对同学拒绝需直接表达，可带轻松语气"
+      },
+      "催促对方": {
+        "primary": "幽默轻松",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S10", "S06"],
+        "description": "对同学催促可用轻松方式提醒"
+      },
+      "提出反馈": {
+        "primary": "直接坦诚",
+        "secondary": ["幽默轻松"],
+        "strategies": ["S11"],
+        "description": "对同学提反馈需直接但友好"
+      },
+      "设立边界": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S16", "S26"],
+        "description": "对同学设边界需明确表达"
+      },
+      "寻求帮助": {
+        "primary": "亲切关怀",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S29"],
+        "description": "向同学求助需友好表达"
+      }
+    },
+    "陌生人关系": {
+      "拒绝请求": {
+        "primary": "直接坦诚",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S02", "S01"],
+        "description": "对陌生人拒绝需直接表达，保持礼貌"
+      },
+      "催促对方": {
+        "primary": "严肃正式",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S08", "S06"],
+        "description": "对陌生人催促需正式直接"
+      },
+      "提出反馈": {
+        "primary": "严肃正式",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S14", "S11"],
+        "description": "对陌生人提反馈需正式明确"
+      },
+      "设立边界": {
+        "primary": "严肃正式",
+        "secondary": ["直接坦诚"],
+        "strategies": ["S19", "S16"],
+        "description": "对陌生人设边界需坚定明确"
+      },
+      "寻求帮助": {
+        "primary": "亲切关怀",
+        "secondary": ["委婉含蓄"],
+        "strategies": ["S29"],
+        "description": "向陌生人求助需礼貌诚恳"
+      }
+    }
+  },
+  "intimacyAdjustments": {
+    "亲密": {
+      "adjustment": "更亲切、更直接",
+      "stylePriority": ["直接坦诚", "亲切关怀", "幽默轻松", "委婉含蓄", "严肃正式"]
+    },
+    "较近": {
+      "adjustment": "适度委婉，保持友好",
+      "stylePriority": ["直接坦诚", "委婉含蓄", "亲切关怀", "幽默轻松", "严肃正式"]
+    },
+    "一般": {
+      "adjustment": "保持礼貌，适当距离",
+      "stylePriority": ["委婉含蓄", "严肃正式", "直接坦诚", "亲切关怀", "幽默轻松"]
+    },
+    "疏远": {
+      "adjustment": "正式礼貌，保持距离",
+      "stylePriority": ["严肃正式", "委婉含蓄", "直接坦诚", "亲切关怀", "幽默轻松"]
+    }
+  },
+  "powerAdjustments": {
+    "上级": {
+      "adjustment": "尊重权威，委婉表达",
+      "stylePriority": ["委婉含蓄", "严肃正式", "亲切关怀", "直接坦诚", "幽默轻松"]
+    },
+    "平级": {
+      "adjustment": "平等沟通，直接坦诚",
+      "stylePriority": ["直接坦诚", "委婉含蓄", "幽默轻松", "亲切关怀", "严肃正式"]
+    },
+    "下级": {
+      "adjustment": "指导帮助，亲切关怀",
+      "stylePriority": ["亲切关怀", "直接坦诚", "委婉含蓄", "严肃正式", "幽默轻松"]
+    }
+  }
+}

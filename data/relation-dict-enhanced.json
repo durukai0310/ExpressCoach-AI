@@ -1,0 +1,150 @@
+{
+  "keywords": {
+    "家庭关系": ["父母", "父亲", "母亲", "爸爸", "妈妈", "弟弟", "妹妹", "哥哥", "姐姐", "儿子", "女儿", "爷爷", "奶奶", "外公", "外婆", "叔叔", "阿姨", "舅舅", "姑姑"],
+    "朋友关系": ["朋友", "闺蜜", "哥们儿", "知己", "死党", "好友"],
+    "师生关系": ["老师", "导师", "教授", "讲师", "班主任", "学生"],
+    "同事关系": ["同事", "同事们", "同事的", "工作伙伴", "搭档"],
+    "同学关系": ["同学", "同班", "校友", "室友", "舍友"],
+    "上下级关系": ["领导", "老板", "上司", "上级", "下属", "员工", "下属的", "组员", "组长", "经理", "总监"],
+    "商业关系": ["客户", "顾客", "供应商", "合作方", "合作伙伴", "客户的", "供应商的", "合作伙伴的"],
+    "服务关系": ["外卖", "快递", "物业", "服务员", "客服", "快递员", "外卖员", "物业经理", "客服人员"]
+  },
+  "power_indicators": {
+    "上级": ["领导", "老板", "上级", "导师", "老师", "父母", "父亲", "母亲", "经理", "总监", "组长"],
+    "平级": ["同事", "朋友", "同学", "室友", "搭档", "闺蜜"],
+    "下级": ["下属", "员工", "组员", "学生", "弟弟", "妹妹"]
+  },
+  "intimacy_indicators": {
+    "亲密": ["父母", "父亲", "母亲", "弟弟", "妹妹", "朋友", "闺蜜", "知己"],
+    "较近": ["同事", "同学", "室友", "导师", "领导"],
+    "一般": ["客户", "供应商", "外卖", "快递", "物业"]
+  },
+  "interest_indicators": {
+    "强": ["钱", "付款", "生意", "创业", "工资", "收入", "工作任务", "绩效", "合同", "项目", "交付", "产品", "质量"],
+    "弱": ["聊天", "帮忙", "带饭", "借书", "迟到", "打游戏", "声音", "请教"]
+  },
+  "sensitivity_rules": {
+    "高敏感": [
+      ["亲密", "上级", "强"],
+      ["较近", "上级", "强"],
+      ["亲密", "平级", "强"]
+    ],
+    "中敏感": [
+      ["亲密", "上级", "弱"],
+      ["亲密", "平级", "弱"],
+      ["较近", "上级", "弱"],
+      ["较近", "平级", "强"],
+      ["一般", "上级", "强"],
+      ["一般", "平级", "强"]
+    ],
+    "低敏感": [
+      ["亲密", "下级", "弱"],
+      ["较近", "下级", "弱"],
+      ["一般", "平级", "弱"],
+      ["一般", "下级", "弱"],
+      ["一般", "上级", "弱"]
+    ]
+  },
+  "cultural_dimensions": {
+    "家庭关系": {
+      "powerDistanceIndex": 85,
+      "individualismScore": 20,
+      "uncertaintyAvoidance": 70,
+      "note": "高权力距离+低个人主义+高不确定性规避=典型中国家庭"
+    },
+    "朋友关系": {
+      "powerDistanceIndex": 25,
+      "individualismScore": 50,
+      "uncertaintyAvoidance": 35,
+      "note": "低权力距离+中等个人主义+低不确定性规避=平等朋友关系"
+    },
+    "师生关系": {
+      "powerDistanceIndex": 80,
+      "individualismScore": 25,
+      "uncertaintyAvoidance": 65,
+      "note": "高权力距离+低个人主义+中高不确定性规避=师道尊严"
+    },
+    "同事关系": {
+      "powerDistanceIndex": 55,
+      "individualismScore": 45,
+      "uncertaintyAvoidance": 50,
+      "note": "中等权力距离+中等个人主义+中等不确定性规避=职场平级"
+    },
+    "同学关系": {
+      "powerDistanceIndex": 30,
+      "individualismScore": 55,
+      "uncertaintyAvoidance": 30,
+      "note": "低权力距离+中等偏上个人主义+低不确定性规避=同辈同学"
+    },
+    "上下级关系": {
+      "powerDistanceIndex": 88,
+      "individualismScore": 22,
+      "uncertaintyAvoidance": 68,
+      "note": "极高权力距离+低个人主义+中高不确定性规避=中国式上下级"
+    },
+    "商业关系": {
+      "powerDistanceIndex": 75,
+      "individualismScore": 50,
+      "uncertaintyAvoidance": 55,
+      "note": "高权力距离+中等个人主义+中等不确定性规避=商业合作"
+    },
+    "服务关系": {
+      "powerDistanceIndex": 65,
+      "individualismScore": 40,
+      "uncertaintyAvoidance": 50,
+      "note": "中高权力距离+中等偏下个人主义+中等不确定性规避=服务场景"
+    },
+    "陌生人关系": {
+      "powerDistanceIndex": 50,
+      "individualismScore": 60,
+      "uncertaintyAvoidance": 45,
+      "note": "中等权力距离+中高个人主义+中等不确定性规避=陌生人互动"
+    }
+  },
+  "power_cultural_dimensions": {
+    "上级": {
+      "powerDistanceIndex": 85,
+      "individualismScore": 25,
+      "uncertaintyAvoidance": 65,
+      "note": "高权力距离+低个人主义=尊重权威"
+    },
+    "平级": {
+      "powerDistanceIndex": 35,
+      "individualismScore": 50,
+      "uncertaintyAvoidance": 40,
+      "note": "低权力距离+中等个人主义=平等协作"
+    },
+    "下级": {
+      "powerDistanceIndex": 20,
+      "individualismScore": 35,
+      "uncertaintyAvoidance": 45,
+      "note": "低权力距离+低个人主义=服从与支持"
+    }
+  },
+  "intimacy_cultural_dimensions": {
+    "亲密": {
+      "powerDistanceIndex": 40,
+      "individualismScore": 25,
+      "uncertaintyAvoidance": 55,
+      "note": "中等权力距离+低个人主义=紧密关系"
+    },
+    "较近": {
+      "powerDistanceIndex": 50,
+      "individualismScore": 40,
+      "uncertaintyAvoidance": 50,
+      "note": "中等权力距离+中等个人主义=适度亲密"
+    },
+    "一般": {
+      "powerDistanceIndex": 65,
+      "individualismScore": 50,
+      "uncertaintyAvoidance": 55,
+      "note": "中高权力距离+中等个人主义=保持距离"
+    },
+    "疏远": {
+      "powerDistanceIndex": 55,
+      "individualismScore": 65,
+      "uncertaintyAvoidance": 45,
+      "note": "中等权力距离+高个人主义=陌生人互动"
+    }
+  }
+}

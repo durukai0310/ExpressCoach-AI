@@ -40,26 +40,8 @@ require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
 const { CoachAgent } = require("./coach");
 const { SimulatorAgent } = require("./simulator");
-const { callDeepSeek } = require("../intent/recognize");
-
-// ============================================================
-// 终端颜色
-// ============================================================
-const C = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
-};
-function c(code, text) {
-  if (process.env.NO_COLOR || !process.stdout.isTTY) return text;
-  return code + text + C.reset;
-}
+const { callDeepSeek } = require("../lib/api");
+const { C, c } = require("../lib/color");
 
 // ============================================================
 // 上下文压缩专用 System Prompt（Day 16 新增）
@@ -177,7 +159,7 @@ class ContextManager {
       // 确保不超过100字
       return summary.length > 100 ? summary.substring(0, 97) + "..." : summary;
     } catch (e) {
-      console.error(c(C.yellow, `     ⚠️ [ContextManager] LLM摘要生成失败: ${e.message}，使用简单截断`));
+      console.log(c(C.yellow, `     ⚠️ [ContextManager] LLM摘要生成失败: ${e.message}，使用简单截断`));
       // 降级: 简单连接前几条消息
       return messages
         .slice(0, 3)
@@ -307,7 +289,7 @@ ${contextStr}
     });
     return result.content.trim();
   } catch (e) {
-    console.error(c(C.yellow, `     ⚠️ 自动回复生成失败: ${e.message}`));
+    console.log(c(C.yellow, `     ⚠️ 自动回复生成失败: ${e.message}`));
     return "嗯，让我想想怎么说...";
   }
 }
@@ -450,7 +432,7 @@ async function _runCoachCheck(coach, ctx, mode, round, coachConfig) {
         .join("\n");
 
       try {
-        const { callDeepSeek } = require("../intent/recognize");
+        const { callDeepSeek } = require("../lib/api");
         const prompt = `当前对话（第${round}轮）:
 ${contextStr}
 
@@ -781,9 +763,12 @@ async function main() {
     process.exit(0);
   }
 
-  // 检查 API Key
-  if (!process.env.DEEPSEEK_API_KEY) {
-    console.error(c(C.red, "❌ DEEPSEEK_API_KEY 未配置，请检查 .env 文件"));
+  // 检查 API Key — 至少一个可用
+  const hasDeepSeek = !!process.env.DEEPSEEK_API_KEY;
+  const hasQwen = !!process.env.DASHSCOPE_API_KEY;
+  const hasKimi = !!process.env.MOONSHOT_API_KEY;
+  if (!hasDeepSeek && !hasQwen && !hasKimi) {
+    console.error(c(C.red, "❌ 至少配置一个 API Key (DEEPSEEK_API_KEY / DASHSCOPE_API_KEY / MOONSHOT_API_KEY)"));
     process.exit(1);
   }
 

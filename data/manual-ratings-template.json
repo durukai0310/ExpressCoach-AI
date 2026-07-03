@@ -1,0 +1,1418 @@
+[
+  {
+    "id": "S001",
+    "scenario": "大学室友每晚打游戏到凌晨2点，键盘声和语音聊天严重影响你准备考研复习",
+    "intent": "拒绝请求",
+    "relation": "同学-较近-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S002",
+    "scenario": "直属领导在周五下午6点突然要求你周末加班完成紧急项目，但你早已计划好带家人去医院复诊",
+    "intent": "拒绝请求",
+    "relation": "上下级-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S003",
+    "scenario": "闺蜜总是向你借钱但从不按时归还，这次又来找你借5000元说是要还信用卡",
+    "intent": "拒绝请求",
+    "relation": "朋友-亲密-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S004",
+    "scenario": "同事在小组会议上公开指出你方案中的一个小错误，让你感到尴尬",
+    "intent": "提出反馈",
+    "relation": "同事-较近-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S005",
+    "scenario": "父母频繁催婚，甚至安排相亲对象让你必须见面",
+    "intent": "设立边界",
+    "relation": "家庭-亲密-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S006",
+    "scenario": "客户拖欠货款三个月，多次催促仍不付款",
+    "intent": "催促对方",
+    "relation": "商业-一般-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S007",
+    "scenario": "导师给你安排的研究方向与你的兴趣完全不符，且工作量巨大",
+    "intent": "拒绝请求",
+    "relation": "师生-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S008",
+    "scenario": "婆婆总是干涉你的育儿方式，且不接受你的建议",
+    "intent": "设立边界",
+    "relation": "家庭-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S009",
+    "scenario": "工作群里领导经常在深夜发消息，让你被迫随时待命",
+    "intent": "设立边界",
+    "relation": "上下级-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S010",
+    "scenario": "亲戚以亲情为名向你借钱，数额巨大且还款能力存疑",
+    "intent": "拒绝请求",
+    "relation": "家庭-一般-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S011",
+    "scenario": "甲方频繁更改需求，导致项目进度严重滞后",
+    "intent": "提出反馈",
+    "relation": "商业-一般-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S012",
+    "scenario": "导师暗示你延期毕业，但你已经完成了所有要求",
+    "intent": "提出反馈",
+    "relation": "师生-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S013",
+    "scenario": "与配偶在带娃方式上有严重分歧，对方拒绝沟通",
+    "intent": "提出反馈",
+    "relation": "家庭-亲密-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S014",
+    "scenario": "保险公司以各种理由拒绝理赔，合同条款模糊不清",
+    "intent": "提出反馈",
+    "relation": "服务-疏远-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S015",
+    "scenario": "前同事联系你打听公司机密信息，可能涉及商业间谍",
+    "intent": "拒绝请求",
+    "relation": "同事-疏远-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S016",
+    "scenario": "装修公司施工质量差且拖延工期，拒绝承担责任",
+    "intent": "提出反馈",
+    "relation": "服务-疏远-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S017",
+    "scenario": "合同执行中客户对条款理解与你不同，导致争议",
+    "intent": "提出反馈",
+    "relation": "商业-一般-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S018",
+    "scenario": "想转导师但担心现任导师不同意，且新导师也未明确表态",
+    "intent": "寻求帮助",
+    "relation": "师生-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S019",
+    "scenario": "商务饭局上客户强行劝酒，你因健康原因不能饮酒",
+    "intent": "设立边界",
+    "relation": "商业-一般-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S020",
+    "scenario": "网友见面后对方举止轻浮，让你感到不安全",
+    "intent": "设立边界",
+    "relation": "陌生人-疏远-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S021",
+    "scenario": "同学群里有人发消息借钱，但你们已经多年未联系",
+    "intent": "拒绝请求",
+    "relation": "同学-疏远-平级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S022",
+    "scenario": "家庭群里长辈频繁转发谣言和养生文章，让你难以反驳",
+    "intent": "提出反馈",
+    "relation": "家庭-较近-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S023",
+    "scenario": "房东随意涨房租且不提前通知，违反租赁合同",
+    "intent": "提出反馈",
+    "relation": "服务-疏远-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  },
+  {
+    "id": "S024",
+    "scenario": "前公司要求你签署竞业限制协议，但限制范围不合理",
+    "intent": "拒绝请求",
+    "relation": "商业-疏远-上级",
+    "versions": {
+      "温和版": "",
+      "坚定版": "",
+      "高情商版": ""
+    },
+    "raters": {
+      "rater1": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      },
+      "rater2": {
+        "温和版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "坚定版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        },
+        "高情商版": {
+          "intent_achievement": null,
+          "relationship_maintenance": null,
+          "expression_naturalness": null,
+          "strategy_appropriateness": null,
+          "operability": null
+        }
+      }
+    }
+  }
+]

@@ -28,5 +28,1125 @@
     "timestamp": "2026-06-20T13:00:00.000Z",
     "intentType": "寻求帮助",
     "relationType": "上级"
+  },
+  {
+    "scenario": "朋友向你借5000元应急",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，借钱、朋友、拒绝",
+    "replyContent": "不好意思，我最近手头也比较紧，刚交了房租，实在帮不上忙。",
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": null
+  },
+  {
+    "scenario": "同事承诺帮你改报告但一直拖延",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、同事、催促",
+    "replyContent": "你之前说的那个事情，现在进展怎么样了？我这边等着用呢，麻烦尽快处理一下。",
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": null
+  },
+  {
+    "scenario": "室友晚上打游戏声音太大影响休息",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，生活、室友、反馈",
+    "replyContent": "你晚上打游戏声音太大了，我没法休息，能不能小声点？",
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "生活"
+  },
+  {
+    "scenario": "领导经常在周末安排工作",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、领导、边界",
+    "replyContent": "我希望我们能保持一定的工作边界，周末是我的私人时间，麻烦不要安排工作。",
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "领导"
+  },
+  {
+    "scenario": "工作中遇到技术难题，需要向同事请教",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，工作、同事、求助",
+    "replyContent": "我遇到了一个问题，能帮我一下吗？",
+    "timestamp": "2026-07-26T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": null
+  },
+  {
+    "scenario": "客户拖欠货款两周，需要提醒付款",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、客户、催款",
+    "replyContent": "您好，货款已经逾期两周了，请尽快安排付款。",
+    "timestamp": "2026-07-23T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "客户"
+  },
+  {
+    "scenario": "向导师申请延期提交论文",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，学习、导师、求助",
+    "replyContent": "导师，我论文进度有些落后，想申请延期一周提交，可以吗？",
+    "timestamp": "2026-07-06T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "学习"
+  },
+  {
+    "scenario": "向领导申请涨薪",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、领导、涨薪",
+    "replyContent": "领导，我工作两年了，表现一直不错，想申请涨薪。",
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "领导"
+  },
+  {
+    "scenario": "同事想借你的车周末用",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，生活、同事、借车",
+    "replyContent": "不好意思，车我周末要用，没法借你。",
+    "timestamp": "2026-07-08T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "生活"
+  },
+  {
+    "scenario": "项目会议上发现方案存在重大缺陷",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、会议、反馈",
+    "replyContent": "我觉得这个方案有问题，需要重新考虑。",
+    "timestamp": "2026-07-13T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "会议"
+  },
+  {
+    "scenario": "向父母要钱买新手机",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，家庭、父母、求助",
+    "replyContent": "爸妈，我想买个新手机，给我点钱吧。",
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "家庭"
+  },
+  {
+    "scenario": "朋友邀请你参加不想去的聚会",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，社交、朋友、拒绝",
+    "replyContent": "我不想去，你们玩吧。",
+    "timestamp": "2026-07-27T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "社交"
+  },
+  {
+    "scenario": "下属工作表现不佳需要指出",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、下属、反馈",
+    "replyContent": "你的工作表现最近不太好，需要改进。",
+    "timestamp": "2026-07-02T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "下属"
+  },
+  {
+    "scenario": "同学借你的笔记不还",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，学习、同学、催促",
+    "replyContent": "你借我的笔记什么时候还我？我要用了。",
+    "timestamp": "2026-07-11T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "学习"
+  },
+  {
+    "scenario": "父母干涉你的职业选择",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，家庭、父母、边界",
+    "replyContent": "这是我自己的人生，我想自己做决定。",
+    "timestamp": "2026-07-11T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "家庭"
+  },
+  {
+    "scenario": "客户要求不合理的折扣",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、客户、拒绝",
+    "replyContent": "这个价格已经是最低了，不能再优惠了。",
+    "timestamp": "2026-07-10T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "客户"
+  },
+  {
+    "scenario": "向女朋友道歉",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，恋爱、女友、道歉",
+    "replyContent": "对不起，我错了，原谅我吧。",
+    "timestamp": "2026-07-07T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "恋爱"
+  },
+  {
+    "scenario": "老师布置太多作业",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，学习、老师、反馈",
+    "replyContent": "老师，作业太多了，我们做不完。",
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "学习"
+  },
+  {
+    "scenario": "邻居装修噪音太大",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，生活、邻居、反馈",
+    "replyContent": "你们装修声音太大了，影响到我了，请小声点。",
+    "timestamp": "2026-07-02T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "生活"
+  },
+  {
+    "scenario": "向陌生人问路",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，生活、陌生人、求助",
+    "replyContent": "请问，地铁站怎么走？",
+    "timestamp": "2026-07-07T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "生活"
+  },
+  {
+    "scenario": "领导让你加班但你有事",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、领导、拒绝",
+    "replyContent": "我今天有事，不能加班。",
+    "timestamp": "2026-07-24T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "领导"
+  },
+  {
+    "scenario": "朋友借你贵重物品迟迟不还",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，生活、朋友、催促",
+    "replyContent": "你借我的东西什么时候还？",
+    "timestamp": "2026-07-19T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "生活"
+  },
+  {
+    "scenario": "同事在会议上抢你功劳",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、同事、反馈",
+    "replyContent": "这个想法是我提出的，你不能抢我的功劳。",
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": null
+  },
+  {
+    "scenario": "向仇人借钱",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，社交困境、仇人、拒绝",
+    "replyContent": "不可能，我不会借钱给你。",
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "社交困境"
+  },
+  {
+    "scenario": "向父母申请涨零花钱",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，家庭、父母、求助",
+    "replyContent": "爸妈，零花钱不够用了，给我涨点吧。",
+    "timestamp": "2026-07-20T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "家庭"
+  },
+  {
+    "scenario": "领导在公共场合批评你",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、领导、反馈",
+    "replyContent": "有什么问题可以私下说，没必要在大家面前批评我。",
+    "timestamp": "2026-07-23T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "领导"
+  },
+  {
+    "scenario": "闺蜜向你借钱但之前借的还没还",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，社交困境、闺蜜、拒绝",
+    "replyContent": "你上次借我的钱还没还，这次不能再借了。",
+    "timestamp": "2026-07-07T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "社交困境"
+  },
+  {
+    "scenario": "下属频繁请假影响工作",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，工作、下属、反馈",
+    "replyContent": "你最近请假太多了，已经影响到工作了，注意一下。",
+    "timestamp": "2026-07-26T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "下属"
+  },
+  {
+    "scenario": "朋友让你帮忙写作业",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，学习、朋友、拒绝",
+    "replyContent": "作业要自己写，我不能帮你。",
+    "timestamp": "2026-07-06T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "学习"
+  },
+  {
+    "scenario": "客户投诉产品质量问题",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，工作、客户、反馈",
+    "replyContent": "你们的产品质量有问题，我要退货。",
+    "timestamp": "2026-07-09T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "客户"
+  },
+  {
+    "scenario": "向宠物狗道歉",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "直接坦诚风格，生活、宠物、道歉",
+    "replyContent": "对不起，我不该骂你，原谅我吧。",
+    "timestamp": "2026-07-13T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "生活"
+  },
+  {
+    "scenario": "老板让你做不属于你职责的工作",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "直接坦诚风格，工作、老板、拒绝",
+    "replyContent": "这不是我的工作范围，我不能做。",
+    "timestamp": "2026-07-27T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": null
+  },
+  {
+    "scenario": "大学室友每晚打游戏到凌晨2点，键盘声和语音聊天严重影响你准备考研复习",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-07T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "同学关系"
+  },
+  {
+    "scenario": "直属领导在周五下午6点突然要求你周末加班完成紧急项目，但你早已计划好带家人去医院复诊",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-01T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "交往3年的男友连续3个月以工作忙为由拒绝见面，现在又要求你借钱给他创业",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-03T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "小区邻居每天早上7点准时在楼下跳广场舞，音乐声巨大影响你居家办公",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-01T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "公司新来的实习生频繁向你请教基础问题，占用了你大量核心工作时间",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-17T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "远房亲戚打电话要求你帮忙安排他孩子进你们公司，而你只是普通员工",
+    "selectedVersion": "firm",
+    "rating": 3,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-15T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "闺蜜让你帮她代签一份你完全不了解内容的商业合同",
+    "selectedVersion": "firm",
+    "rating": 3,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "外卖员要求你下楼取餐，但平台显示是送餐上门服务",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-04T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "导师要求你放弃自己的研究方向，转去做他新申请的项目",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-03T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "客户要求你提供竞争对手的内部资料作为合作条件",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-13T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "项目组同事连续两周推迟交付他负责的模块，导致整个团队无法按期上线",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-24T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "供应商延迟交付关键零部件，你的生产线已经停工3天",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-08T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "女儿承诺每天练琴1小时，但连续一周只练10分钟就玩手机",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-25T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "合作方答应提供的市场调研报告已经逾期一周仍未送达",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-19T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "下属答应完成的季度报告在截止日期前一天说还没开始",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-10T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "朋友借了你珍藏的限量版书籍，已经半年仍未归还",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-06-30T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "装修公司承诺45天完工，但60天过去了只完成了一半",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-17T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "室友答应轮流打扫公共区域，但连续两周都是你在打扫",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-15T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "同学关系"
+  },
+  {
+    "scenario": "客户拖欠货款30万元超过90天，电话不接消息不回",
+    "selectedVersion": "mild",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-21T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "团队成员答应准备的演示材料在会议开始前1小时说忘了做",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "领导在部门会议上公开点名批评你，但事实是他自己布置任务时传达有误",
+    "selectedVersion": "eq",
+    "rating": 3,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "同事在项目复盘时把你的功劳全部归功于自己",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-21T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "父母总是偷看你的手机聊天记录和浏览历史",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-24T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "客服人员在电话中多次打断你说话，态度非常不耐烦",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "团队每周例会总是超时2小时，严重影响个人工作安排",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-14T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "老师在课堂上使用歧视性语言描述特定学生群体",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-25T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "邻居家的狗每天凌晨3-4点持续吠叫，严重影响整栋楼居民休息",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-02T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "下属在汇报工作时故意隐瞒关键数据，导致决策失误",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-25T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "朋友总是在你倾诉时心不在焉地玩手机",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-02T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "合作伙伴在商务谈判中多次违背口头承诺",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-04T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "领导要求你每周工作6天，并且经常在深夜发工作消息",
+    "selectedVersion": "mild",
+    "rating": 3,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-22T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "父母频繁干涉你的恋爱关系，要求你和现任分手",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "同事总是在午休时间大声打电话，影响你休息",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-04T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "客户要求你提供24小时技术支持，包括节假日",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-15T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "亲戚频繁询问你的收入和存款金额",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-07T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "导师要求你在毕业论文答辩前一周帮他完成另一篇论文",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-19T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "室友随意使用你的个人物品且从不打招呼",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-09T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "同学关系"
+  },
+  {
+    "scenario": "合作伙伴试图打探你公司的商业机密",
+    "selectedVersion": "firm",
+    "rating": 3,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-10T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "朋友总是在你忙碌时发来长篇大论的消息要求立即回复",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-22T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "上级经常把自己的工作推给你，导致你加班频繁",
+    "selectedVersion": "firm",
+    "rating": 3,
+    "comment": "训练数据导入 - 设立边界",
+    "replyContent": null,
+    "timestamp": "2026-07-14T16:00:00.000Z",
+    "intentType": "设立边界",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "项目遇到技术瓶颈，你需要向公司资深架构师请教解决方案",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "你在外地出差时突发急性肠胃炎，需要向同事求助送医",
+    "selectedVersion": "mild",
+    "rating": 5,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-14T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "准备婚礼预算超支，需要向父母借钱周转",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-17T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "在陌生城市迷路，手机没电，需要向路人求助借充电宝",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-13T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "导师布置的研究课题超出你的能力范围，需要请求指导",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-26T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "和男友吵架后冷战一周，你想主动和解但不知道如何开口",
+    "selectedVersion": "mild",
+    "rating": 3,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-20T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "创业公司遇到现金流危机，需要向投资人申请追加投资",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-11T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "孩子在学校被同学霸凌，需要向老师求助解决",
+    "selectedVersion": "eq",
+    "rating": 3,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "家中老人突发中风，需要向邻居求助立即送医",
+    "selectedVersion": "mild",
+    "rating": 3,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-22T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "在国外旅行时丢失护照，需要向中国大使馆求助",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 寻求帮助",
+    "replyContent": null,
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "求助",
+    "relationType": "服务关系"
+  },
+  {
+    "scenario": "朋友想借你的车去自驾游一周，你担心车辆受损且自己周末也有出行计划",
+    "selectedVersion": "firm",
+    "rating": 3,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "客户要求你免费加班帮他完成项目，理由是你们关系好",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-02T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "亲戚想让你帮忙照顾孩子一周，但你正在准备重要考试",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-17T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "同事想让你帮他背锅，承担项目失败的责任",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-28T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "朋友邀请你参加一个你完全不感兴趣的聚会，且当天你身体不舒服",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "导师要求你放弃自己的研究方向，转做他指定的课题",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-03T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "朋友想借用你的社交媒体账号帮他推广产品",
+    "selectedVersion": "mild",
+    "rating": 3,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-04T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "下属要求提前下班去处理私事，但当天有重要任务需要完成",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "朋友想让你帮忙代签一份你不了解内容的文件",
+    "selectedVersion": "mild",
+    "rating": 3,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-19T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "客户想让你透露其他客户的信息作为参考",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 拒绝请求",
+    "replyContent": null,
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "拒绝",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "合作伙伴承诺的关键数据已经拖延了三周，严重影响你的项目进度",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-01T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "朋友答应帮你代购商品但两周没有消息，你急需使用该商品",
+    "selectedVersion": "eq",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-05T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "下属承诺完成的周报已经延迟了两天，你需要汇总上报",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-21T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "导师承诺的论文修改意见已经等待了一个月，你需要尽快提交",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-18T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "室友答应打扫卫生但一周没有行动，宿舍已经脏乱不堪",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "同学关系"
+  },
+  {
+    "scenario": "同事答应帮你审查报告但已经拖延了五天，明天就要提交",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-21T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "客户承诺的付款已经延迟了一个月，公司财务催得很紧",
+    "selectedVersion": "mild",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-13T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "朋友借了你的书已经两个月没有归还，你需要复习考试",
+    "selectedVersion": "mild",
+    "rating": 5,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-27T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "供应商承诺的货物已经延迟了两周，影响你的生产计划",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-21T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "家人答应帮忙照顾宠物但忘记了，宠物已经饿了一天",
+    "selectedVersion": "eq",
+    "rating": 3,
+    "comment": "训练数据导入 - 催促对方",
+    "replyContent": null,
+    "timestamp": "2026-07-04T16:00:00.000Z",
+    "intentType": "催促",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "团队成员在项目中频繁出错，导致多次返工，影响整体进度",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-12T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "同事关系"
+  },
+  {
+    "scenario": "领导在会议上经常打断你发言，导致你无法完整表达观点",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-24T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "室友晚上经常打游戏到深夜，影响你的学习和休息",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-06T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "同学关系"
+  },
+  {
+    "scenario": "父母总是拿你和别人家的孩子比较，让你感到压力很大",
+    "selectedVersion": "eq",
+    "rating": 3,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-05T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "家庭关系"
+  },
+  {
+    "scenario": "客户对你的服务提出了不合理的投诉，你需要澄清事实",
+    "selectedVersion": "eq",
+    "rating": 3,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-22T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "商业关系"
+  },
+  {
+    "scenario": "导师的指导方向与你的研究兴趣不符，你希望调整研究方向",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-29T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "师生关系"
+  },
+  {
+    "scenario": "朋友总是在你面前抱怨生活，让你感到很压抑",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-27T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "朋友关系"
+  },
+  {
+    "scenario": "下属的工作态度不认真，经常敷衍了事",
+    "selectedVersion": "mild",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-16T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "上下级关系"
+  },
+  {
+    "scenario": "同学在小组作业中什么都不做，让你承担了所有工作",
+    "selectedVersion": "firm",
+    "rating": 5,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-26T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "同学关系"
+  },
+  {
+    "scenario": "客户总是在非工作时间发消息咨询问题，影响你的休息",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": "训练数据导入 - 提出反馈",
+    "replyContent": null,
+    "timestamp": "2026-07-07T16:00:00.000Z",
+    "intentType": "提出反馈",
+    "relationType": "商业关系"
   }
 ]

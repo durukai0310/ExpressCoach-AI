@@ -32,25 +32,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
 // 复用项目已有的 callDeepSeek
 const { callDeepSeek } = require("../intent/recognize");
-
-// ============================================================
-// 终端颜色
-// ============================================================
-const C = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
-};
-function c(code, text) {
-  if (process.env.NO_COLOR || !process.stdout.isTTY) return text;
-  return code + text + C.reset;
-}
+const { C, c } = require("../lib/color");
 
 // ============================================================
 // 配置

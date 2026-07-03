@@ -100,26 +100,10 @@ function getUserProfileModule() {
 // Day 20: 黄金案例库路径
 const GOLDEN_CASES_PATH = path.resolve(__dirname, "..", "data", "golden-cases.json");
 
-// ============================================================
-// 终端颜色
-// ============================================================
-const C = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
-  white: "\x1b[37m",
-};
-
-function color(color, text) {
-  if (process.env.NO_COLOR || !process.stdout.isTTY) return text;
-  return color + text + C.reset;
-}
+// W5 Day 31: 公共模块导入
+const { C, color } = require("./lib/color");
+const { parseResponse } = require("./lib/parse");
+const { loadFile } = require("./lib/fs-utils");
 
 // ============================================================
 // 配置
@@ -134,32 +118,6 @@ const MODEL = process.env.MODEL || "deepseek";
 // ============================================================
 // 工具函数
 // ============================================================
-
-function loadFile(filePath, label) {
-  if (!fs.existsSync(filePath)) {
-    console.error(color(C.red, `❌ ${label} 未找到: ${filePath}`));
-    return null;
-  }
-  return fs.readFileSync(filePath, "utf-8");
-}
-
-function parseResponse(raw) {
-  try {
-    return JSON.parse(raw);
-  } catch (e) {
-    // 尝试从 markdown 代码块提取
-    const jsonMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (jsonMatch) {
-      try { return JSON.parse(jsonMatch[1].trim()); } catch (e2) {}
-    }
-    // 尝试找最外层花括号
-    const braceMatch = raw.match(/\{[\s\S]*\}/);
-    if (braceMatch) {
-      try { return JSON.parse(braceMatch[0]); } catch (e3) {}
-    }
-    return null;
-  }
-}
 
 function spinner(message) {
   const frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
@@ -337,37 +295,42 @@ async function runAnalysis(scenario) {
   console.log(color(C.bold, `💬 输入场景: "${scenario}"`));
   console.log("");
 
-  // ═══ 步骤1: 意图识别 ═══
-  const intentSpinner = spinner("🔍 [步骤1/3] 正在分析用户意图...");
+  // ═══ Day 32: 步骤1+步骤2 并行化 — 意图识别与关系判断无依赖，并行执行 ═══
+  const parallelSpinner = spinner("⚡ [步骤1+2/3] 正在并行分析意图+关系...");
   const t1 = performance.now();
-  let intentResult;
-  try {
-    intentResult = await recognizeIntent(scenario);
-    perf.intent = (performance.now() - t1) / 1000;
-    const tag = perf.intent < 1 ? "✅" : "⚠️";
-    intentSpinner.stop(color(C.green, `${tag} [步骤1/3] 意图识别完成 (${perf.intent.toFixed(1)}s)`));
-  } catch (error) {
-    perf.intent = (performance.now() - t1) / 1000;
-    intentSpinner.stop(color(C.red, `❌ [步骤1/3] 意图识别失败 (${perf.intent.toFixed(1)}s)`));
-    throw new Error(`意图识别失败: ${error.message}`);
-  }
-  printIntentResult(intentResult);
+  const t2 = performance.now(); // 两个步骤共享开始时间
 
-  // ═══ 步骤2: 关系判断 (Day 10: 规则+LLM混合) ═══
-  const relationSpinner = spinner("👥 [步骤2/3] 正在混合判断关系类型 (规则0.3+LLM0.7)...");
-  const t2 = performance.now();
+  let intentResult;
   let relationResult;
+
   try {
-    relationResult = await hybridAnalyze(scenario);
+    // Day 32 性能优化: Promise.all 并行化意图识别+关系判断
+    [intentResult, relationResult] = await Promise.all([
+      recognizeIntent(scenario),
+      hybridAnalyze(scenario)
+    ]);
+
+    perf.intent = (performance.now() - t1) / 1000;
     perf.relation = (performance.now() - t2) / 1000;
-    const tag = perf.relation < 1 ? "✅" : "⚠️";
-    relationSpinner.stop(color(C.green, `${tag} [步骤2/3] 关系判断完成 (混合模式, ${perf.relation.toFixed(1)}s)`));
+    const tag = Math.max(perf.intent, perf.relation) < 1 ? "✅" : "⚠️";
+    parallelSpinner.stop(color(C.green, `${tag} [步骤1+2/3] 意图识别+关系判断并行完成 (${Math.max(perf.intent, perf.relation).toFixed(1)}s)`));
   } catch (error) {
+    perf.intent = (performance.now() - t1) / 1000;
     perf.relation = (performance.now() - t2) / 1000;
-    relationSpinner.stop(color(C.yellow, `⚠️ [步骤2/3] 关系判断失败，将使用默认参数继续 (${perf.relation.toFixed(1)}s)`));
-    console.error(color(C.yellow, `  原因: ${error.message}`));
-    relationResult = { raw: "", parsed: null, ruleResult: null };
+    parallelSpinner.stop(color(C.yellow, `⚠️ [步骤1+2/3] 并行执行部分失败 (${Math.max(perf.intent, perf.relation).toFixed(1)}s)`));
+
+    // 处理部分失败: 检查哪个步骤失败了
+    if (!intentResult) {
+      console.error(color(C.red, `  ❌ 意图识别失败: ${error.message}`));
+      throw new Error(`意图识别失败: ${error.message}`);
+    }
+    if (!relationResult) {
+      console.error(color(C.yellow, `  ⚠️ 关系判断失败: ${error.message}，将使用默认参数`));
+      relationResult = { raw: "", parsed: null, ruleResult: null };
+    }
   }
+
+  printIntentResult(intentResult);
   printRelationshipResult(relationResult);
 
   // ═══ 步骤3: 三版本并行生成 (Day 7: 融入关系判断) ═══
@@ -902,11 +865,16 @@ async function interactiveMode() {
 // ============================================================
 
 async function main() {
-  // 检查 API Key
-  if (!DEEPSEEK_API_KEY) {
-    console.error(color(C.red, "❌ DEEPSEEK_API_KEY 未配置，请检查 .env 文件"));
+  // W5 Day 31: 检查 API Key — 至少一个可用即可
+  const hasDeepSeek = !!process.env.DEEPSEEK_API_KEY;
+  const hasQwen = !!process.env.DASHSCOPE_API_KEY;
+  const hasKimi = !!process.env.MOONSHOT_API_KEY;
+  if (!hasDeepSeek && !hasQwen && !hasKimi) {
+    console.error(color(C.red, "❌ 至少配置一个 API Key (DEEPSEEK_API_KEY / DASHSCOPE_API_KEY / MOONSHOT_API_KEY)"));
+    console.error(color(C.dim, "   请在 .env 文件中配置任意一个模型的 API Key"));
     process.exit(1);
   }
+  console.error(color(C.dim, `  📡 可用模型: ${[hasDeepSeek && 'DeepSeek', hasQwen && '千问', hasKimi && 'Kimi'].filter(Boolean).join(', ')}`));
 
   // 检查关键文件
   const requiredFiles = [

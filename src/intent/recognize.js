@@ -23,63 +23,16 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
-// ============================================================
-// 终端颜色
-// ============================================================
-const C = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
-  white: "\x1b[37m",
-};
-
-function color(colorCode, text) {
-  if (process.env.NO_COLOR || !process.stdout.isTTY) return text;
-  return colorCode + text + C.reset;
-}
+const { callDeepSeek } = require("../lib/api");
+const { C, color } = require("../lib/color");
+const { parseResponse } = require("../lib/parse");
+const { loadFile } = require("../lib/fs-utils");
 
 // ============================================================
 // 配置
 // ============================================================
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 const INTENT_SOUL = path.resolve(__dirname, "..", "..", "SOUL.md");
 const INTENT_RULES_PATH = path.resolve(__dirname, "..", "..", "data", "intent-rules.json");
-
-// ============================================================
-// 工具函数
-// ============================================================
-
-function loadFile(filePath, label) {
-  if (!fs.existsSync(filePath)) {
-    console.error(color(C.red, `❌ ${label} 未找到: ${filePath}`));
-    return null;
-  }
-  return fs.readFileSync(filePath, "utf-8");
-}
-
-function parseResponse(raw) {
-  try {
-    return JSON.parse(raw);
-  } catch (e) {
-    // 尝试从 markdown 代码块提取
-    const jsonMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (jsonMatch) {
-      try { return JSON.parse(jsonMatch[1].trim()); } catch (e2) {}
-    }
-    // 尝试找最外层花括号
-    const braceMatch = raw.match(/\{[\s\S]*\}/);
-    if (braceMatch) {
-      try { return JSON.parse(braceMatch[0]); } catch (e3) {}
-    }
-    return null;
-  }
-}
 
 // ============================================================
 // Day 23: 多标签意图归一化
@@ -138,63 +91,6 @@ function normalizeIntentResult(parsed) {
   }
 
   return result;
-}
-
-// ============================================================
-// API 调用 (带重试)
-// ============================================================
-
-async function callDeepSeek(systemPrompt, userInput, opts = {}) {
-  const {
-    temperature = 0.1,
-    maxTokens = 500,
-    maxRetries = 2,
-  } = opts;
-
-  let lastError = null;
-
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    try {
-      if (attempt > 0) {
-        await new Promise((r) => setTimeout(r, 1000 * attempt));
-      }
-
-      const response = await fetch("https://api.deepseek.com/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "deepseek-chat",
-          messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: userInput },
-          ],
-          temperature,
-          max_tokens: maxTokens,
-        }),
-      });
-
-      if (!response.ok) {
-        const err = await response.text();
-        throw new Error(`DeepSeek API 错误 (${response.status}): ${err.substring(0, 200)}`);
-      }
-
-      const data = await response.json();
-      return {
-        content: data.choices[0].message.content,
-        tokens: data.usage?.total_tokens || 0,
-      };
-    } catch (error) {
-      lastError = error;
-      if (attempt < maxRetries) {
-        console.error(color(C.yellow, `  ⚠️ 重试 ${attempt + 1}/${maxRetries}: ${error.message}`));
-      }
-    }
-  }
-
-  throw lastError;
 }
 
 // ============================================================
