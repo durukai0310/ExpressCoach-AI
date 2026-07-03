@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExpressCoach AI — 社交表达教练</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  background: #0d1117; color: #c9d1d9; line-height:1.6; min-height:100vh;
+}
+a { color: #58a6ff; }
+.container { max-width:960px; margin:0 auto; padding:20px; }
+header {
+  text-align:center; padding:30px 0 15px;
+  border-bottom:1px solid #21262d; margin-bottom:20px;
+}
+header h1 { font-size:24px; color:#f0f6fc; margin-bottom:4px; }
+header p { font-size:13px; color:#8b949e; }
+
+/* Tabs */
+.tabs { display:flex; gap:4px; margin-bottom:24px; }
+.tab-btn {
+  flex:1; padding:10px 20px; border:none; cursor:pointer;
+  background:#21262d; color:#8b949e; font-size:14px; border-radius:6px 6px 0 0;
+  transition:all .2s;
+}
+.tab-btn.active { background:#161b22; color:#58a6ff; border-bottom:2px solid #58a6ff; }
+.tab-btn:hover { color:#f0f6fc; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+/* Cards */
+.card {
+  background:#161b22; border:1px solid #30363d; border-radius:8px;
+  padding:16px 20px; margin-bottom:16px;
+}
+.card h3 { font-size:15px; color:#f0f6fc; margin-bottom:8px; }
+.card .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.tag {
+  display:inline-block; padding:2px 10px; border-radius:12px;
+  font-size:12px; background:#1f2a3a; color:#58a6ff;
+}
+.tag.green { background:#0d3320; color:#3fb950; }
+.tag.yellow { background:#3d2900; color:#d29922; }
+.tag.red { background:#3d1400; color:#f85149; }
+.tag.purple { background:#2a183d; color:#bc8cff; }
+
+/* Form */
+textarea, input, select {
+  width:100%; padding:10px 14px; border:1px solid #30363d; border-radius:6px;
+  background:#0d1117; color:#c9d1d9; font-size:14px; font-family:inherit;
+  resize:vertical; transition:border-color .2s;
+}
+textarea:focus, input:focus, select:focus {
+  outline:none; border-color:#58a6ff;
+}
+textarea { min-height:80px; }
+.btn {
+  display:inline-block; padding:10px 24px; border:none; border-radius:6px;
+  cursor:pointer; font-size:14px; font-weight:600; transition:all .2s;
+}
+.btn-primary { background:#238636; color:#fff; }
+.btn-primary:hover { background:#2ea043; }
+.btn-primary:disabled { background:#21262d; color:#484f58; cursor:not-allowed; }
+.btn-danger { background:#da3633; color:#fff; }
+.btn-danger:hover { background:#f85149; }
+.btn-sm { padding:6px 14px; font-size:12px; }
+
+/* Layout */
+.form-row { display:flex; gap:12px; margin-bottom:12px; align-items:end; }
+.form-row > * { flex:1; }
+.form-inline { display:flex; gap:8px; }
+
+/* Chat */
+.chat-area {
+  background:#0d1117; border:1px solid #30363d; border-radius:8px;
+  padding:16px; max-height:420px; overflow-y:auto; margin-bottom:12px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.chat-msg { max-width:85%; padding:10px 14px; border-radius:10px; font-size:14px; line-height:1.5; }
+.chat-msg.simulator { align-self:flex-start; background:#1a2332; border:1px solid #30363d; }
+.chat-msg.user { align-self:flex-end; background:#1a3a52; border:1px solid #58a6ff; }
+.chat-msg.coach { align-self:flex-start; background:#3d2900; border:1px solid #d29922; color:#f0c040; }
+.chat-msg .sender { font-size:11px; color:#8b949e; margin-bottom:4px; font-weight:600; }
+.chat-msg.coach .sender { color:#d29922; }
+
+/* Misc */
+.spinner {
+  display:inline-block; width:16px; height:16px; border:2px solid #30363d;
+  border-top-color:#58a6ff; border-radius:50%; animation:spin .6s linear infinite;
+  margin-right:8px; vertical-align:middle;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.loading { text-align:center; padding:30px; color:#8b949e; font-size:14px; }
+.error-msg { color:#f85149; font-size:13px; padding:8px 12px; background:#3d1400; border-radius:6px; }
+.version-columns { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+@media (max-width:700px) { .version-columns { grid-template-columns:1fr; } }
+.version-card { background:#0d1117; border:1px solid #30363d; border-radius:8px; padding:14px; }
+.version-card h4 { font-size:14px; color:#f0f6fc; margin-bottom:8px; }
+.version-card .content-text { font-size:13px; color:#b1bac4; white-space:pre-wrap; word-break:break-word; max-height:180px; overflow-y:auto; }
+.timing-bar {
+  display:flex; height:8px; border-radius:4px; overflow:hidden; background:#21262d;
+  margin:8px 0;
+}
+.timing-bar div { height:100%; }
+.timing-bar .t-intent { background:#58a6ff; }
+.timing-bar .t-relation { background:#bc8cff; }
+.timing-bar .t-versions { background:#3fb950; }
+.timing-bar .t-prediction { background:#d29922; }
+.prediction-item {
+  padding:8px 12px; border-radius:6px; background:#0d1117; margin-bottom:6px;
+  border-left:3px solid #30363d;
+}
+.prediction-item.high { border-left-color:#f85149; }
+.prediction-item.medium { border-left-color:#d29922; }
+.prediction-item.low { border-left-color:#3fb950; }
+.setup-bar { display:flex; gap:8px; align-items:end; flex-wrap:wrap; }
+.setup-bar > * { min-width:120px; }
+.setup-bar textarea { min-width:200px; flex:2; }
+.status-bar { font-size:12px; color:#8b949e; text-align:center; padding:8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>&#x1f3af; ExpressCoach AI &mdash; 社交表达教练</h1>
+  <p>全链路分析 + 沙盒练习 | DeepSeek / 千问 / Kimi 驱动</p>
+</header>
+
+<div class="tabs" id="tabs">
+  <button class="tab-btn active" data-tab="analyze">&#x1f4ca; 全链路分析</button>
+  <button class="tab-btn" data-tab="sandbox">&#x1f3ad; 沙盒练习</button>
+</div>
+
+<!-- ==================== 全链路分析 ==================== -->
+<div class="tab-panel active" id="panel-analyze">
+  <div class="card">
+    <div class="form-inline">
+      <textarea id="scenario-input" placeholder="输入你的社交场景，例如：我想拒绝朋友借钱但不想伤感情" style="flex:1;"></textarea>
+    </div>
+    <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+      <button class="btn btn-primary" id="analyze-btn" onclick="doAnalyze()">&#x1f50d; 开始分析</button>
+      <span style="font-size:12px;color:#8b949e;">支持5种意图：拒绝 / 催促 / 反馈 / 设边界 / 求助</span>
+    </div>
+  </div>
+
+  <div id="analyze-loading" class="loading" style="display:none;">
+    <span class="spinner"></span> AI 正在分析你的社交场景，请稍候...
+  </div>
+  <div id="analyze-error" class="error-msg" style="display:none;"></div>
+  <div id="analyze-result" style="display:none;"></div>
+</div>
+
+<!-- ==================== 沙盒练习 ==================== -->
+<div class="tab-panel" id="panel-sandbox">
+  <div class="card" id="sandbox-setup">
+    <h3>&#x2699;&#xfe0f; 练习设置</h3>
+    <div class="setup-bar">
+      <textarea id="sb-scenario" placeholder="沙盒场景..." style="min-height:44px;">催同事交报告</textarea>
+      <select id="sb-mode">
+        <option value="free">free — 自由模式</option>
+        <option value="guided" selected>guided — 引导模式</option>
+        <option value="stress">stress — 压力模式</option>
+      </select>
+      <select id="sb-personality">
+        <option value="friendly" selected>friendly — 友善型</option>
+        <option value="hostile">hostile — 刁难型</option>
+        <option value="avoidant">avoidant — 回避型</option>
+      </select>
+      <button class="btn btn-primary" id="sb-start-btn" onclick="doSandboxStart()">&#x25b6; 开始练习</button>
+    </div>
+  </div>
+
+  <div id="sandbox-area" style="display:none;">
+    <div id="coach-hint" style="display:none;margin-bottom:10px;"></div>
+    <div class="chat-area" id="chat-area"></div>
+    <div class="form-inline" id="chat-input-row" style="margin-top:8px;">
+      <input type="text" id="chat-input" placeholder="输入你的回复... (Enter 发送)" onkeydown="if(event.key==='Enter')doSandboxSend()" style="flex:1;">
+      <button class="btn btn-primary" id="chat-send-btn" onclick="doSandboxSend()">&#x1f4e4; 发送</button>
+      <button class="btn btn-sm btn-danger" onclick="doSandboxEnd()">结束</button>
+    </div>
+    <div class="status-bar" id="sandbox-status"></div>
+  </div>
+</div>
+
+</div><!-- .container -->
+
+<script>
+// ============================================================
+// Tab 切换
+// ============================================================
+const tabs = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.tab-panel');
+tabs.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ============================================================
+// 全链路分析
+// ============================================================
+async function doAnalyze() {
+  const input = document.getElementById('scenario-input');
+  const scenario = input.value.trim();
+  if (!scenario) { input.focus(); return; }
+
+  const btn = document.getElementById('analyze-btn');
+  const loading = document.getElementById('analyze-loading');
+  const errDiv = document.getElementById('analyze-error');
+  const resultDiv = document.getElementById('analyze-result');
+
+  btn.disabled = true;
+  loading.style.display = 'block';
+  errDiv.style.display = 'none';
+  resultDiv.style.display = 'none';
+  resultDiv.innerHTML = '';
+
+  try {
+    const resp = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scenario }),
+    });
+    if (!resp.ok) {
+      const e = await resp.json();
+      throw new Error(e.error || '分析失败');
+    }
+    const d = await resp.json();
+    renderAnalysis(d);
+  } catch (e) {
+    errDiv.textContent = '❌ ' + e.message;
+    errDiv.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    loading.style.display = 'none';
+  }
+}
+
+function renderAnalysis(d) {
+  const div = document.getElementById('analyze-result');
+  let html = '';
+
+  // Timing header
+  html += `<div class="card"><h3>&#x23f1;&#xfe0f; 全流程耗时: ${d.timing.total}s</h3>`;
+  html += `<div class="timing-bar"><div class="t-intent" style="width:${(d.timing.intent||0)/d.timing.total*100}%"></div><div class="t-versions" style="width:${(d.timing.versions||0)/d.timing.total*100}%"></div></div>`;
+  html += `<div class="tags"><span class="tag">意图</span><span class="tag purple">关系</span><span class="tag green">版本</span><span class="tag yellow">预测</span></div></div>`;
+
+  // Intent
+  if (d.intent) {
+    html += `<div class="card"><h3>&#x1f4ca; 步骤1: 意图识别</h3>`;
+    html += `<div class="tags"><span class="tag green">主意图: ${esc(d.intent.primary)}</span>`;
+    if (d.intent.secondary && d.intent.secondary.length) {
+      d.intent.secondary.forEach(s => { html += `<span class="tag">${esc(s)}</span>`; });
+    }
+    html += `<span class="tag yellow">置信度: ${(d.intent.confidence*100||0).toFixed(0)}%</span></div>`;
+    if (d.intent.analysis) html += `<p style="margin-top:6px;font-size:13px;color:#8b949e;">${esc(d.intent.analysis)}</p>`;
+    if (d.intent.keywords && d.intent.keywords.length) {
+      html += `<div class="tags" style="margin-top:4px;"><span style="font-size:11px;color:#484f58;">关键词:</span>`;
+      d.intent.keywords.forEach(k => { html += `<span class="tag">${esc(k)}</span>`; });
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Relation
+  if (d.relation) {
+    html += `<div class="card"><h3>&#x1f465; 步骤2: 关系判断</h3>`;
+    html += `<div class="tags">`;
+    html += `<span class="tag purple">${esc(d.relation.type)}</span>`;
+    html += `<span class="tag">亲密: ${esc(d.relation.intimacy)}</span>`;
+    html += `<span class="tag">权力: ${esc(d.relation.power)}</span>`;
+    html += `<span class="tag">利益: ${esc(d.relation.interest)}</span>`;
+    html += `<span class="tag yellow">敏感: ${esc(d.relation.sensitivity)}</span>`;
+    html += `</div>`;
+    if (d.relation.strategy) html += `<p style="margin-top:6px;font-size:13px;">&#x1f4a1; ${esc(d.relation.strategy)}</p>`;
+    if (d.relation.caution) html += `<p style="font-size:12px;color:#d29922;">&#x26a0;&#xfe0f; ${esc(d.relation.caution)}</p>`;
+    if (d.relation.source) html += `<p style="font-size:11px;color:#484f58;">数据源: ${esc(d.relation.source)}</p>`;
+    html += `</div>`;
+  }
+
+  // Versions
+  if (d.versions && d.versions.length) {
+    html += `<div class="card"><h3>&#x1f4cb; 步骤3: 三版本对比</h3><div class="version-columns">`;
+    d.versions.forEach(v => {
+      html += `<div class="version-card"><h4>${v.icon} ${esc(v.name)} <span style="font-size:11px;color:#8b949e;">${esc(v.tag)}</span></h4>`;
+      html += `<div class="content-text">${esc(v.content)}</div>`;
+      if (v.strategy) html += `<p style="font-size:11px;color:#58a6ff;margin-top:6px;">${esc(v.strategy)}</p>`;
+      html += `<p style="font-size:10px;color:#484f58;">tokens: ${v.tokens}</p></div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  // Jaccard
+  if (d.jaccard) {
+    html += `<div class="card"><h3>&#x1f50d; 差异度检查 (Jaccard)</h3>`;
+    html += `<div class="tags">`;
+    for (const [k, v] of Object.entries(d.jaccard)) {
+      const cls = v < 0.5 ? 'green' : 'yellow';
+      html += `<span class="tag ${cls}">${k}: ${(v*100).toFixed(1)}%</span>`;
+    }
+    html += `</div><p style="font-size:11px;color:#8b949e;">Jaccard &lt; 70% = 版本差异化达标</p></div>`;
+  }
+
+  div.innerHTML = html;
+  div.style.display = 'block';
+  div.scrollIntoView({ behavior: 'smooth' });
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ============================================================
+// 沙盒练习
+// ============================================================
+let sbSessionId = null;
+
+async function doSandboxStart() {
+  const scenario = document.getElementById('sb-scenario').value.trim();
+  const mode = document.getElementById('sb-mode').value;
+  const personality = document.getElementById('sb-personality').value;
+  if (!scenario) { document.getElementById('sb-scenario').focus(); return; }
+
+  const btn = document.getElementById('sb-start-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ 启动中...';
+
+  try {
+    const resp = await fetch('/api/sandbox/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scenario, mode, personality }),
+    });
+    if (!resp.ok) { const e = await resp.json(); throw new Error(e.error); }
+    const d = await resp.json();
+
+    sbSessionId = d.sessionId;
+
+    // Hide setup, show chat
+    document.getElementById('sandbox-setup').style.display = 'none';
+    document.getElementById('sandbox-area').style.display = 'block';
+    document.getElementById('chat-area').innerHTML = '';
+    document.getElementById('coach-hint').style.display = 'none';
+    document.getElementById('sandbox-status').textContent =
+      `会话 ${sbSessionId} | ${d.scenario} | ${d.mode} | ${d.personality}`;
+
+    addChatMsg('simulator', '&#x1f3ad; 对方', d.opening);
+    document.getElementById('chat-input').focus();
+  } catch (e) {
+    alert('沙盒启动失败: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '▶; 开始练习';
+  }
+}
+
+async function doSandboxSend() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg || !sbSessionId) return;
+  input.value = '';
+  input.disabled = true;
+  document.getElementById('chat-send-btn').disabled = true;
+
+  addChatMsg('user', '&#x1f4ac; 你', msg);
+
+  try {
+    const resp = await fetch('/api/sandbox/' + sbSessionId + '/message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg }),
+    });
+    if (!resp.ok) { const e = await resp.json(); throw new Error(e.error); }
+    const d = await resp.json();
+
+    // Coach hint
+    const hintDiv = document.getElementById('coach-hint');
+    if (d.coachIntervention && d.coachIntervention.should) {
+      hintDiv.innerHTML = `<div class="chat-msg coach"><span class="sender">&#x1f9e0; 教练介入 [${esc(d.coachIntervention.reason)}]</span><br>${esc(d.coachIntervention.suggestion)}` +
+        (d.coachIntervention.example ? `<br><span style="font-size:11px;color:#b0883a;">示例: ${esc(d.coachIntervention.example)}</span>` : '') +
+        `</div>`;
+      hintDiv.style.display = 'block';
+    } else {
+      hintDiv.style.display = 'none';
+    }
+
+    // Simulator reply
+    addChatMsg('simulator', '&#x1f3ad; 对方', d.simulatorReply);
+    document.getElementById('sandbox-status').textContent =
+      `轮次: ${d.round} | 状态: ${d.isFinished ? '已完成' : '进行中'}`;
+
+    if (d.isFinished) {
+      document.getElementById('chat-input').disabled = true;
+      document.getElementById('chat-send-btn').disabled = true;
+      addChatMsg('coach', '&#x1f3c1; 会话结束', '练习已完成，可以查看总结或开始新的练习。');
+    }
+  } catch (e) {
+    addChatMsg('coach', '&#x274c; 错误', e.message);
+  } finally {
+    input.disabled = false;
+    document.getElementById('chat-send-btn').disabled = false;
+    input.focus();
+  }
+}
+
+function addChatMsg(cls, sender, content) {
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + cls;
+  div.innerHTML = `<span class="sender">${sender}</span><br>${esc(content)}`;
+  const area = document.getElementById('chat-area');
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+async function doSandboxEnd() {
+  if (!sbSessionId) return;
+  try {
+    await fetch('/api/sandbox/' + sbSessionId, { method: 'DELETE' });
+  } catch (e) {}
+  resetSandbox();
+}
+
+function resetSandbox() {
+  sbSessionId = null;
+  document.getElementById('sandbox-setup').style.display = 'block';
+  document.getElementById('sandbox-area').style.display = 'none';
+  document.getElementById('chat-area').innerHTML = '';
+  document.getElementById('coach-hint').style.display = 'none';
+  document.getElementById('chat-input').value = '';
+  document.getElementById('chat-input').disabled = false;
+  document.getElementById('chat-send-btn').disabled = false;
+}
+
+// Enter key to send
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.target === document.getElementById('scenario-input')) {
+    e.preventDefault();
+    doAnalyze();
+  }
+});
+</script>
+</body>
+</html>

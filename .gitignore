@@ -3,6 +3,8 @@ node_modules/
 *.db
 .ollama/
 data/expresscoach.sqlite
+data/expresscoach.sqlite-shm
+data/expresscoach.sqlite-wal
 dist/
 .DS_Store
 *.log

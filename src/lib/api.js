@@ -16,7 +16,7 @@
 
 const fs = require("fs");
 const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
+// dotenv 已由入口模块加载 (index.js / sandbox.js)
 
 const { C, c } = require("./color");
 

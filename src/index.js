@@ -29,7 +29,7 @@
 
 const fs = require("fs");
 const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "..", ".env") });
+require("dotenv").config({ path: path.resolve(__dirname, "..", ".env"), quiet: true });
 
 // Day 8: 意图识别模块化 — 从 src/intent/recognize.js 引入
 const { recognizeIntent } = require("./intent/recognize");
@@ -563,7 +563,7 @@ async function collectFeedback(rl, ask, versions, savedCaseId, scenario) {
 
 async function interactiveMode() {
   const readline = require("readline");
-  const rl = readline.createInterface({
+  let rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
@@ -717,6 +717,8 @@ async function interactiveMode() {
       const roundsStr = await ask(color(C.cyan, "  轮次数 (默认5): "));
       const sandboxRounds = parseInt(roundsStr.trim()) || 5;
 
+      // 暂停主 REPL 的 readline，避免与沙盒内的 readline 冲突（输入字符重复）
+      rl.close();
       try {
         await sandbox.startSandbox(sandboxScenario.trim(), sandboxMode, sandboxPersonality, {
           rounds: Math.min(sandboxRounds, 10),
@@ -725,6 +727,8 @@ async function interactiveMode() {
       } catch (error) {
         console.error(color(C.red, `  ❌ 沙盒运行异常: ${error.message}`));
       }
+      // 沙盒退出后重新创建 readline 恢复到主 REPL
+      rl = readline.createInterface({ input: process.stdin, output: process.stdout });
       continue;
     }
 
@@ -916,4 +920,8 @@ async function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = { runAnalysis };

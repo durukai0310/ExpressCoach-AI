@@ -21,7 +21,7 @@
 
 const fs = require("fs");
 const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "..", "..", ".env") });
+// dotenv 已由 index.js 加载
 
 const { callDeepSeek } = require("../lib/api");
 const { C, color } = require("../lib/color");

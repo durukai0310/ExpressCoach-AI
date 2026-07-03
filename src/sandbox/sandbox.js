@@ -785,7 +785,7 @@ async function main() {
 // ============================================================
 // 导出
 // ============================================================
-module.exports = { startSandbox, CoachAgent, SimulatorAgent, ContextManager };
+module.exports = { startSandbox, CoachAgent, SimulatorAgent, ContextManager, MODE_CONFIGS, _runCoachCheck };
 
 // 直接运行
 if (require.main === module) {
