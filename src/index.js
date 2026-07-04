@@ -57,13 +57,6 @@ try {
 let dbDao = null;
 try {
   dbDao = require("./db/dao");
-  // 初始化数据库 (如果尚未初始化)
-  dbDao.initDB().then(() => {
-    console.log("  🗄️  SQLite 数据库已就绪");
-  }).catch((e) => {
-    console.error(`  ⚠️ SQLite 初始化失败: ${e.message}`);
-    dbDao = null;
-  });
 } catch (e) {
   console.error(`  ⚠️ SQLite DAO 加载失败: ${e.message}`);
 }
@@ -563,12 +556,36 @@ async function collectFeedback(rl, ask, versions, savedCaseId, scenario) {
 
 async function interactiveMode() {
   const readline = require("readline");
-  let rl = readline.createInterface({
+
+  // Create readline interface
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
 
-  const ask = (q) => new Promise((resolve) => rl.question(q, resolve));
+  // Detect if readline is actually usable (non-TTY environments close it immediately)
+  let rlClosed = false;
+  rl.on("close", () => { rlClosed = true; });
+
+  // Wait a tick to see if close fires immediately (happens in piped/non-TTY environments)
+  await new Promise(resolve => setTimeout(resolve, 50));
+
+  if (rlClosed) {
+    console.log("");
+    console.log(color(C.yellow, "  ⚠️ 当前终端不支持交互模式"));
+    console.log(color(C.dim, "  请使用命令行参数运行: node src/index.js \"你的场景描述\""));
+    console.log(color(C.dim, "  或启动 Web 服务器: node src/server.js → http://localhost:3000"));
+    console.log("");
+    return;
+  }
+
+  const ask = (q) => new Promise((resolve, reject) => {
+    if (rlClosed) {
+      reject(new Error("readline was closed"));
+      return;
+    }
+    rl.question(q, resolve);
+  });
 
   console.log("");
   console.log(color(C.bold, "╔══════════════════════════════════════════════════════╗"));
@@ -898,6 +915,17 @@ async function main() {
   if (missingFiles) {
     console.error(color(C.red, "请确保所有 SOUL.md 文件存在后再运行"));
     process.exit(1);
+  }
+
+  // 初始化数据库 (统一在此处 await，避免竞争条件)
+  if (dbDao) {
+    try {
+      await dbDao.initDB();
+      console.log("  🗄️  SQLite 数据库已就绪");
+    } catch (e) {
+      console.error(`  ⚠️ SQLite 初始化失败: ${e.message}`);
+      dbDao = null;
+    }
   }
 
   const scenario = process.argv.slice(2).join(" ");

@@ -1157,5 +1157,23 @@
     "timestamp": "2026-07-03T13:01:31.712Z",
     "intentType": null,
     "relationType": null
+  },
+  {
+    "scenario": "我有一个认识十年的好朋友，最近总是找我借钱，借了也不还。这次又开口，一借就是两万，我不想再借了，但是又不想失去这个朋友，我应该怎么说",
+    "selectedVersion": "eq",
+    "rating": 4,
+    "comment": null,
+    "timestamp": "2026-07-04T07:05:36.665Z",
+    "intentType": null,
+    "relationType": null
+  },
+  {
+    "scenario": "我想找朋友借钱，但是他可能不太想借给我",
+    "selectedVersion": "firm",
+    "rating": 4,
+    "comment": null,
+    "timestamp": "2026-07-04T07:27:08.330Z",
+    "intentType": null,
+    "relationType": null
   }
 ]
