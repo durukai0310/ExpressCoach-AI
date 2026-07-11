@@ -1,8 +1,11 @@
-import 'dotenv/config';
-import express from 'express';
-import cors from 'cors';
+import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
+
+import express from 'express';
+import cors from 'cors';
 import { initDatabase } from './db/init.js';
 import sessionMiddleware from './middleware/session.js';
 import { generateSessionId, getOrCreateUser } from './services/session.js';
@@ -12,7 +15,6 @@ import testsRouter from './routes/tests.js';
 import analyticsRouter from './routes/analytics.js';
 import behaviorRouter from './routes/behavior.js';
 import expresscoachRouter from './routes/expresscoach.js';
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Initialize database (async for sql.js)
 await initDatabase();

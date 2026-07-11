@@ -26,7 +26,7 @@ const __dirname = path.dirname(__filename);
 // ============================================================
 // 配置
 // ============================================================
-const SIMULATOR_SOUL_PATH = path.resolve(__dirname, "..", "..", "soul", "simulator.md");
+const SIMULATOR_SOUL_PATH = path.resolve(__dirname, "..", "soul", "simulator.md");
 
 // ============================================================
 // 硬编码 System Prompt 模板（兜底：soul/simulator.md 不存在时使用）

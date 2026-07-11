@@ -34,7 +34,7 @@ const __dirname = path.dirname(__filename);
 // ============================================================
 // 配置
 // ============================================================
-const COACH_SOUL_PATH = path.resolve(__dirname, "..", "..", "soul", "coach.md");
+const COACH_SOUL_PATH = path.resolve(__dirname, "..", "soul", "coach.md");
 
 // ============================================================
 // 硬编码 System Prompt（兜底：soul/coach.md 不存在时使用）

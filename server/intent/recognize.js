@@ -20,8 +20,8 @@ const __dirname = path.dirname(__filename);
 // ============================================================
 // 配置
 // ============================================================
-const INTENT_SOUL = path.resolve(__dirname, "..", "..", "SOUL.md");
-const INTENT_RULES_PATH = path.resolve(__dirname, "..", "..", "data", "intent-rules.json");
+const INTENT_SOUL = path.resolve(__dirname, "..", "SOUL.md");
+const INTENT_RULES_PATH = path.resolve(__dirname, "..", "data", "intent-rules.json");
 
 // ============================================================
 // Day 23: 多标签意图归一化

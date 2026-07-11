@@ -31,8 +31,8 @@ const __dirname = path.dirname(__filename);
 // ============================================================
 // 配置
 // ============================================================
-const PREDICTOR_SOUL = path.resolve(__dirname, "..", "..", "soul", "predictor.md");
-const PATTERNS_PATH = path.resolve(__dirname, "..", "..", "data", "reaction-patterns.json");
+const PREDICTOR_SOUL = path.resolve(__dirname, "..", "soul", "predictor.md");
+const PATTERNS_PATH = path.resolve(__dirname, "..", "data", "reaction-patterns.json");
 
 // ============================================================
 // 规则兜底: 基于关键词的简易反应预测

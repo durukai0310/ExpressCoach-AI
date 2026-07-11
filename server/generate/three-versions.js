@@ -29,7 +29,7 @@ function derr(...a) { if (!Q) _err(...a); }
 // ============================================================
 // 配置
 // ============================================================
-const SOUL_DIR = path.resolve(__dirname, "..", "..", "soul");
+const SOUL_DIR = path.resolve(__dirname, "..", "soul");
 
 const GENERATOR_SOULS = {
   mild: path.join(SOUL_DIR, "generator-mild.md"),

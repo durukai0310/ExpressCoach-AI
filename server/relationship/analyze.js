@@ -36,8 +36,8 @@ function derr(...a) { if (!Q) _err(...a); }
 // ============================================================
 // 配置
 // ============================================================
-const RELATION_SOUL = path.resolve(__dirname, "..", "..", "soul", "relationship-judge.md");
-const RELATION_DICT_PATH = path.resolve(__dirname, "..", "..", "data", "relation-dict.json");
+const RELATION_SOUL = path.resolve(__dirname, "..", "soul", "relationship-judge.md");
+const RELATION_DICT_PATH = path.resolve(__dirname, "..", "data", "relation-dict.json");
 
 // 混合权重
 const RULE_WEIGHT = 0.3;

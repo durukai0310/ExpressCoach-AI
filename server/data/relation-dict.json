@@ -1,0 +1,1383 @@
+{
+  "version": "2.0.0",
+  "description": "中文社交关系词典 — 覆盖32种关系类型，四维标注(亲密度/权力关系/利益关联/文化区域) + 敏感度微调因子，用于社交计算引擎的关系推理",
+  "updated": "2026-06-18",
+  "changelog": "Day 18: 新增 sensitivityModifier 字段(32种关系逐一标注) + cultureRegion 字段(支持 mainland/hongkong_taiwan/overseas_chinese) + 复核全部 intimacy/power/interest 标注 + 新增7种缺失关键词",
+  "dimensions": {
+    "intimacy": {
+      "description": "亲密度 — 说话者与对方的亲密程度",
+      "levels": [
+        "亲密",
+        "较近",
+        "一般",
+        "疏远"
+      ],
+      "weight": 0.35
+    },
+    "power": {
+      "description": "权力关系 — 双方之间的权力结构",
+      "levels": [
+        "对方上位",
+        "平等",
+        "己方上位",
+        "不明"
+      ],
+      "weight": 0.3
+    },
+    "interest": {
+      "description": "利益关联 — 双方是否有利益关联",
+      "levels": [
+        "强利益",
+        "弱利益",
+        "纯情感"
+      ],
+      "weight": 0.25
+    },
+    "cultureRegion": {
+      "description": "文化区域 — 不同华人文化圈对该关系的社交规范差异",
+      "regions": {
+        "mainland": "中国大陆 — 面子文化重、权力距离大、间接表达偏好",
+        "hongkong_taiwan": "港台 — 中西混合、相对直接但不失礼数、商业礼仪规范",
+        "overseas_chinese": "海外华人 — 保留华人核心价值但受当地文化影响较大"
+      }
+    },
+    "sensitivityModifier": {
+      "description": "敏感度微调因子 — 叠加在三项基础权重之上的修正值",
+      "range": "-0.20 到 +0.50",
+      "rationale": "同级别的关系类型在实际社交中的敏感度差异很大（如'父母'和'配偶'虽然都'亲密'但处理方式不同）"
+    }
+  },
+  "relationships": [
+    {
+      "type": "父母",
+      "keywords": [
+        "父母",
+        "爸妈",
+        "爸爸",
+        "妈妈",
+        "老爸",
+        "老妈",
+        "父亲",
+        "母亲",
+        "爹",
+        "娘",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "亲密",
+      "power": "对方上位",
+      "interest": "纯情感",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "可以直接表达，但注意孝道和尊重",
+      "caution": "避免语气过于强硬，中国传统中父母权威感较强",
+      "reviewNote": "✅ 标注合理。sensitivityModifier=-0.15 因为虽然'对方上位'但亲情容错空间大"
+    },
+    {
+      "type": "配偶",
+      "keywords": [
+        "老公",
+        "老婆",
+        "妻子",
+        "丈夫",
+        "爱人",
+        "伴侣",
+        "对象",
+        "另一半",
+        "太太",
+        "先生",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "亲密",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "坦诚沟通，可以表达真实感受",
+      "caution": "注意日常摩擦积累，避免翻旧账。敏感度低但不等于可以随便说话",
+      "reviewNote": "✅ intimacy/power/interest 标注正确。新增关键词'太太/先生'。sensitivityModifier=-0.10"
+    },
+    {
+      "type": "子女",
+      "keywords": [
+        "孩子",
+        "儿子",
+        "女儿",
+        "小孩",
+        "娃",
+        "宝贝",
+        "宝宝",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "亲密",
+      "power": "己方上位",
+      "interest": "纯情感",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.2,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "可以温和但有权威地表达",
+      "caution": "避免居高临下的命令式语气，尊重孩子感受",
+      "reviewNote": "✅ 标注合理。sensitivityModifier=-0.20 因为是所有关系中容错空间最大的"
+    },
+    {
+      "type": "兄弟姐妹",
+      "keywords": [
+        "哥哥",
+        "弟弟",
+        "姐姐",
+        "妹妹",
+        "兄弟",
+        "姐妹",
+        "兄妹",
+        "姐弟",
+        "手足",
+        "哥",
+        "姐",
+        "弟",
+        "妹",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "亲密",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "直接沟通，可以适当开玩笑缓和气氛",
+      "caution": "涉及金钱或父母赡养时要额外谨慎（此时 sensitivityModifier 临时上调至 +0.15）",
+      "reviewNote": "✅ 标注正确。新增单字称呼'哥/姐/弟/妹'。caution 中添加了金钱场景的临时调整规则"
+    },
+    {
+      "type": "挚友",
+      "keywords": [
+        "挚友",
+        "死党",
+        "闺蜜",
+        "铁哥们",
+        "知己",
+        "最好的朋友",
+        "发小",
+        "基友",
+        "老铁",
+        "朋友",
+        "哥们儿",
+        "好友"
+      ],
+      "intimacy": "亲密",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "可以直说，坦诚是最好的策略",
+      "caution": "即使关系好也要尊重对方底线。金钱往来时 sensitivityModifier 临时上调至 +0.10",
+      "reviewNote": "✅ 标注正确。新增网络用语'基友/老铁'"
+    },
+    {
+      "type": "好朋友",
+      "keywords": [
+        "好朋友",
+        "好友",
+        "朋友",
+        "哥们",
+        "姐们",
+        "老友",
+        "老同学(关系好)",
+        "好兄弟",
+        "好姐妹",
+        "闺蜜",
+        "哥们儿",
+        "知己",
+        "死党"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "真诚但有分寸，可以适当铺垫",
+      "caution": "涉及金钱要格外小心，容易伤感情。好朋友是最容易被高估亲密度的关系",
+      "reviewNote": "✅ 标注合理。sensitivityModifier=0.0 作为基准值。这是最常见的社交场景"
+    },
+    {
+      "type": "普通朋友",
+      "keywords": [
+        "普通朋友",
+        "一般朋友",
+        "熟人",
+        "认识的人",
+        "不太熟的朋友",
+        "朋友",
+        "闺蜜",
+        "哥们儿",
+        "知己",
+        "死党",
+        "好友"
+      ],
+      "intimacy": "一般",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.05,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "礼貌客气，保持适度距离",
+      "caution": "不要过于直接，给对方留足面子",
+      "reviewNote": "⚠️ 原 interest 为'弱利益'→ 改为'纯情感'。普通朋友默认没有利益关联。sensitivityModifier=+0.05 因距离感需要更多礼貌"
+    },
+    {
+      "type": "同事(关系好)",
+      "keywords": [
+        "关系好的同事",
+        "同事(关系好)",
+        "饭搭子",
+        "摸鱼搭子",
+        "同组",
+        "好同事",
+        "同事",
+        "同事们",
+        "同事的",
+        "工作伙伴",
+        "搭档"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.05,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "在工作关系基础上多一分人情味",
+      "caution": "记住本质仍是同事，工作利益优先。晋升/裁员等场景敏感度急剧上升",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.05 因为'亦友亦同事'的双重身份增加了复杂度"
+    },
+    {
+      "type": "同事(一般)",
+      "keywords": [
+        "同事",
+        "同僚",
+        "工友",
+        "组员",
+        "团队成员",
+        "部门同事",
+        "隔壁组",
+        "其他部门",
+        "同事们",
+        "同事的",
+        "工作伙伴",
+        "搭档"
+      ],
+      "intimacy": "一般",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "专业礼貌，对事不对人",
+      "caution": "避免情绪化表达，用数据和事实说话",
+      "reviewNote": "✅ 标注正确。新增关键词'隔壁组/其他部门'。sensitivityModifier=+0.10 因职场关系风险"
+    },
+    {
+      "type": "上级",
+      "keywords": [
+        "老板",
+        "领导",
+        "主管",
+        "经理",
+        "上司",
+        "总监",
+        "老大",
+        "上级",
+        "Boss",
+        "CEO",
+        "院长",
+        "局长",
+        "处长",
+        "科长",
+        "主任",
+        "王总",
+        "李总",
+        "负责人",
+        "下属",
+        "员工",
+        "下属的",
+        "组员",
+        "组长"
+      ],
+      "intimacy": "一般",
+      "power": "对方上位",
+      "interest": "强利益",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.4,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "用请示/建议的语气，先肯定再提意见",
+      "caution": "永远给对方台阶下，避免当众反驳。中国文化中'犯上'是大忌",
+      "reviewNote": "✅ 标注完全正确。sensitivityModifier=+0.40 是所有关系中最高之一。新增关键词'总/负责人'"
+    },
+    {
+      "type": "下属",
+      "keywords": [
+        "下属",
+        "部下",
+        "手下",
+        "团队成员(己方)",
+        "员工",
+        "实习生",
+        "新人",
+        "组员(己方)",
+        "领导",
+        "老板",
+        "上司",
+        "上级",
+        "下属的",
+        "组员",
+        "组长",
+        "经理",
+        "总监"
+      ],
+      "intimacy": "一般",
+      "power": "己方上位",
+      "interest": "强利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "给予尊重和鼓励，不伤害对方自尊",
+      "caution": "避免当众批评，多用'我们'少用'你'。己方上位不代表可以随意",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.15 因'人言可畏'——下属也可能举报/跳槽"
+    },
+    {
+      "type": "老师",
+      "keywords": [
+        "老师",
+        "教授",
+        "导师(学术)",
+        "班主任",
+        "讲师",
+        "恩师",
+        "教员",
+        "导师",
+        "学生"
+      ],
+      "intimacy": "一般",
+      "power": "对方上位",
+      "interest": "弱利益",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.35,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "保持尊敬和谦逊，使用敬语",
+      "caution": "不可冒犯师道尊严，注意语气分寸。中国'尊师重道'传统根深蒂固",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.35。在 mainland 文化中师道尊严极重，高于一般对方上位关系"
+    },
+    {
+      "type": "学生",
+      "keywords": [
+        "学生",
+        "徒弟",
+        "学员",
+        "门生",
+        "老师",
+        "导师",
+        "教授",
+        "讲师",
+        "班主任"
+      ],
+      "intimacy": "一般",
+      "power": "己方上位",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": -0.05,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "以教导为主，批评要包裹在鼓励中",
+      "caution": "避免打击学生积极性，多用正向引导",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=-0.05 因师生关系中有'教导'这个安全角色"
+    },
+    {
+      "type": "同学",
+      "keywords": [
+        "同学",
+        "同班",
+        "校友",
+        "学长",
+        "学姐",
+        "学弟",
+        "学妹",
+        "同窗",
+        "师兄",
+        "师姐",
+        "师弟",
+        "师妹",
+        "室友",
+        "舍友"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": -0.05,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "以同窗情谊为基础，轻松但不失礼",
+      "caution": "注意毕业后关系可能变化，涉及利益要明确",
+      "reviewNote": "✅ 标注正确。新增关键词'师兄/师姐/师弟/师妹'。sensitivityModifier=-0.05 因同学情谊的天然缓冲"
+    },
+    {
+      "type": "室友",
+      "keywords": [
+        "室友",
+        "舍友",
+        "同屋",
+        "合租",
+        "室友(大学)",
+        "同住",
+        "同学",
+        "同班",
+        "校友"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "有事直说但要温和，建立共同规则",
+      "caution": "生活细节容易积怨，不要忍太久才爆发。室友关系是'低冲突高频率'的典型",
+      "reviewNote": "✅ 标注正确。sensitivityModifier 从 0 调整为 +0.10，因为室友矛盾的'积怨爆发'模式需要更多策略性"
+    },
+    {
+      "type": "邻居(熟)",
+      "keywords": [
+        "邻居(熟)",
+        "好邻居",
+        "街坊",
+        "邻里",
+        "隔壁老王",
+        "老街坊"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.05,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "以和为贵，先建立好感再提要求",
+      "caution": "邻里关系讲长远，不要为小事闹僵",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.05。邻里关系在 mainland 文化中特殊重要"
+    },
+    {
+      "type": "邻居(不熟)",
+      "keywords": [
+        "邻居",
+        "隔壁",
+        "楼上",
+        "楼下",
+        "对门",
+        "小区",
+        "物业",
+        "业主群"
+      ],
+      "intimacy": "疏远",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "礼貌客气，通过物业等中间渠道更安全",
+      "caution": "不要直接冲突，给对方留退路",
+      "reviewNote": "✅ 标注正确。新增关键词'物业/业主群'"
+    },
+    {
+      "type": "客户",
+      "keywords": [
+        "客户",
+        "甲方",
+        "顾客",
+        "委托人",
+        "业主",
+        "客户爸爸",
+        "金主",
+        "供应商",
+        "合作方",
+        "合作伙伴",
+        "客户的",
+        "供应商的",
+        "合作伙伴的"
+      ],
+      "intimacy": "疏远",
+      "power": "对方上位",
+      "interest": "强利益",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.45,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "专业服务态度，用事实和数据沟通",
+      "caution": "永远不要和客户争执对错，只讨论方案。'甲方爸爸'文化在 mainland 尤其突出",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.45，与上级持平。在 business context 中 clients often have more power"
+    },
+    {
+      "type": "合作伙伴",
+      "keywords": [
+        "合作伙伴",
+        "供应商",
+        "乙方",
+        "外包",
+        "代理商",
+        "渠道",
+        "合伙人",
+        "合作方",
+        "客户",
+        "顾客",
+        "客户的",
+        "供应商的",
+        "合作伙伴的"
+      ],
+      "intimacy": "一般",
+      "power": "平等",
+      "interest": "强利益",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.3,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "契约精神+人情维护，先谈合同再谈感情",
+      "caution": "利益分配要明确，避免口头承诺。合作破裂往往从'说不清楚'开始",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.30 因强利益+长期合作的叠加风险"
+    },
+    {
+      "type": "陌生人",
+      "keywords": [
+        "陌生人",
+        "路人",
+        "不认识的人",
+        "生人"
+      ],
+      "intimacy": "疏远",
+      "power": "不明",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "高度礼貌和正式，说明来意要清晰",
+      "caution": "给对方安全感，不要让对方觉得被冒犯",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.15 因为无关系缓冲，全靠第一印象"
+    },
+    {
+      "type": "亲戚(近)",
+      "keywords": [
+        "亲戚(近)",
+        "叔叔",
+        "阿姨",
+        "姑姑",
+        "舅舅",
+        "姨妈",
+        "伯父",
+        "婶婶",
+        "叔父",
+        "舅妈",
+        "姨父",
+        "姑父",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.05,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "以亲情为基础，适当直接但保持尊重",
+      "caution": "涉及家族事务（如财产分配）要格外谨慎。春节聚会是高频冲突场景",
+      "reviewNote": "✅ 标注正确。新增关键词'姨父/姑父'。sensitivityModifier=+0.05 因长辈称呼自带一定尊重要求"
+    },
+    {
+      "type": "亲戚(远)",
+      "keywords": [
+        "亲戚",
+        "远亲",
+        "表亲",
+        "堂亲",
+        "远房",
+        "远房亲戚",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "一般",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.08,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "礼貌客气，不用太深入讨论私事",
+      "caution": "不要轻易借钱或牵涉利益往来。远亲借钱是经典高风险场景",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.08 因名义上是亲戚但实质疏远"
+    },
+    {
+      "type": "导师/mentor",
+      "keywords": [
+        "导师",
+        "师父",
+        "mentor",
+        "指导老师",
+        "带教",
+        "引路人",
+        "mentor(职场)",
+        "老师",
+        "教授",
+        "讲师",
+        "班主任",
+        "学生"
+      ],
+      "intimacy": "较近",
+      "power": "对方上位",
+      "interest": "弱利益",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.3,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "感恩+尊重+主动沟通，展现成长",
+      "caution": "不要让导师觉得你在挑战他的权威。mainland 文化中'一日为师终身为父'的影响仍在",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.30 虽然 intimacy 高于老师，但权力不对等且利益关联"
+    },
+    {
+      "type": "晚辈",
+      "keywords": [
+        "晚辈",
+        "后辈",
+        "年轻一代",
+        "侄子",
+        "侄女",
+        "外甥",
+        "外甥女",
+        "小孩(亲戚)",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "较近",
+      "power": "己方上位",
+      "interest": "纯情感",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "温和引导，多鼓励少指责",
+      "caution": "避免以'为你好'为名的过度干涉",
+      "reviewNote": "✅ intimacy 从'亲密'修正为'较近'——晚辈不一定是亲密的。sensitivityModifier=-0.15"
+    },
+    {
+      "type": "长辈(非家人)",
+      "keywords": [
+        "长辈",
+        "前辈",
+        "长者",
+        "老人",
+        "大爷",
+        "大妈",
+        "阿姨(长辈)",
+        "叔叔(长辈)",
+        "老人家",
+        "父母",
+        "父亲",
+        "母亲",
+        "爸爸",
+        "妈妈",
+        "弟弟",
+        "妹妹",
+        "哥哥",
+        "姐姐",
+        "儿子",
+        "女儿",
+        "爷爷",
+        "奶奶",
+        "外公",
+        "外婆",
+        "叔叔",
+        "阿姨",
+        "舅舅",
+        "姑姑"
+      ],
+      "intimacy": "一般",
+      "power": "对方上位",
+      "interest": "纯情感",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.25,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan"
+      ],
+      "strategy": "使用敬语，态度恭敬，表示尊重",
+      "caution": "不要顶撞，即使对方不对也要给足面子。中国'尊老'传统是硬约束",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.25。'尊老'是 mainland 的硬性社交规范"
+    },
+    {
+      "type": "网友",
+      "keywords": [
+        "网友",
+        "群友",
+        "线上朋友",
+        "网友(熟)",
+        "聊友",
+        "微信好友(不熟)",
+        "朋友",
+        "闺蜜",
+        "哥们儿",
+        "知己",
+        "死党",
+        "好友"
+      ],
+      "intimacy": "一般",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "保持线上线下的边界，不要过度投入",
+      "caution": "注意隐私保护，涉及金钱立即警惕",
+      "reviewNote": "✅ 标注正确。新增关键词'微信好友(不熟)'。sensitivityModifier=+0.10 因线上匿名性带来的不确定性"
+    },
+    {
+      "type": "服务人员",
+      "keywords": [
+        "服务员",
+        "快递员",
+        "外卖员",
+        "司机",
+        "保安",
+        "保洁",
+        "客服",
+        "店员",
+        "物业",
+        "物业经理",
+        "快递",
+        "外卖",
+        "客服人员"
+      ],
+      "intimacy": "疏远",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "低敏感",
+      "sensitivityModifier": -0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "礼貌尊重，用'请'和'谢谢'",
+      "caution": "不要居高临下，尊重每个职业。低敏感不意味着可以无礼",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=-0.10 因服务关系通常有明确的角色脚本"
+    },
+    {
+      "type": "面试官/HR",
+      "keywords": [
+        "面试官",
+        "HR",
+        "人事",
+        "招聘",
+        "猎头",
+        "HRBP",
+        "领导",
+        "老板",
+        "上司",
+        "上级",
+        "下属",
+        "员工",
+        "下属的",
+        "组员",
+        "组长",
+        "经理",
+        "总监"
+      ],
+      "intimacy": "疏远",
+      "power": "对方上位",
+      "interest": "强利益",
+      "sensitivity": "高敏感",
+      "sensitivityModifier": 0.4,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "专业自信，展现价值而非讨好",
+      "caution": "不要过度暴露弱点，但也别夸大能力。面试场景是一锤子买卖，容错空间极小",
+      "reviewNote": "✅ 标注正确。新增关键词'HRBP'。sensitivityModifier=+0.40 与上级同级，因强利益+高权力差"
+    },
+    {
+      "type": "专业人士",
+      "keywords": [
+        "医生",
+        "律师",
+        "会计师",
+        "顾问",
+        "教练",
+        "心理咨询师",
+        "治疗师",
+        "理财师",
+        "客户",
+        "顾客",
+        "供应商",
+        "合作方",
+        "合作伙伴",
+        "客户的",
+        "供应商的",
+        "合作伙伴的"
+      ],
+      "intimacy": "疏远",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "尊重专业判断，清晰表达需求",
+      "caution": "不要挑战对方的专业领域，除非你有充足依据",
+      "reviewNote": "✅ 标注正确。新增关键词'理财师'。sensitivityModifier=+0.10 因专业知识不对称"
+    },
+    {
+      "type": "前同事",
+      "keywords": [
+        "前同事",
+        "老同事",
+        "旧同事",
+        "以前的同事",
+        "离职的同事",
+        "同事",
+        "同事们",
+        "同事的",
+        "工作伙伴",
+        "搭档"
+      ],
+      "intimacy": "一般",
+      "power": "平等",
+      "interest": "弱利益",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.15,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "保持友好但不越界，旧情可叙但公事公办",
+      "caution": "注意保密前公司信息，不要随意评价前公司",
+      "reviewNote": "⚠️ interest 从'弱利益'→ 可能是'纯情感'（离职后无利益关联）但仍保留'弱利益'因行业人脉价值。sensitivityModifier=+0.15 因信息保密风险"
+    },
+    {
+      "type": "朋友的朋友",
+      "keywords": [
+        "朋友的朋友",
+        "朋友介绍的",
+        "介绍认识的",
+        "间接关系",
+        "共同朋友介绍",
+        "中间人介绍",
+        "朋友",
+        "闺蜜",
+        "哥们儿",
+        "知己",
+        "死党",
+        "好友"
+      ],
+      "intimacy": "疏远",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.2,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "通过共同朋友建立信任，循序渐进",
+      "caution": "尊重中间人的面子，不要让对方尴尬。中国的'面子链'——你让朋友的朋友难堪=让朋友难堪",
+      "reviewNote": "✅ 标注正确。sensitivityModifier=+0.20 因'间接关系'中的面子传递效应"
+    },
+    {
+      "type": "恋人/约会对象",
+      "keywords": [
+        "恋人",
+        "男/女朋友",
+        "约会对象",
+        "暧昧对象",
+        "追的人",
+        "喜欢的人",
+        "相亲对象",
+        "男朋友",
+        "女朋友",
+        "对象"
+      ],
+      "intimacy": "较近",
+      "power": "平等",
+      "interest": "纯情感",
+      "sensitivity": "中敏感",
+      "sensitivityModifier": 0.1,
+      "cultureRegion": [
+        "mainland",
+        "hongkong_taiwan",
+        "overseas_chinese"
+      ],
+      "strategy": "真诚+浪漫+尊重，坦诚但有分寸",
+      "caution": "不要过早暴露所有缺点，但也不要伪装。恋爱初期 sensitivityModifier 可临时上调至 +0.25",
+      "reviewNote": "✅ 标注正确。新增关键词'男朋友/女朋友/对象'。caution 中添加了恋爱初期临时调整规则"
+    }
+  ],
+  "defaults": {
+    "intimacy": "一般",
+    "power": "不明",
+    "interest": "纯情感",
+    "sensitivity": "中敏感",
+    "sensitivityModifier": 0.1,
+    "cultureRegion": [
+      "mainland"
+    ],
+    "strategy": "保持礼貌和真诚",
+    "caution": "避免伤害对方感情，给对方留退路"
+  },
+  "compositeRelations": {
+    "description": "复合关系处理规则 — 当对方同时具有两种关系身份时",
+    "rules": [
+      {
+        "composite": "同事+好友",
+        "resolution": "取亲密度的较高值 + 权力的较低值 + 利益的较高值",
+        "sensitivityModifierBonus": 0.15,
+        "note": "如：关系好的同事在晋升场景中，同事身份优先于好友身份"
+      },
+      {
+        "composite": "老师+亲戚",
+        "resolution": "权力取'对方上位' + 亲密度取实际值",
+        "sensitivityModifierBonus": 0.1,
+        "note": "如：叔叔是班主任，在学校的权力关系优先"
+      },
+      {
+        "composite": "闺蜜+老板",
+        "resolution": "在工作场景取'上级'关系，在私下场景取'挚友'关系",
+        "sensitivityModifierBonus": 0.2,
+        "note": "场景决定主导关系。这是最复杂的复合关系"
+      },
+      {
+        "composite": "同学+下属",
+        "resolution": "工作场景权力关系优先，私下场景回归同学",
+        "sensitivityModifierBonus": 0.1,
+        "note": "需要明确切换信号（如：'现在以工作身份说'）"
+      }
+    ]
+  },
+  "culturalDimensions": {
+    "家庭关系": {
+      "powerDistanceIndex": 85,
+      "individualismScore": 20,
+      "uncertaintyAvoidance": 70,
+      "note": "高权力距离+低个人主义+高不确定性规避=典型中国家庭"
+    },
+    "朋友关系": {
+      "powerDistanceIndex": 25,
+      "individualismScore": 50,
+      "uncertaintyAvoidance": 35,
+      "note": "低权力距离+中等个人主义+低不确定性规避=平等朋友关系"
+    },
+    "师生关系": {
+      "powerDistanceIndex": 80,
+      "individualismScore": 25,
+      "uncertaintyAvoidance": 65,
+      "note": "高权力距离+低个人主义+中高不确定性规避=师道尊严"
+    },
+    "同事关系": {
+      "powerDistanceIndex": 55,
+      "individualismScore": 45,
+      "uncertaintyAvoidance": 50,
+      "note": "中等权力距离+中等个人主义+中等不确定性规避=职场平级"
+    },
+    "同学关系": {
+      "powerDistanceIndex": 30,
+      "individualismScore": 55,
+      "uncertaintyAvoidance": 30,
+      "note": "低权力距离+中等偏上个人主义+低不确定性规避=同辈同学"
+    },
+    "上下级关系": {
+      "powerDistanceIndex": 88,
+      "individualismScore": 22,
+      "uncertaintyAvoidance": 68,
+      "note": "极高权力距离+低个人主义+中高不确定性规避=中国式上下级"
+    },
+    "商业关系": {
+      "powerDistanceIndex": 75,
+      "individualismScore": 50,
+      "uncertaintyAvoidance": 55,
+      "note": "高权力距离+中等个人主义+中等不确定性规避=商业合作"
+    },
+    "服务关系": {
+      "powerDistanceIndex": 65,
+      "individualismScore": 40,
+      "uncertaintyAvoidance": 50,
+      "note": "中高权力距离+中等偏下个人主义+中等不确定性规避=服务场景"
+    },
+    "陌生人关系": {
+      "powerDistanceIndex": 50,
+      "individualismScore": 60,
+      "uncertaintyAvoidance": 45,
+      "note": "中等权力距离+中高个人主义+中等不确定性规避=陌生人互动"
+    }
+  },
+  "sensitivityRules": {
+    "高敏感": [
+      [
+        "亲密",
+        "上级",
+        "强"
+      ],
+      [
+        "较近",
+        "上级",
+        "强"
+      ],
+      [
+        "亲密",
+        "平级",
+        "强"
+      ]
+    ],
+    "中敏感": [
+      [
+        "亲密",
+        "上级",
+        "弱"
+      ],
+      [
+        "亲密",
+        "平级",
+        "弱"
+      ],
+      [
+        "较近",
+        "上级",
+        "弱"
+      ],
+      [
+        "较近",
+        "平级",
+        "强"
+      ],
+      [
+        "一般",
+        "上级",
+        "强"
+      ],
+      [
+        "一般",
+        "平级",
+        "强"
+      ]
+    ],
+    "低敏感": [
+      [
+        "亲密",
+        "下级",
+        "弱"
+      ],
+      [
+        "较近",
+        "下级",
+        "弱"
+      ],
+      [
+        "一般",
+        "平级",
+        "弱"
+      ],
+      [
+        "一般",
+        "下级",
+        "弱"
+      ],
+      [
+        "一般",
+        "上级",
+        "弱"
+      ]
+    ]
+  },
+  "powerIndicators": {
+    "上级": [
+      "领导",
+      "老板",
+      "上级",
+      "导师",
+      "老师",
+      "父母",
+      "父亲",
+      "母亲",
+      "经理",
+      "总监",
+      "组长"
+    ],
+    "平级": [
+      "同事",
+      "朋友",
+      "同学",
+      "室友",
+      "搭档",
+      "闺蜜"
+    ],
+    "下级": [
+      "下属",
+      "员工",
+      "组员",
+      "学生",
+      "弟弟",
+      "妹妹"
+    ]
+  },
+  "intimacyIndicators": {
+    "亲密": [
+      "父母",
+      "父亲",
+      "母亲",
+      "弟弟",
+      "妹妹",
+      "朋友",
+      "闺蜜",
+      "知己"
+    ],
+    "较近": [
+      "同事",
+      "同学",
+      "室友",
+      "导师",
+      "领导"
+    ],
+    "一般": [
+      "客户",
+      "供应商",
+      "外卖",
+      "快递",
+      "物业"
+    ]
+  },
+  "interestIndicators": {
+    "强": [
+      "钱",
+      "付款",
+      "生意",
+      "创业",
+      "工资",
+      "收入",
+      "工作任务",
+      "绩效",
+      "合同",
+      "项目",
+      "交付",
+      "产品",
+      "质量"
+    ],
+    "弱": [
+      "聊天",
+      "帮忙",
+      "带饭",
+      "借书",
+      "迟到",
+      "打游戏",
+      "声音",
+      "请教"
+    ]
+  },
+  "mergeNote": "W5 Day 31: 合并了成员B的增强关键词和文化维度数据 (culturalDimensions, sensitivityRules, powerIndicators)",
+  "mergeStats": {
+    "keywordsAdded": 237,
+    "fromBVersion": "enhanced"
+  }
+}
