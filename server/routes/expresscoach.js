@@ -45,22 +45,6 @@ async function loadModules() {
 }
 
 // ============================================================
-// Console noise suppression during analysis
-// ============================================================
-function quiet() {
-  const _log = console.log, _err = console.error, _write = process.stdout.write;
-  console.log = () => {};
-  console.error = () => {};
-  process.stdout.write = () => true;
-  return { log: _log, err: _err, write: _write };
-}
-function loud(saved) {
-  console.log = saved.log;
-  console.error = saved.err;
-  process.stdout.write = saved.write;
-}
-
-// ============================================================
 // POST /api/analyze — Full pipeline analysis
 // ============================================================
 router.post('/analyze', async (req, res) => {
@@ -71,6 +55,11 @@ router.post('/analyze', async (req, res) => {
 
   await loadModules();
 
+  console.log('[analyze] Scenario:', scenario.trim().substring(0, 50));
+  console.log('[analyze] API Key configured:', !!process.env.DEEPSEEK_API_KEY);
+  console.log('[analyze] Modules loaded - intent:', !!recognizeIntent, 'relation:', !!hybridAnalyze, 'generate:', !!generateThreeVersions);
+
+  const errors = [];
   const t0 = performance.now();
   const timing = {};
 
@@ -80,7 +69,6 @@ router.post('/analyze', async (req, res) => {
     let intentResult = null, relationResult = null;
 
     if (recognizeIntent && hybridAnalyze) {
-      const saved = quiet();
       try {
         [intentResult, relationResult] = await Promise.all([
           recognizeIntent(scenario.trim()),
@@ -88,26 +76,31 @@ router.post('/analyze', async (req, res) => {
         ]);
         timing.intent = (performance.now() - t1) / 1000;
         timing.relation = timing.intent;
+        console.log('[analyze] Intent:', intentResult?.parsed?.['意图'] || '?', 'Relation:', relationResult?.parsed?.['关系类型'] || '?');
       } catch (e) {
+        console.error('[analyze] Step 1+2 error:', e.message);
+        errors.push('意图/关系分析: ' + e.message);
         timing.intent = (performance.now() - t1) / 1000;
-      } finally {
-        loud(saved);
       }
+    } else {
+      errors.push('核心模块未加载: intent=' + !!recognizeIntent + ' relation=' + !!hybridAnalyze);
     }
 
     // Step 3: Three versions
     const t3 = performance.now();
     let versions = [];
     if (generateThreeVersions) {
-      const saved = quiet();
       try {
         versions = await generateThreeVersions(scenario.trim(), relationResult?.parsed || null);
         timing.versions = (performance.now() - t3) / 1000;
+        console.log('[analyze] Generated', versions.length, 'versions');
       } catch (e) {
+        console.error('[analyze] Step 3 error:', e.message);
+        errors.push('版本生成: ' + e.message);
         timing.versions = (performance.now() - t3) / 1000;
-      } finally {
-        loud(saved);
       }
+    } else {
+      errors.push('生成模块未加载');
     }
 
     const total = (performance.now() - t0) / 1000;
@@ -116,6 +109,7 @@ router.post('/analyze', async (req, res) => {
     const data = {
       scenario: scenario.trim(),
       timing: { total, ...timing },
+      errors: errors.length > 0 ? errors : null,
 
       intent: intentResult?.parsed ? {
         primary: intentResult.parsed['意图'] || intentResult.parsed['主意图'] || '?',
@@ -204,27 +198,18 @@ router.post('/sandbox/start', async (req, res) => {
   }
 
   try {
-    const saved = quiet();
-    let session;
-    try {
-      const { CoachAgent, SimulatorAgent, ContextManager } = SandboxModules;
-      session = new SandboxSession(scenario.trim(), mode, personality);
-      const opening = await session.generateOpening();
-      sandboxSessions.set(session.sessionId, session);
-      loud(saved);
-
-      res.json({
-        sessionId: session.sessionId,
-        scenario: session.scenario,
-        mode: session.mode,
-        personality: session.personality,
-        opening,
-        maxRounds: session.maxRounds,
-      });
-    } catch (e) {
-      loud(saved);
-      throw e;
-    }
+    const { CoachAgent, SimulatorAgent, ContextManager } = SandboxModules;
+    const session = new SandboxSession(scenario.trim(), mode, personality);
+    const opening = await session.generateOpening();
+    sandboxSessions.set(session.sessionId, session);
+    res.json({
+      sessionId: session.sessionId,
+      scenario: session.scenario,
+      mode: session.mode,
+      personality: session.personality,
+      opening,
+      maxRounds: session.maxRounds,
+    });
   } catch (error) {
     console.error('[EC] Sandbox start error:', error);
     res.status(500).json({ error: error.message || '沙盒启动失败' });

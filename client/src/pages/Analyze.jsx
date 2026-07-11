@@ -66,6 +66,15 @@ export default function Analyze() {
       {loading && <div className="loading"><div className="spinner"></div> AI 正在分析你的场景...</div>}
       {error && <div className="error-state">分析失败：{error}</div>}
 
+      {result?.errors && result.errors.length > 0 && (
+        <div className="card" style={{ marginTop: 16, borderLeft: '3px solid var(--color-secondary)', background: '#fef9e7' }}>
+          <div className="card-title" style={{ color: 'var(--color-secondary)' }}>后端错误信息</div>
+          {result.errors.map((e, i) => (
+            <div key={i} style={{ fontSize: '0.85rem', marginTop: i > 0 ? 8 : 0, color: 'var(--color-text-light)' }}>{e}</div>
+          ))}
+        </div>
+      )}
+
       {result && (
         <div style={{ marginTop: 16 }}>
           {/* Overview */}
