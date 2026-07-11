@@ -72,37 +72,48 @@ async function callDeepSeek(systemPrompt, userInput, opts = {}) {
     model = "deepseek-chat",
   } = opts;
 
-  if (!DEEPSEEK_API_KEY) {
-    throw new Error("DEEPSEEK_API_KEY 未配置，请在 .env 中设置");
+  const errors = [];
+
+  // 1. Try DeepSeek
+  if (DEEPSEEK_API_KEY) {
+    try {
+      const { data, elapsed } = await fetchWithRetry(
+        "https://api.deepseek.com/chat/completions",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${DEEPSEEK_API_KEY}` },
+          body: JSON.stringify({ model, messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userInput }], temperature, max_tokens: maxTokens }),
+        }, 1, "DeepSeek"
+      );
+      return { content: data.choices[0].message.content, tokens: data.usage?.total_tokens || 0, duration: parseFloat(elapsed.toFixed(2)), model: "deepseek" };
+    } catch (e) { console.error('[AI] DeepSeek failed:', e.message); errors.push('DeepSeek: ' + e.message); }
   }
 
-  const { data, elapsed } = await fetchWithRetry(
-    "https://api.deepseek.com/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userInput },
-        ],
-        temperature,
-        max_tokens: maxTokens,
-      }),
-    },
-    2,
-    "DeepSeek"
-  );
+  // 2. Fallback to Qwen
+  if (DASHSCOPE_API_KEY) {
+    try {
+      const { data, elapsed } = await fetchWithRetry(
+        "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+        { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${DASHSCOPE_API_KEY}` }, body: JSON.stringify({ model: "qwen-plus", messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userInput }], temperature, max_tokens: maxTokens }) },
+        1, "Qwen"
+      );
+      return { content: data.choices[0].message.content, tokens: data.usage?.total_tokens || 0, duration: parseFloat(elapsed.toFixed(2)), model: "qwen" };
+    } catch (e) { console.error('[AI] Qwen failed:', e.message); errors.push('Qwen: ' + e.message); }
+  }
 
-  return {
-    content: data.choices[0].message.content,
-    tokens: data.usage?.total_tokens || 0,
-    duration: parseFloat(elapsed.toFixed(2)),
-  };
+  // 3. Fallback to Kimi
+  if (MOONSHOT_API_KEY) {
+    try {
+      const { data, elapsed } = await fetchWithRetry(
+        "https://api.moonshot.cn/v1/chat/completions",
+        { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${MOONSHOT_API_KEY}` }, body: JSON.stringify({ model: "moonshot-v1-8k", messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userInput }], temperature, max_tokens: maxTokens }) },
+        1, "Kimi"
+      );
+      return { content: data.choices[0].message.content, tokens: data.usage?.total_tokens || 0, duration: parseFloat(elapsed.toFixed(2)), model: "kimi" };
+    } catch (e) { console.error('[AI] Kimi failed:', e.message); errors.push('Kimi: ' + e.message); }
+  }
+
+  throw new Error('All AI APIs failed: ' + errors.join('; '));
 }
 
 // ============================================================
