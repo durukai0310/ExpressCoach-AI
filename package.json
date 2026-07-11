@@ -1,0 +1,10 @@
+{
+  "name": "expresscoach",
+  "version": "2.0.0",
+  "description": "ExpressCoach - AI 社交表达教练",
+  "private": true,
+  "scripts": {
+    "build": "cd server && npm install",
+    "start": "node server/index.js"
+  }
+}

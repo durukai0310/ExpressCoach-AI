@@ -1,0 +1,17 @@
+{
+  "name": "expresscoach-server",
+  "version": "2.0.0",
+  "description": "ExpressCoach Backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "sql.js": "^1.14.1",
+    "uuid": "^10.0.0"
+  }
+}
