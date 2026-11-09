@@ -1,0 +1,182 @@
+[
+  {
+    "id": "D01",
+    "category": "双重关系冲突",
+    "scenario": "同事兼好友向你借5000元应急，但你最近手头也紧",
+    "intent": "拒绝请求",
+    "difficulty": "hard",
+    "dualRoles": ["同事", "好友"],
+    "testResult": null
+  },
+  {
+    "id": "D02",
+    "category": "双重关系冲突",
+    "scenario": "老师也是你的远房亲戚，期末给你不及格，你需要求情",
+    "intent": "寻求帮助",
+    "difficulty": "hard",
+    "dualRoles": ["老师", "亲戚"],
+    "testResult": null
+  },
+  {
+    "id": "D03",
+    "category": "双重关系冲突",
+    "scenario": "闺蜜同时也是你的下属，她最近工作表现很差需要指出",
+    "intent": "提出反馈",
+    "difficulty": "very-hard",
+    "dualRoles": ["闺蜜", "下属"],
+    "testResult": null
+  },
+  {
+    "id": "D04",
+    "category": "双重关系冲突",
+    "scenario": "同学也是你的下属实习生，TA总在上班时间摸鱼",
+    "intent": "提出反馈",
+    "difficulty": "hard",
+    "dualRoles": ["同学", "下属"],
+    "testResult": null
+  },
+  {
+    "id": "D05",
+    "category": "权力不对等",
+    "scenario": "老板要求你周末加班但你已经安排了重要家庭聚会",
+    "intent": "拒绝请求",
+    "difficulty": "hard",
+    "powerGap": "老板-员工",
+    "testResult": null
+  },
+  {
+    "id": "D06",
+    "category": "权力不对等",
+    "scenario": "导师让你延期毕业帮忙做项目，但你已经找到工作了",
+    "intent": "拒绝请求",
+    "difficulty": "very-hard",
+    "powerGap": "导师-学生",
+    "testResult": null
+  },
+  {
+    "id": "D07",
+    "category": "权力不对等",
+    "scenario": "领导在全员会议上公开批评你，但批评与事实不符",
+    "intent": "提出反馈",
+    "difficulty": "very-hard",
+    "powerGap": "领导-下属",
+    "testResult": null
+  },
+  {
+    "id": "D08",
+    "category": "权力不对等",
+    "scenario": "重要客户对你的方案不满并威胁换供应商",
+    "intent": "设立边界",
+    "difficulty": "very-hard",
+    "powerGap": "客户-供应商",
+    "testResult": null
+  },
+  {
+    "id": "D09",
+    "category": "文化敏感",
+    "scenario": "过年回家长辈非要给你敬酒但你不会喝酒",
+    "intent": "拒绝请求",
+    "difficulty": "hard",
+    "culturalContext": "春节敬酒文化",
+    "testResult": null
+  },
+  {
+    "id": "D10",
+    "category": "文化敏感",
+    "scenario": "亲戚热心给你介绍相亲对象但你已经有了喜欢的人",
+    "intent": "拒绝请求",
+    "difficulty": "medium",
+    "culturalContext": "家庭相亲文化",
+    "testResult": null
+  },
+  {
+    "id": "D11",
+    "category": "文化敏感",
+    "scenario": "亲戚向你借钱做生意，但你知道他之前借的钱都没还",
+    "intent": "拒绝请求",
+    "difficulty": "hard",
+    "culturalContext": "亲戚借钱文化",
+    "testResult": null
+  },
+  {
+    "id": "D12",
+    "category": "文化敏感",
+    "scenario": "长辈在家庭群里转发谣言，你想提醒但又怕冒犯",
+    "intent": "提出反馈",
+    "difficulty": "hard",
+    "culturalContext": "尊老文化",
+    "testResult": null
+  },
+  {
+    "id": "D13",
+    "category": "多意图混合",
+    "scenario": "想拒绝朋友借钱但又要维持关系，还想给他推荐其他解决办法",
+    "intent": "多意图(拒绝+求助+维持关系)",
+    "difficulty": "very-hard",
+    "mixedIntent": true,
+    "testResult": null
+  },
+  {
+    "id": "D14",
+    "category": "多意图混合",
+    "scenario": "催促同事交报告但不想伤和气，同时还希望获得他的后续配合",
+    "intent": "多意图(催促+关系维护+合作)",
+    "difficulty": "hard",
+    "mixedIntent": true,
+    "testResult": null
+  },
+  {
+    "id": "D15",
+    "category": "多意图混合",
+    "scenario": "向领导提意见设边界但又要表达忠诚，同时争取晋升机会",
+    "intent": "多意图(反馈+边界+求助)",
+    "difficulty": "very-hard",
+    "mixedIntent": true,
+    "testResult": null
+  },
+  {
+    "id": "D16",
+    "category": "多意图混合",
+    "scenario": "需要对下属进行绩效面谈，既要批评又要鼓励，还要给他制定改进计划",
+    "intent": "多意图(反馈+求助+设边界)",
+    "difficulty": "hard",
+    "mixedIntent": true,
+    "testResult": null
+  },
+  {
+    "id": "D17",
+    "category": "高风险场景",
+    "scenario": "不小心在背后说了朋友的坏话被传到了朋友耳朵里，需要道歉修复",
+    "intent": "道歉修复",
+    "difficulty": "very-hard",
+    "highStakes": true,
+    "testResult": null
+  },
+  {
+    "id": "D18",
+    "category": "高风险场景",
+    "scenario": "需要告诉客户项目延期交付的坏消息，且会影响客户业务",
+    "intent": "告知坏消息",
+    "difficulty": "very-hard",
+    "highStakes": true,
+    "testResult": null
+  },
+  {
+    "id": "D19",
+    "category": "高风险场景",
+    "scenario": "需要解雇一名工作多年的老员工，他家庭困难且没有过错",
+    "intent": "解雇通知",
+    "difficulty": "extreme",
+    "highStakes": true,
+    "testResult": null
+  },
+  {
+    "id": "D20",
+    "category": "高风险场景",
+    "scenario": "最好的朋友向你告白但你没有感觉，不伤害友谊地拒绝",
+    "intent": "拒绝请求",
+    "difficulty": "extreme",
+    "highStakes": true,
+    "testResult": null
+  }
+]

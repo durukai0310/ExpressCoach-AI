@@ -1,0 +1,27 @@
+{
+  "labels": [
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "W5"
+  ],
+  "datasets": [
+    {
+      "label": "全链路耗时",
+      "data": [
+        15.2,
+        12.8,
+        9.5,
+        7.2,
+        5.8
+      ],
+      "borderColor": "#3B82F6",
+      "backgroundColor": "#3B82F633",
+      "borderWidth": 3,
+      "pointBackgroundColor": "#3B82F6",
+      "pointRadius": 8,
+      "fill": true
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "labels": [
+    "完全可处理 (55%)",
+    "勉强可处理 (35%)",
+    "无法处理 (10%)"
+  ],
+  "datasets": [
+    {
+      "data": [
+        55,
+        35,
+        10
+      ],
+      "backgroundColor": [
+        "#10B981",
+        "#F59E0B",
+        "#EF4444"
+      ],
+      "borderColor": "#ffffff",
+      "borderWidth": 2
+    }
+  ]
+}

@@ -1,10 +1,36 @@
 {
   "name": "expresscoach",
-  "version": "2.0.0",
-  "description": "ExpressCoach - AI 社交表达教练",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
   "scripts": {
-    "build": "cd server && npm install",
-    "start": "node server/index.js"
+    "start": "node src/server.js",
+    "cli": "node src/index.js",
+    "seed": "node scripts/seed-db.js",
+    "gen": "node scripts/generate-data.js",
+    "normalize": "node scripts/normalize-data.js",
+    "validate": "node scripts/validate-data.js",
+    "test": "node scripts/test-openclaw.js",
+    "test:intent": "node test/test-intent.js",
+    "test:relationship": "node test/test-relationship.js",
+    "test:db": "node test/test-db.js",
+    "test:cli": "node scripts/interactive-probe.mjs cmds",
+    "test:sandbox": "node scripts/interactive-probe.mjs sandbox",
+    "demo": "node src/index.js \"我想拒绝朋友借钱但不想伤感情\""
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "openclaw": "^2026.6.1"
+  },
+  "optionalDependencies": {
+    "sqlite3": "^6.0.1"
   }
 }

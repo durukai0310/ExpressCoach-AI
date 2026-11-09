@@ -1,0 +1,662 @@
+[
+  {
+    "scenario": "同事在团队合作中频繁推卸责任，让你承担大部分工作，现在又请求你帮忙完成他的任务",
+    "intent": "拒绝请求",
+    "relation": "同事关系-较近-平级",
+    "expectedIntent": "拒绝请求",
+    "expectedStrategy": "直接拒绝+说明原因+建议改进",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，同事在团队合作中频繁推卸责任，让你承担大部分工作，现在又请求你帮忙完成他的任务。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 3,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 4,\n    \"operability\": 4\n  },\n  \"total\": 3.5,\n  \"justification\": \"意图部分表达但未明确拒绝，关系维护较好，表达稍显书面，策略适合平级同事，可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 3,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 4,
+              "operability": 4
+            },
+            "total": 3.5,
+            "justification": "意图部分表达但未明确拒绝，关系维护较好，表达稍显书面，策略适合平级同事，可直接使用。"
+          },
+          "tokens": 579,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于同事在团队合作中频繁推卸责任，让你承担大部分工作，现在又请求你帮忙完成他的任务，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 5,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 3,\n    \"operability\": 4\n  },\n  \"total\": 3.4,\n  \"justification\": \"意图清晰拒绝，但表达生硬，缺乏委婉，可能损害同事关系，策略可优化为更温和的方式。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 5,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 3,
+              "operability": 4
+            },
+            "total": 3.4,
+            "justification": "意图清晰拒绝，但表达生硬，缺乏委婉，可能损害同事关系，策略可优化为更温和的方式。"
+          },
+          "tokens": 575,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，同事在团队合作中频繁推卸责任，让你承担大部分工作，现在又请求你帮忙完成他的任务。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确拒绝或表达不满，意图模糊；语言生硬重复，缺乏自然感；策略回避问题，可操作性低。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未明确拒绝或表达不满，意图模糊；语言生硬重复，缺乏自然感；策略回避问题，可操作性低。"
+          },
+          "tokens": 586,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "亲戚以亲情为名要求你担保贷款，数额巨大且对方信用不佳",
+    "intent": "拒绝请求",
+    "relation": "家庭关系-亲密-上级",
+    "expectedIntent": "拒绝请求",
+    "expectedStrategy": "委婉拒绝+解释风险+提供其他帮助",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，亲戚以亲情为名要求你担保贷款，数额巨大且对方信用不佳。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 3,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 4,\n    \"strategy_appropriateness\": 3,\n    \"operability\": 4\n  },\n  \"total\": 3.5,\n  \"justification\": \"意图部分表达但未明确拒绝，关系维护较好，表达自然，策略可优化，可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 3,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 4,
+              "strategy_appropriateness": 3,
+              "operability": 4
+            },
+            "total": 3.5,
+            "justification": "意图部分表达但未明确拒绝，关系维护较好，表达自然，策略可优化，可直接使用。"
+          },
+          "tokens": 559,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于亲戚以亲情为名要求你担保贷款，数额巨大且对方信用不佳，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 5,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 3,\n    \"operability\": 4\n  },\n  \"total\": 3.4,\n  \"justification\": \"意图清晰拒绝，但语气生硬，缺乏情感缓冲，可能伤害亲戚关系，策略不够圆滑。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 5,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 3,
+              "operability": 4
+            },
+            "total": 3.4,
+            "justification": "意图清晰拒绝，但语气生硬，缺乏情感缓冲，可能伤害亲戚关系，策略不够圆滑。"
+          },
+          "tokens": 557,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，亲戚以亲情为名要求你担保贷款，数额巨大且对方信用不佳。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确拒绝或提出具体方案，意图模糊；策略回避核心矛盾，可操作性低。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未明确拒绝或提出具体方案，意图模糊；策略回避核心矛盾，可操作性低。"
+          },
+          "tokens": 563,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "领导在周五下班前突然安排紧急任务，要求周一上班前完成",
+    "intent": "催促对方",
+    "relation": "上下级关系-较近-上级",
+    "expectedIntent": "催促对方",
+    "expectedStrategy": "委婉催促+说明困难+请求延期",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，领导在周五下班前突然安排紧急任务，要求周一上班前完成。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 3,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 3,\n    \"operability\": 4\n  },\n  \"total\": 3,\n  \"justification\": \"意图部分表达但不够直接，关系维护中性，表达较自然，策略可行但可优化，可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 3,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 3,
+              "operability": 4
+            },
+            "total": 3,
+            "justification": "意图部分表达但不够直接，关系维护中性，表达较自然，策略可行但可优化，可直接使用。"
+          },
+          "tokens": 559,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于领导在周五下班前突然安排紧急任务，要求周一上班前完成，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 5,\n    \"relationship_maintenance\": 1,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 1,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"意图清晰但表达生硬，直接拒绝伤害关系，策略不当，缺乏缓冲和协商，不可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 5,
+              "relationship_maintenance": 1,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 1,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "意图清晰但表达生硬，直接拒绝伤害关系，策略不当，缺乏缓冲和协商，不可直接使用。"
+          },
+          "tokens": 556,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，领导在周五下班前突然安排紧急任务，要求周一上班前完成。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确表达拒绝或协商意图，语气模糊，缺乏具体策略，不自然且难以直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未明确表达拒绝或协商意图，语气模糊，缺乏具体策略，不自然且难以直接使用。"
+          },
+          "tokens": 565,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "室友每晚唱歌到凌晨，声音严重影响你休息，沟通多次无果",
+    "intent": "设立边界",
+    "relation": "同学关系-较近-平级",
+    "expectedIntent": "设立边界",
+    "expectedStrategy": "坚定设界+提出方案+说明影响",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，室友每晚唱歌到凌晨，声音严重影响你休息，沟通多次无果。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2.6,\n  \"justification\": \"意图表达模糊，未直接要求停止唱歌；策略偏软，未针对多次沟通无效的现状；表达较书面，不够自然。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2.6,
+            "justification": "意图表达模糊，未直接要求停止唱歌；策略偏软，未针对多次沟通无效的现状；表达较书面，不够自然。"
+          },
+          "tokens": 566,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于室友每晚唱歌到凌晨，声音严重影响你休息，沟通多次无果，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确表达诉求，语气生硬，缺乏共情，策略不当，可能激化矛盾。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2,
+            "justification": "回复未明确表达诉求，语气生硬，缺乏共情，策略不当，可能激化矛盾。"
+          },
+          "tokens": 554,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，室友每晚唱歌到凌晨，声音严重影响你休息，沟通多次无果。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未直接解决问题，表达模糊像套话，缺乏具体行动，可操作性低。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未直接解决问题，表达模糊像套话，缺乏具体行动，可操作性低。"
+          },
+          "tokens": 561,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "朋友向你借5000元，说是临时周转，但之前借的钱还没还",
+    "intent": "拒绝请求",
+    "relation": "朋友关系-亲密-平级",
+    "expectedIntent": "拒绝请求",
+    "expectedStrategy": "委婉拒绝+表达关心+提供小额帮助",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，朋友向你借5000元，说是临时周转，但之前借的钱还没还。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 3,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 4,\n    \"operability\": 4\n  },\n  \"total\": 3.5,\n  \"justification\": \"意图部分表达但未明确拒绝，关系维护较好，表达稍显书面，策略折中可行，可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 3,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 4,
+              "operability": 4
+            },
+            "total": 3.5,
+            "justification": "意图部分表达但未明确拒绝，关系维护较好，表达稍显书面，策略折中可行，可直接使用。"
+          },
+          "tokens": 565,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于朋友向你借5000元，说是临时周转，但之前借的钱还没还，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 5,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2.8,\n  \"justification\": \"意图清晰拒绝，但表达生硬、缺乏情感缓冲，可能伤害亲密关系，策略不够圆滑。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 5,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2.8,
+            "justification": "意图清晰拒绝，但表达生硬、缺乏情感缓冲，可能伤害亲密关系，策略不够圆滑。"
+          },
+          "tokens": 560,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，朋友向你借5000元，说是临时周转，但之前借的钱还没还。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确拒绝或提出解决方案，意图模糊；表达生硬重复，策略未匹配亲密关系，缺乏可操作性。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未明确拒绝或提出解决方案，意图模糊；表达生硬重复，策略未匹配亲密关系，缺乏可操作性。"
+          },
+          "tokens": 571,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "导师安排你参与一个与论文无关的项目，占用大量科研时间",
+    "intent": "提出反馈",
+    "relation": "师生关系-较近-上级",
+    "expectedIntent": "提出反馈",
+    "expectedStrategy": "委婉反馈+说明情况+请求调整",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，导师安排你参与一个与论文无关的项目，占用大量科研时间。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 3,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 4,\n    \"strategy_appropriateness\": 3,\n    \"operability\": 4\n  },\n  \"total\": 3.5,\n  \"justification\": \"意图部分表达但不够直接，关系维护较好，表达自然，策略可行但可更精准，可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 3,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 4,
+              "strategy_appropriateness": 3,
+              "operability": 4
+            },
+            "total": 3.5,
+            "justification": "意图部分表达但不够直接，关系维护较好，表达自然，策略可行但可更精准，可直接使用。"
+          },
+          "tokens": 558,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于导师安排你参与一个与论文无关的项目，占用大量科研时间，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 5,\n    \"relationship_maintenance\": 1,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 1,\n    \"operability\": 3\n  },\n  \"total\": 2.6,\n  \"justification\": \"意图表达清晰，但语气生硬直接拒绝，未考虑师生关系维护，策略不当，易引发冲突。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 5,
+              "relationship_maintenance": 1,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 1,
+              "operability": 3
+            },
+            "total": 2.6,
+            "justification": "意图表达清晰，但语气生硬直接拒绝，未考虑师生关系维护，策略不当，易引发冲突。"
+          },
+          "tokens": 555,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，导师安排你参与一个与论文无关的项目，占用大量科研时间。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确表达拒绝或协商意图，语言生硬像模板，策略模糊，缺乏可操作性。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未明确表达拒绝或协商意图，语言生硬像模板，策略模糊，缺乏可操作性。"
+          },
+          "tokens": 561,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "客户要求在原定工期基础上缩短30%，但不给额外资源",
+    "intent": "催促对方",
+    "relation": "商业关系-一般-上级",
+    "expectedIntent": "催促对方",
+    "expectedStrategy": "坚定催促+说明影响+寻求支持",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，客户要求在原定工期基础上缩短30%，但不给额外资源。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 4,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 4,\n    \"strategy_appropriateness\": 4,\n    \"operability\": 5\n  },\n  \"total\": 4,\n  \"justification\": \"意图清晰表达困难，关系维护良好，表达自然，策略合理，可直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 4,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 4,
+              "strategy_appropriateness": 4,
+              "operability": 5
+            },
+            "total": 4,
+            "justification": "意图清晰表达困难，关系维护良好，表达自然，策略合理，可直接使用。"
+          },
+          "tokens": 547,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于客户要求在原定工期基础上缩短30%，但不给额外资源，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 5,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 4\n  },\n  \"total\": 3,\n  \"justification\": \"意图清晰但表达生硬，缺乏对上级的尊重和协商策略，关系维护不足。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 5,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 2,
+              "operability": 4
+            },
+            "total": 3,
+            "justification": "意图清晰但表达生硬，缺乏对上级的尊重和协商策略，关系维护不足。"
+          },
+          "tokens": 546,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，客户要求在原定工期基础上缩短30%，但不给额外资源。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2.8,\n  \"justification\": \"意图表达模糊，未明确拒绝或提出方案；关系维护较好，但策略未精准匹配上级关系，缺乏具体可操作内容。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2.8,
+            "justification": "意图表达模糊，未明确拒绝或提出方案；关系维护较好，但策略未精准匹配上级关系，缺乏具体可操作内容。"
+          },
+          "tokens": 567,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "同事在会议上公开批评你的方案，导致你很尴尬",
+    "intent": "提出反馈",
+    "relation": "同事关系-较近-平级",
+    "expectedIntent": "提出反馈",
+    "expectedStrategy": "私下反馈+表达感受+维护面子",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，同事在会议上公开批评你的方案，导致你很尴尬。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2.4,\n  \"justification\": \"回复未直接回应尴尬，意图模糊；表达生硬像模板，策略未针对公开批评场景，需修改。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2.4,
+            "justification": "回复未直接回应尴尬，意图模糊；表达生硬像模板，策略未针对公开批评场景，需修改。"
+          },
+          "tokens": 554,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于同事在会议上公开批评你的方案，导致你很尴尬，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 1,\n    \"relationship_maintenance\": 1,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 1,\n    \"operability\": 2\n  },\n  \"total\": 1.4,\n  \"justification\": \"回复未表达应对尴尬的意图，语气生硬且伤害关系，策略完全错误，无法直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 1,
+              "relationship_maintenance": 1,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 1,
+              "operability": 2
+            },
+            "total": 1.4,
+            "justification": "回复未表达应对尴尬的意图，语气生硬且伤害关系，策略完全错误，无法直接使用。"
+          },
+          "tokens": 549,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，同事在会议上公开批评你的方案，导致你很尴尬。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 1,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 1,\n    \"operability\": 2\n  },\n  \"total\": 1.6,\n  \"justification\": \"回复未表达用户意图，反而重复描述场景；策略不当，未处理尴尬或维护关系；表达生硬，像模板，无法直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 1,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 1,
+              "operability": 2
+            },
+            "total": 1.6,
+            "justification": "回复未表达用户意图，反而重复描述场景；策略不当，未处理尴尬或维护关系；表达生硬，像模板，无法直接使用。"
+          },
+          "tokens": 568,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "网约车司机绕路导致迟到，会议重要且对方态度恶劣",
+    "intent": "提出反馈",
+    "relation": "服务关系-疏远-上级",
+    "expectedIntent": "提出反馈",
+    "expectedStrategy": "坚定反馈+投诉平台+要求赔偿",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，网约车司机绕路导致迟到，会议重要且对方态度恶劣。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2,\n  \"justification\": \"回复未明确道歉或解释，意图模糊；关系维护差，未安抚对方；策略不当，推卸责任。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2,
+            "justification": "回复未明确道歉或解释，意图模糊；关系维护差，未安抚对方；策略不当，推卸责任。"
+          },
+          "tokens": 559,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于网约车司机绕路导致迟到，会议重要且对方态度恶劣，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 1,\n    \"relationship_maintenance\": 1,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 1,\n    \"operability\": 2\n  },\n  \"total\": 1.4,\n  \"justification\": \"回复未针对迟到道歉或解释，态度生硬，忽视对方情绪，策略完全错误，无法使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 1,
+              "relationship_maintenance": 1,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 1,
+              "operability": 2
+            },
+            "total": 1.4,
+            "justification": "回复未针对迟到道歉或解释，态度生硬，忽视对方情绪，策略完全错误，无法使用。"
+          },
+          "tokens": 556,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，网约车司机绕路导致迟到，会议重要且对方态度恶劣。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 2,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 2\n  },\n  \"total\": 2,\n  \"justification\": \"回复未针对迟到和对方恶劣态度提出具体解决方案，表达空洞，策略模糊，难以直接使用。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 2,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 2,
+              "operability": 2
+            },
+            "total": 2,
+            "justification": "回复未针对迟到和对方恶劣态度提出具体解决方案，表达空洞，策略模糊，难以直接使用。"
+          },
+          "tokens": 563,
+          "error": null
+        }
+      }
+    }
+  },
+  {
+    "scenario": "父母总是干涉你的生活方式，提出很多你不认同的建议",
+    "intent": "设立边界",
+    "relation": "家庭关系-亲密-上级",
+    "expectedIntent": "设立边界",
+    "expectedStrategy": "温和设界+表达感谢+坚持自我",
+    "versions": {
+      "温和版": {
+        "response": "我理解你的处境，父母总是干涉你的生活方式，提出很多你不认同的建议。不过我这边确实有些困难，可能需要我们一起想个折中方案。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 3,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 2,\n    \"operability\": 3\n  },\n  \"total\": 2,\n  \"justification\": \"回复未直接表达不认同，意图模糊；策略偏中立，未匹配上级关系；表达较自然但缺乏针对性。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 3,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 2,
+              "operability": 3
+            },
+            "total": 2,
+            "justification": "回复未直接表达不认同，意图模糊；策略偏中立，未匹配上级关系；表达较自然但缺乏针对性。"
+          },
+          "tokens": 551,
+          "error": null
+        }
+      },
+      "坚定版": {
+        "response": "关于父母总是干涉你的生活方式，提出很多你不认同的建议，我仔细考虑过了，我的立场是明确的，无法满足这个要求。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 2,\n    \"relationship_maintenance\": 1,\n    \"expression_naturalness\": 2,\n    \"strategy_appropriateness\": 1,\n    \"operability\": 2\n  },\n  \"total\": 1.6,\n  \"justification\": \"回复生硬、对抗性强，未考虑父母感受，策略错误，意图表达不完整，需大幅修改。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 2,
+              "relationship_maintenance": 1,
+              "expression_naturalness": 2,
+              "strategy_appropriateness": 1,
+              "operability": 2
+            },
+            "total": 1.6,
+            "justification": "回复生硬、对抗性强，未考虑父母感受，策略错误，意图表达不完整，需大幅修改。"
+          },
+          "tokens": 548,
+          "error": null
+        }
+      },
+      "高情商版": {
+        "response": "非常理解你的想法，父母总是干涉你的生活方式，提出很多你不认同的建议。从我们的关系出发，我觉得我们可以这样处理，既能照顾到你的需求，也能兼顾我的实际情况。",
+        "evaluation": {
+          "raw": "{\n  \"scores\": {\n    \"intent_achievement\": 3,\n    \"relationship_maintenance\": 4,\n    \"expression_naturalness\": 3,\n    \"strategy_appropriateness\": 3,\n    \"operability\": 4\n  },\n  \"total\": 3,\n  \"justification\": \"意图部分表达，但未具体回应干涉问题；关系维护较好，表达较自然，策略可行但不够精准。\"\n}",
+          "parsed": {
+            "scores": {
+              "intent_achievement": 3,
+              "relationship_maintenance": 4,
+              "expression_naturalness": 3,
+              "strategy_appropriateness": 3,
+              "operability": 4
+            },
+            "total": 3,
+            "justification": "意图部分表达，但未具体回应干涉问题；关系维护较好，表达较自然，策略可行但不够精准。"
+          },
+          "tokens": 557,
+          "error": null
+        }
+      }
+    }
+  }
+]

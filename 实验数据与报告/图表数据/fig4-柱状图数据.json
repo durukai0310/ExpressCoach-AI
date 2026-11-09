@@ -1,0 +1,24 @@
+{
+  "labels": [
+    "温和版",
+    "坚定版",
+    "高情商版"
+  ],
+  "datasets": [
+    {
+      "label": "选择率",
+      "data": [
+        30,
+        17,
+        43
+      ],
+      "backgroundColor": [
+        "#3B82F6",
+        "#F97316",
+        "#10B981"
+      ],
+      "borderColor": "#ffffff",
+      "borderWidth": 2
+    }
+  ]
+}

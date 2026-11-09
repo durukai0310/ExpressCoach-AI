@@ -1,0 +1,432 @@
+{
+  "+": {
+    "profile": {
+      "style": "mild"
+    },
+    "updatedAt": 1792470271984
+  },
+  "expresscoach:intent:test-user": {
+    "lastScenario": "测试场景",
+    "updatedAt": 1792470585236
+  },
+  "expresscoach:pipeline:test1": {
+    "lastScenario": "我同事兼好朋友向我借钱，我想拒绝但不想伤感情",
+    "lastIntent": "拒绝",
+    "lastSensitivity": 2.3,
+    "runs": 1,
+    "updatedAt": 1792470611056
+  },
+  "expresscoach:profile:1": {
+    "name": "测试用户",
+    "preferred_style": "eq",
+    "updatedAt": 1792470679937,
+    "stats": {
+      "total": 1,
+      "byIntent": {
+        "拒绝": 1
+      },
+      "byStyle": {
+        "eq": 1
+      }
+    },
+    "lastSensitivity": 3.2,
+    "lastRelationship": "同事",
+    "lastUpdated": 1792470679937
+  },
+  "expresscoach:context:sess-demo": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "我同事向我借钱",
+        "at": 1792470679905
+      },
+      {
+        "role": "simulator",
+        "content": "你最近手头宽裕吗？",
+        "at": 1792470679920
+      }
+    ],
+    "updatedAt": 1792470679921
+  },
+  "expresscoach:context:sess-cross-proc": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "领导安排不合理我想提意见",
+        "at": 1792470696394
+      }
+    ],
+    "updatedAt": 1792470696395
+  },
+  "expresscoach:profile:42": {
+    "stats": {
+      "total": 1,
+      "byIntent": {
+        "反馈": 1
+      },
+      "byStyle": {
+        "firm": 1
+      }
+    },
+    "lastSensitivity": 3.6,
+    "lastRelationship": "上级",
+    "lastUpdated": 1792470697043,
+    "updatedAt": 1792470697043
+  },
+  "expresscoach:sandbox:sb-test-1": {
+    "scenario": "我同事兼好朋友向我借钱，我想拒绝但不想伤感情",
+    "mode": "guided",
+    "round": 3,
+    "history": [
+      {
+        "round": 1,
+        "user": "最近手头有点紧，你看能不能借我两千块？",
+        "them": "哎呀，真不巧，我这个月也刚交完房租，手头也紧巴巴的。不过看你这么为难，这样吧，我先给你转五百应应急，剩下的等咱们都缓过来再说，你觉得行不？"
+      },
+      {
+        "round": 2,
+        "user": "我确实有点难处，下个月就还你",
+        "them": "行，我明白，谁都有难的时候。那五百我这就转给你，你先用着，别太有压力。下个月方便了再还就行，咱们之间不用客气。"
+      },
+      {
+        "round": 3,
+        "user": "就当帮个忙嘛，我们关系这么好",
+        "them": "哈哈，那当然啦，正因为关系好我才想着帮你一把呀。不过咱还是先把话说清楚，下个月还我哈，这样以后互相帮忙才轻松嘛～"
+      }
+    ],
+    "updatedAt": 1792470724587
+  },
+  "expresscoach:sandbox:sb-tip-1": {
+    "scenario": "我同事向我借钱，我想拒绝",
+    "mode": "guided",
+    "round": 2,
+    "history": [
+      {
+        "round": 1,
+        "user": "能不能借我两千块？",
+        "them": "哎呀，两千块不是小数目呢。我最近手头也有点紧，不过看你的情况挺急的话，我可以先借你五百应急，剩下的咱们再商量？你遇到什么困难了吗？"
+      },
+      {
+        "round": 2,
+        "user": "下个月一定还你",
+        "them": "嗯，我理解你急用，不过咱们先说好，五百块你先拿去应急，剩下的我真得看情况。你方便说说到底什么事这么急吗？说不定还有别的办法帮到你呢。"
+      }
+    ],
+    "updatedAt": 1792470761035
+  },
+  "expresscoach:profile:7": {
+    "stats": {
+      "total": 1,
+      "byIntent": {
+        "催促": 1
+      },
+      "byStyle": {
+        "eq": 1
+      }
+    },
+    "lastSensitivity": 1.8,
+    "lastRelationship": "挚友",
+    "lastUpdated": 1792470852449,
+    "updatedAt": 1792470852450
+  },
+  "expresscoach:context:pipe-mem-1": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "呃……最近手头有点紧，你看能不能再缓缓？我有了肯定第一时间给你。",
+        "at": 1792470854863
+      },
+      {
+        "role": "simulator",
+        "content": "唉，这个……我先看看卡里还有多少吧，这两天应该会转你点，你放心。",
+        "at": 1792470858429
+      }
+    ],
+    "updatedAt": 1792470858429
+  },
+  "expresscoach:selftest:t-1792471229987": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792471230633
+  },
+  "expresscoach:context:mem-1792471231066": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792471231066
+      }
+    ],
+    "updatedAt": 1792471231066
+  },
+  "expresscoach:profile:999": {
+    "stats": {
+      "total": 18,
+      "byIntent": {
+        "拒绝": 18
+      },
+      "byStyle": {
+        "eq": 18
+      }
+    },
+    "lastSensitivity": 2.3,
+    "lastRelationship": "好朋友",
+    "lastUpdated": 1792508021140,
+    "updatedAt": 1792508021141
+  },
+  "expresscoach:context:sb-1792471242383": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎，理解你的难处，不过我这阵子也不太宽裕。要不这样，我先转你五百应急，剩下的咱们再想想别的办法？你看行不？",
+        "at": 1792471244615
+      },
+      {
+        "role": "simulator",
+        "content": "行，我相信你！那五百我这就转你，下个月有钱了再还我就行，不着急。要是还有别的难处，也可以跟我说说，能帮的我尽量帮。",
+        "at": 1792471248991
+      }
+    ],
+    "updatedAt": 1792471248991
+  },
+  "expresscoach:selftest:t-1792471303368": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792471304037
+  },
+  "expresscoach:context:mem-1792471304455": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792471304456
+      }
+    ],
+    "updatedAt": 1792471304456
+  },
+  "expresscoach:context:sb-1792471315837": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎，听你这么说有点担心呢。不过说实话我最近也不太宽裕，两千拿不出来。要不先借你几百应急？或者咱们一起想想别的办法，比如找家里周转一下？",
+        "at": 1792471317168
+      },
+      {
+        "role": "simulator",
+        "content": "我信你啦，不过关键是下个月我也能缓过来才行呀。这样吧，我先给你五百应急，剩下的咱再想办法，你看行不？",
+        "at": 1792471320765
+      }
+    ],
+    "updatedAt": 1792471320766
+  },
+  "expresscoach:selftest:t-1792472783063": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792472783775
+  },
+  "expresscoach:context:mem-1792472784201": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792472784201
+      }
+    ],
+    "updatedAt": 1792472784202
+  },
+  "expresscoach:context:sb-1792472796073": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎呀，听你这么说挺心疼的。不过说实话，我最近也不太宽裕，两千拿不出来。要不我先借你几百应应急？或者咱们一起想想别的办法？",
+        "at": 1792472798191
+      },
+      {
+        "role": "simulator",
+        "content": "嗯，我信你，就是真不是不想帮你，实在手头也紧。这样吧，我先转你五百，够应个急不？要是还有别的困难，咱们再一起琢磨琢磨办法。",
+        "at": 1792472802747
+      }
+    ],
+    "updatedAt": 1792472802747
+  },
+  "expresscoach:selftest:t-1792473033807": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792473034481
+  },
+  "expresscoach:context:mem-1792473034921": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792473034921
+      }
+    ],
+    "updatedAt": 1792473034921
+  },
+  "expresscoach:context:sb-1792473045692": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎，理解你最近不容易～不过我这阵子也刚交了房租，手里真没啥余钱。要不我先转你两百应急？或者咱一起想想别的办法？",
+        "at": 1792473047095
+      },
+      {
+        "role": "simulator",
+        "content": "我知道你是讲信用的人，不是我信不过你哈～只是两百我也真拿不出更多了，这两百你先拿去用，别急着还。要是还差点，咱再一起琢磨琢磨别的路子？",
+        "at": 1792473050869
+      }
+    ],
+    "updatedAt": 1792473050869
+  },
+  "expresscoach:selftest:t-1792474006557": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792474007225
+  },
+  "expresscoach:context:mem-1792474007642": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792474007642
+      }
+    ],
+    "updatedAt": 1792474007643
+  },
+  "expresscoach:context:sb-1792474018708": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎呀，真是不巧，我这个月也刚交了房租，手头也挺紧的。不过我理解你难，要不我少借点，五百你先用着应急？或者咱们一起想想别的办法？",
+        "at": 1792474020911
+      },
+      {
+        "role": "simulator",
+        "content": "嗯，我相信你，你一直是有信用的人。这样吧，五百你先拿去应急，下个月发工资了再还我就行，不着急的。要真不够咱们再想别的办法，好不好？",
+        "at": 1792474025175
+      }
+    ],
+    "updatedAt": 1792474025176
+  },
+  "expresscoach:selftest:t-1792475325042": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792475325677
+  },
+  "expresscoach:context:mem-1792475326114": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792475326114
+      }
+    ],
+    "updatedAt": 1792475326114
+  },
+  "expresscoach:context:sb-1792475335983": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎呀，理解你最近不容易。不过说实话，我最近开销也挺大的，两千有点勉强。要不我先转你五百应应急？你要是方便的话，跟我说说情况，咱们再商量商量。",
+        "at": 1792475338398
+      },
+      {
+        "role": "simulator",
+        "content": "哈哈，别急别急，我不是不信任你呀。主要是我这个月预算真的卡得紧，五百是能挪出来的极限了。你要是急着用，咱们一起想想别的办法？五百你先收着，行不？",
+        "at": 1792475342268
+      }
+    ],
+    "updatedAt": 1792475342268
+  },
+  "expresscoach:selftest:t-1792475689249": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792475689956
+  },
+  "expresscoach:context:mem-1792475690378": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792475690378
+      }
+    ],
+    "updatedAt": 1792475690378
+  },
+  "expresscoach:context:sb-1792475701173": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎，手头紧确实挺难受的。不过我最近也不太宽裕，两千有点勉强……这样吧，我先转你五百应急，剩下的咱们再商量？",
+        "at": 1792475702955
+      },
+      {
+        "role": "simulator",
+        "content": "行，我相信你。那五百我这就转给你，你先用着应急。要是下个月还有困难，也别硬撑，提前跟我说一声，咱们再想办法，好吗？",
+        "at": 1792475706462
+      }
+    ],
+    "updatedAt": 1792475706463
+  },
+  "expresscoach:selftest:t-1792503973665": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792503977619
+  },
+  "expresscoach:context:mem-1792503978065": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792503978066
+      }
+    ],
+    "updatedAt": 1792503978066
+  },
+  "expresscoach:context:sb-1792503989934": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎，最近我也是月头刚交完房租，手头也紧巴巴的。这样吧，一千我先转你应急，剩下的一下月发工资再给你，行不？",
+        "at": 1792503993503
+      },
+      {
+        "role": "simulator",
+        "content": "哈哈没事，不着急还，你先用着。先把眼前的事儿应付过去，咱们朋友之间不讲究这个，你有难处我懂～",
+        "at": 1792503999029
+      }
+    ],
+    "updatedAt": 1792503999030
+  },
+  "expresscoach:selftest:t-1792508003248": {
+    "probe": "value",
+    "n": 2,
+    "updatedAt": 1792508006823
+  },
+  "expresscoach:context:mem-1792508007254": {
+    "turns": [
+      {
+        "role": "user",
+        "content": "记忆桥接测试消息",
+        "at": 1792508007254
+      }
+    ],
+    "updatedAt": 1792508007255
+  },
+  "expresscoach:context:sb-1792508021155": {
+    "turns": [
+      {
+        "role": "simulator",
+        "content": "哎呀，理解你的难处。不过我这阵子也不太宽裕，两千确实有点吃力。要不我先转你五百应急，剩下的咱们再一起想办法？",
+        "at": 1792508023120
+      },
+      {
+        "role": "simulator",
+        "content": "好呀，有这份心意就行，我信你。那先转你五百应急，你要是真急用再跟我说，咱们慢慢商量，别太有压力哈。",
+        "at": 1792508027316
+      }
+    ],
+    "updatedAt": 1792508027317
+  }
+}

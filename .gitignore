@@ -1,5 +1,11 @@
 node_modules/
 .env
-*.sqlite
+*.db
+.ollama/
+# 说明: data/expresscoach.sqlite 是"预填充交付数据库"(评委首次启动即有数据),
+#       必须随包发布, 故不忽略该文件; 仅忽略 SQLite 的 WAL/SHM 临时文件。
+*.sqlite-shm
+*.sqlite-wal
+dist/
 .DS_Store
-Thumbs.db
+*.log

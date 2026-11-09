@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExpressCoach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ============================================================
+   MUJI / Kenya Hara-inspired design system
+   空 · 素 · 自然色调 · 低对比 · 呼吸留白
+   ============================================================ */
+
+:root {
+  --bg:          #f7f5f0;
+  --bg-card:     #faf9f6;
+  --bg-hover:    #f0ede6;
+  --bg-topbar:   #f5f2eb;
+  --border:      #e5e0d8;
+  --text:        #4a4238;
+  --text-dim:    #6b6458;
+  --text-muted:  #8c8276;
+  --text-hint:   #b8b0a4;
+  --accent:      #9b8c78;
+  --accent-bg:   #ede7de;
+  --accent-hover:#8a7b68;
+  --sage:        #8a9a7f;
+  --sage-bg:     #edf0e9;
+  --warm:        #a8907a;
+  --warm-bg:     #f0e8e0;
+  --stone:       #8a8890;
+  --stone-bg:    #eceaed;
+  --success:     #7a8b6f;
+  --success-bg:  #edf0e9;
+  --warning:     #c4a86a;
+  --warning-bg:  #f7f0de;
+  --error:       #b8847c;
+  --error-bg:    #f5e8e5;
+  --radius:      4px;
+  --radius-md:   6px;
+  --transition:  0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Top bar ───────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  height: 52px;
+  background: var(--bg-topbar);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.brand {
+  font-family: "Noto Serif SC", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.topnav {
+  display: flex;
+  gap: 4px;
+  height: 100%;
+  align-items: stretch;
+}
+.nav-item {
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: color var(--transition);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nav-item:hover { color: var(--text-dim); }
+.nav-item.active {
+  color: var(--text);
+  font-weight: 500;
+}
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: var(--accent);
+}
+.topbar-spacer { flex: 1; }
+
+/* ── Main content ───────────────────────────────── */
+.main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+  width: 100%;
+}
+
+/* ── Page header ────────────────────────────────── */
+.page-header {
+  margin-bottom: 40px;
+}
+.page-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.page-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ── Cards ──────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 8px;
+  transition: border-color var(--transition);
+}
+.card:hover {
+  border-color: var(--text-hint);
+}
+.card-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+/* ── Ghost input ────────────────────────────────── */
+.ghost-input-wrapper {
+  position: relative;
+}
+.ghost-input-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
+  transition: background var(--transition);
+}
+.ghost-input-wrapper:focus-within::after {
+  background: var(--accent);
+}
+.ghost-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text);
+  background: transparent;
+  resize: none;
+  padding: 8px 0;
+  caret-color: var(--accent);
+}
+.ghost-input::placeholder {
+  color: var(--text-hint);
+  font-weight: 300;
+}
+
+/* ── Buttons ────────────────────────────────────── */
+.btn {
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "Noto Sans SC", sans-serif;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--bg-hover); border-color: var(--text-hint); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #faf9f6;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+.btn-ghost { border-color: transparent; background: transparent; color: var(--text-muted); }
+.btn-ghost:hover { color: var(--text); background: var(--bg-hover); }
+.btn-sm { padding: 4px 12px; font-size: 12px; }
+
+/* ── Tags ───────────────────────────────────────── */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  background: var(--bg-hover);
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+.tag.accent  { background: var(--accent-bg);  color: var(--accent); }
+.tag.success { background: var(--success-bg); color: var(--success); }
+.tag.warning { background: var(--warning-bg); color: var(--warning); }
+.tag.error   { background: var(--error-bg);   color: var(--error); }
+.tag.sage  { background: var(--sage-bg);  color: var(--sage); }
+.tag.warm  { background: var(--warm-bg);  color: var(--warm); }
+.tag.stone { background: var(--stone-bg); color: var(--stone); }
+
+/* ── Timing bar ─────────────────────────────────── */
+.timing-bar {
+  height: 2px;
+  border-radius: 1px;
+  background: var(--border);
+  display: flex;
+  overflow: hidden;
+  margin: 8px 0 12px;
+}
+.t-intent   { background: var(--accent); height: 100%; }
+.t-relation { background: var(--stone);  height: 100%; }
+.t-versions { background: var(--sage);   height: 100%; }
+
+/* ── Version grid ──────────────────────────────── */
+.version-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.version-card {
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color var(--transition);
+}
+.version-card:hover { border-color: var(--border); }
+.v-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.v-icon {
+  width: 28px; height: 28px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #faf9f6;
+  flex-shrink: 0;
+}
+.v-icon.sage  { background: var(--sage); }
+.v-icon.warm  { background: var(--warm); }
+.v-icon.stone { background: var(--stone); }
+.v-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text);
+}
+.v-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+.v-content {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-height: 200px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  margin-bottom: 10px;
+}
+.v-strategy {
+  font-size: 12px;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  font-style: italic;
+}
+
+/* ── 四维敏感度雷达图 ───────────────────────────── */
+.radar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.radar-canvas-box {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radar-canvas-box canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.radar-side {
+  flex: 1 1 200px;
+  min-width: 180px;
+}
+.sens-score {
+  font-size: 40px;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+}
+.sens-level {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--accent-bg);
+  color: var(--accent-hover);
+}
+.sens-formula {
+  margin-top: 12px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  word-break: break-word;
+}
+.sens-mods {
+  margin-top: 10px;
+}
+.sens-mod {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+  color: var(--text-dim);
+}
+.sens-mod b {
+  font-weight: 600;
+  color: var(--accent-hover);
+}
+.sens-empty {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Loading ────────────────────────────────────── */
+.loading-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 300;
+}
+.dot-pulse { display: flex; gap: 5px; }
+.dot-pulse span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: dot-pulse 2s infinite ease-in-out;
+  opacity: 0.4;
+}
+.dot-pulse span:nth-child(2) { animation-delay: .3s; }
+.dot-pulse span:nth-child(3) { animation-delay: .6s; }
+@keyframes dot-pulse {
+  0%, 80%, 100% { transform: scale(.8); opacity: .3; }
+  40% { transform: scale(1); opacity: .6; }
+}
+
+/* ── Skeleton ───────────────────────────────────── */
+.skeleton {
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--bg) 25%, #ede8df 50%, var(--bg) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 2s infinite;
+  margin-bottom: 8px;
+}
+.skeleton.w80 { width: 80%; }
+.skeleton.w60 { width: 60%; }
+.skeleton.w40 { width: 40%; }
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+/* ── Error ──────────────────────────────────────── */
+.error-block {
+  background: var(--error-bg);
+  color: var(--error);
+  border-left: 2px solid var(--error);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ── Chat ───────────────────────────────────────── */
+.chat-area {
+  max-height: 440px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 4px 0;
+}
+.chat-msg {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.chat-msg .sender {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.chat-msg.you {
+  align-self: flex-end;
+  background: var(--accent-bg);
+  color: var(--text);
+}
+.chat-msg.sim {
+  align-self: flex-start;
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.chat-msg.coach {
+  align-self: flex-start;
+  background: var(--warning-bg);
+  color: #6b5a38;
+  border-left: 2px solid var(--warning);
+  font-size: 12px;
+  max-width: 90%;
+}
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.chat-input-row input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: "Noto Sans SC", sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--bg-card);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.chat-input-row input:focus { border-color: var(--accent); }
+.chat-input-row input::placeholder { color: var(--text-hint); }
+.chat-status {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Select ─────────────────────────────────────── */
+.select-ghost {
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238c8276' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 28px;
+}
+
+/* ── Setup row ──────────────────────────────────── */
+.setup-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Footer ─────────────────────────────────────── */
+.page-footer {
+  text-align: center;
+  padding: 32px 0 40px;
+  font-size: 11px;
+  color: var(--text-hint);
+  letter-spacing: 0.04em;
+}
+
+/* ── Hero: 分析页双栏（左输入 / 右插画标语）─────────── */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 40px;
+  align-items: center;
+  /* 相对视口居中加宽（.main 只有 720px），右侧留出呼吸位 */
+  width: min(1000px, calc(100vw - 40px));
+  margin: 0 0 44px calc(50% - min(500px, 50vw - 20px));
+}
+.hero-left { min-width: 0; }
+.hero-right {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-art {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}
+.hero-slogan {
+  font-family: "Noto Serif SC", serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.14em;
+  line-height: 1.55;
+  margin-top: 22px;
+}
+.hero-slogan-sub {
+  display: block;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.32em;
+  margin-top: 10px;
+}
+
+/* ── About feature grid ─────────────────────────── */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.feature-item {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+/* ── Responsive ────────────────────────────────── */
+@media (max-width: 700px) {
+  .topbar-inner { padding: 0 12px; gap: 12px; }
+  .main { padding: 32px 14px 60px; }
+  .version-grid { grid-template-columns: 1fr; }
+  .topnav { gap: 2px; }
+  .nav-item { font-size: 12px; padding: 0 10px; }
+  .brand { font-size: 14px; }
+  .page-title { font-size: 22px; }
+  .card { padding: 18px 16px; }
+  .setup-row { flex-direction: column; align-items: stretch; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    width: 100%;
+    margin-left: 0;
+  }
+  .hero-slogan { font-size: 24px; letter-spacing: 0.12em; }
+  .hero-art { max-width: 300px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     Top navigation bar — horizontal rhythm
+     ════════════════════════════════════════════════ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#" onclick="STATE.panel='analyze';render();return false;">ExpressCoach</a>
+    <nav class="topnav">
+      <button class="nav-item active" data-panel="analyze">分析</button>
+      <button class="nav-item" data-panel="sandbox">练习</button>
+      <button class="nav-item" data-panel="about">关于</button>
+    </nav>
+    <div class="topbar-spacer"></div>
+  </div>
+</header>
+
+<main class="main" id="main-content"></main>
+
+<footer class="page-footer">
+</footer>
+
+<script>
+// ============================================================
+// State
+// ============================================================
+const STATE = {
+  panel: 'analyze',
+  chatImage: null,   // 上传的聊天截图（data URL）
+
+  sbSessionId: null,
+  sbRound: 0,
+};
+
+// ============================================================
+// Panel switching
+// ============================================================
+const $main = document.getElementById('main-content');
+const navItems = document.querySelectorAll('.nav-item');
+
+navItems.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navItems.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    STATE.panel = btn.dataset.panel;
+    render();
+  });
+});
+
+function render() {
+  if (STATE.panel === 'analyze') return renderAnalyze();
+  if (STATE.panel === 'sandbox') return renderSandbox();
+  if (STATE.panel === 'about')   return renderAbout();
+}
+
+// ============================================================
+// Version icon map — text labels instead of emoji
+// ============================================================
+const ICON_LABELS = {
+  mild: { cls: 'sage',  label: '温' },
+  firm: { cls: 'warm',  label: '定' },
+  eq:   { cls: 'stone', label: '衡' },
+};
+
+// ============================================================
+// Panel: Analyze
+// ============================================================
+function renderAnalyze() {
+  $main.innerHTML = `
+    <div class="hero">
+      <div class="hero-left">
+        <div class="page-header">
+          <div class="page-title">全链路分析</div>
+          <div class="page-desc">输入社交场景 — 意图识别 — 关系判断 — 三种表达 — 反应预测</div>
+        </div>
+
+        <div class="card">
+          <div class="ghost-input-wrapper">
+            <textarea class="ghost-input" id="scenario-input"
+              placeholder="请描述你的社交困境……（可留空，直接上传聊天截图）"
+              rows="2"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();doAnalyze();}"></textarea>
+          </div>
+
+          <!-- 聊天截图上传区 -->
+          <div id="upload-zone" onclick="document.getElementById('img-input').click()"
+            style="margin-top:12px;border:1.5px dashed var(--border);border-radius:6px;padding:14px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;">
+            <div id="upload-hint" style="font-size:12.5px;color:var(--text-muted);">
+              📷 点击上传聊天截图，或直接 Ctrl+V 粘贴 / 拖拽图片到此处<br>
+              <span style="font-size:11px;color:var(--text-hint);">识别后自动衔接上下文，生成下一条回复</span>
+            </div>
+            <div id="img-preview-wrap" style="display:none;">
+              <div style="display:flex;align-items:center;gap:12px;justify-content:center;">
+                <img id="img-preview" style="max-height:90px;max-width:180px;border-radius:6px;border:1px solid var(--border);" />
+                <div style="text-align:left;">
+                  <div id="img-name" style="font-size:12px;color:var(--text);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+                  <div style="font-size:11px;color:var(--sage);margin-top:2px;">✓ 已选择，点击开始分析后识别</div>
+                  <a href="#" onclick="clearImage(event)" style="font-size:11px;color:var(--error);">移除图片</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="file" id="img-input" accept="image/*" style="display:none" onchange="handleImageFile(this.files[0])">
+
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;">
+            <span style="font-size:12px;color:var(--text-muted);">支持：拒绝、催促、反馈、设边界、求助 —— Enter 开始分析</span>
+            <button class="btn btn-primary" id="analyze-btn" onclick="doAnalyze()">开始分析</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <svg class="hero-art" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="200" cy="134" r="118" fill="#ede7de" opacity="0.55"/>
+          <g stroke="#6b6458" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="136" cy="118" r="24" fill="#f0ede6"/>
+            <path d="M136 146 C110 150 96 172 94 198 V236"/>
+            <path d="M136 146 C162 150 174 172 176 198 V236"/>
+            <path d="M158 178 C174 172 186 168 198 164"/>
+          </g>
+          <g stroke="#6b6458" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="264" cy="118" r="24" fill="#f0ede6"/>
+            <path d="M264 146 C238 150 226 172 224 198 V236"/>
+            <path d="M264 146 C290 150 304 172 306 198 V236"/>
+            <path d="M242 178 C226 172 214 168 202 164"/>
+          </g>
+          <g>
+            <rect x="150" y="52" width="72" height="32" rx="16" fill="#faf9f6" stroke="#9b8c78" stroke-width="1.8"/>
+            <path d="M172 84 L168 96 L184 84" fill="#faf9f6" stroke="#9b8c78" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="172" cy="68" r="2.2" fill="#9b8c78"/>
+            <circle cx="186" cy="68" r="2.2" fill="#9b8c78"/>
+            <circle cx="200" cy="68" r="2.2" fill="#9b8c78"/>
+          </g>
+          <g>
+            <rect x="238" y="34" width="52" height="26" rx="13" fill="#f0e8e0" stroke="#a8907a" stroke-width="1.6"/>
+            <path d="M252 60 L248 70 L262 60" fill="#f0e8e0" stroke="#a8907a" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="252" cy="47" r="1.8" fill="#a8907a"/>
+            <circle cx="262" cy="47" r="1.8" fill="#a8907a"/>
+            <circle cx="272" cy="47" r="1.8" fill="#a8907a"/>
+          </g>
+          <path d="M84 240 H316" stroke="#d9d2c6" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M332 240 V212" stroke="#8a9a7f" stroke-width="2" stroke-linecap="round"/>
+          <path d="M332 218 C322 212 320 202 326 196 C332 202 334 212 332 218Z" fill="#8a9a7f" opacity="0.65"/>
+          <path d="M332 224 C342 218 346 208 342 200 C334 206 330 216 332 224Z" fill="#8a9a7f" opacity="0.45"/>
+        </svg>
+        <div class="hero-slogan">
+          懂社交，更懂人情
+          <span class="hero-slogan-sub">关系感知 · 表达策略引擎</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="analyze-result"></div>
+  `;
+}
+
+// ============================================================
+// 聊天截图上传（点击 / 粘贴 / 拖拽）
+// ============================================================
+// 先用 Canvas 压缩再转 base64 —— 手机原图可达 5MB+，base64 后超 7MB，
+// 服务端/托管网关对 JSON body 有体积限制，必须压缩（目标 ≤ 600KB）
+function handleImageFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  if (file.size > 20 * 1024 * 1024) { alert('图片过大，请压缩到 20MB 以内'); return; }
+  compressImage(file, function (dataUrl) {
+    STATE.chatImage = dataUrl;
+    const wrap = document.getElementById('img-preview-wrap');
+    const hint = document.getElementById('upload-hint');
+    if (!wrap) return;
+    document.getElementById('img-preview').src = dataUrl;
+    const kb = Math.round(dataUrl.length * 3 / 4 / 1024);
+    document.getElementById('img-name').textContent = (file.name || '聊天截图') + '（已压缩至 ' + kb + 'KB）';
+    wrap.style.display = 'block';
+    hint.style.display = 'none';
+  });
+}
+
+// Canvas 压缩：最长边 ≤ 1280px，JPEG quality 0.72，足以让视觉模型看清文字
+function compressImage(file, cb) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const MAX = 1280;
+      let w = img.width, h = img.height;
+      if (Math.max(w, h) > MAX) {
+        const r = MAX / Math.max(w, h);
+        w = Math.round(w * r); h = Math.round(h * r);
+      }
+      const cvs = document.createElement('canvas');
+      cvs.width = w; cvs.height = h;
+      const ctx = cvs.getContext('2d');
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, w, h);   // 防透明底 PNG 变黑
+      ctx.drawImage(img, 0, 0, w, h);
+      cb(cvs.toDataURL('image/jpeg', 0.72));
+    };
+    img.onerror = () => { alert('图片读取失败，请换一张试试'); };
+    img.src = reader.result;
+  };
+  reader.onerror = () => { alert('文件读取失败，请重试'); };
+  reader.readAsDataURL(file);
+}
+
+function clearImage(e) {
+  if (e) e.preventDefault();
+  STATE.chatImage = null;
+  const wrap = document.getElementById('img-preview-wrap');
+  const hint = document.getElementById('upload-hint');
+  if (wrap) wrap.style.display = 'none';
+  if (hint) hint.style.display = 'block';
+  const input = document.getElementById('img-input');
+  if (input) input.value = '';
+}
+
+// 粘贴截图（Ctrl+V）与拖拽上传
+document.addEventListener('paste', (e) => {
+  const items = e.clipboardData?.items || [];
+  for (const it of items) {
+    if (it.type.startsWith('image/')) { handleImageFile(it.getAsFile()); e.preventDefault(); return; }
+  }
+});
+document.addEventListener('dragover', (e) => {
+  const z = document.getElementById('upload-zone');
+  if (z && STATE.panel === 'analyze') { e.preventDefault(); z.style.borderColor = 'var(--accent)'; z.style.background = 'var(--accent-bg)'; }
+});
+document.addEventListener('dragleave', (e) => {
+  const z = document.getElementById('upload-zone');
+  if (z) { z.style.borderColor = ''; z.style.background = ''; }
+});
+document.addEventListener('drop', (e) => {
+  const z = document.getElementById('upload-zone');
+  if (z) { z.style.borderColor = ''; z.style.background = ''; }
+  const f = e.dataTransfer?.files?.[0];
+  if (f && f.type.startsWith('image/') && STATE.panel === 'analyze') { e.preventDefault(); handleImageFile(f); }
+});
+
+// 把识别出的对话渲染成聊天气泡预览
+function renderChatBubbles(chat) {
+  if (!chat || !chat.turns || !chat.turns.length) return '';
+  let h = '<div class="card"><div class="card-title">识别出的对话上文';
+  if (chat.summary) h += ' <span style="font-weight:400;font-size:11px;">（' + esc(chat.summary) + '）</span>';
+  h += '</div><div style="display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;">';
+  for (const t of chat.turns) {
+    const mine = t.role === '我';
+    h += '<div style="display:flex;justify-content:' + (mine ? 'flex-end' : 'flex-start') + ';">';
+    h += '  <div style="max-width:78%;padding:8px 13px;border-radius:12px;font-size:13px;line-height:1.6;background:' + (mine ? 'var(--sage-bg)' : 'var(--bg-hover)') + ';color:var(--text);">';
+    h += '    <div style="font-size:10px;color:var(--text-hint);margin-bottom:2px;">' + esc(t.role) + '</div>';
+    h += '    ' + esc(t.text);
+    h += '  </div>';
+    h += '</div>';
+  }
+  h += '</div><p style="font-size:11px;color:var(--text-hint);margin-top:8px;">生成的回复将作为「我」的下一条消息，衔接以上对话</p></div>';
+  return h;
+}
+
+async function doAnalyze() {
+  const input = document.getElementById('scenario-input');
+  const scenario = input.value.trim();
+  const hasImg = !!STATE.chatImage;
+  if (!scenario && !hasImg) { input.focus(); return; }
+
+  const btn = document.getElementById('analyze-btn');
+  const resultDiv = document.getElementById('analyze-result');
+
+  btn.disabled = true;
+  btn.textContent = '分析中……';
+  resultDiv.innerHTML = `
+    <div class="loading-area">
+      <div class="dot-pulse"><span></span><span></span><span></span></div>
+      分析中，请稍候……
+    </div>
+    <div class="skeleton w80"></div>
+    <div class="skeleton w60"></div>
+    <div class="skeleton w40"></div>
+  `;
+  resultDiv.scrollIntoView({ behavior: 'smooth' });
+
+  try {
+    const resp = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        scenario,
+        intent: scenario,
+        image: STATE.chatImage || undefined,
+      }),
+    });
+    if (!resp.ok) {
+      // 服务端异常时可能返回 HTML 错误页（如 413/网关拦截），不能硬 .json()
+      let msg = '分析失败（HTTP ' + resp.status + '）';
+      try {
+        const e = await resp.json();
+        if (e && e.error) msg = e.error;
+      } catch {
+        if (resp.status === 413) msg = '图片过大，服务端拒收（请换一张或裁剪后再试）';
+        else if (resp.status === 429) msg = '请求太频繁，请稍后再试（限流保护中）';
+      }
+      throw new Error(msg);
+    }
+    const d = await resp.json();
+    renderAnalysis(d, scenario);
+  } catch (e) {
+    resultDiv.innerHTML = '<div class="error-block">' + esc(e.message) + '</div>';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '开始分析';
+  }
+}
+
+function renderAnalysis(d, scenario) {
+  const div = document.getElementById('analyze-result');
+  let h = '';
+
+  // 聊天截图识别出的对话上文（如有）
+  if (d.chatContext && d.chatContext.turns && d.chatContext.turns.length) {
+    h += renderChatBubbles(d.chatContext);
+  }
+
+  // Timing & overview
+  h += '<div class="card">';
+  h += '<div class="card-title">总耗时 ' + d.timing.total.toFixed(1) + 's</div>';
+  h += '<div class="timing-bar">';
+  if (d.timing.intent)    h += '<div class="t-intent" style="width:' + ((d.timing.intent||0)/d.timing.total*100) + '%"></div>';
+  if (d.timing.relation)  h += '<div class="t-relation" style="width:' + ((d.timing.relation||0)/d.timing.total*100) + '%"></div>';
+  if (d.timing.versions)  h += '<div class="t-versions" style="width:' + ((d.timing.versions||0)/d.timing.total*100) + '%"></div>';
+  h += '</div>';
+  h += '<div class="tag-row">';
+  h += '<span class="tag accent">意图</span><span class="tag stone">关系</span><span class="tag sage">三种表达</span><span class="tag warning">预测</span>';
+  h += '</div></div>';
+
+  // Intent
+  if (d.intent) {
+    const conf = (d.intent.confidence * 100 || 0).toFixed(0);
+    h += '<div class="card">';
+    h += '<div class="card-title">意图识别</div>';
+    h += '<div class="tag-row">';
+    h += '<span class="tag accent">' + esc(d.intent.primary) + '</span>';
+    if (d.intent.secondary && d.intent.secondary.length) {
+      d.intent.secondary.forEach(function(s) { h += '<span class="tag">' + esc(s) + '</span>'; });
+    }
+    h += '<span class="tag warning">置信度 ' + conf + '%</span>';
+    h += '</div>';
+    if (d.intent.analysis) h += '<p style="margin-top:8px;font-size:13px;color:var(--text-dim);">' + esc(d.intent.analysis) + '</p>';
+    if (d.intent.keywords && d.intent.keywords.length) {
+      h += '<div class="tag-row" style="margin-top:6px;"><span style="font-size:11px;color:var(--text-muted);">关键词</span>';
+      d.intent.keywords.forEach(function(k) { h += '<span class="tag">' + esc(k) + '</span>'; });
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+
+  // Relation
+  if (d.relation) {
+    h += '<div class="card">';
+    h += '<div class="card-title">关系判断</div>';
+    h += '<div class="tag-row">';
+    h += '<span class="tag stone">' + esc(d.relation.type) + '</span>';
+    h += '<span class="tag">亲密 ' + esc(d.relation.intimacy) + '</span>';
+    h += '<span class="tag">权力 ' + esc(d.relation.power) + '</span>';
+    h += '<span class="tag">利益 ' + esc(d.relation.interest) + '</span>';
+    h += '<span class="tag warning">敏感 ' + esc(d.relation.sensitivity) + '</span>';
+    h += '</div>';
+    if (d.relation.strategy) h += '<p style="margin-top:8px;font-size:13px;">提示：' + esc(d.relation.strategy) + '</p>';
+    if (d.relation.caution)  h += '<p style="font-size:12px;color:var(--warning);margin-top:4px;">注意：' + esc(d.relation.caution) + '</p>';
+    if (d.relation.source)   h += '<p style="font-size:11px;color:var(--text-muted);margin-top:4px;">数据源：' + esc(d.relation.source) + '</p>';
+    h += '</div>';
+  }
+
+  // 四维敏感度雷达图
+  if (d.sensitivity) {
+    h += '<div class="card">';
+    h += '<div class="card-title">四维社交敏感度</div>';
+    h += '<div class="radar-wrap">';
+    h += '  <div class="radar-canvas-box"><canvas id="sens-radar" width="320" height="320"></canvas></div>';
+    h += '  <div class="radar-side">';
+    h += '    <div class="sens-score" id="sens-score">' + (d.sensitivity.score ?? 0) + '</div>';
+    h += '    <div class="sens-level" id="sens-level">' + esc(d.sensitivity.level || '') + '</div>';
+    h += '    <div class="sens-formula" id="sens-formula">' + esc(d.sensitivity.formula || '') + '</div>';
+    h += '    <div class="sens-mods" id="sens-mods"></div>';
+    h += '  </div>';
+    h += '</div>';
+    h += '</div>';
+  }
+
+  // Three versions
+  if (d.versions && d.versions.length) {
+    h += '<div class="card">';
+    h += '<div class="card-title">三种表达</div>';
+    h += '<div class="version-grid">';
+    d.versions.forEach(function(v) {
+      var iconInfo = ICON_LABELS[v.key] || ICON_LABELS['mild'];
+      h += '<div class="version-card">';
+      h += '<div class="v-header">';
+      h += '<div class="v-icon ' + iconInfo.cls + '">' + iconInfo.label + '</div>';
+      h += '<div><div class="v-name">' + esc(v.name) + '</div><div class="v-tag">' + esc(v.tag) + '</div></div>';
+      h += '</div>';
+      h += '<div class="v-content">' + esc(v.content) + '</div>';
+      if (v.strategy) h += '<div class="v-strategy">' + esc(v.strategy) + '</div>';
+      h += '</div>';
+    });
+    h += '</div></div>';
+  }
+
+  // M5 反应预测
+  if (d.predictions && d.predictions.length) {
+    h += '<div class="card">';
+    h += '<div class="card-title">反应预测' +
+         (d.predictedFor ? ' <span style="font-weight:400;font-size:11px;">（基于' + esc(d.predictedFor) + '）</span>' : '') +
+         '</div>';
+    for (var pi = 0; pi < d.predictions.length; pi++) {
+      var pr = d.predictions[pi];
+      var pcls = pr.probability === 'high' ? 'warning' : (pr.probability === 'medium' ? '' : 'success');
+      var picon = pr.probability === 'high' ? '●' : (pr.probability === 'medium' ? '◐' : '○');
+      h += '<div style="padding:8px 0;border-bottom:1px solid var(--border);">';
+      h += '  <div style="display:flex;align-items:center;gap:8px;">';
+      h += '    <span>' + picon + '</span>';
+      h += '    <strong>' + esc(pr.type || '') + '</strong>';
+      h += '    <span class="tag ' + pcls + '">' + esc(pr.probability || '') + '</span>';
+      h += '  </div>';
+      // 预测条目字段: type / probability / sample_response / counter_tip
+      if (pr.sample_response) {
+        h += '  <div style="margin-top:4px;color:var(--text);font-size:13px;">' + esc(pr.sample_response) + '</div>';
+      }
+      if (pr.counter_tip) {
+        h += '  <div style="margin-top:4px;color:var(--text-muted);font-size:12px;">↳ ' + esc(pr.counter_tip) + '</div>';
+      }
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+
+  // Jaccard
+  if (d.jaccard) {
+    h += '<div class="card">';
+    h += '<div class="card-title">差异度检查 · Jaccard 相似度</div>';
+    h += '<div class="tag-row">';
+    var keys = Object.keys(d.jaccard);
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      var v = d.jaccard[k];
+      var cls2 = v < 0.5 ? 'success' : 'warning';
+      h += '<span class="tag ' + cls2 + '">' + k + '：' + (v*100).toFixed(0) + '%</span>';
+    }
+    h += '</div>';
+    h += '<p style="font-size:11px;color:var(--text-muted);margin-top:6px;">相似度 &lt; 70% 表示三个版本差异化达标</p>';
+    h += '</div>';
+  }
+
+  div.innerHTML = h;
+  div.scrollIntoView({ behavior: 'smooth' });
+
+  // 雷达图需在 canvas 进入 DOM 后绘制
+  if (d.sensitivity) drawSensitivityRadar(d.sensitivity);
+}
+
+// ============================================================
+// 四维敏感度雷达图 (原生 Canvas 绘制, 无外部依赖)
+// ============================================================
+
+/** 各维度量程上限，用于归一化到 0~1 */
+const SENS_MAX = { I: 4, P: 4, E: 3, C: 2 };
+
+const SENS_AXES = [
+  { key: "I", label: "亲密度", desc: "越疏远越敏感" },
+  { key: "P", label: "权力", desc: "对方越上位越敏感" },
+  { key: "E", label: "利益", desc: "利益越强越敏感" },
+  { key: "C", label: "语境", desc: "冲突程度越高越敏感" },
+];
+
+function drawSensitivityRadar(s) {
+  const canvas = document.getElementById('sens-radar');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  // 高 DPI 适配
+  const dpr = window.devicePixelRatio || 1;
+  const size = 320;
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const cx = size / 2;
+  const cy = size / 2;
+  const R = size / 2 - 46; // 留出标签空间
+
+  // 配色按敏感度分级
+  const levelColor =
+    s.level === "高敏感" ? '#c9705f' :
+    s.level === "中敏感" ? '#c4a86a' : '#8a9a7f';
+
+  const dims = s.dimensions || {};
+  const vals = SENS_AXES.map((a) => {
+    const raw = Number(dims[a.key] ?? 0);
+    const max = SENS_MAX[a.key] || 1;
+    return Math.max(0, Math.min(1, raw / max));
+  });
+
+  const angleOf = (i) => (Math.PI * 2 * i) / SENS_AXES.length - Math.PI / 2;
+  const pt = (i, r) => [cx + Math.cos(angleOf(i)) * R * r, cy + Math.sin(angleOf(i)) * R * r];
+
+  ctx.clearRect(0, 0, size, size);
+
+  // ---- 网格环 ----
+  const RINGS = 4;
+  for (let g = RINGS; g >= 1; g--) {
+    const r = g / RINGS;
+    ctx.beginPath();
+    for (let i = 0; i < SENS_AXES.length; i++) {
+      const [x, y] = pt(i, r);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = g === RINGS ? '#faf9f6' : 'rgba(0,0,0,0)';
+    ctx.fill();
+    ctx.strokeStyle = '#e5e0d8';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // ---- 轴线 ----
+  for (let i = 0; i < SENS_AXES.length; i++) {
+    const [x, y] = pt(i, 1);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = '#e0dbd2';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // ---- 数据多边形 ----
+  ctx.beginPath();
+  for (let i = 0; i < SENS_AXES.length; i++) {
+    const [x, y] = pt(i, vals[i]);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = levelColor + '33';
+  ctx.fill();
+  ctx.strokeStyle = levelColor;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // ---- 数据点 ----
+  for (let i = 0; i < SENS_AXES.length; i++) {
+    const [x, y] = pt(i, vals[i]);
+    ctx.beginPath();
+    ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = levelColor;
+    ctx.fill();
+    ctx.strokeStyle = '#faf9f6';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // ---- 轴标签 ----
+  ctx.font = '500 13px system-ui, -apple-system, "Microsoft YaHei", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i < SENS_AXES.length; i++) {
+    const a = angleOf(i);
+    const lx = cx + Math.cos(a) * (R + 26);
+    const ly = cy + Math.sin(a) * (R + 26);
+    ctx.fillStyle = '#6b6458';
+    ctx.fillText(SENS_AXES[i].label, lx, ly);
+    ctx.font = '400 10px system-ui, sans-serif';
+    ctx.fillStyle = '#8c8276';
+    ctx.fillText(
+      String(dims[SENS_AXES[i].key] ?? 0),
+      lx, ly + 14
+    );
+    ctx.font = '500 13px system-ui, -apple-system, "Microsoft YaHei", sans-serif';
+  }
+
+  // ---- 微调项 ----
+  const modBox = document.getElementById('sens-mods');
+  if (modBox) {
+    const mods = s.modifiers || [];
+    if (mods.length) {
+      modBox.innerHTML = mods.map(function (m) {
+        const sign = m.value >= 0 ? '+' : '';
+        return '<div class="sens-mod"><span>' + esc(m.name) +
+          '</span><b>' + sign + m.value + '</b></div>';
+      }).join('');
+    } else {
+      modBox.innerHTML =
+        '<div class="sens-empty">Δmod = ' + (s.deltaMod ?? 0) +
+        '（无微调项）</div>';
+    }
+  }
+}
+
+// ============================================================
+// Panel: Sandbox
+// ============================================================
+function renderSandbox() {
+  $main.innerHTML = ''
+    + '<div class="page-header">'
+    + '  <div class="page-title">对话练习</div>'
+    + '  <div class="page-desc">在安全环境中练习社交对话，AI 教练实时指导</div>'
+    + '</div>'
+    + ''
+    + '<div class="card" id="sb-setup-card">'
+    + '  <div class="card-title">练习设置</div>'
+    + '  <div style="margin-bottom:12px;">'
+    + '    <textarea class="ghost-input" id="sb-scenario" rows="1"'
+    + '      style="font-size:15px;padding:8px 0;"'
+    + '      placeholder="输入沙盒场景，例如：催同事交报告">催同事交报告</textarea>'
+    + '  </div>'
+    + '  <div class="setup-row" style="margin-top:8px;">'
+    + '    <select class="select-ghost" id="sb-mode">'
+    + '      <option value="free">自由模式</option>'
+    + '      <option value="guided" selected>引导模式</option>'
+    + '      <option value="stress">压力模式</option>'
+    + '    </select>'
+    + '    <select class="select-ghost" id="sb-personality">'
+    + '      <option value="friendly" selected>友善</option>'
+    + '      <option value="hostile">刁难</option>'
+    + '      <option value="avoidant">回避</option>'
+    + '    </select>'
+    + '    <button class="btn btn-primary" id="sb-start-btn" onclick="doSandboxStart()">开始</button>'
+    + '  </div>'
+    + '</div>'
+    + ''
+    + '<div id="sb-chat-card" style="display:none;"></div>';
+}
+
+async function doSandboxStart() {
+  var scenario = document.getElementById('sb-scenario').value.trim();
+  var mode = document.getElementById('sb-mode').value;
+  var personality = document.getElementById('sb-personality').value;
+  if (!scenario) { document.getElementById('sb-scenario').focus(); return; }
+
+  var btn = document.getElementById('sb-start-btn');
+  btn.disabled = true;
+  btn.textContent = '启动中……';
+
+  try {
+    var resp = await fetch('/api/sandbox/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scenario: scenario, mode: mode, personality: personality }),
+    });
+    if (!resp.ok) { var e = await resp.json(); throw new Error(e.error); }
+    var d = await resp.json();
+
+    STATE.sbSessionId = d.sessionId;
+    STATE.sbRound = 0;
+
+    document.getElementById('sb-setup-card').style.display = 'none';
+    var chatCard = document.getElementById('sb-chat-card');
+    chatCard.style.display = 'block';
+    chatCard.innerHTML = ''
+      + '<div class="card">'
+      + '  <div class="card-title" style="display:flex;justify-content:space-between;align-items:center;">'
+      + '    <span>沙盒对话</span>'
+      + '    <button class="btn btn-ghost btn-sm" onclick="doSandboxEnd()">结束</button>'
+      + '  </div>'
+      + '  <div class="chat-area" id="chat-area"></div>'
+      + '  <div id="coach-hint" style="margin-bottom:8px;"></div>'
+      + '  <div class="chat-input-row">'
+      + '    <input type="text" id="chat-input" placeholder="输入回复…… (Enter 发送)"'
+      + '      onkeydown="if(event.key===\'Enter\')doSandboxSend()">'
+      + '    <button class="btn btn-primary" id="chat-send-btn" onclick="doSandboxSend()">发送</button>'
+      + '  </div>'
+      + '  <div class="chat-status" id="sb-status">'
+      + '    会话 ' + d.sessionId + ' · ' + d.scenario + ' · ' + d.mode + ' · ' + d.personality
+      + '  </div>'
+      + '</div>';
+
+    addChatMsg('sim', '对方', d.opening);
+    document.getElementById('chat-input').focus();
+  } catch (e2) {
+    alert('沙盒启动失败：' + e2.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '开始';
+  }
+}
+
+async function doSandboxSend() {
+  var input = document.getElementById('chat-input');
+  var msg = input.value.trim();
+  if (!msg || !STATE.sbSessionId) return;
+
+  input.value = '';
+  input.disabled = true;
+  document.getElementById('chat-send-btn').disabled = true;
+
+  addChatMsg('you', '你', msg);
+
+  try {
+    var resp = await fetch('/api/sandbox/' + STATE.sbSessionId + '/message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg }),
+    });
+    if (!resp.ok) { var e = await resp.json(); throw new Error(e.error); }
+    var d = await resp.json();
+
+    var hintDiv = document.getElementById('coach-hint');
+    if (d.coachIntervention && d.coachIntervention.should) {
+      var hintHtml = '<div class="chat-msg coach"><div class="sender">教练 · ' + esc(d.coachIntervention.reason) + '</div>' + esc(d.coachIntervention.suggestion);
+      if (d.coachIntervention.example) {
+        hintHtml += '<br><span style="font-size:11px;opacity:.8;">示例：' + esc(d.coachIntervention.example) + '</span>';
+      }
+      hintHtml += '</div>';
+      hintDiv.innerHTML = hintHtml;
+    } else {
+      hintDiv.innerHTML = '';
+    }
+
+    addChatMsg('sim', '对方', d.simulatorReply);
+
+    document.getElementById('sb-status').textContent =
+      '第 ' + d.round + ' 轮 · ' + (d.isFinished ? '已结束' : '进行中');
+
+    if (d.isFinished) {
+      document.getElementById('chat-input').disabled = true;
+      document.getElementById('chat-send-btn').disabled = true;
+      if (d.finalReview) {
+        var rv = d.finalReview;
+        var rvHtml = '<div class="chat-msg coach" style="border-left:3px solid var(--sage);">'
+          + '<div class="sender">教练总结</div>'
+          + '<div style="font-size:13px;line-height:1.8;">'
+          + '<div style="margin-bottom:8px;font-weight:500;">' + esc(rv.summary) + '</div>';
+        if (rv.strengths && rv.strengths.length) {
+          rvHtml += '<div style="margin-bottom:6px;"><span style="color:var(--success);font-weight:500;">亮点</span><br>'
+            + rv.strengths.map(function(s){ return '✓ ' + esc(s); }).join('<br>') + '</div>';
+        }
+        if (rv.improvements && rv.improvements.length) {
+          rvHtml += '<div style="margin-bottom:6px;"><span style="color:var(--warning);font-weight:500;">改进建议</span><br>'
+            + rv.improvements.map(function(s){ return '→ ' + esc(s); }).join('<br>') + '</div>';
+        }
+        if (rv.reminders && rv.reminders.length) {
+          rvHtml += '<div><span style="color:var(--accent);font-weight:500;">话术提醒</span><br>'
+            + rv.reminders.map(function(s){ return '· ' + esc(s); }).join('<br>') + '</div>';
+        }
+        rvHtml += '</div></div>';
+        addChatMsg('coach', '教练总结', '');
+        var area = document.getElementById('chat-area');
+        if (area) {
+          area.lastElementChild.outerHTML = rvHtml;
+          area.scrollTop = area.scrollHeight;
+        }
+      } else {
+        addChatMsg('coach', '会话结束', '练习已完成。可点击右上角「结束」按钮开始新练习。');
+      }
+    }
+  } catch (e2) {
+    addChatMsg('coach', '错误', e2.message);
+  } finally {
+    input.disabled = false;
+    document.getElementById('chat-send-btn').disabled = false;
+    input.focus();
+  }
+}
+
+function addChatMsg(cls, sender, content) {
+  var area = document.getElementById('chat-area');
+  if (!area) return;
+  var div = document.createElement('div');
+  div.className = 'chat-msg ' + cls;
+  div.innerHTML = '<div class="sender">' + sender + '</div>' + esc(content);
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+async function doSandboxEnd() {
+  if (STATE.sbSessionId) {
+    try { await fetch('/api/sandbox/' + STATE.sbSessionId, { method: 'DELETE' }); } catch (e) {}
+  }
+  STATE.sbSessionId = null;
+  STATE.sbRound = 0;
+  document.getElementById('sb-setup-card').style.display = 'block';
+  document.getElementById('sb-chat-card').style.display = 'none';
+}
+
+// ============================================================
+// Panel: About
+// ============================================================
+function renderAbout() {
+  $main.innerHTML = ''
+    + '<div class="page-header">'
+    + '  <div class="page-title">关于 ExpressCoach</div>'
+    + '  <div class="page-desc">AI 社交表达教练 · 四维社交计算模型</div>'
+    + '</div>'
+    + ''
+    + '<div class="card">'
+    + '  <div class="card-title">什么是ExpressCoach？</div>'
+    + '  <p style="font-size:14px;color:var(--text-dim);line-height:1.8;">'
+    + '    ExpressCoach是一个基于 AI 的社交表达教练。它不仅仅是聊天机器人——它理解你的社交关系结构（亲密度、权力、利益、语境），通过<strong>四维社交计算模型</strong>，为你生成经过关系感知的差异化表达策略。'
+    + '  </p>'
+    + '  <p style="font-size:14px;color:var(--text-dim);line-height:1.8;margin-top:12px;">'
+    + '    全系统以 <strong>OpenClaw 框架</strong> 为核心技术载体构建：意图、关系、表达、预测、教练、模拟六类智能体由 OpenClaw 统一编排调度，并深度使用其<b>多智能体协作、跨会话记忆与心跳驱动</b>机制——在对话沙盒中，教练 Agent 静默监控对话流，按心跳节拍在关键时刻介入指导。'
+    + '  </p>'
+    + '</div>'
+    + ''
+    + '<div class="card">'
+    + '  <div class="card-title">核心能力</div>'
+    + '  <div class="feature-grid">'
+    + '    <div class="feature-item">'
+    + '      <strong>5 种意图识别</strong><br><span style="font-size:12px;color:var(--text-muted);">拒绝 催促 反馈 设边界 求助</span>'
+    + '    </div>'
+    + '    <div class="feature-item">'
+    + '      <strong>四维关系计算</strong><br><span style="font-size:12px;color:var(--text-muted);">亲密 权力 利益 语境</span>'
+    + '    </div>'
+    + '    <div class="feature-item">'
+    + '      <strong>三种表达并行生成</strong><br><span style="font-size:12px;color:var(--text-muted);">温和版 坚定版 平衡版</span>'
+    + '    </div>'
+    + '    <div class="feature-item">'
+    + '      <strong>对话沙盒</strong><br><span style="font-size:12px;color:var(--text-muted);">双 Agent 3 种模式 3 种性格</span>'
+    + '    </div>'
+    + '  </div>'
+    + '</div>'
+    + ''
+    + '<div class="card">'
+    + '  <div class="card-title">技术栈</div>'
+    + '  <div class="tag-row">'
+    + '    <span class="tag accent">OpenClaw 框架</span>'
+    + '    <span class="tag accent">Node.js</span>'
+    + '    <span class="tag success">Express</span>'
+    + '    <span class="tag">大语言模型 API</span>'
+    + '    <span class="tag warning">SQLite</span>'
+    + '    <span class="tag">四维社交计算模型</span>'
+    + '  </div>'
+    + '</div>'
+    + ''
+    + '<div class="card">'
+    + '  <div class="card-title">反馈建议</div>'
+    + '  <p style="font-size:13px;color:var(--text-dim);">'
+    + '    如果你有建议或遇到问题，欢迎通过用户问卷反馈。你的反馈会帮助我们持续改进ExpressCoach。'
+    + '  </p>'
+    + '</div>';
+}
+
+// ============================================================
+// Utils
+// ============================================================
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ============================================================
+// Boot
+// ============================================================
+render();
+</script>
+</body>
+</html>
